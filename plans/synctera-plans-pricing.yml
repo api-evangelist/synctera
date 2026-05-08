@@ -5,37 +5,69 @@ provider: Synctera
 providerId: synctera
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Fintech
+- FinTech
 - BaaS
 - Banking
-- Sponsor Bank
-- Embedded
+- Payments
+- Card Issuing
+- KYC
 - Plans
-description: Placeholder plans/pricing artifact for Synctera. Replace with real published pricing once
-  the pipeline researches the provider's plans page.
-notes: Initial scaffold — plans/pricing have not yet been reconciled against the provider's documentation.
+description: Synctera is sold under custom contracts with monthly platform fees, per-transaction,
+  per-card, and ACH/wire fees, plus interest sharing. Sandbox is free.
+notes: Pricing is bespoke per fintech program.
 sources:
 - https://synctera.com/
+- https://docs.synctera.com/
 plans:
-- id: synctera-default
-  name: To Be Reconciled
-  type: enterprise
-  description: Initial scaffold; replace with provider plan tiers once pricing is reconciled.
+- id: synctera-sandbox
+  name: Sandbox
+  type: free
+  description: Self-serve free sandbox via Synctera Console.
   entries:
-  - label: API Access
-    name: api_access
+  - label: Sandbox Access
+    name: sandbox
+    type: included
+    metric: api_calls
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0
+    userMultiplied: false
+  elements:
+  - name: All APIs
+  - name: Test Data
+- id: synctera-program
+  name: Program (Custom)
+  type: enterprise
+  description: Custom production contract with sponsor bank.
+  entries:
+  - label: Platform Fee
+    name: platform_fee
     type: flat
-    metric: varies
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: negotiated
+    userMultiplied: false
+  - label: Per Transaction
+    name: txn_fee
+    type: metered
+    metric: transaction
     limit: -1
     timeFrame: usage
     geo: global
     unit: 1
-    price: see https://synctera.com/
+    price: negotiated
     userMultiplied: false
   elements:
-  - name: Pending Reconciliation
+  - name: Sponsor Bank
+  - name: Production APIs
+  - name: PCI
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

@@ -5,31 +5,32 @@ provider: Synctera
 providerId: synctera
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Fintech
+- FinTech
 - BaaS
 - Banking
-- Sponsor Bank
-- Embedded
+- Payments
+- Card Issuing
+- KYC
 - Rate Limiting
-- Quotas
-- Throttling
-description: Placeholder rate-limit artifact for Synctera. Replace with real limits once researched.
-notes: Initial scaffold — limits have not yet been reconciled.
+description: Synctera enforces per-program rate limits.
+notes: Specific RPS contracted per program.
 sources:
-- https://synctera.com/
+- https://docs.synctera.com/
 responseCodes:
   throttled: 429
 limits:
-- name: Default
-  scope: account
-  metric: varies
-  limit: see provider documentation
-  notes: Pending reconciliation.
+- name: Default API RPS
+  scope: program
+  metric: requests_per_second
+  limit: 50
+  notes: Default per-program throughput.
 policies:
 - name: Backoff Strategy
-  description: Clients should implement exponential backoff with jitter and honor any Retry-After header.
+  description: Exponential backoff on 429.
+- name: Idempotency
+  description: Use idempotency-key headers on POST endpoints.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

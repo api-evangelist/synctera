@@ -5,18 +5,19 @@ provider: Synctera
 providerId: synctera
 created: '2026-05-08'
 modified: '2026-05-08'
-reconciled: false
+reconciled: true
 tags:
-- Fintech
+- FinTech
 - BaaS
 - Banking
-- Sponsor Bank
-- Embedded
+- Payments
+- Card Issuing
+- KYC
 - FinOps
-- Cost Management
 - FOCUS
-description: FOCUS-aligned FinOps placeholder for Synctera. Pipeline will replace with real billing details.
-notes: Initial scaffold — billing model has not yet been reconciled.
+description: 'Synctera bills under contract: monthly platform fee, per-transaction,
+  per-card, ACH/wire, plus interest revenue share.'
+notes: Invoiced via Synctera.
 sources:
 - https://synctera.com/
 - https://focus.finops.org/focus-specification/v1-3/
@@ -26,10 +27,10 @@ alignedWith:
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-publisherName: Synctera
-serviceCategory: Fintech
+publisherName: Synctera, Inc.
+serviceCategory: FinTech
 billingModel:
-  pricingCategory: To Be Reconciled
+  pricingCategory: Subscription + Usage
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
@@ -38,29 +39,43 @@ billingModel:
   - Adjustment
 focusColumns:
   ServiceName: Synctera
-  ServiceCategory: Fintech
+  ServiceCategory: BaaS
   ProviderName: Synctera
   PublisherName: Synctera
   InvoiceIssuerName: Synctera
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-- name: api_usage
-  description: Catch-all meter pending reconciliation.
-  unit: varies
+- name: transactions
+  description: Account transactions processed.
+  unit: transaction
   aggregation: sum
   dimensions:
-  - account
-  - resource
+  - program
+  - account_type
+- name: active_cards
+  description: Active cards.
+  unit: card
+  aggregation: max
+  dimensions:
+  - program
+  - card_product
+- name: kyc_verifications
+  description: KYC/KYB verification calls.
+  unit: verification
+  aggregation: sum
+  dimensions:
+  - program
 principles:
 - name: Visibility
-  description: Pull provider invoices or usage exports until a self-serve usage feed is documented.
+  description: Use Synctera Console reporting and the API to track costs.
 - name: Allocation
-  description: Tag invoice line items to consuming business units in your FinOps store.
+  description: Tag resources by business unit.
 - name: Optimization
-  description: Levers depend on the provider's billing model; review at renewal once reconciled.
+  description: Right-size card products; choose internal transfers over ACH where
+    possible.
 - name: Accountability
-  description: Assign a contract owner to review billing against negotiated terms.
+  description: Program owners review monthly contract minimums.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

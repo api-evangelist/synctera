@@ -1,6 +1,8 @@
 # Synctera (synctera)
 
-Synctera is a banking-as-a-service platform connecting fintechs to sponsor banks, with APIs for accounts, cards, payments, lending, and compliance.
+Synctera is a Banking-as-a-Service platform connecting fintechs to a network of sponsor banks. Provides REST APIs for personal/business customers, accounts, cards, internal transfers, payment schedules, ACH payments, mRDC, KYC/KYB verification, document verification, and disclosures.
+
+OpenAPI 3.x spec captured at [`openapi/synctera-openapi.json`](openapi/synctera-openapi.json), pulled from the official Synctera client-libraries-go repository.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/synctera/refs/heads/main/apis.yml)
 
@@ -9,8 +11,12 @@ Synctera is a banking-as-a-service platform connecting fintechs to sponsor banks
 ## Type
 - **x-type:** company
 
-## Tags:
- - Fintech, BaaS, Banking, Sponsor Bank, Embedded
+## APIs
+- **Synctera Platform API** - REST API covering Customers (Personal & Business), Accounts, Cards, Internal Transfers, Payment Schedules, ACH Payments, mRDC, KYC/KYB Verification, Document Verification, and Disclosures.
+- **Synctera Webhooks** - Outbound HTTP webhook delivery for customer, account, card, transaction, and payment events.
+
+## Tags
+ - FinTech, BaaS, Banking, Payments, Card Issuing, KYC
 
 ## Timestamps
 - **Created:** 2026-05-08
@@ -18,9 +24,9 @@ Synctera is a banking-as-a-service platform connecting fintechs to sponsor banks
 
 ## Common Properties
 - [Website](https://synctera.com/)
-- [Plans](plans/synctera-plans-pricing.yml) — placeholder, pipeline reconciles later
-- [RateLimits](rate-limits/synctera-rate-limits.yml) — placeholder
-- [FinOps](finops/synctera-finops.yml) — FOCUS-aligned placeholder
+- [Plans](plans/synctera-plans-pricing.yml)
+- [RateLimits](rate-limits/synctera-rate-limits.yml)
+- [FinOps](finops/synctera-finops.yml)
 
 ## Maintainers
 **FN:** Kin Lane

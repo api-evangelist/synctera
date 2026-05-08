@@ -1,0 +1,29 @@
+aid: synctera
+url: https://raw.githubusercontent.com/api-evangelist/synctera/refs/heads/main/apis.yml
+name: Synctera
+x-type: company
+description: >-
+  Synctera is a banking-as-a-service platform connecting fintechs to sponsor banks, with APIs for accounts, cards, payments, lending, and compliance.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Fintech
+  - BaaS
+  - Banking
+  - Sponsor Bank
+  - Embedded
+created: '2026-05-08'
+modified: '2026-05-08'
+specificationVersion: '0.19'
+apis: []
+common:
+  - type: Website
+    url: https://synctera.com/
+  - type: Plans
+    url: plans/synctera-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/synctera-rate-limits.yml
+  - type: FinOps
+    url: finops/synctera-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

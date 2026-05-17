@@ -1,7 +1,7 @@
 aid: synctera
 url: https://raw.githubusercontent.com/api-evangelist/synctera/refs/heads/main/apis.yml
 name: Synctera
-x-type: company
+kind: company
 description: Synctera is a Banking-as-a-Service platform connecting fintechs to a
   network of sponsor banks. Provides REST APIs for personal/business customers, accounts,
   cards, internal transfers, payment schedules, ACH payments, mRDC, KYC/KYB verification,

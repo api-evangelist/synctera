@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Disclosures
+  description: 'Synctera API — Disclosures. 5 operations. Lead operation: List Disclosures. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Disclosures
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-disclosures
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Disclosures business capability. Self-contained, no shared references.
+    resources:
+    - name: customers-customer_id-disclosures
+      path: /customers/{customer_id}/disclosures
+      operations:
+      - name: listdisclosures1
+        method: GET
+        description: List Disclosures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdisclosure1
+        method: POST
+        description: Create a Disclosure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: disclosures
+      path: /disclosures
+      operations:
+      - name: listdisclosures
+        method: GET
+        description: List disclosures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdisclosure
+        method: POST
+        description: Create disclosure record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: disclosures-disclosure_id
+      path: /disclosures/{disclosure_id}
+      operations:
+      - name: getdisclosure
+        method: GET
+        description: Get disclosure
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-disclosures-rest
+    port: 8080
+    description: REST adapter for Synctera API — Disclosures. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/customers/{customer-id}/disclosures
+      name: customers-customer-id-disclosures
+      description: REST surface for customers-customer_id-disclosures.
+      operations:
+      - method: GET
+        name: listdisclosures1
+        description: List Disclosures
+        call: synctera-disclosures.listdisclosures1
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdisclosure1
+        description: Create a Disclosure
+        call: synctera-disclosures.createdisclosure1
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/disclosures
+      name: disclosures
+      description: REST surface for disclosures.
+      operations:
+      - method: GET
+        name: listdisclosures
+        description: List disclosures
+        call: synctera-disclosures.listdisclosures
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdisclosure
+        description: Create disclosure record
+        call: synctera-disclosures.createdisclosure
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/disclosures/{disclosure-id}
+      name: disclosures-disclosure-id
+      description: REST surface for disclosures-disclosure_id.
+      operations:
+      - method: GET
+        name: getdisclosure
+        description: Get disclosure
+        call: synctera-disclosures.getdisclosure
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-disclosures-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Disclosures. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-disclosures
+      description: List Disclosures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-disclosures.listdisclosures1
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-disclosure
+      description: Create a Disclosure
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-disclosures.createdisclosure1
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-disclosures-2
+      description: List disclosures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-disclosures.listdisclosures
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-disclosure-record
+      description: Create disclosure record
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-disclosures.createdisclosure
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-disclosure
+      description: Get disclosure
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-disclosures.getdisclosure
+      outputParameters:
+      - type: object
+        mapping: $.

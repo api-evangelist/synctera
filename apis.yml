@@ -48,6 +48,8 @@ apis:
   - type: Documentation
     url: https://docs.synctera.com/api-reference
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/synctera
 - type: Website
   url: https://synctera.com/
 - type: Plans

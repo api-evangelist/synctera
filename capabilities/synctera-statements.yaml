@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Statements
+  description: 'Synctera API — Statements. 2 operations. Lead operation: List statements. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Statements
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-statements
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Statements business capability. Self-contained, no shared references.
+    resources:
+    - name: statements
+      path: /statements
+      operations:
+      - name: liststatements
+        method: GET
+        description: List statements
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: statements-statement_id
+      path: /statements/{statement_id}
+      operations:
+      - name: getstatement
+        method: GET
+        description: Get a statement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-statements-rest
+    port: 8080
+    description: REST adapter for Synctera API — Statements. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/statements
+      name: statements
+      description: REST surface for statements.
+      operations:
+      - method: GET
+        name: liststatements
+        description: List statements
+        call: synctera-statements.liststatements
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/statements/{statement-id}
+      name: statements-statement-id
+      description: REST surface for statements-statement_id.
+      operations:
+      - method: GET
+        name: getstatement
+        description: Get a statement
+        call: synctera-statements.getstatement
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-statements-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Statements. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-statements
+      description: List statements
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-statements.liststatements
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-statement
+      description: Get a statement
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-statements.getstatement
+      outputParameters:
+      - type: object
+        mapping: $.

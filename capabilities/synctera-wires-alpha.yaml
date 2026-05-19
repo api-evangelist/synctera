@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Wires (alpha)
+  description: 'Synctera API — Wires (alpha). 4 operations. Lead operation: List wires. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Wires (alpha)
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-wires-alpha
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Wires (alpha) business capability. Self-contained, no shared references.
+    resources:
+    - name: wires
+      path: /wires
+      operations:
+      - name: listwires
+        method: GET
+        description: List wires
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwire
+        method: POST
+        description: Send a wire
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: wires-wire_id
+      path: /wires/{wire_id}
+      operations:
+      - name: getwire
+        method: GET
+        description: Get a wire by id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: cancelwire
+        method: PATCH
+        description: Cancel an outgoing wire
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-wires-alpha-rest
+    port: 8080
+    description: REST adapter for Synctera API — Wires (alpha). One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/wires
+      name: wires
+      description: REST surface for wires.
+      operations:
+      - method: GET
+        name: listwires
+        description: List wires
+        call: synctera-wires-alpha.listwires
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwire
+        description: Send a wire
+        call: synctera-wires-alpha.createwire
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/wires/{wire-id}
+      name: wires-wire-id
+      description: REST surface for wires-wire_id.
+      operations:
+      - method: GET
+        name: getwire
+        description: Get a wire by id
+        call: synctera-wires-alpha.getwire
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: cancelwire
+        description: Cancel an outgoing wire
+        call: synctera-wires-alpha.cancelwire
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-wires-alpha-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Wires (alpha). One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-wires
+      description: List wires
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-wires-alpha.listwires
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: send-wire
+      description: Send a wire
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-wires-alpha.createwire
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-wire-id
+      description: Get a wire by id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-wires-alpha.getwire
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: cancel-outgoing-wire
+      description: Cancel an outgoing wire
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-wires-alpha.cancelwire
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

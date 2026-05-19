@@ -1,0 +1,137 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Reconciliations
+  description: 'Synctera API — Reconciliations. 3 operations. Lead operation: List reconciliations. Self-contained Naftiko
+    capability covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Reconciliations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-reconciliations
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Reconciliations business capability. Self-contained, no shared references.
+    resources:
+    - name: reconciliations
+      path: /reconciliations
+      operations:
+      - name: listreconciliations
+        method: GET
+        description: List reconciliations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createreconciliation
+        method: POST
+        description: Create a reconciliation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: reconciliations-reconciliation_id
+      path: /reconciliations/{reconciliation_id}
+      operations:
+      - name: getreconciliation
+        method: GET
+        description: Get reconciliation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-reconciliations-rest
+    port: 8080
+    description: REST adapter for Synctera API — Reconciliations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/reconciliations
+      name: reconciliations
+      description: REST surface for reconciliations.
+      operations:
+      - method: GET
+        name: listreconciliations
+        description: List reconciliations
+        call: synctera-reconciliations.listreconciliations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createreconciliation
+        description: Create a reconciliation
+        call: synctera-reconciliations.createreconciliation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reconciliations/{reconciliation-id}
+      name: reconciliations-reconciliation-id
+      description: REST surface for reconciliations-reconciliation_id.
+      operations:
+      - method: GET
+        name: getreconciliation
+        description: Get reconciliation
+        call: synctera-reconciliations.getreconciliation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-reconciliations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Reconciliations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-reconciliations
+      description: List reconciliations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-reconciliations.listreconciliations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-reconciliation
+      description: Create a reconciliation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-reconciliations.createreconciliation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-reconciliation
+      description: Get reconciliation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-reconciliations.getreconciliation
+      outputParameters:
+      - type: object
+        mapping: $.

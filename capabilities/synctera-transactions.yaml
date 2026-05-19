@@ -1,0 +1,208 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Transactions
+  description: 'Synctera API — Transactions. 5 operations. Lead operation: Create an internal transfer. Self-contained Naftiko
+    capability covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-transactions
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions-internal_transfer
+      path: /transactions/internal_transfer
+      operations:
+      - name: createinternaltransfer
+        method: POST
+        description: Create an internal transfer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: transactions-pending
+      path: /transactions/pending
+      operations:
+      - name: listpendingtransactions
+        method: GET
+        description: List pending transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-pending-id
+      path: /transactions/pending/{id}
+      operations:
+      - name: getpendingtransactionbyid
+        method: GET
+        description: Get a pending transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-posted
+      path: /transactions/posted
+      operations:
+      - name: listpostedtransactions
+        method: GET
+        description: List posted transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: transactions-posted-id
+      path: /transactions/posted/{id}
+      operations:
+      - name: getpostedtransactionbyid
+        method: GET
+        description: Get a posted transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-transactions-rest
+    port: 8080
+    description: REST adapter for Synctera API — Transactions. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/transactions/internal-transfer
+      name: transactions-internal-transfer
+      description: REST surface for transactions-internal_transfer.
+      operations:
+      - method: POST
+        name: createinternaltransfer
+        description: Create an internal transfer
+        call: synctera-transactions.createinternaltransfer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/pending
+      name: transactions-pending
+      description: REST surface for transactions-pending.
+      operations:
+      - method: GET
+        name: listpendingtransactions
+        description: List pending transactions
+        call: synctera-transactions.listpendingtransactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/pending/{id}
+      name: transactions-pending-id
+      description: REST surface for transactions-pending-id.
+      operations:
+      - method: GET
+        name: getpendingtransactionbyid
+        description: Get a pending transaction
+        call: synctera-transactions.getpendingtransactionbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/posted
+      name: transactions-posted
+      description: REST surface for transactions-posted.
+      operations:
+      - method: GET
+        name: listpostedtransactions
+        description: List posted transactions
+        call: synctera-transactions.listpostedtransactions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/posted/{id}
+      name: transactions-posted-id
+      description: REST surface for transactions-posted-id.
+      operations:
+      - method: GET
+        name: getpostedtransactionbyid
+        description: Get a posted transaction
+        call: synctera-transactions.getpostedtransactionbyid
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Transactions. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: create-internal-transfer
+      description: Create an internal transfer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-transactions.createinternaltransfer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-pending-transactions
+      description: List pending transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-transactions.listpendingtransactions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-pending-transaction
+      description: Get a pending transaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-transactions.getpendingtransactionbyid
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-posted-transactions
+      description: List posted transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-transactions.listpostedtransactions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-posted-transaction
+      description: Get a posted transaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-transactions.getpostedtransactionbyid
+      outputParameters:
+      - type: object
+        mapping: $.

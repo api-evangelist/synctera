@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — KYC/KYB Verifications
+  description: 'Synctera API — KYC/KYB Verifications. 5 operations. Lead operation: List verifications. Self-contained Naftiko
+    capability covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - KYC/KYB Verifications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-kyc-kyb-verifications
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — KYC/KYB Verifications business capability. Self-contained, no shared references.
+    resources:
+    - name: verifications
+      path: /verifications
+      operations:
+      - name: listverifications1
+        method: GET
+        description: List verifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createverification
+        method: POST
+        description: Create a verification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: verifications-adhoc
+      path: /verifications/adhoc
+      operations:
+      - name: verifyadhoc
+        method: POST
+        description: Check if an individual is on any watchlists
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: verifications-verify
+      path: /verifications/verify
+      operations:
+      - name: verify
+        method: POST
+        description: Verify a customer's identity
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: verifications-verification_id
+      path: /verifications/{verification_id}
+      operations:
+      - name: getverification1
+        method: GET
+        description: Get verification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-kyc-kyb-verifications-rest
+    port: 8080
+    description: REST adapter for Synctera API — KYC/KYB Verifications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/verifications
+      name: verifications
+      description: REST surface for verifications.
+      operations:
+      - method: GET
+        name: listverifications1
+        description: List verifications
+        call: synctera-kyc-kyb-verifications.listverifications1
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createverification
+        description: Create a verification
+        call: synctera-kyc-kyb-verifications.createverification
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/verifications/adhoc
+      name: verifications-adhoc
+      description: REST surface for verifications-adhoc.
+      operations:
+      - method: POST
+        name: verifyadhoc
+        description: Check if an individual is on any watchlists
+        call: synctera-kyc-kyb-verifications.verifyadhoc
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/verifications/verify
+      name: verifications-verify
+      description: REST surface for verifications-verify.
+      operations:
+      - method: POST
+        name: verify
+        description: Verify a customer's identity
+        call: synctera-kyc-kyb-verifications.verify
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/verifications/{verification-id}
+      name: verifications-verification-id
+      description: REST surface for verifications-verification_id.
+      operations:
+      - method: GET
+        name: getverification1
+        description: Get verification
+        call: synctera-kyc-kyb-verifications.getverification1
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-kyc-kyb-verifications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — KYC/KYB Verifications. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-verifications
+      description: List verifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-kyc-kyb-verifications.listverifications1
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-verification
+      description: Create a verification
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-kyc-kyb-verifications.createverification
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-if-individual-is-any
+      description: Check if an individual is on any watchlists
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: synctera-kyc-kyb-verifications.verifyadhoc
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: verify-customer-s-identity
+      description: Verify a customer's identity
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-kyc-kyb-verifications.verify
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-verification
+      description: Get verification
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-kyc-kyb-verifications.getverification1
+      outputParameters:
+      - type: object
+        mapping: $.

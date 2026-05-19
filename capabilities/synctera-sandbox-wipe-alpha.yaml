@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Sandbox Wipe (alpha)
+  description: 'Synctera API — Sandbox Wipe (alpha). 1 operations. Lead operation: Delete data. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Sandbox Wipe (alpha)
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-sandbox-wipe-alpha
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Sandbox Wipe (alpha) business capability. Self-contained, no shared references.
+    resources:
+    - name: wipe
+      path: /wipe
+      operations:
+      - name: wipeworkspace
+        method: POST
+        description: Delete data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-sandbox-wipe-alpha-rest
+    port: 8080
+    description: REST adapter for Synctera API — Sandbox Wipe (alpha). One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/wipe
+      name: wipe
+      description: REST surface for wipe.
+      operations:
+      - method: POST
+        name: wipeworkspace
+        description: Delete data
+        call: synctera-sandbox-wipe-alpha.wipeworkspace
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-sandbox-wipe-alpha-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Sandbox Wipe (alpha). One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: delete-data
+      description: Delete data
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-sandbox-wipe-alpha.wipeworkspace
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,658 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Accounts
+  description: 'Synctera API — Accounts. 18 operations. Lead operation: List accounts. Self-contained Naftiko capability covering
+    one Synctera business surface.'
+  tags:
+  - Synctera
+  - Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-accounts
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: accounts
+      path: /accounts
+      operations:
+      - name: listaccounts
+        method: GET
+        description: List accounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaccount
+        method: POST
+        description: Create an account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-products
+      path: /accounts/products
+      operations:
+      - name: listaccountresourceproducts
+        method: GET
+        description: List account products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: start_date
+          in: query
+          type: string
+          description: Date range filtering for type INTEREST. All rates in interest resource have to have valid_from later
+            or equal to start_date.
+        - name: end_date
+          in: query
+          type: string
+          description: Date range filtering for type INTEREST. All rates in interest resource have to have valid_to earlier
+            or equal to end_date.
+        - name: product_type
+          in: query
+          type: string
+          description: Type of account product
+          required: true
+      - name: createaccountresourceproduct
+        method: POST
+        description: Create an account product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-products-product_id
+      path: /accounts/products/{product_id}
+      operations:
+      - name: patchaccountproduct
+        method: PATCH
+        description: Patch account product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-templates
+      path: /accounts/templates
+      operations:
+      - name: listaccounttemplates
+        method: GET
+        description: List account templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaccounttemplate
+        method: POST
+        description: Create an account template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-templates-template_id
+      path: /accounts/templates/{template_id}
+      operations:
+      - name: deleteaccounttemplate
+        method: DELETE
+        description: Delete account template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getaccounttemplate
+        method: GET
+        description: Get account template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateaccounttemplate
+        method: PUT
+        description: Update account template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-account_id
+      path: /accounts/{account_id}
+      operations:
+      - name: getaccount
+        method: GET
+        description: Get account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patchaccount
+        method: PATCH
+        description: Patch account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: updateaccount
+        method: PUT
+        description: Update account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-account_id-relationships
+      path: /accounts/{account_id}/relationships
+      operations:
+      - name: listaccountrelationship
+        method: GET
+        description: List account relationships
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createaccountrelationship
+        method: POST
+        description: Create account relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: accounts-account_id-relationships-relationship_id
+      path: /accounts/{account_id}/relationships/{relationship_id}
+      operations:
+      - name: deleteaccountrelationship
+        method: DELETE
+        description: Delete account relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getaccountrelationship
+        method: GET
+        description: Get account relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateaccountrelationship
+        method: PUT
+        description: Update account relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-accounts-rest
+    port: 8080
+    description: REST adapter for Synctera API — Accounts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/accounts
+      name: accounts
+      description: REST surface for accounts.
+      operations:
+      - method: GET
+        name: listaccounts
+        description: List accounts
+        call: synctera-accounts.listaccounts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccount
+        description: Create an account
+        call: synctera-accounts.createaccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/products
+      name: accounts-products
+      description: REST surface for accounts-products.
+      operations:
+      - method: GET
+        name: listaccountresourceproducts
+        description: List account products
+        call: synctera-accounts.listaccountresourceproducts
+        with:
+          start_date: rest.start_date
+          end_date: rest.end_date
+          product_type: rest.product_type
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccountresourceproduct
+        description: Create an account product
+        call: synctera-accounts.createaccountresourceproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/products/{product-id}
+      name: accounts-products-product-id
+      description: REST surface for accounts-products-product_id.
+      operations:
+      - method: PATCH
+        name: patchaccountproduct
+        description: Patch account product
+        call: synctera-accounts.patchaccountproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/templates
+      name: accounts-templates
+      description: REST surface for accounts-templates.
+      operations:
+      - method: GET
+        name: listaccounttemplates
+        description: List account templates
+        call: synctera-accounts.listaccounttemplates
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccounttemplate
+        description: Create an account template
+        call: synctera-accounts.createaccounttemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/templates/{template-id}
+      name: accounts-templates-template-id
+      description: REST surface for accounts-templates-template_id.
+      operations:
+      - method: DELETE
+        name: deleteaccounttemplate
+        description: Delete account template
+        call: synctera-accounts.deleteaccounttemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getaccounttemplate
+        description: Get account template
+        call: synctera-accounts.getaccounttemplate
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateaccounttemplate
+        description: Update account template
+        call: synctera-accounts.updateaccounttemplate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{account-id}
+      name: accounts-account-id
+      description: REST surface for accounts-account_id.
+      operations:
+      - method: GET
+        name: getaccount
+        description: Get account
+        call: synctera-accounts.getaccount
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patchaccount
+        description: Patch account
+        call: synctera-accounts.patchaccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateaccount
+        description: Update account
+        call: synctera-accounts.updateaccount
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{account-id}/relationships
+      name: accounts-account-id-relationships
+      description: REST surface for accounts-account_id-relationships.
+      operations:
+      - method: GET
+        name: listaccountrelationship
+        description: List account relationships
+        call: synctera-accounts.listaccountrelationship
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createaccountrelationship
+        description: Create account relationship
+        call: synctera-accounts.createaccountrelationship
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/accounts/{account-id}/relationships/{relationship-id}
+      name: accounts-account-id-relationships-relationship-id
+      description: REST surface for accounts-account_id-relationships-relationship_id.
+      operations:
+      - method: DELETE
+        name: deleteaccountrelationship
+        description: Delete account relationship
+        call: synctera-accounts.deleteaccountrelationship
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getaccountrelationship
+        description: Get account relationship
+        call: synctera-accounts.getaccountrelationship
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateaccountrelationship
+        description: Update account relationship
+        call: synctera-accounts.updateaccountrelationship
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Accounts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-accounts
+      description: List accounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.listaccounts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-account
+      description: Create an account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-accounts.createaccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-account-products
+      description: List account products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.listaccountresourceproducts
+      with:
+        start_date: tools.start_date
+        end_date: tools.end_date
+        product_type: tools.product_type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-account-product
+      description: Create an account product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-accounts.createaccountresourceproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-account-product
+      description: Patch account product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.patchaccountproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-account-templates
+      description: List account templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.listaccounttemplates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-account-template
+      description: Create an account template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-accounts.createaccounttemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-account-template
+      description: Delete account template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: synctera-accounts.deleteaccounttemplate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account-template
+      description: Get account template
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.getaccounttemplate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-account-template
+      description: Update account template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.updateaccounttemplate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account
+      description: Get account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.getaccount
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: patch-account
+      description: Patch account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.patchaccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-account
+      description: Update account
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.updateaccount
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-account-relationships
+      description: List account relationships
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.listaccountrelationship
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-account-relationship
+      description: Create account relationship
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-accounts.createaccountrelationship
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-account-relationship
+      description: Delete account relationship
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: synctera-accounts.deleteaccountrelationship
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-account-relationship
+      description: Get account relationship
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.getaccountrelationship
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-account-relationship
+      description: Update account relationship
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-accounts.updateaccountrelationship
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

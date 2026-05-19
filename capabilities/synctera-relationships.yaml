@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Relationships
+  description: 'Synctera API — Relationships. 5 operations. Lead operation: List relationships. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Relationships
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-relationships
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Relationships business capability. Self-contained, no shared references.
+    resources:
+    - name: relationships
+      path: /relationships
+      operations:
+      - name: listrelationships
+        method: GET
+        description: List relationships
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrelationship
+        method: POST
+        description: Create a relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: relationships-relationship_id
+      path: /relationships/{relationship_id}
+      operations:
+      - name: deleterelationship
+        method: DELETE
+        description: Delete relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getrelationship
+        method: GET
+        description: Get relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updaterelationship
+        method: PATCH
+        description: Update relationship
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-relationships-rest
+    port: 8080
+    description: REST adapter for Synctera API — Relationships. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/relationships
+      name: relationships
+      description: REST surface for relationships.
+      operations:
+      - method: GET
+        name: listrelationships
+        description: List relationships
+        call: synctera-relationships.listrelationships
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrelationship
+        description: Create a relationship
+        call: synctera-relationships.createrelationship
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/relationships/{relationship-id}
+      name: relationships-relationship-id
+      description: REST surface for relationships-relationship_id.
+      operations:
+      - method: DELETE
+        name: deleterelationship
+        description: Delete relationship
+        call: synctera-relationships.deleterelationship
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getrelationship
+        description: Get relationship
+        call: synctera-relationships.getrelationship
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updaterelationship
+        description: Update relationship
+        call: synctera-relationships.updaterelationship
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-relationships-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Relationships. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-relationships
+      description: List relationships
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-relationships.listrelationships
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-relationship
+      description: Create a relationship
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-relationships.createrelationship
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-relationship
+      description: Delete relationship
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: synctera-relationships.deleterelationship
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-relationship
+      description: Get relationship
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-relationships.getrelationship
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-relationship
+      description: Update relationship
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-relationships.updaterelationship
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

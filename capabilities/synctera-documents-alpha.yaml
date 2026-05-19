@@ -1,0 +1,204 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Documents (alpha)
+  description: 'Synctera API — Documents (alpha). 5 operations. Lead operation: List documents. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Documents (alpha)
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-documents-alpha
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Documents (alpha) business capability. Self-contained, no shared references.
+    resources:
+    - name: documents
+      path: /documents
+      operations:
+      - name: listdocuments
+        method: GET
+        description: List documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdocument
+        method: POST
+        description: Create a document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: documents-document_id
+      path: /documents/{document_id}
+      operations:
+      - name: getdocument
+        method: GET
+        description: Get a document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedocument
+        method: PATCH
+        description: Update a document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: documents-document_id-contents
+      path: /documents/{document_id}/contents
+      operations:
+      - name: getdocumentcontents
+        method: GET
+        description: Get a document
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-documents-alpha-rest
+    port: 8080
+    description: REST adapter for Synctera API — Documents (alpha). One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/documents
+      name: documents
+      description: REST surface for documents.
+      operations:
+      - method: GET
+        name: listdocuments
+        description: List documents
+        call: synctera-documents-alpha.listdocuments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdocument
+        description: Create a document
+        call: synctera-documents-alpha.createdocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/documents/{document-id}
+      name: documents-document-id
+      description: REST surface for documents-document_id.
+      operations:
+      - method: GET
+        name: getdocument
+        description: Get a document
+        call: synctera-documents-alpha.getdocument
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatedocument
+        description: Update a document
+        call: synctera-documents-alpha.updatedocument
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/documents/{document-id}/contents
+      name: documents-document-id-contents
+      description: REST surface for documents-document_id-contents.
+      operations:
+      - method: GET
+        name: getdocumentcontents
+        description: Get a document
+        call: synctera-documents-alpha.getdocumentcontents
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-documents-alpha-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Documents (alpha). One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-documents
+      description: List documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-documents-alpha.listdocuments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-document
+      description: Create a document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-documents-alpha.createdocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document
+      description: Get a document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-documents-alpha.getdocument
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-document
+      description: Update a document
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-documents-alpha.updatedocument
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-document-2
+      description: Get a document
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-documents-alpha.getdocumentcontents
+      outputParameters:
+      - type: object
+        mapping: $.

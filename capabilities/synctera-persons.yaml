@@ -1,0 +1,214 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Persons
+  description: 'Synctera API — Persons. 5 operations. Lead operation: List persons. Self-contained Naftiko capability covering
+    one Synctera business surface.'
+  tags:
+  - Synctera
+  - Persons
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-persons
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Persons business capability. Self-contained, no shared references.
+    resources:
+    - name: persons
+      path: /persons
+      operations:
+      - name: listpersons
+        method: GET
+        description: List persons
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createperson
+        method: POST
+        description: Create a person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: persons-person_id
+      path: /persons/{person_id}
+      operations:
+      - name: getperson
+        method: GET
+        description: Get person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateperson
+        method: PATCH
+        description: Update person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: persons-person_id-prefill
+      path: /persons/{person_id}/prefill
+      operations:
+      - name: prefillperson
+        method: POST
+        description: Prefill person
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-persons-rest
+    port: 8080
+    description: REST adapter for Synctera API — Persons. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/persons
+      name: persons
+      description: REST surface for persons.
+      operations:
+      - method: GET
+        name: listpersons
+        description: List persons
+        call: synctera-persons.listpersons
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createperson
+        description: Create a person
+        call: synctera-persons.createperson
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/persons/{person-id}
+      name: persons-person-id
+      description: REST surface for persons-person_id.
+      operations:
+      - method: GET
+        name: getperson
+        description: Get person
+        call: synctera-persons.getperson
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateperson
+        description: Update person
+        call: synctera-persons.updateperson
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/persons/{person-id}/prefill
+      name: persons-person-id-prefill
+      description: REST surface for persons-person_id-prefill.
+      operations:
+      - method: POST
+        name: prefillperson
+        description: Prefill person
+        call: synctera-persons.prefillperson
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-persons-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Persons. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-persons
+      description: List persons
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-persons.listpersons
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-person
+      description: Create a person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-persons.createperson
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-person
+      description: Get person
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-persons.getperson
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-person
+      description: Update person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-persons.updateperson
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: prefill-person
+      description: Prefill person
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-persons.prefillperson
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

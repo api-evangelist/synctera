@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Digital Wallet Tokens
+  description: 'Synctera API — Digital Wallet Tokens. 5 operations. Lead operation: List Digital Wallet Tokens. Self-contained
+    Naftiko capability covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Digital Wallet Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-digital-wallet-tokens
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Digital Wallet Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: cards-digital_wallet_tokens
+      path: /cards/digital_wallet_tokens
+      operations:
+      - name: listdigitalwallettokens
+        method: GET
+        description: List Digital Wallet Tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cards-digital_wallet_tokens-digital_wallet_token_id
+      path: /cards/digital_wallet_tokens/{digital_wallet_token_id}
+      operations:
+      - name: getdigitalwallettoken
+        method: GET
+        description: Get Digital Wallet Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatedigitalwallettokenstatus
+        method: PATCH
+        description: Update Digital Wallet Token's life cycle status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-card_id-digital_wallet_tokens-applepay
+      path: /cards/{card_id}/digital_wallet_tokens/applepay
+      operations:
+      - name: createdigitalwalletapple
+        method: POST
+        description: Create digital wallet token provision request for Apple Pay
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-card_id-digital_wallet_tokens-googlepay
+      path: /cards/{card_id}/digital_wallet_tokens/googlepay
+      operations:
+      - name: createdigitalwalletgoogle
+        method: POST
+        description: Create digital wallet token provision request for Google Pay
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-digital-wallet-tokens-rest
+    port: 8080
+    description: REST adapter for Synctera API — Digital Wallet Tokens. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/cards/digital-wallet-tokens
+      name: cards-digital-wallet-tokens
+      description: REST surface for cards-digital_wallet_tokens.
+      operations:
+      - method: GET
+        name: listdigitalwallettokens
+        description: List Digital Wallet Tokens
+        call: synctera-digital-wallet-tokens.listdigitalwallettokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/digital-wallet-tokens/{digital-wallet-token-id}
+      name: cards-digital-wallet-tokens-digital-wallet-token-id
+      description: REST surface for cards-digital_wallet_tokens-digital_wallet_token_id.
+      operations:
+      - method: GET
+        name: getdigitalwallettoken
+        description: Get Digital Wallet Token
+        call: synctera-digital-wallet-tokens.getdigitalwallettoken
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatedigitalwallettokenstatus
+        description: Update Digital Wallet Token's life cycle status
+        call: synctera-digital-wallet-tokens.updatedigitalwallettokenstatus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}/digital-wallet-tokens/applepay
+      name: cards-card-id-digital-wallet-tokens-applepay
+      description: REST surface for cards-card_id-digital_wallet_tokens-applepay.
+      operations:
+      - method: POST
+        name: createdigitalwalletapple
+        description: Create digital wallet token provision request for Apple Pay
+        call: synctera-digital-wallet-tokens.createdigitalwalletapple
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}/digital-wallet-tokens/googlepay
+      name: cards-card-id-digital-wallet-tokens-googlepay
+      description: REST surface for cards-card_id-digital_wallet_tokens-googlepay.
+      operations:
+      - method: POST
+        name: createdigitalwalletgoogle
+        description: Create digital wallet token provision request for Google Pay
+        call: synctera-digital-wallet-tokens.createdigitalwalletgoogle
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-digital-wallet-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Digital Wallet Tokens. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-digital-wallet-tokens
+      description: List Digital Wallet Tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-digital-wallet-tokens.listdigitalwallettokens
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-digital-wallet-token
+      description: Get Digital Wallet Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-digital-wallet-tokens.getdigitalwallettoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-digital-wallet-token-s-life
+      description: Update Digital Wallet Token's life cycle status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-digital-wallet-tokens.updatedigitalwallettokenstatus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-digital-wallet-token-provision
+      description: Create digital wallet token provision request for Apple Pay
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-digital-wallet-tokens.createdigitalwalletapple
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-digital-wallet-token-provision-2
+      description: Create digital wallet token provision request for Google Pay
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-digital-wallet-tokens.createdigitalwalletgoogle
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,137 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Remote Check Deposit (beta)
+  description: 'Synctera API — Remote Check Deposit (beta). 3 operations. Lead operation: List Remote Check Deposits. Self-contained
+    Naftiko capability covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Remote Check Deposit (beta)
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-remote-check-deposit-beta
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Remote Check Deposit (beta) business capability. Self-contained, no shared references.
+    resources:
+    - name: rdc-deposits
+      path: /rdc/deposits
+      operations:
+      - name: listrdcdeposits
+        method: GET
+        description: List Remote Check Deposits
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createrdcdeposit
+        method: POST
+        description: Create a Remote Check Deposit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: rdc-deposits-deposit_id
+      path: /rdc/deposits/{deposit_id}
+      operations:
+      - name: getrdcdeposit
+        method: GET
+        description: Get Remote Check Deposit
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-remote-check-deposit-beta-rest
+    port: 8080
+    description: REST adapter for Synctera API — Remote Check Deposit (beta). One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/rdc/deposits
+      name: rdc-deposits
+      description: REST surface for rdc-deposits.
+      operations:
+      - method: GET
+        name: listrdcdeposits
+        description: List Remote Check Deposits
+        call: synctera-remote-check-deposit-beta.listrdcdeposits
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createrdcdeposit
+        description: Create a Remote Check Deposit
+        call: synctera-remote-check-deposit-beta.createrdcdeposit
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/rdc/deposits/{deposit-id}
+      name: rdc-deposits-deposit-id
+      description: REST surface for rdc-deposits-deposit_id.
+      operations:
+      - method: GET
+        name: getrdcdeposit
+        description: Get Remote Check Deposit
+        call: synctera-remote-check-deposit-beta.getrdcdeposit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-remote-check-deposit-beta-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Remote Check Deposit (beta). One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-remote-check-deposits
+      description: List Remote Check Deposits
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-remote-check-deposit-beta.listrdcdeposits
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-remote-check-deposit
+      description: Create a Remote Check Deposit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: synctera-remote-check-deposit-beta.createrdcdeposit
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-remote-check-deposit
+      description: Get Remote Check Deposit
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-remote-check-deposit-beta.getrdcdeposit
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,779 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Cards
+  description: 'Synctera API — Cards. 21 operations. Lead operation: List Cards. Self-contained Naftiko capability covering
+    one Synctera business surface.'
+  tags:
+  - Synctera
+  - Cards
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-cards
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Cards business capability. Self-contained, no shared references.
+    resources:
+    - name: cards
+      path: /cards
+      operations:
+      - name: listcards
+        method: GET
+        description: List Cards
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: issuecard
+        method: POST
+        description: Issue a Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-activate
+      path: /cards/activate
+      operations:
+      - name: activatecard
+        method: POST
+        description: Activate a card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-card_widget_url
+      path: /cards/card_widget_url
+      operations:
+      - name: getcardwidgeturl
+        method: GET
+        description: Get card widget URL
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: widget_type
+          in: query
+          type: string
+          description: The type of widget for which to construct the URL
+          required: true
+        - name: customer_id
+          in: query
+          type: string
+          required: true
+        - name: account_id
+          in: query
+          type: string
+          required: true
+        - name: card_id
+          in: query
+          type: string
+          description: The ID of the card (required for set PIN widget)
+    - name: cards-gateways
+      path: /cards/gateways
+      operations:
+      - name: listgateways
+        method: GET
+        description: List Gateways
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategateway
+        method: POST
+        description: Create Gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-gateways-gateway_id
+      path: /cards/gateways/{gateway_id}
+      operations:
+      - name: getgateway
+        method: GET
+        description: Get Gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updategateway
+        method: PATCH
+        description: Update Gateway
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-images
+      path: /cards/images
+      operations:
+      - name: listcardimagedetails
+        method: GET
+        description: List Card Image Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createcardimage
+        method: POST
+        description: Create Card Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-images-card_image_id
+      path: /cards/images/{card_image_id}
+      operations:
+      - name: getcardimagedetails
+        method: GET
+        description: Get Card Image Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecardimagedetails
+        method: PATCH
+        description: Update Card Image Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-images-card_image_id-data
+      path: /cards/images/{card_image_id}/data
+      operations:
+      - name: getcardimagedata
+        method: GET
+        description: Get Card Image Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: uploadcardimagedata
+        method: POST
+        description: Upload Card Image
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-products
+      path: /cards/products
+      operations:
+      - name: listcardproducts
+        method: GET
+        description: List Card Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cards-single_use_token
+      path: /cards/single_use_token
+      operations:
+      - name: getclientsingleusetoken
+        method: POST
+        description: Get single-use token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-card_id
+      path: /cards/{card_id}
+      operations:
+      - name: getcard
+        method: GET
+        description: Get Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatecard
+        method: PATCH
+        description: Update Card
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: cards-card_id-barcodes
+      path: /cards/{card_id}/barcodes
+      operations:
+      - name: getcardbarcode
+        method: GET
+        description: Get Card Barcode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cards-card_id-changes
+      path: /cards/{card_id}/changes
+      operations:
+      - name: listchanges
+        method: GET
+        description: List Card Changes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: cards-card_id-client_token
+      path: /cards/{card_id}/client_token
+      operations:
+      - name: getclientaccesstoken
+        method: POST
+        description: Get a client token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-cards-rest
+    port: 8080
+    description: REST adapter for Synctera API — Cards. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/cards
+      name: cards
+      description: REST surface for cards.
+      operations:
+      - method: GET
+        name: listcards
+        description: List Cards
+        call: synctera-cards.listcards
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: issuecard
+        description: Issue a Card
+        call: synctera-cards.issuecard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/activate
+      name: cards-activate
+      description: REST surface for cards-activate.
+      operations:
+      - method: POST
+        name: activatecard
+        description: Activate a card
+        call: synctera-cards.activatecard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/card-widget-url
+      name: cards-card-widget-url
+      description: REST surface for cards-card_widget_url.
+      operations:
+      - method: GET
+        name: getcardwidgeturl
+        description: Get card widget URL
+        call: synctera-cards.getcardwidgeturl
+        with:
+          widget_type: rest.widget_type
+          customer_id: rest.customer_id
+          account_id: rest.account_id
+          card_id: rest.card_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/gateways
+      name: cards-gateways
+      description: REST surface for cards-gateways.
+      operations:
+      - method: GET
+        name: listgateways
+        description: List Gateways
+        call: synctera-cards.listgateways
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategateway
+        description: Create Gateway
+        call: synctera-cards.creategateway
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/gateways/{gateway-id}
+      name: cards-gateways-gateway-id
+      description: REST surface for cards-gateways-gateway_id.
+      operations:
+      - method: GET
+        name: getgateway
+        description: Get Gateway
+        call: synctera-cards.getgateway
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updategateway
+        description: Update Gateway
+        call: synctera-cards.updategateway
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/images
+      name: cards-images
+      description: REST surface for cards-images.
+      operations:
+      - method: GET
+        name: listcardimagedetails
+        description: List Card Image Details
+        call: synctera-cards.listcardimagedetails
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcardimage
+        description: Create Card Image
+        call: synctera-cards.createcardimage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/images/{card-image-id}
+      name: cards-images-card-image-id
+      description: REST surface for cards-images-card_image_id.
+      operations:
+      - method: GET
+        name: getcardimagedetails
+        description: Get Card Image Details
+        call: synctera-cards.getcardimagedetails
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecardimagedetails
+        description: Update Card Image Details
+        call: synctera-cards.updatecardimagedetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/images/{card-image-id}/data
+      name: cards-images-card-image-id-data
+      description: REST surface for cards-images-card_image_id-data.
+      operations:
+      - method: GET
+        name: getcardimagedata
+        description: Get Card Image Data
+        call: synctera-cards.getcardimagedata
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadcardimagedata
+        description: Upload Card Image
+        call: synctera-cards.uploadcardimagedata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/products
+      name: cards-products
+      description: REST surface for cards-products.
+      operations:
+      - method: GET
+        name: listcardproducts
+        description: List Card Products
+        call: synctera-cards.listcardproducts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/single-use-token
+      name: cards-single-use-token
+      description: REST surface for cards-single_use_token.
+      operations:
+      - method: POST
+        name: getclientsingleusetoken
+        description: Get single-use token
+        call: synctera-cards.getclientsingleusetoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}
+      name: cards-card-id
+      description: REST surface for cards-card_id.
+      operations:
+      - method: GET
+        name: getcard
+        description: Get Card
+        call: synctera-cards.getcard
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatecard
+        description: Update Card
+        call: synctera-cards.updatecard
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}/barcodes
+      name: cards-card-id-barcodes
+      description: REST surface for cards-card_id-barcodes.
+      operations:
+      - method: GET
+        name: getcardbarcode
+        description: Get Card Barcode
+        call: synctera-cards.getcardbarcode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}/changes
+      name: cards-card-id-changes
+      description: REST surface for cards-card_id-changes.
+      operations:
+      - method: GET
+        name: listchanges
+        description: List Card Changes
+        call: synctera-cards.listchanges
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/cards/{card-id}/client-token
+      name: cards-card-id-client-token
+      description: REST surface for cards-card_id-client_token.
+      operations:
+      - method: POST
+        name: getclientaccesstoken
+        description: Get a client token
+        call: synctera-cards.getclientaccesstoken
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-cards-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Cards. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-cards
+      description: List Cards
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.listcards
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: issue-card
+      description: Issue a Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-cards.issuecard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: activate-card
+      description: Activate a card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-cards.activatecard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card-widget-url
+      description: Get card widget URL
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getcardwidgeturl
+      with:
+        widget_type: tools.widget_type
+        customer_id: tools.customer_id
+        account_id: tools.account_id
+        card_id: tools.card_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-gateways
+      description: List Gateways
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.listgateways
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-gateway
+      description: Create Gateway
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-cards.creategateway
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-gateway
+      description: Get Gateway
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getgateway
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-gateway
+      description: Update Gateway
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-cards.updategateway
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-card-image-details
+      description: List Card Image Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.listcardimagedetails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-card-image
+      description: Create Card Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-cards.createcardimage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card-image-details
+      description: Get Card Image Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getcardimagedetails
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-card-image-details
+      description: Update Card Image Details
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-cards.updatecardimagedetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card-image-data
+      description: Get Card Image Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getcardimagedata
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: upload-card-image
+      description: Upload Card Image
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-cards.uploadcardimagedata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-card-products
+      description: List Card Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.listcardproducts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-single-use-token
+      description: Get single-use token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: synctera-cards.getclientsingleusetoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card
+      description: Get Card
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getcard
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-card
+      description: Update Card
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-cards.updatecard
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-card-barcode
+      description: Get Card Barcode
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.getcardbarcode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-card-changes
+      description: List Card Changes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-cards.listchanges
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-client-token
+      description: Get a client token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: synctera-cards.getclientaccesstoken
+      outputParameters:
+      - type: object
+        mapping: $.

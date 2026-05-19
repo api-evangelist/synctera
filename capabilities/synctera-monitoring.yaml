@@ -1,0 +1,261 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Synctera API — Monitoring
+  description: 'Synctera API — Monitoring. 7 operations. Lead operation: List monitoring alerts. Self-contained Naftiko capability
+    covering one Synctera business surface.'
+  tags:
+  - Synctera
+  - Monitoring
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SYNCTERA_API_KEY: SYNCTERA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: synctera-monitoring
+    baseUri: https://api.synctera.com/v0
+    description: Synctera API — Monitoring business capability. Self-contained, no shared references.
+    resources:
+    - name: monitoring-alerts
+      path: /monitoring/alerts
+      operations:
+      - name: listalerts
+        method: GET
+        description: List monitoring alerts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: monitoring-alerts-alert_id
+      path: /monitoring/alerts/{alert_id}
+      operations:
+      - name: getalert
+        method: GET
+        description: Retrieve a monitoring alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatealert
+        method: PATCH
+        description: Update a monitoring alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: monitoring-subscriptions
+      path: /monitoring/subscriptions
+      operations:
+      - name: listsubscriptions
+        method: GET
+        description: List monitoring subscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsubscription
+        method: POST
+        description: Subscribe a customer or business to monitoring
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: monitoring-subscriptions-subscription_id
+      path: /monitoring/subscriptions/{subscription_id}
+      operations:
+      - name: deletesubscription
+        method: DELETE
+        description: Delete monitoring subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: getsubscription
+        method: GET
+        description: Retrieve monitoring subscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SYNCTERA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: synctera-monitoring-rest
+    port: 8080
+    description: REST adapter for Synctera API — Monitoring. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/monitoring/alerts
+      name: monitoring-alerts
+      description: REST surface for monitoring-alerts.
+      operations:
+      - method: GET
+        name: listalerts
+        description: List monitoring alerts
+        call: synctera-monitoring.listalerts
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/monitoring/alerts/{alert-id}
+      name: monitoring-alerts-alert-id
+      description: REST surface for monitoring-alerts-alert_id.
+      operations:
+      - method: GET
+        name: getalert
+        description: Retrieve a monitoring alert
+        call: synctera-monitoring.getalert
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatealert
+        description: Update a monitoring alert
+        call: synctera-monitoring.updatealert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/monitoring/subscriptions
+      name: monitoring-subscriptions
+      description: REST surface for monitoring-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptions
+        description: List monitoring subscriptions
+        call: synctera-monitoring.listsubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsubscription
+        description: Subscribe a customer or business to monitoring
+        call: synctera-monitoring.createsubscription
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/monitoring/subscriptions/{subscription-id}
+      name: monitoring-subscriptions-subscription-id
+      description: REST surface for monitoring-subscriptions-subscription_id.
+      operations:
+      - method: DELETE
+        name: deletesubscription
+        description: Delete monitoring subscription
+        call: synctera-monitoring.deletesubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getsubscription
+        description: Retrieve monitoring subscription
+        call: synctera-monitoring.getsubscription
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: synctera-monitoring-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Synctera API — Monitoring. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-monitoring-alerts
+      description: List monitoring alerts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-monitoring.listalerts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-monitoring-alert
+      description: Retrieve a monitoring alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-monitoring.getalert
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-monitoring-alert
+      description: Update a monitoring alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: synctera-monitoring.updatealert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-monitoring-subscriptions
+      description: List monitoring subscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-monitoring.listsubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: subscribe-customer-business-monitoring
+      description: Subscribe a customer or business to monitoring
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: synctera-monitoring.createsubscription
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-monitoring-subscription
+      description: Delete monitoring subscription
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: synctera-monitoring.deletesubscription
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-monitoring-subscription
+      description: Retrieve monitoring subscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: synctera-monitoring.getsubscription
+      outputParameters:
+      - type: object
+        mapping: $.

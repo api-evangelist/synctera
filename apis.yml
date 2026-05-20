@@ -8,56 +8,58 @@ description: Synctera is a Banking-as-a-Service platform connecting fintechs to 
   document verification, and disclosures.
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- FinTech
-- BaaS
-- Banking
-- Payments
-- Card Issuing
-- KYC
+  - FinTech
+  - BaaS
+  - Banking
+  - Payments
+  - Card Issuing
+  - KYC
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-- aid: synctera:rest-api
-  name: Synctera Platform API
-  description: REST API covering Customers (Personal & Business), Accounts, Cards,
-    Internal Transfers, Payment Schedules, ACH Payments, mRDC, KYC/KYB Verification,
-    Document Verification, and Disclosures. Authenticated via API keys issued from
-    the Synctera Console.
-  humanURL: https://docs.synctera.com/api-reference
-  baseURL: https://api.synctera.com
-  tags:
-  - REST
-  - Banking
-  - Payments
-  - KYC
-  properties:
-  - type: Documentation
-    url: https://docs.synctera.com/api-reference
-  - type: OpenAPI
-    url: openapi/synctera-openapi.json
-- aid: synctera:webhooks
-  name: Synctera Webhooks
-  description: Outbound HTTP webhook delivery for customer, account, card, transaction,
-    and payment events.
-  humanURL: https://docs.synctera.com/api-reference
-  baseURL: https://api.synctera.com
-  tags:
-  - Webhooks
-  properties:
-  - type: Documentation
-    url: https://docs.synctera.com/api-reference
+  - aid: synctera:rest-api
+    name: Synctera Platform API
+    description: REST API covering Customers (Personal & Business), Accounts, Cards,
+      Internal Transfers, Payment Schedules, ACH Payments, mRDC, KYC/KYB Verification,
+      Document Verification, and Disclosures. Authenticated via API keys issued from
+      the Synctera Console.
+    humanURL: https://docs.synctera.com/api-reference
+    baseURL: https://api.synctera.com
+    tags:
+    - REST
+    - Banking
+    - Payments
+    - KYC
+    properties:
+    - type: Documentation
+      url: https://docs.synctera.com/api-reference
+    - type: OpenAPI
+      url: openapi/synctera-openapi.json
+  - aid: synctera:webhooks
+    name: Synctera Webhooks
+    description: Outbound HTTP webhook delivery for customer, account, card, transaction,
+      and payment events.
+    humanURL: https://docs.synctera.com/api-reference
+    baseURL: https://api.synctera.com
+    tags:
+    - Webhooks
+    properties:
+    - type: Documentation
+      url: https://docs.synctera.com/api-reference
 common:
+  - type: GitHubOrganization
+    url: https://github.com/synctera
   - type: LinkedIn
     url: https://www.linkedin.com/company/synctera
-- type: Website
-  url: https://synctera.com/
-- type: Plans
-  url: plans/synctera-plans-pricing.yml
-- type: RateLimits
-  url: rate-limits/synctera-rate-limits.yml
-- type: FinOps
-  url: finops/synctera-finops.yml
+  - type: Website
+    url: https://synctera.com/
+  - type: Plans
+    url: plans/synctera-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/synctera-rate-limits.yml
+  - type: FinOps
+    url: finops/synctera-finops.yml
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_person",
+  "title": "base_person",
+  "properties": {
+    "ban_status": {
+      "$ref": "#/components/schemas/ban_status",
+      "readOnly": true
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "email": {
+      "description": "Customer's email",
+      "example": "Ahmed.Stracke90@gmail.com",
+      "type": "string"
+    },
+    "id": {
+      "description": "Customer unique identifier",
+      "example": "a0e330bd-fa30-4c1b-882c-abdaac24e7ec",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "kyc_exempt": {
+      "description": "Customer's KYC exemption",
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "kyc_last_run": {
+      "description": "Date and time KYC was last run on the customer",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "kyc_status": {
+      "$ref": "#/components/schemas/customer_kyc_status",
+      "readOnly": true
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "legal_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Customer's legal address"
+    },
+    "metadata": {
+      "description": "User-supplied metadata. Do not use to store PII.",
+      "type": "object"
+    },
+    "middle_name": {
+      "description": "Customer's middle name",
+      "example": "c",
+      "type": "string"
+    },
+    "phone_number": {
+      "description": "Customer's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.",
+      "example": "+14374570680",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "type": "string"
+    },
+    "related_customers": {
+      "description": "Customer's relationships with other accounts eg. guardian",
+      "items": {
+        "$ref": "#/components/schemas/relationship1"
+      },
+      "type": "array"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Customer's shipping address"
+    },
+    "ssn": {
+      "description": "Customer's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC on a customer. Input must match the pattern ^\\d{3}-\\d{2}-\\d{4}$. The response contains the last 4 digits only (e.g. 6789).",
+      "example": "651-36-1079",
+      "type": "string"
+    },
+    "ssn_source": {
+      "$ref": "#/components/schemas/ssn_source"
+    }
+  },
+  "type": "object"
+}

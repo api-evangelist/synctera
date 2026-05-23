@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balance_type",
+  "title": "balance_type",
+  "description": "For `SAVING` and `CHECKING` accounts:\n* `ACCOUNT_BALANCE`: the amount of money in the account. Equal to the sum of credits minus debits for all posted transactions.\n* `AVAILABLE_BALANCE`: the account balance minus any pending debits.\n\nFor `LINE_OF_CREDIT` accounts:\n* `ACCOUNT_BALANCE`: the amount of credit currently in use. Equal to the sum of debits minus credits for all posted transactions.\n* `AVAILABLE_BALANCE`: the amount of credit available. Equal to the credit limit minus `account_balance` minus any pending debits.\n",
+  "enum": [
+    "ACCOUNT_BALANCE",
+    "AVAILABLE_BALANCE"
+  ],
+  "type": "string"
+}

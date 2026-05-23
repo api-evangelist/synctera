@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_direct_post_request",
+  "title": "Direct Post Request",
+  "properties": {
+    "account_alias": {
+      "type": "string"
+    },
+    "account_no": {
+      "description": "The account number associated with the transaction",
+      "type": "string"
+    },
+    "amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "type": "string"
+    },
+    "dc_sign": {
+      "$ref": "#/components/schemas/dc_sign"
+    },
+    "description": {
+      "description": "The description of the transaction",
+      "type": "string"
+    },
+    "effective_date": {
+      "description": "The effective date of the transaction once it gets posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "enhanced_transaction": {
+      "$ref": "#/components/schemas/enhanced_transaction"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "info_only": {
+      "description": "Whether or not this transaction represents a purely informational operation or an actual money movement",
+      "type": "boolean"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "network": {
+      "description": "The network this transaction is associated with",
+      "type": "string"
+    },
+    "offset_description": {
+      "description": "The description of the offset transaction",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "transaction_time": {
+      "description": "The time the transaction occurred.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "type": {
+      "description": "The general type of transaction. For example, \"card\" or \"ach\".",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    },
+    "uuid": {
+      "description": "The unique identifier of the transaction.",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "uuid",
+    "type",
+    "subtype",
+    "amount",
+    "account_no",
+    "account_alias",
+    "dc_sign",
+    "network",
+    "reference_id",
+    "currency",
+    "effective_date",
+    "force_post",
+    "user_data",
+    "external_data",
+    "memo",
+    "risk_info",
+    "info_only",
+    "transaction_time"
+  ],
+  "type": "object"
+}

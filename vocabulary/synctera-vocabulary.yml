@@ -1,0 +1,74 @@
+name: Synctera Domain Vocabulary
+provider: Synctera
+providerId: synctera
+description: Tag-derived vocabulary for the Synctera API surface; sourced from openapi/ tags.
+terms:
+- term: Account Products
+  description: Requests to create and manage account products, including fees, interest.
+- term: Accounts
+  description: Request to create and manage accounts
+- term: Account Templates
+  description: Account Template
+- term: ACH
+  description: Create and manage payments
+- term: Applications
+  description: Create a credit application.
+- term: Businesses
+  description: 'A legal entity (corporation, partnership, etc.) that is relevant to the Synctera platform in some way: a business
+    customer or some other organization that has an ownership share in such a business customer.'
+- term: Cards
+  description: Requests to issue and manage cards
+- term: External Cards (alpha)
+  description: Push and pull from cards
+- term: Customers
+  description: Requests to create and manage customers
+- term: Disclosures
+  description: 'The disclosures resource is used to track the status of disclosures and
+
+    ensure that all parties have been shown the necessary disclosures to meet
+
+    regulatory obligations.'
+- term: Documents
+  description: Request to create and manage documents.
+- term: External Accounts
+  description: 'The External Account resource is used for managing links to accounts
+
+    that operate outside of the Synctera ecosystem.'
+- term: Internal Accounts
+  description: 'The internal account resource is used for managing links to internal
+
+    accounts where the funds are managed by integrators.'
+- term: KYC Verification
+  description: Requests to initiate customer verification.
+- term: Monitoring
+  description: Requests to manage monitoring subscriptions and alerts for customers.
+- term: Cronut
+  description: Request to create and manage payment_schedules
+- term: Persons
+  description: 'A natural person (individual human) that is relevant to the Synctera platform in some way: e.g. a personal
+    customer or a director/officer/owner of a business.'
+- term: Remote Check Deposit
+  description: Request to create and manage deposits using remote deposit capture
+- term: Reconciliations
+  description: Requests to create and manage reconciliation
+- term: Relationships
+  description: Represents the relationships between parties. A relationship can exist between personal customers, business
+    customers, or non-customer persons/organizations.
+- term: Stately
+  description: Request to create and manage statements
+- term: Card Transaction Simulations
+  description: Requests to generate simulated transactions
+- term: Transactions
+  description: Create and manage transactions
+- term: KYC/KYB Verifications
+  description: Requests to initiate customer verification.
+- term: Waitlist
+  description: Request to create and manage waitlists
+- term: Watchlist
+  description: Request to enroll, renew, or cancel watchlist monitors
+- term: Card Webhook Simulations
+  description: Requests to generate simulated webhooks
+- term: Webhooks
+  description: Requests to create and manage webhooks
+- term: Wires (alpha)
+  description: Create and manage wire transfers

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/apple_digital_wallet_provision_response",
+  "title": "apple_digital_wallet_provision_response",
+  "properties": {
+    "activation_data": {
+      "type": "string"
+    },
+    "card_id": {
+      "$ref": "#/components/schemas/card_id"
+    },
+    "created_time": {
+      "example": "Wed May 11 2022 11:26:56 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "encrypted_pass_data": {
+      "type": "string"
+    },
+    "ephemeral_public_key": {
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "Sat Jul 09 2022 10:39:01 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

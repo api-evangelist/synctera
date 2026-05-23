@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/gateway_id",
+  "title": "gateway_id",
+  "description": "The unique identifier of an Authorization gateway config",
+  "format": "string",
+  "type": "string"
+}

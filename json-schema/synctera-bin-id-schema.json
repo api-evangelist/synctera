@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_id",
+  "title": "bin_id",
+  "description": "The unique identifier of a bin",
+  "example": "718e95ce-a36c-48b3-857b-1ae68ebb92c1",
+  "format": "uuid",
+  "type": "string"
+}

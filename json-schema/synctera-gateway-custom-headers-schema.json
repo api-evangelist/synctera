@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/gateway_custom_headers",
+  "title": "gateway_custom_headers",
+  "additionalProperties": {
+    "type": "string"
+  },
+  "description": "Custom Headers of the Authorization gateway",
+  "type": "object"
+}

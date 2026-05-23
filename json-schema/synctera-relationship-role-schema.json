@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationship_role",
+  "title": "Relationship Role",
+  "description": "CUSTODIAN - Related party is the custodian e.g. the parent, BENEFICIARY - Related party is the beneficiary e.g. the dependent, PARTNER - Related party is the partner",
+  "enum": [
+    "CUSTODIAN",
+    "BENEFICIARY",
+    "PARTNER"
+  ],
+  "example": "CUSTODIAN",
+  "type": "string"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_verification",
+  "title": "Information about the account verification process",
+  "description": "Information about the account verification process. If the account has not been verified, this will be null.\n",
+  "discriminator": {
+    "mapping": {
+      "FINICITY": "#/components/schemas/finicity_account_verification",
+      "MANUAL": "#/components/schemas/manual_account_verification",
+      "PLAID": "#/components/schemas/plaid_account_verification"
+    },
+    "propertyName": "vendor"
+  },
+  "nullable": true,
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/plaid_account_verification"
+    },
+    {
+      "$ref": "#/components/schemas/manual_account_verification"
+    },
+    {
+      "$ref": "#/components/schemas/finicity_account_verification"
+    }
+  ],
+  "type": "object"
+}

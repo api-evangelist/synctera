@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base",
+  "title": "base",
+  "properties": {
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "ein": {
+      "description": "U.S. Employer Identification Number (EIN) for this business, in the format xx-xxxxxxx.",
+      "example": "12-3456789",
+      "type": "string"
+    },
+    "email": {
+      "description": "Business's email.",
+      "example": "Coty_Nolan@gmail.com",
+      "type": "string"
+    },
+    "entity_name": {
+      "description": "Business's legal name.",
+      "example": "Apex Corporation",
+      "type": "string"
+    },
+    "formation_date": {
+      "description": "Date the business was legally registered in RFC 3339 full-date format (YYYY-MM-DD).",
+      "example": "2000-01-01",
+      "format": "date",
+      "type": "string"
+    },
+    "formation_state": {
+      "description": "U.S. state where the business is legally registered (2-letter abbreviation).",
+      "example": "OK",
+      "type": "string"
+    },
+    "id": {
+      "description": "Business's unique identifier.",
+      "example": "7605b35b-e6dd-48bc-b16c-fc26c3961338",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_customer": {
+      "$ref": "#/components/schemas/is_customer"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "legal_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Business's legal address."
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "phone_number": {
+      "description": "Business's phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.",
+      "example": "+14374570680",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "type": "string"
+    },
+    "status": {
+      "description": "Status of the business. One of the following:\n* `PROSPECT` \u2013 a potential customer, used for information-gathering and disclosures.\n* `ACTIVE` \u2013  is an integrator defined status.  Integrators should set a business to active if they believe the person to be qualified for conducting business.  Synctera will combine this status with other statuses such a verification to determine if the business is eligible for specific actions such as initiating transactions or issuing a card.\n* `FROZEN` \u2013 business's actions are blocked for security, legal, or other reasons.\n* `SANCTION` \u2013 business is on a sanctions list and should be carefully monitored.\n* `DISSOLVED` \u2013 an inactive status indicating a business entity has filed articles of dissolution or a certificate of termination to terminate its existence.\n* `CANCELLED` \u2013 an inactive status indicating that a business entity has filed a cancellation or has failed to file its periodic report after notice of forfeiture of its rights to do business.\n* `SUSPENDED` \u2013 an inactive status indicating that the business entity has lost the right to operate in it's registered jurisdiction.\n* `MERGED` \u2013 an inactive status indicating that the business entity has terminated existence by merging into another entity.\n* `INACTIVE` \u2013 an inactive status indicating that the business entity is no longer active.\n* `CONVERTED` \u2013 An inactive status indicating that the business entity has been converted to another type of business entity in the same jurisdiction.\n",
+      "enum": [
+        "PROSPECT",
+        "ACTIVE",
+        "FROZEN",
+        "SANCTION",
+        "DISSOLVED",
+        "CANCELLED",
+        "SUSPENDED",
+        "MERGED",
+        "INACTIVE",
+        "CONVERTED"
+      ],
+      "type": "string"
+    },
+    "structure": {
+      "description": "Business's legal structure.",
+      "enum": [
+        "SOLE_PROPRIETORSHIP",
+        "PARTNERSHIP",
+        "LLC",
+        "CORPORATION",
+        "S_CORPORATION",
+        "NON_PROFIT",
+        "OTHER"
+      ],
+      "example": "CORPORATION",
+      "type": "string"
+    },
+    "trade_names": {
+      "description": "Other names by which this business is known.",
+      "example": [
+        "Apex",
+        "Apex LLC",
+        "CorporationID#77231"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "verification_last_run": {
+      "description": "Date and time KYB verification was last run on the business.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "verification_status": {
+      "$ref": "#/components/schemas/verification_status"
+    },
+    "website": {
+      "description": "Business's website.",
+      "example": "https://example.com",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/clearing_model",
+  "title": "clearing_model",
+  "example": {
+    "amount": 80,
+    "card_acceptor": {
+      "address": "address",
+      "city": "city",
+      "country": "country",
+      "ecommerce_security_level_indicator": "ecommerce_security_level_indicator",
+      "mcc": "mcc",
+      "name": "name",
+      "partial_approval_capable": false,
+      "state": "state",
+      "zip": "zip"
+    },
+    "force_post": false,
+    "is_refund": false,
+    "mid": "mid",
+    "network_fees": [
+      {
+        "amount": 123,
+        "credit_debit": "C",
+        "type": "ISSUER_FEE"
+      },
+      {
+        "amount": 123,
+        "credit_debit": "C",
+        "type": "ISSUER_FEE"
+      }
+    ],
+    "original_transaction_id": "original_transaction_id"
+  },
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "card_acceptor": {
+      "$ref": "#/components/schemas/card_acceptor_model"
+    },
+    "force_post": {
+      "default": false,
+      "type": "boolean"
+    },
+    "is_refund": {
+      "default": false,
+      "type": "boolean"
+    },
+    "mid": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "network_fees": {
+      "items": {
+        "$ref": "#/components/schemas/network_fee_model"
+      },
+      "type": "array"
+    },
+    "original_transaction_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "original_transaction_id"
+  ],
+  "type": "object"
+}

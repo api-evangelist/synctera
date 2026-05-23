@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_metadata",
+  "title": "card_metadata",
+  "additionalProperties": {
+    "type": "string"
+  },
+  "description": "Additional data to include in the request structured as key-value pairs",
+  "type": "object"
+}

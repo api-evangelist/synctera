@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_vendor_info",
+  "title": "verification_vendor_info",
+  "description": "The information provided to Synctera from the vendor. Interpretation of this object is up to the client.\n",
+  "discriminator": {
+    "mapping": {
+      "application/json": "#/components/schemas/verification_vendor_json",
+      "text/xml": "#/components/schemas/verification_vendor_xml"
+    },
+    "propertyName": "content_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/verification_vendor_json"
+    },
+    {
+      "$ref": "#/components/schemas/verification_vendor_xml"
+    }
+  ],
+  "type": "object"
+}

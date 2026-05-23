@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_create_request",
+  "title": "Hold Create Request",
+  "properties": {
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "allow_partial": {
+      "type": "boolean"
+    },
+    "amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "auto_post_at": {
+      "description": "The time the transaction will be automatically posted.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "type": "string"
+    },
+    "dc_sign": {
+      "$ref": "#/components/schemas/dc_sign"
+    },
+    "decline_reason": {
+      "description": "The reason for the decline, if any",
+      "type": "string"
+    },
+    "description": {
+      "description": "The description of the transaction",
+      "type": "string"
+    },
+    "effective_date": {
+      "description": "The effective date of the transaction once it gets posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "enhanced_transaction": {
+      "$ref": "#/components/schemas/enhanced_transaction"
+    },
+    "expires_at": {
+      "description": "The date that at which this hold is no longer valid.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "network": {
+      "description": "The network this transaction is associated with",
+      "type": "string"
+    },
+    "offset_description": {
+      "description": "The description of the offset transaction",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of the hold.",
+      "enum": [
+        "PENDING",
+        "DECLINED"
+      ],
+      "type": "string"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "transaction_time": {
+      "description": "The time the transaction occurred.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "type": {
+      "description": "The general type of transaction. For example, \"card\" or \"ach\".",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "type",
+    "subtype",
+    "amount",
+    "dc_sign",
+    "expires_at",
+    "effective_date",
+    "currency",
+    "account_no",
+    "user_data",
+    "external_data",
+    "allow_partial",
+    "force_post",
+    "network",
+    "reference_id",
+    "memo",
+    "auto_post_at",
+    "status",
+    "decline_reason",
+    "transaction_time"
+  ],
+  "type": "object"
+}

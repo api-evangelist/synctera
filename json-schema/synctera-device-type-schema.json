@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/device_type",
+  "title": "device_type",
+  "description": "The type of device into which the digital wallet token will be provisioned.",
+  "enum": [
+    "MOBILE_PHONE",
+    "WATCH",
+    "TABLET"
+  ],
+  "type": "string"
+}

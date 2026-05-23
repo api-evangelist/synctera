@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/financial_institution",
+  "title": "Financial Institution",
+  "properties": {
+    "legal_address": {
+      "$ref": "#/components/schemas/address2"
+    },
+    "name": {
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

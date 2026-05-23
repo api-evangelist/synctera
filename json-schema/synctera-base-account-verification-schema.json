@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_account_verification",
+  "title": "Information about account verification",
+  "properties": {
+    "creation_time": {
+      "description": "The time at which verification was first completed.",
+      "example": "2022-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "The time at which verification was last updated.",
+      "example": "2022-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of verification",
+      "enum": [
+        "VERIFIED",
+        "UNVERIFIED"
+      ],
+      "type": "string"
+    },
+    "vendor": {
+      "description": "The vendor used for verifying the account",
+      "enum": [
+        "PLAID",
+        "MANUAL",
+        "FINICITY"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "vendor"
+  ],
+  "type": "object"
+}

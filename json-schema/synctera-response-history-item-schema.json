@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/response_history_item",
+  "title": "Response history",
+  "description": "Response history object of the webhook request",
+  "properties": {
+    "code": {
+      "description": "Response code from the request",
+      "type": "integer"
+    },
+    "response_body": {
+      "description": "Response body from the request(Length more than 1024 will be trimmed)",
+      "type": "string"
+    },
+    "response_time": {
+      "description": "Timestamp that the response is received",
+      "format": "date-time",
+      "type": "string"
+    },
+    "sent_time": {
+      "description": "Timestamp that the request is sent",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

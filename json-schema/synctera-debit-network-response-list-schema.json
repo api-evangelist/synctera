@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/debit_network_response_list",
+  "title": "debit_network_response_list",
+  "allOf": [
+    {
+      "properties": {
+        "debit_networks": {
+          "description": "Array of debit networks",
+          "items": {
+            "$ref": "#/components/schemas/debit_network_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "debit_networks"
+      ],
+      "type": "object"
+    }
+  ]
+}

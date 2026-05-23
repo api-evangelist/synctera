@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_vendor_values",
+  "title": "external_account_vendor_values",
+  "description": "The vendor selected for the operation.\n",
+  "enum": [
+    "PLAID",
+    "FINICITY"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/id_list_query_schema",
+  "title": "id_list_query_schema",
+  "example": "64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157",
+  "items": {
+    "format": "uuid",
+    "type": "string"
+  },
+  "type": "array"
+}

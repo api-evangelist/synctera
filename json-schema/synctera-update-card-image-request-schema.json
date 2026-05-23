@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/update_card_image_request",
+  "title": "update_card_image_request",
+  "properties": {
+    "rejection_memo": {
+      "type": "string"
+    },
+    "rejection_reason": {
+      "$ref": "#/components/schemas/card_image_rejection_reason"
+    },
+    "status": {
+      "$ref": "#/components/schemas/card_image_status"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "type": "object"
+}

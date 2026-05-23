@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_creation",
+  "title": "account_creation",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/account"
+    },
+    {
+      "properties": {
+        "account_template_id": {
+          "description": "Account template ID",
+          "format": "uuid",
+          "type": "string"
+        },
+        "relationships": {
+          "description": "List of the relationship for this account to the parties",
+          "items": {
+            "$ref": "#/components/schemas/relationship"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  ]
+}

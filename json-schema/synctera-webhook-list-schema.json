@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook_list",
+  "title": "webhook_list",
+  "allOf": [
+    {
+      "properties": {
+        "webhooks": {
+          "description": "Array of webhooks",
+          "items": {
+            "$ref": "#/components/schemas/webhook"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "webhooks"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

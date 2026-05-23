@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_widget_url_response",
+  "title": "card_widget_url_response",
+  "description": "A URL for activate card and set pin widgets",
+  "properties": {
+    "url": {
+      "format": "uri",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

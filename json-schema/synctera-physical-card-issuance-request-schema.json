@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card_issuance_request",
+  "title": "physical_card_issuance_request",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/physical_card"
+    },
+    {
+      "required": [
+        "form",
+        "customer_id",
+        "account_id",
+        "type",
+        "card_product_id"
+      ],
+      "type": "object"
+    }
+  ],
+  "example": {
+    "account_id": "1471cad8-077a-4382-9e64-e28ea526fbaf",
+    "card_product_id": "aae9828b-c584-4971-86f9-c8ccc3ec3ad5",
+    "customer_id": "d947fe22-f70c-4797-90fa-6cceb1245db0",
+    "form": "PHYSICAL",
+    "type": "DEBIT"
+  }
+}

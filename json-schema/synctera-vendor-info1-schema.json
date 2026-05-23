@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/vendor_info1",
+  "title": "Vendor Info",
+  "description": "The information provided to Synctera from the vendor. Interpretation of this object is up to the client.\n",
+  "discriminator": {
+    "mapping": {
+      "application/json": "#/components/schemas/vendor_json",
+      "text/xml": "#/components/schemas/vendor_xml"
+    },
+    "propertyName": "content_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/vendor_json"
+    },
+    {
+      "$ref": "#/components/schemas/vendor_xml"
+    }
+  ],
+  "readOnly": true,
+  "type": "object"
+}

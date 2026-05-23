@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_vendor_account_failure",
+  "title": "add_vendor_account_failure",
+  "properties": {
+    "reason": {
+      "$ref": "#/components/schemas/add_vendor_accounts_error_reason"
+    },
+    "reason_description": {
+      "description": "A human-readable message describing the reason for the failure.",
+      "type": "string"
+    },
+    "vendor_account_id": {
+      "description": "The vendor account ID for the account that failed. For Plaid, this is an `account_id`.\n",
+      "example": "blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo",
+      "type": "string"
+    },
+    "vendor_error_message": {
+      "description": "The display_message returned by the vendor. Only returned if reason is set to `PROVIDER_ERROR`. For Plaid, this is the `display_message`.\n",
+      "type": "string"
+    },
+    "vendor_request_id": {
+      "description": "A unique identifier for the request from the vendor, which can be used for troubleshooting. Only returned if reason is set to `PROVIDER_ERROR`.\n",
+      "type": "string"
+    }
+  },
+  "required": [
+    "vendor_account_id",
+    "reason",
+    "reason_description"
+  ],
+  "type": "object"
+}

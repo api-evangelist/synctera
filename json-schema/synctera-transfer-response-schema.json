@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transfer_response",
+  "title": "transfer_response",
+  "properties": {
+    "account_id": {
+      "description": "The ID of the account to which the card will be linked",
+      "example": "a4037077-95cc-4746-806e-e19f32a2a5ab",
+      "format": "uuid",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Amount of the transfer in cents",
+      "type": "integer"
+    },
+    "country_code": {
+      "description": "ISO-3166-1 Alpha-2 country code",
+      "example": "US",
+      "type": "string"
+    },
+    "created_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "customer_id": {
+      "description": "The ID of the customer for which card is being activated",
+      "example": "a2d8305b-38bc-4f9e-a860-66b4ccbc52bc",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "The id of the transfer",
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of the transfer",
+      "enum": [
+        "SUCCEEDED",
+        "PENDING",
+        "FAILED"
+      ],
+      "type": "string"
+    },
+    "transaction_id": {
+      "description": "The transaction ID",
+      "format": "uuid",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/transfer_type"
+    }
+  },
+  "required": [
+    "account_id",
+    "id",
+    "amount",
+    "currency",
+    "status",
+    "customer_id",
+    "country_code",
+    "created_time",
+    "last_modified_time",
+    "type"
+  ],
+  "type": "object"
+}

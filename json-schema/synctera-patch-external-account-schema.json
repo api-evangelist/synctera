@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_external_account",
+  "title": "patch_external_account",
+  "properties": {
+    "account_identifiers": {
+      "$ref": "#/components/schemas/patch_accounts_request_account_identifiers"
+    },
+    "account_owner_names": {
+      "description": "The names of the account owners.",
+      "items": {
+        "example": "Monica Keebler",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "nickname": {
+      "description": "A user-meaningful name for the account",
+      "example": "Money Market Account",
+      "minLength": 1,
+      "type": "string"
+    },
+    "routing_identifiers": {
+      "$ref": "#/components/schemas/patch_accounts_request_routing_identifiers"
+    },
+    "type": {
+      "description": "The type of the account",
+      "enum": [
+        "CHECKING",
+        "SAVINGS"
+      ],
+      "type": "string"
+    },
+    "verification": {
+      "$ref": "#/components/schemas/account_verification"
+    }
+  },
+  "type": "object"
+}

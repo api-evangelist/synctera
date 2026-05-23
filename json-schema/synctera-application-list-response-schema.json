@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_list_response",
+  "title": "application_list_response",
+  "allOf": [
+    {
+      "properties": {
+        "external_applications": {
+          "description": "Array of External Applications",
+          "items": {
+            "$ref": "#/components/schemas/application_response1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "external_applications"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

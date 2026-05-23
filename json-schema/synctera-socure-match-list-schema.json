@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_match_list",
+  "title": "socure_match_list",
+  "description": "Array of socure matches",
+  "items": {
+    "$ref": "#/components/schemas/socure_match"
+  },
+  "type": "array"
+}

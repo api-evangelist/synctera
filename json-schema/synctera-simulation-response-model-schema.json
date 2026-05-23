@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/simulation_response_model",
+  "title": "simulation_response_model",
+  "type": "object"
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/virtual_card_plus_status",
+  "title": "virtual_card_plus_status",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/virtual_card"
+    },
+    {
+      "$ref": "#/components/schemas/virtual_card_response_status"
+    }
+  ]
+}

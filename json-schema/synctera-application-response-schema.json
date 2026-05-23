@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_response",
+  "title": "Credit application details",
+  "properties": {
+    "application_details": {
+      "description": "Details about the applicant. The exact schema is to be determined with your bank.",
+      "example": {
+        "annual_salary": 50000,
+        "fico_score": 700
+      },
+      "type": "object"
+    },
+    "creation_time": {
+      "description": "Application creation timestamp in RFC3339 format",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "Customer ID for the application",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "Generated ID for the application",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "Timestamp of the last application modification in RFC3339 format",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/components/schemas/application_status"
+    },
+    "type": {
+      "$ref": "#/components/schemas/application_type1"
+    }
+  },
+  "required": [
+    "customer_id",
+    "application_details",
+    "type",
+    "status",
+    "id",
+    "creation_time",
+    "last_updated_time"
+  ],
+  "type": "object"
+}

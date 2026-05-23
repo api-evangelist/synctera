@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ingestion_status",
+  "title": "Reconciliation Ingestion Status Values",
+  "description": "Reconciliation ingestion status values",
+  "enum": [
+    "IN_PROCESS",
+    "COMPLETED",
+    "FAILED"
+  ],
+  "type": "string"
+}

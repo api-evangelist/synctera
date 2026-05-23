@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationships_list",
+  "title": "relationships_list",
+  "allOf": [
+    {
+      "properties": {
+        "relationships": {
+          "description": "Array of business/person relationships.",
+          "items": {
+            "$ref": "#/components/schemas/relationship_in"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "relationships"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

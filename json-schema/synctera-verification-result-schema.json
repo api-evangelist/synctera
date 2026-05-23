@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_result",
+  "title": "verification_result",
+  "description": "The determination of this verification. One of the following:\n* `PENDING` \u2013 verification is in progress for this customer.\n* `PROVISIONAL` \u2013 partially verified or verified with restrictions.\n* `ACCEPTED` \u2013 the customer has been verified.\n* `REVIEW` \u2013 verification has run and issues have been identified and require review.\n* `VENDOR_ERROR` \u2013 verification did not successfully run due to an unexpected error or failure.\n* `REJECTED` \u2013 the customer was rejected and should not be allowed to take certain actions e.g., open an account.\n",
+  "enum": [
+    "PENDING",
+    "PROVISIONAL",
+    "ACCEPTED",
+    "REVIEW",
+    "VENDOR_ERROR",
+    "REJECTED"
+  ],
+  "example": "ACCEPTED",
+  "type": "string"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/outgoing_ach_list",
+  "title": "outgoing_ach_list",
+  "allOf": [
+    {
+      "properties": {
+        "transactions": {
+          "description": "Array of sent ACH transactions.",
+          "items": {
+            "$ref": "#/components/schemas/outgoing_ach"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "transactions"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

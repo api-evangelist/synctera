@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_range_response_list",
+  "title": "account_range_response_list",
+  "allOf": [
+    {
+      "properties": {
+        "account_ranges": {
+          "description": "Array of Account Ranges",
+          "items": {
+            "$ref": "#/components/schemas/account_range_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "account_ranges"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

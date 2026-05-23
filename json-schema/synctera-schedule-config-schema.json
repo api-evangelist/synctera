@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/schedule_config",
+  "title": "schedule_config",
+  "description": "Payment schedule recurrence configuration",
+  "properties": {
+    "count": {
+      "description": "Number of times to recur. Exactly one of end_date or count must be provided",
+      "format": "int32",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "end_date": {
+      "description": "End date of the schedule (exclusive). Exactly one of end_date or count must be provided",
+      "format": "date",
+      "type": "string"
+    },
+    "frequency": {
+      "enum": [
+        "DAILY",
+        "WEEKLY",
+        "MONTHLY"
+      ],
+      "type": "string"
+    },
+    "interval": {
+      "description": "Interval between recurrences, e.g. interval = 2 with frequency = WEEKLY means every other week.",
+      "maximum": 366,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "start_date": {
+      "description": "Start date of the schedule (inclusive)",
+      "format": "date",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start_date",
+    "frequency",
+    "interval"
+  ],
+  "type": "object"
+}

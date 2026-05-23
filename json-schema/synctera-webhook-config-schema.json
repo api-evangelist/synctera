@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook_config",
+  "title": "webhook_config",
+  "properties": {
+    "custom_header": {
+      "$ref": "#/components/schemas/custom_headers"
+    },
+    "password": {
+      "description": "password for access webhook endpoint",
+      "type": "string"
+    },
+    "url": {
+      "description": "url of webhook endpoint",
+      "type": "string"
+    },
+    "username": {
+      "description": "username for access webhook endpoint",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

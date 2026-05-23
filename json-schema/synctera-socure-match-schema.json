@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_match",
+  "title": "socure_match",
+  "properties": {
+    "comments": {
+      "properties": {
+        "relatedURL": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "entityId": {
+      "type": "string"
+    },
+    "matchFields": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "sourceUrls": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "entityId",
+    "status"
+  ],
+  "type": "object"
+}

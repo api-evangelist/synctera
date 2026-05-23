@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/disclosure_response",
+  "title": "List of Customer Disclosures",
+  "description": "Represents all customer disclosures",
+  "properties": {
+    "disclosures": {
+      "description": "List of the customer's disclosures",
+      "items": {
+        "$ref": "#/components/schemas/disclosure1"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

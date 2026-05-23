@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_transfer_response",
+  "title": "internal_transfer_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/internal_transfer"
+    },
+    {
+      "properties": {
+        "id": {
+          "description": "The transaction id associated with the transfer",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paginated_response",
+  "title": "Paginated List response",
+  "properties": {
+    "next_page_token": {
+      "description": "If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.",
+      "example": "d61grelm5f",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

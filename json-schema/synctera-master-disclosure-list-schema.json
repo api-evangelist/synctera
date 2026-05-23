@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/master_disclosure_list",
+  "title": "master_disclosure_list",
+  "allOf": [
+    {
+      "properties": {
+        "master_disclosures": {
+          "description": "Array of master disclosures.",
+          "items": {
+            "$ref": "#/components/schemas/master_disclosure"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "master_disclosures"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_kyc_status",
+  "title": "customer_kyc_status",
+  "description": "Customer's KYC status",
+  "enum": [
+    "UNVERIFIED",
+    "REVIEW",
+    "PROVIDER_FAILURE",
+    "ACCEPTED",
+    "REJECTED",
+    "PROVISIONAL"
+  ],
+  "type": "string"
+}

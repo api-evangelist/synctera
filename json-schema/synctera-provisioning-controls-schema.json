@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/provisioning_controls",
+  "title": "provisioning_controls",
+  "properties": {
+    "in_app_provisioning": {
+      "$ref": "#/components/schemas/in_app_provisioning"
+    },
+    "manual_entry": {
+      "$ref": "#/components/schemas/manual_entry"
+    },
+    "wallet_provider_card_on_file": {
+      "$ref": "#/components/schemas/wallet_provider_card_on_file"
+    }
+  },
+  "type": "object"
+}

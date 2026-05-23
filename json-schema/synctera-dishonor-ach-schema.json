@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dishonor_ach",
+  "title": "dishonor_ach",
+  "description": "Dishonored return",
+  "properties": {
+    "field_errors": {
+      "items": {
+        "enum": [
+          "account_number",
+          "original_trace_number",
+          "amount",
+          "identification_number",
+          "transaction_code",
+          "company_identification",
+          "effective_date"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "type": {
+      "enum": [
+        "dishonored_misrouted",
+        "dishonored_erroneous_debit",
+        "dishonored_duplicate",
+        "dishonored_untimely",
+        "dishonored_field_errors",
+        "dishonored_not_requested"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

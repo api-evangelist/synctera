@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prefill_request",
+  "title": "prefill_request",
+  "properties": {
+    "ssn_filled": {
+      "description": "If true, the person's SSN was successfully populated.",
+      "example": true,
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "ssn_last4": {
+      "description": "Last four digits of person's Social Security number (SSN).",
+      "example": 4271,
+      "type": "string"
+    }
+  }
+}

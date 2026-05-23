@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/funding_source",
+  "title": "funding_source",
+  "properties": {
+    "id": {
+      "description": "Funding Source ID",
+      "example": "80a4541b-5450-41ce-8a2d-1baa427b0a3f",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "name": {
+      "description": "Funding Source Name",
+      "readOnly": true,
+      "type": "string"
+    },
+    "url": {
+      "description": "Funding Source URL",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

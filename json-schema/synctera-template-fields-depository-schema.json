@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_fields_depository",
+  "title": "template_fields_depository",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_template_fields"
+    },
+    {
+      "properties": {
+        "balance_ceiling": {
+          "$ref": "#/components/schemas/balance_ceiling"
+        },
+        "balance_floor": {
+          "$ref": "#/components/schemas/balance_floor"
+        },
+        "fee_product_ids": {
+          "description": "A list of fee account products that the current account associates with.",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "interest_product_id": {
+          "description": "An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_MONTHLY.\n",
+          "format": "uuid",
+          "type": "string"
+        },
+        "is_ach_enabled": {
+          "default": false,
+          "description": "Enable ACH transaction.",
+          "type": "boolean"
+        },
+        "is_card_enabled": {
+          "default": false,
+          "description": "Enable card transaction.",
+          "type": "boolean"
+        },
+        "is_p2p_enabled": {
+          "default": false,
+          "description": "Enable P2P transaction.",
+          "type": "boolean"
+        },
+        "is_wire_enabled": {
+          "default": false,
+          "description": "Enable wire transaction.",
+          "type": "boolean"
+        },
+        "overdraft_limit": {
+          "description": "Account's overdraft limit. Default is 0. Unit in cents.",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "spending_limits": {
+          "$ref": "#/components/schemas/spending_limits"
+        }
+      }
+    }
+  ],
+  "type": "object"
+}

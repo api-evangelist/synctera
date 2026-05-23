@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_verification_result",
+  "title": "CustomerVerificationResult",
+  "description": "Verification result",
+  "properties": {
+    "id": {
+      "description": "Unique ID for this verification result.",
+      "example": "54cb1031-4a63-4dee-b6f7-458f267d4676",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "issues": {
+      "deprecated": true,
+      "description": "List of potential problems found. These are subject to change.\n",
+      "items": {
+        "example": "R186: Global Watchlist sources selected are correlated with the input identifiers",
+        "type": "string"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "raw_response": {
+      "$ref": "#/components/schemas/raw_response"
+    },
+    "result": {
+      "description": "The determination of this verification.",
+      "enum": [
+        "ACCEPTED",
+        "REJECTED",
+        "REVIEW",
+        "PROVIDER_FAILURE",
+        "PROVISIONAL"
+      ],
+      "example": "ACCEPTED",
+      "type": "string"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/verification_vendor_info"
+    },
+    "verification_time": {
+      "description": "The date and time the verification was completed.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "verification_type": {
+      "$ref": "#/components/schemas/verification_type"
+    }
+  },
+  "required": [
+    "verification_type",
+    "result",
+    "verification_time"
+  ],
+  "type": "object"
+}

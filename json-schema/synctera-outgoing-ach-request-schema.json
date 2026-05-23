@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/outgoing_ach_request",
+  "title": "Send ACH requests",
+  "description": "Send an ACH",
+  "properties": {
+    "amount": {
+      "description": "Amount to transfer in ISO 4217 minor currency units",
+      "example": 607,
+      "type": "integer"
+    },
+    "company_entry_description": {
+      "description": "Company entry description ACH field. Originator inserts this field's value to provide the Receiver with a description of the entry's purpose.",
+      "example": "PAYROLL",
+      "maxLength": 10,
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "example": "USD",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The customer's unique identifier",
+      "example": "2071f55a-0aeb-4f62-85a9-68f72856d463",
+      "format": "uuid",
+      "type": "string"
+    },
+    "dc_sign": {
+      "description": "The type of transaction (debit or credit). A debit is a transfer in and a credit is a transfer out of the originating account",
+      "enum": [
+        "debit",
+        "credit"
+      ],
+      "example": "debit",
+      "type": "string"
+    },
+    "effective_date": {
+      "description": "Effective date transaction proccesses (is_same_day needs to be false or not present at all)",
+      "example": "2022-03-18",
+      "format": "date",
+      "type": "string"
+    },
+    "external_data": {
+      "description": "Additional transfer metadata structured as key-value pairs",
+      "type": "object"
+    },
+    "final_customer_id": {
+      "description": "ID of the international customer that receives the final remittance transfer (required for OFAC enabled payments)",
+      "format": "uuid",
+      "type": "string"
+    },
+    "hold": {
+      "$ref": "#/components/schemas/ach_request_hold_data"
+    },
+    "id": {
+      "example": "1f453c98-9c30-42b7-9835-cfc1e33f5e70",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_same_day": {
+      "description": "Send as same day ACH transaction (use only is_same_day without specific effective_date)",
+      "type": "boolean"
+    },
+    "memo": {
+      "description": "Memo for the payment",
+      "type": "string"
+    },
+    "originating_account_id": {
+      "description": "The unique identifier for an originating account",
+      "example": "4394f57f-3396-4661-bd03-27684791611f",
+      "format": "uuid",
+      "type": "string"
+    },
+    "receiving_account_id": {
+      "description": "The unique identifier for an receiving account",
+      "example": "18b1f30b-227f-4720-9956-4c6805e5cdfa",
+      "format": "uuid",
+      "type": "string"
+    },
+    "reference_info": {
+      "description": "Will be sent to the ACH network and maps to Addenda record 05 - the recipient bank will receive this info",
+      "example": "Tempore atque et cum.",
+      "type": "string"
+    },
+    "risk": {
+      "$ref": "#/components/schemas/risk_data",
+      "example": null
+    }
+  },
+  "required": [
+    "customer_id",
+    "amount",
+    "currency",
+    "receiving_account_id",
+    "dc_sign",
+    "originating_account_id"
+  ],
+  "type": "object"
+}

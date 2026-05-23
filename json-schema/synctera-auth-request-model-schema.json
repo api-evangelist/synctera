@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/auth_request_model",
+  "title": "auth_request_model",
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "card_acceptor": {
+      "$ref": "#/components/schemas/card_acceptor_model"
+    },
+    "card_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "card_options": {
+      "$ref": "#/components/schemas/card_options"
+    },
+    "cash_back_amount": {
+      "type": "integer"
+    },
+    "is_pre_auth": {
+      "default": false,
+      "type": "boolean"
+    },
+    "mid": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "network_fees": {
+      "items": {
+        "$ref": "#/components/schemas/network_fee_model"
+      },
+      "type": "array"
+    },
+    "pin": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "transaction_options": {
+      "$ref": "#/components/schemas/transaction_options"
+    }
+  },
+  "required": [
+    "amount",
+    "card_id",
+    "mid"
+  ],
+  "type": "object"
+}

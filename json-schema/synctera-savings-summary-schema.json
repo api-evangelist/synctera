@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/savings_summary",
+  "title": "Saving Summary",
+  "description": "A summary of the accrued interest for the saving account in the current period",
+  "properties": {
+    "apy": {
+      "format": "float",
+      "type": "number"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationship_list",
+  "title": "relationship_list",
+  "allOf": [
+    {
+      "properties": {
+        "relationships": {
+          "description": "Array of relationships",
+          "items": {
+            "$ref": "#/components/schemas/relationship"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "relationships"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

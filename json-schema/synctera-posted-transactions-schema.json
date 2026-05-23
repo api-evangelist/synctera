@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/posted_transactions",
+  "title": "Posted Transactions Response",
+  "properties": {
+    "next_page_token": {
+      "description": "If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.",
+      "nullable": true,
+      "type": "string"
+    },
+    "result": {
+      "description": "List of posted transactions",
+      "items": {
+        "$ref": "#/components/schemas/posted_transaction"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "next_page_token",
+    "result"
+  ],
+  "type": "object"
+}

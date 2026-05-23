@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/original_credit_sender_data",
+  "title": "original_credit_sender_data",
+  "properties": {
+    "funding_source": {
+      "enum": [
+        "credit",
+        "debit",
+        "prepaid",
+        "deposit_account",
+        "cash",
+        "mobile_money_payment",
+        "non_visa_credit"
+      ],
+      "type": "string"
+    },
+    "sender_account_number": {
+      "type": "string"
+    },
+    "sender_account_type": {
+      "enum": [
+        "other",
+        "rtn_bank_account",
+        "iban",
+        "card_account",
+        "email",
+        "phone_number",
+        "bank_account_number_and_identification_code",
+        "wallet_id",
+        "social_network_id"
+      ],
+      "type": "string"
+    },
+    "sender_address": {
+      "type": "string"
+    },
+    "sender_city": {
+      "type": "string"
+    },
+    "sender_country": {
+      "type": "string"
+    },
+    "sender_name": {
+      "type": "string"
+    },
+    "sender_reference_number": {
+      "type": "string"
+    },
+    "sender_state": {
+      "type": "string"
+    },
+    "transaction_purpose": {
+      "enum": [
+        "family_support",
+        "labor_transfers",
+        "travel",
+        "education",
+        "medical_treatment",
+        "emergency_need",
+        "savings",
+        "gifts",
+        "other",
+        "salary",
+        "lending",
+        "crypto_currency"
+      ],
+      "type": "string"
+    },
+    "unique_transaction_reference_number": {
+      "maxLength": 17,
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "funding_source"
+  ],
+  "type": "object"
+}

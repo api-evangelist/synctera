@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_master_disclosure",
+  "title": "base_master_disclosure",
+  "properties": {
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "type": {
+      "$ref": "#/components/schemas/disclosure_type"
+    },
+    "version": {
+      "$ref": "#/components/schemas/version"
+    }
+  },
+  "type": "object"
+}

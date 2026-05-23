@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/version",
+  "title": "version",
+  "description": "Version of the disclosure document.",
+  "example": "1.0",
+  "pattern": "^[0-9]+\\.[0-9]+$",
+  "type": "string"
+}

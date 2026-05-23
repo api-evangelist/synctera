@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pending_transaction_history",
+  "title": "A pending transaction history",
+  "properties": {
+    "account_id": {
+      "description": "The account id associated with the hold",
+      "example": "88564692-a977-4932-9b8d-6e2742d4b1a4",
+      "type": "string"
+    },
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "created": {
+      "description": "The creation date of the hold",
+      "format": "date-time",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/components/schemas/pending_transaction_history_data"
+    },
+    "id": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "idemkey": {
+      "description": "The idempotency key used when initially creating this transaction.",
+      "type": "string"
+    },
+    "offset_account_id": {
+      "description": "The offset account id associated with the hold",
+      "example": "f7a653cc-328e-49a8-83cc-1c1735ef5161",
+      "type": "string"
+    },
+    "offset_account_no": {
+      "description": "The offset account number associated with the hold",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction.",
+      "nullable": true,
+      "type": "string"
+    },
+    "tenant": {
+      "description": "The tenant associated with this transaction, in the form \"<bankid>_<partnerid>\"",
+      "type": "string"
+    },
+    "updated": {
+      "description": "The date the hold was last update",
+      "format": "date-time",
+      "type": "string"
+    },
+    "uuid": {
+      "description": "The unique identifier of the hold transaction.",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "tenant",
+    "idemkey",
+    "account_no",
+    "account_id",
+    "created",
+    "updated",
+    "data",
+    "reference_id",
+    "offset_account_no",
+    "offset_account_id"
+  ],
+  "type": "object"
+}

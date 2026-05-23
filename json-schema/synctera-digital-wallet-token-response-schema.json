@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/digital_wallet_token_response",
+  "title": "digital_wallet_token_response",
+  "properties": {
+    "approved_time": {
+      "example": "Sun May 01 2022 18:07:45 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "card_id": {
+      "description": "Card ID of the Digital wallet Token",
+      "example": "0a53873a-ac57-49e0-a6ff-053213733fb1",
+      "format": "uuid",
+      "type": "string"
+    },
+    "device_id": {
+      "description": "The user\u2019s Android device ID; the device\u2019s unique identifier.",
+      "maxLength": 124,
+      "type": "string"
+    },
+    "device_type": {
+      "description": "Type of the device where the Digital Wallet Token is used in",
+      "enum": [
+        "MOBILE_PHONE",
+        "WATCH",
+        "TABLET",
+        "MOBILE_PHONE_OR_TABLET",
+        "VEHICLE",
+        "APPLIANCE",
+        "LAPTOP",
+        "GAMING_DEVICE",
+        "UNKNOWN"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "description": "Digital Wallet Token ID",
+      "example": "d77ea883-aeb2-4292-8681-037b71665522",
+      "format": "uuid",
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "Tue Apr 26 2022 11:36:18 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "requested_time": {
+      "example": "Mon May 16 2022 01:59:15 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "state": {
+      "$ref": "#/components/schemas/digital_wallet_token_state"
+    },
+    "type": {
+      "description": "Type of the Digital Wallet",
+      "enum": [
+        "APPLE_PAY",
+        "ANDROID_PAY",
+        "SAMSUNG_PAY"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

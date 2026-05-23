@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/wallet_provider_card_on_file",
+  "title": "wallet_provider_card_on_file",
+  "properties": {
+    "address_verification": {
+      "$ref": "#/components/schemas/digital_wallet_token_address_verification"
+    },
+    "enabled": {
+      "default": false,
+      "example": false,
+      "type": "boolean"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/deposit_list",
+  "title": "deposit_list",
+  "allOf": [
+    {
+      "properties": {
+        "deposits": {
+          "description": "Array of  Remote Check Deposits",
+          "items": {
+            "$ref": "#/components/schemas/deposit"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "deposits"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

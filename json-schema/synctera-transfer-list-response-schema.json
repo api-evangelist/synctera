@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transfer_list_response",
+  "title": "transfer_list_response",
+  "allOf": [
+    {
+      "properties": {
+        "external_transfers": {
+          "description": "Array of External transfer",
+          "items": {
+            "$ref": "#/components/schemas/transfer_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "external_transfers"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

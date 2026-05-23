@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_status_request",
+  "title": "card_status_request",
+  "description": "The status indicating the card lifecycle state",
+  "enum": [
+    "ACTIVE",
+    "SUSPENDED",
+    "TERMINATED"
+  ],
+  "type": "string"
+}

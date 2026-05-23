@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_type",
+  "title": "Application Type",
+  "description": "The type of the application.\n* LINE_OF_CREDIT: line of credit application\n* RESTRICTED_ACCOUNT: restricted account application\n",
+  "enum": [
+    "LINE_OF_CREDIT",
+    "RESTRICTED_ACCOUNT"
+  ],
+  "type": "string"
+}

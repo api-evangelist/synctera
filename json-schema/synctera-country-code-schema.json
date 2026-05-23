@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/country_code",
+  "title": "country_code",
+  "description": "ISO-3166-1 Alpha-2 country code",
+  "example": "CO",
+  "maxLength": 2,
+  "minLength": 2,
+  "type": "string"
+}

@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_to_account_transfer_request",
+  "title": "Account to Account Transfer Request",
+  "description": "A request to transfer funds from one account to another",
+  "properties": {
+    "amount": {
+      "description": "The amount (in cents) to transfer from originating account to receiving account.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "example": "USD",
+      "type": "string"
+    },
+    "description": {
+      "description": "A description of the transaction",
+      "type": "string"
+    },
+    "dest_account_alias": {
+      "description": "An alias representing a GL account to credit. This is an alternative to specifying by account id",
+      "example": "ach_suspense",
+      "type": "string"
+    },
+    "dest_account_no": {
+      "description": "The account number of the account being credited",
+      "type": "string"
+    },
+    "effective_date": {
+      "description": "The date the transaction should be effective",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "offset_description": {
+      "description": "A description of the offsetting transaction",
+      "type": "string"
+    },
+    "posted_date": {
+      "description": "The date the transaction was posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "source_account_alias": {
+      "description": "An alias representing a GL account to debit. This is alternative to specifying by account id",
+      "example": "ach_suspense",
+      "type": "string"
+    },
+    "source_account_no": {
+      "description": "The account number of the account being debited",
+      "type": "string"
+    },
+    "subtype": {
+      "description": "The desired transaction subtype to use for this transfer",
+      "type": "string"
+    },
+    "type": {
+      "description": "The desired transaction type to use for this transfer",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    },
+    "uuid": {
+      "description": "The UUID of the transaction",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "uuid",
+    "source_account_no",
+    "source_account_alias",
+    "dest_account_no",
+    "dest_account_alias",
+    "type",
+    "subtype",
+    "amount",
+    "currency",
+    "effective_date",
+    "memo",
+    "user_data",
+    "external_data"
+  ],
+  "type": "object"
+}

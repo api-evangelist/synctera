@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook_event",
+  "title": "webhook_event",
+  "description": "name of the event",
+  "type": "string"
+}

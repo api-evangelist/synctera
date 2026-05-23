@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_accounts_list",
+  "title": "external_accounts_list",
+  "allOf": [
+    {
+      "properties": {
+        "external_accounts": {
+          "description": "Array of external accounts",
+          "items": {
+            "$ref": "#/components/schemas/external_account"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "external_accounts"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

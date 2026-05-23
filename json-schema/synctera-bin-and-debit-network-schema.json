@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_and_debit_network",
+  "title": "bin_and_debit_network",
+  "properties": {
+    "bank_network_id": {
+      "description": "The ID of the bank network",
+      "type": "string"
+    },
+    "bin": {
+      "$ref": "#/components/schemas/bin"
+    },
+    "debit_network": {
+      "$ref": "#/components/schemas/debit_network"
+    }
+  },
+  "required": [
+    "bin",
+    "debit_network",
+    "bank_network_id"
+  ],
+  "type": "object"
+}

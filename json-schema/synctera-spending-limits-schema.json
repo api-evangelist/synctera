@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/spending_limits",
+  "title": "spending_limits",
+  "description": "Account spending limits",
+  "properties": {
+    "day": {
+      "$ref": "#/components/schemas/spending_limit_with_time"
+    },
+    "description": {
+      "description": "User provided description on the spending limits",
+      "type": "string"
+    },
+    "lifetime": {
+      "$ref": "#/components/schemas/spending_limit_with_time"
+    },
+    "month": {
+      "$ref": "#/components/schemas/spending_limit_with_time"
+    },
+    "transaction": {
+      "description": "Individual transaction limit",
+      "properties": {
+        "amount": {
+          "description": "Maximum amount allowed. Unit in cents.",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "week": {
+      "$ref": "#/components/schemas/spending_limit_with_time"
+    }
+  },
+  "type": "object"
+}

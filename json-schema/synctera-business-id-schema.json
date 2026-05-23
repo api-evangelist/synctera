@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_id",
+  "title": "business_id",
+  "description": "The unique identifier of a business",
+  "example": "4d742b70-9176-4f4b-bcbb-b42fe29b106d",
+  "format": "uuid",
+  "type": "string"
+}

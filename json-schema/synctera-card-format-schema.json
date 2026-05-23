@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_format",
+  "title": "card_format",
+  "properties": {
+    "form": {
+      "description": "PHYSICAL or VIRTUAL.",
+      "enum": [
+        "PHYSICAL",
+        "VIRTUAL"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "form"
+  ],
+  "type": "object"
+}

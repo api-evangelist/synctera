@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/address",
+  "title": "address",
+  "properties": {
+    "address_line_1": {
+      "description": "Street address line 1",
+      "example": "4992 Curtis Ports",
+      "type": "string"
+    },
+    "address_line_2": {
+      "description": "String address line 2",
+      "example": "Apt. 877",
+      "type": "string"
+    },
+    "city": {
+      "description": "City",
+      "example": "East Winstonview",
+      "type": "string"
+    },
+    "country_code": {
+      "description": "ISO-3166-1 Alpha-2 country code",
+      "example": "US",
+      "pattern": "^[A-Z]{2}$",
+      "type": "string"
+    },
+    "postal_code": {
+      "description": "Postal code",
+      "example": "28620",
+      "type": "string"
+    },
+    "state": {
+      "description": "State, region, province, or prefecture",
+      "example": "NJ",
+      "type": "string"
+    }
+  },
+  "required": [
+    "address_line_1",
+    "country_code"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bank_debit_network_response",
+  "title": "bank_debit_network_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/debit_network"
+    },
+    {
+      "properties": {
+        "bank_network_id": {
+          "description": "The ID of the bank network",
+          "type": "string"
+        },
+        "bin_id": {
+          "description": "The ID of the bank's bin that uses this debit network",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/wire_request",
+  "title": "Wire payment request payload",
+  "properties": {
+    "amount": {
+      "description": "Transfer amount in cents ($100 would be 10000)",
+      "example": 10000,
+      "type": "integer"
+    },
+    "bank_message": {
+      "description": "Instructions intended for the financial institutions that are processing the wire.",
+      "maxLength": 210,
+      "type": "string"
+    },
+    "currency": {
+      "description": "3-character currency code",
+      "enum": [
+        "USD"
+      ],
+      "example": "USD",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The customer UUID representing the person initiating the Wire transfer",
+      "example": "98f0e4c8-220b-463c-8981-7413c65ee6c9",
+      "format": "uuid",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Additional transfer metadata structured as key-value pairs",
+      "type": "object"
+    },
+    "originating_account_id": {
+      "description": "Sender account ID",
+      "example": "ed92890d-7111-465a-a972-1b6839e88eb2",
+      "format": "uuid",
+      "type": "string"
+    },
+    "receiving_account_id": {
+      "description": "The external account uuid representing the recipient of the wire.",
+      "example": "72b70665-ba18-412e-a91f-cd59f72c6cd0",
+      "format": "uuid",
+      "type": "string"
+    },
+    "recipient_message": {
+      "description": "Information from the originator to the beneficiary (recipient).",
+      "maxLength": 140,
+      "type": "string"
+    }
+  },
+  "required": [
+    "customer_id",
+    "originating_account_id",
+    "receiving_account_id",
+    "amount",
+    "currency"
+  ],
+  "type": "object"
+}

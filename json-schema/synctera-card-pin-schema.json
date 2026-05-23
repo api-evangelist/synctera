@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_pin",
+  "title": "card_pin",
+  "properties": {
+    "pin": {
+      "description": "The new PIN",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_business_owner_relationship",
+  "title": "business_business_owner_relationship",
+  "allOf": [
+    {
+      "required": [
+        "from_business_id",
+        "to_business_id",
+        "additional_data"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/patch_business_business_owner_relationship"
+    }
+  ],
+  "description": "Denotes the relationship between specified businesses.",
+  "type": "object"
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_status_object",
+  "title": "Status",
+  "description": "The status of the card",
+  "properties": {
+    "card_status": {
+      "$ref": "#/components/schemas/card_status"
+    },
+    "memo": {
+      "$ref": "#/components/schemas/card_status_reason_memo"
+    },
+    "status_reason": {
+      "$ref": "#/components/schemas/card_status_reason_code"
+    }
+  },
+  "required": [
+    "card_status"
+  ],
+  "type": "object"
+}

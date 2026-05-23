@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product",
+  "title": "card_product",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_format"
+    },
+    {
+      "properties": {
+        "active": {
+          "description": "Indicates whether the Card Product is active",
+          "type": "boolean"
+        },
+        "card_program_id": {
+          "description": "Card Program ID",
+          "example": "38801923-080c-42b2-912b-db04ed7f466b",
+          "format": "uuid",
+          "type": "string"
+        },
+        "color": {
+          "description": "Color code for dynamic card elements such as PAN and card holder name",
+          "pattern": "^[0-9A-F]{6}$",
+          "type": "string"
+        },
+        "creation_time": {
+          "description": "The timestamp representing when the Card Product was created",
+          "example": "Tue Jun 28 2022 15:59:07 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "digital_wallet_tokenization": {
+          "$ref": "#/components/schemas/digital_wallet_tokenization"
+        },
+        "end_date": {
+          "description": "The time when the Card Product is decommissioned",
+          "example": "Fri Dec 30 2022 09:48:40 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "description": "Card Product ID",
+          "example": "1a7c4037-dd90-4fab-841b-fbd37f0045ed",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "image": {
+          "description": "Indicates whether or not there is an overlay image of the card product available",
+          "type": "boolean"
+        },
+        "image_mode": {
+          "$ref": "#/components/schemas/card_image_mode"
+        },
+        "last_modified_time": {
+          "description": "The timestamp representing when the Card Product was last modified",
+          "example": "Thu Oct 07 2021 14:55:56 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the Card Product",
+          "maxLength": 40,
+          "minLength": 1,
+          "type": "string"
+        },
+        "orientation": {
+          "description": "Card orientation",
+          "enum": [
+            "HORIZONTAL",
+            "VERTICAL"
+          ],
+          "type": "string"
+        },
+        "package_id": {
+          "description": "Card fulfillment provider\u2019s package ID",
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string"
+        },
+        "physical_card_format": {
+          "$ref": "#/components/schemas/physical_card_format"
+        },
+        "return_address": {
+          "$ref": "#/components/schemas/shipping"
+        },
+        "start_date": {
+          "description": "The time when the Card Product goes live",
+          "example": "Mon Apr 25 2022 17:32:31 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "type": "string"
+        },
+        "txn_enhancer": {
+          "$ref": "#/components/schemas/txn_enhancer"
+        }
+      },
+      "required": [
+        "name",
+        "card_program_id",
+        "active",
+        "start_date"
+      ],
+      "type": "object"
+    }
+  ],
+  "description": "Card Product"
+}

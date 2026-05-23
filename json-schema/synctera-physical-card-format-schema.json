@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card_format",
+  "title": "physical_card_format",
+  "description": "The format of a physical card product",
+  "enum": [
+    "MAGNETIC_STRIPE",
+    "CHIP",
+    "CONTACT",
+    "CONTACTLESS",
+    "PHYSICAL_COMBO"
+  ],
+  "type": "string"
+}

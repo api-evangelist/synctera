@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_range_update_request",
+  "title": "account_range_update_request",
+  "additionalProperties": false,
+  "properties": {
+    "end_date": {
+      "description": "The time when account range becomes inactive",
+      "example": "Tue Jan 31 2023 02:54:58 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "is_tokenization_enabled": {
+      "description": "Controls whether account range allows tokenization",
+      "example": true,
+      "type": "boolean"
+    },
+    "physical_card_format": {
+      "$ref": "#/components/schemas/physical_card_format"
+    },
+    "start_date": {
+      "description": "The time when account range becomes active",
+      "example": "Fri Jul 22 2022 12:41:26 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

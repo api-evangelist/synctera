@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_card_verifications",
+  "title": "external_card_verifications",
+  "description": "Verify card passed AVS and CVV checks in order to use PULL transfer. Verify card is eligible to receive push-to-card disbursements. For example, the inquiry_details object will contain a push_funds_block_indicator attribute that indicates if it is eligible for push-to-card disbursements.",
+  "properties": {
+    "address_verification_results": {
+      "description": "Address verification results\n\nStatus | Description\n--- | ---\nVERIFIED | Address verified\nNOT_VERIFIED | Address not verified\nADDRESS_NO_MATCH | Postal/ZIP match, street addresses do not match or street address not included in request\n",
+      "enum": [
+        "VERIFIED",
+        "NOT_VERIFIED",
+        "ADDRESS_NO_MATCH"
+      ],
+      "type": "string"
+    },
+    "card_type": {
+      "description": "Indicates whether the external card is credit, debit, prepaid, deferred debit, or charge.",
+      "enum": [
+        "CREDIT",
+        "DEBIT",
+        "CHARGE_PAID",
+        "PREPAID",
+        "DEFERRED_DEBIT"
+      ],
+      "type": "string"
+    },
+    "cvv2_result": {
+      "description": "Card Verification Value results\n\nStatus | Description\n--- | ---\nVERIFIED | CVV and expiration dates verified\nINCORRECT | Either CVV or expiration date is incorrect\nNOT_SUPPORTED | \tIssuer does not participate in CVV2 service\n",
+      "enum": [
+        "VERIFIED",
+        "INCORRECT",
+        "NOT_SUPPORTED"
+      ],
+      "type": "string"
+    },
+    "fast_funds_indicator": {
+      "description": "Indicates if card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 business days.",
+      "type": "boolean"
+    },
+    "online_gambling_block_indicator": {
+      "description": "Indicates if the card can receive push-payments for online gambling payouts.",
+      "type": "boolean"
+    },
+    "processor": {
+      "$ref": "#/components/schemas/processor"
+    },
+    "push_funds_block_indicator": {
+      "description": "Indicates if the associated card can receive push-to-card disbursements.",
+      "type": "boolean"
+    },
+    "state": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

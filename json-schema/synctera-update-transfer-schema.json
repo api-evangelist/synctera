@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/update_transfer",
+  "title": "Change Status",
+  "properties": {
+    "status": {
+      "description": "Field value must be set to CANCELED",
+      "enum": [
+        "CANCELED"
+      ],
+      "example": "CANCELED",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/minimum_payment_rate_or_amount",
+  "title": "minimum_payment_rate_or_amount",
+  "properties": {
+    "min_amount": {
+      "description": "The maximum amount to charge as a minimum payment, in cents. For example, to set the maximum to $30, set this value to 3000.\n",
+      "format": "int64",
+      "type": "integer"
+    },
+    "rate": {
+      "description": "The percentage of the balance to use, in basis points. For example, to set 12.5% of the balance, set this value to 1250.\n",
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/minimum_payment_type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "rate",
+    "min_amount"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/outgoing_ach",
+  "title": "outgoing_ach",
+  "description": "Represents a sent ACH transaction.",
+  "properties": {
+    "account_name": {
+      "description": "Receiving account name",
+      "example": "Bruce Wayne",
+      "type": "string"
+    },
+    "account_no": {
+      "description": "Receiving account number",
+      "example": "122455799",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Transaction amount in cents",
+      "example": 1560,
+      "type": "integer"
+    },
+    "bank_id": {
+      "example": 1,
+      "type": "integer"
+    },
+    "effective_date": {
+      "description": "Effective date of the transaction",
+      "example": "2022-03-25",
+      "format": "date",
+      "type": "string"
+    },
+    "external_id": {
+      "description": "Transaction ID in the ledger",
+      "example": "27f6473f-50fd-4dae-8c05-41b9bc3b4e3f",
+      "format": "uuid",
+      "type": "string"
+    },
+    "hold": {
+      "$ref": "#/components/schemas/hold_data"
+    },
+    "id": {
+      "example": "2cbc0558-e2c5-4ffa-b30c-44a1389d6920",
+      "format": "uuid",
+      "type": "string"
+    },
+    "is_same_day": {
+      "description": "Was initiated as same-day ACH transaction",
+      "type": "boolean"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "partner_id": {
+      "example": 2,
+      "type": "integer"
+    },
+    "reference_info": {
+      "description": "Transaction reference info",
+      "type": "string"
+    },
+    "source_account_name": {
+      "description": "Originating account name",
+      "example": "Thomas Anderson",
+      "type": "string"
+    },
+    "source_account_no": {
+      "description": "Originating account number",
+      "example": "123638791329",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "INIT",
+        "PENDING",
+        "CANCELED",
+        "COMPLETE",
+        "DECLINED"
+      ],
+      "type": "string"
+    },
+    "trace_no": {
+      "description": "Trace number of the transaction",
+      "example": "123456780000069",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "bank_id",
+    "partner_id",
+    "external_id",
+    "account_no",
+    "amount",
+    "source_account_no",
+    "is_same_day",
+    "effective_date",
+    "trace_no",
+    "status",
+    "memo"
+  ],
+  "type": "object"
+}

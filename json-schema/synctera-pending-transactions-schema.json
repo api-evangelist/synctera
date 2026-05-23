@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pending_transactions",
+  "title": "Pending Transactions Response",
+  "properties": {
+    "next_page_token": {
+      "description": "If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.",
+      "nullable": true,
+      "type": "string"
+    },
+    "result": {
+      "description": "List of pending transactions",
+      "items": {
+        "$ref": "#/components/schemas/pending_transaction"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "next_page_token",
+    "result"
+  ],
+  "type": "object"
+}

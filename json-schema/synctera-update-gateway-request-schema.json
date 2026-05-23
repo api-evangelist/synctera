@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/update_gateway_request",
+  "title": "update_gateway_request",
+  "properties": {
+    "active": {
+      "description": "Current status of the Authorization gateway",
+      "type": "boolean"
+    },
+    "card_products": {
+      "description": "List of Card Product unique identifiers that will utilize the Gateway",
+      "items": {
+        "example": "0698ffec-3839-4ea2-8dc4-4bf4b514e4e7",
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "custom_headers": {
+      "$ref": "#/components/schemas/gateway_custom_headers"
+    },
+    "url": {
+      "description": "URL of the Authorization gateway",
+      "format": "uri",
+      "maxLength": 1000,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_list",
+  "title": "payment_list",
+  "allOf": [
+    {
+      "properties": {
+        "payments": {
+          "description": "Array of payments",
+          "items": {
+            "$ref": "#/components/schemas/payment"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "payments"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

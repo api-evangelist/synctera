@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/statement_list",
+  "title": "Statement List",
+  "allOf": [
+    {
+      "properties": {
+        "statements": {
+          "description": "Array of statements",
+          "items": {
+            "$ref": "#/components/schemas/statement_summary"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "statements"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

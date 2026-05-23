@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/document_creation",
+  "title": "document_creation",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "encryption": {
+      "$ref": "#/components/schemas/encryption"
+    },
+    "file": {
+      "format": "binary",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.\n",
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "related_resource_id": {
+      "description": "Related resource ID",
+      "format": "uuid",
+      "type": "string"
+    },
+    "related_resource_type": {
+      "$ref": "#/components/schemas/related_resource_type"
+    }
+  },
+  "required": [
+    "file"
+  ],
+  "type": "object"
+}

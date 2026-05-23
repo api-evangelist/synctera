@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/statement",
+  "title": "Depository Statement",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_statement"
+    },
+    {
+      "properties": {
+        "savings_summary": {
+          "$ref": "#/components/schemas/savings_summary"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "description": "A statement for a depository account"
+}

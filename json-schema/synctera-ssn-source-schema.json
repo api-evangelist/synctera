@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ssn_source",
+  "title": "ssn_source",
+  "description": "Describes the collection method for the customer's SSN:\n* `MANUAL` \u2013 the full 9 digits of the customer's SSN was collected.\n* `PREFILL` \u2013 the customer's SSN was collected using SSN Prefill.\n",
+  "enum": [
+    "MANUAL",
+    "PREFILL"
+  ],
+  "readOnly": true,
+  "type": "string"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/outgoing_ach_patch",
+  "title": "outgoing_ach_patch",
+  "description": "Update sent ach transaction",
+  "properties": {
+    "funds_availability_time": {
+      "example": "2022-03-18TT17:54:12Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "CANCELED"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

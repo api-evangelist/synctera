@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_fields_line_of_credit",
+  "title": "template_fields_line_of_credit",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_template_fields"
+    },
+    {
+      "properties": {
+        "chargeoff_period": {
+          "default": 90,
+          "description": "The number of days an account can stay delinquent before marking an account as charged-off.\n",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "delinquency_period": {
+          "default": 30,
+          "description": "The number of days past the due date to wait for a minimum payment before marking an account as delinquent.\n",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "grace_period": {
+          "default": 30,
+          "description": "The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.\n",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "interest_product_id": {
+          "description": "An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_DAILY.\n",
+          "format": "uuid",
+          "type": "string"
+        },
+        "minimum_payment": {
+          "$ref": "#/components/schemas/minimum_payment"
+        }
+      },
+      "required": [
+        "minimum_payment"
+      ]
+    }
+  ],
+  "type": "object"
+}

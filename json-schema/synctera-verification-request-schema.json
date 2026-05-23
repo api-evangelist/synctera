@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_request",
+  "title": "verification_request",
+  "allOf": [
+    {
+      "required": [
+        "customer_consent"
+      ]
+    },
+    {
+      "properties": {
+        "business_id": {
+          "$ref": "#/components/schemas/business_id5"
+        },
+        "customer_consent": {
+          "description": "Whether this customer has consented to be verified.",
+          "type": "boolean"
+        },
+        "customer_ip_address": {
+          "description": "The customer's IP address.",
+          "example": "63.239.107.232",
+          "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+          "type": "string"
+        },
+        "document_id": {
+          "description": "The ID of the uploaded government-issued identification document provided by the Socure SDK.\n",
+          "example": "1ab2c3de-fg45-6789-a01b-23c45678defg",
+          "type": "string"
+        },
+        "person_id": {
+          "$ref": "#/components/schemas/person_id"
+        }
+      }
+    }
+  ],
+  "example": {
+    "customer_consent": true,
+    "customer_ip_address": "235.2.7.2",
+    "person_id": "1bb26bcb-0e1b-4060-972d-80891332aae2"
+  },
+  "type": "object"
+}

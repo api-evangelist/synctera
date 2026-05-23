@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_customer",
+  "title": "Customer",
+  "description": "Customer object for patch purpose. All fields are optional",
+  "properties": {
+    "dob": {
+      "description": "Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)",
+      "example": "2000-01-01",
+      "format": "date",
+      "type": "string"
+    },
+    "email": {
+      "description": "Customer's email",
+      "example": "Hanna_Lubowitz@yahoo.com",
+      "type": "string"
+    },
+    "first_name": {
+      "description": "Customer's first name",
+      "example": "Viva",
+      "type": "string"
+    },
+    "last_name": {
+      "description": "Customer's last name",
+      "example": "Will",
+      "type": "string"
+    },
+    "legal_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Customer's legal address"
+    },
+    "metadata": {
+      "description": "User-supplied JSON format metadata. Do not use to store PII.",
+      "type": "object"
+    },
+    "middle_name": {
+      "description": "Customer's middle name",
+      "example": "c",
+      "type": "string"
+    },
+    "phone_number": {
+      "description": "Customer's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.",
+      "example": "+14374570680",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "type": "string"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Customer's shipping address"
+    },
+    "ssn": {
+      "description": "Customer's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC on a customer. Must be compiled with ^\\d{3}-\\d{2}-\\d{4}$. Response contains the last 4 digits only (e.g. 6789).",
+      "example": "797-39-8489",
+      "type": "string"
+    },
+    "status": {
+      "description": "Customer's status",
+      "enum": [
+        "ACTIVE",
+        "ESCHEAT",
+        "DECEASED",
+        "DENIED",
+        "DORMANT",
+        "FROZEN",
+        "INACTIVE",
+        "PROSPECT",
+        "SANCTION"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationship_in",
+  "title": "relationship_in",
+  "discriminator": {
+    "mapping": {
+      "BENEFICIAL_OWNER_OF": "#/components/schemas/person_business_owner_relationship",
+      "MANAGING_PERSON_OF": "#/components/schemas/person_business_relationship",
+      "OWNER_OF": "#/components/schemas/business_business_owner_relationship"
+    },
+    "propertyName": "relationship_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/person_business_relationship"
+    },
+    {
+      "$ref": "#/components/schemas/person_business_owner_relationship"
+    },
+    {
+      "$ref": "#/components/schemas/business_business_owner_relationship"
+    }
+  ],
+  "type": "object"
+}

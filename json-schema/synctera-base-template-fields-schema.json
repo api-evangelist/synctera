@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_template_fields",
+  "title": "base_template_fields",
+  "properties": {
+    "account_type": {
+      "$ref": "#/components/schemas/account_type",
+      "type": "string"
+    },
+    "bank_country": {
+      "description": "Bank country of the account. ISO 3166-1 Alpha-2 or Alpha-3 country code.",
+      "example": "US",
+      "pattern": "^[A-Z]{2,3}$",
+      "type": "string"
+    },
+    "currency": {
+      "description": "Account currency. ISO 4217 alphabetic currency code",
+      "example": "USD",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "account_type",
+    "currency",
+    "bank_country"
+  ],
+  "type": "object"
+}

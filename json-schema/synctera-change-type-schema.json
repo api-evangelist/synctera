@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/change_type",
+  "title": "change_type",
+  "description": "The category of card change",
+  "enum": [
+    "STATUS",
+    "FULFILLMENT",
+    "PIN"
+  ],
+  "type": "string"
+}

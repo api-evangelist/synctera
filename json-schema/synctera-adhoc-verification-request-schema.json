@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/adhoc_verification_request",
+  "title": "adhoc_verification_request",
+  "description": "Basic identifying information about the person being verified.\n",
+  "properties": {
+    "payee_id": {
+      "description": "Synctera party (non-customer) who is receiving money from a customer (the payer)",
+      "format": "uuid",
+      "type": "string"
+    },
+    "payer_id": {
+      "description": "Synctera customer who is sending money to a non-customer (the payee)",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "payer_id",
+    "payee_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dc_sign",
+  "title": "dc_sign",
+  "description": "The `dc_sign` represents the direction money was moved.",
+  "enum": [
+    "debit",
+    "credit"
+  ],
+  "type": "string"
+}

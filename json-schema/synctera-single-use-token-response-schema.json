@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/single_use_token_response",
+  "title": "single_use_token_response",
+  "example": {
+    "customer_account_mapping_id": "user_token",
+    "expires": "2000-01-23T04:56:07.000+00:00",
+    "token": "token"
+  },
+  "properties": {
+    "customer_account_mapping_id": {
+      "type": "string"
+    },
+    "expires": {
+      "description": "yyyy-MM-ddTHH:mm:ssZ",
+      "format": "date-time",
+      "type": "string"
+    },
+    "token": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "expires"
+  ],
+  "type": "object"
+}

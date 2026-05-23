@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/push_tokenize_request_data",
+  "title": "push_tokenize_request_data",
+  "properties": {
+    "display_name": {
+      "type": "string"
+    },
+    "last_digits": {
+      "type": "string"
+    },
+    "network": {
+      "example": "mastercard",
+      "type": "string"
+    },
+    "opaque_payment_card": {
+      "type": "string"
+    },
+    "token_service_provider": {
+      "type": "string"
+    },
+    "user_address": {
+      "$ref": "#/components/schemas/address1"
+    }
+  },
+  "type": "object"
+}

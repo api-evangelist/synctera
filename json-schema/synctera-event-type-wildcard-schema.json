@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_type_wildcard",
+  "title": "event_type_wildcard",
+  "enum": [
+    "ACCOUNT.*",
+    "CARD.*",
+    "CUSTOMER.*",
+    "BUSINESS.*",
+    "PERSON.*",
+    "INTEREST.*",
+    "INTERNAL_TRANSFER.*",
+    "TRANSACTION.*",
+    "PAYMENT_SCHEDULE.*",
+    "STATEMENT.*",
+    "EXTERNAL_CARD.*"
+  ],
+  "type": "string"
+}

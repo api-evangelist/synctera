@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/watchlist_alert",
+  "title": "watchlist_alert",
+  "properties": {
+    "created": {
+      "description": "When this alert was created",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for this alert",
+      "format": "uuid",
+      "type": "string"
+    },
+    "provider_info": {
+      "description": "The information provided to Synctera that triggered this alert, as an arbitrary JSON object. Interpretation of this object is up to the client.\n",
+      "type": "object"
+    },
+    "provider_subject_id": {
+      "description": "The id of the provider subject for this alert",
+      "type": "string"
+    },
+    "provider_subscription_id": {
+      "description": "The id of the provider subscription for this alert",
+      "type": "string"
+    },
+    "provider_watchlist_name": {
+      "description": "The name of the provider for this alert",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of this alert",
+      "enum": [
+        "ACTIVE",
+        "SUPPRESSED"
+      ],
+      "type": "string"
+    },
+    "urls": {
+      "description": "Where to get more information about this alert (according to our third-party data provider).\n",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/vendor_info"
+    }
+  },
+  "required": [
+    "status"
+  ],
+  "type": "object"
+}

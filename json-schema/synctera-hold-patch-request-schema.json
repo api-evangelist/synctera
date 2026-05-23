@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_patch_request",
+  "title": "Hold Patch Request",
+  "properties": {
+    "auto_post_at": {
+      "description": "The time the transaction will be automatically posted.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "enhanced_transaction": {
+      "$ref": "#/components/schemas/enhanced_transaction"
+    },
+    "expires_at": {
+      "description": "The date that at which this hold is no longer valid.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "user_data",
+    "risk_info",
+    "external_data",
+    "expires_at",
+    "auto_post_at",
+    "reference_id",
+    "enhanced_transaction"
+  ],
+  "type": "object"
+}

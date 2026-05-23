@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prospects_list",
+  "title": "Prospects List",
+  "allOf": [
+    {
+      "properties": {
+        "prospects": {
+          "description": "Array of Prospects",
+          "items": {
+            "$ref": "#/components/schemas/prospect1"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "prospects"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

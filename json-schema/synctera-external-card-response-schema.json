@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_card_response",
+  "title": "external_card_response",
+  "properties": {
+    "created_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "customer_id": {
+      "$ref": "#/components/schemas/customer_id1"
+    },
+    "expiration_month": {
+      "example": "06",
+      "readOnly": true,
+      "type": "string"
+    },
+    "expiration_year": {
+      "example": "25",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "External card ID",
+      "type": "string"
+    },
+    "last_four": {
+      "description": "The last 4 digits of the card PAN",
+      "example": "1234",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "name": {
+      "description": "The external card holder name",
+      "example": "Jean Valjean",
+      "type": "string"
+    },
+    "verifications": {
+      "$ref": "#/components/schemas/external_card_verifications"
+    }
+  },
+  "required": [
+    "id",
+    "currency",
+    "customer_id",
+    "expiration_month",
+    "expiration_year",
+    "last_four",
+    "name"
+  ],
+  "type": "object"
+}

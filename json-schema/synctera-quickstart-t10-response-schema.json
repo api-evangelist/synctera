@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/quickstart_t10_response",
+  "title": "quickstart_t10_response",
+  "description": "T-10 cards config details",
+  "properties": {
+    "card_products": {
+      "description": "Array of card products created",
+      "items": {
+        "$ref": "#/components/schemas/card_product_response"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array"
+    },
+    "card_program": {
+      "$ref": "#/components/schemas/card_program_response"
+    }
+  },
+  "required": [
+    "card_program",
+    "card_products"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plaid_account_verification",
+  "title": "Information specific to Plaid verification",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_account_verification"
+    }
+  ]
+}

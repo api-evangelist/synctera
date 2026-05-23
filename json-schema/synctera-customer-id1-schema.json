@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_id1",
+  "title": "customer_id1",
+  "description": "The unique identifier of a customer",
+  "example": "8da2b02b-81f2-41f3-a32e-041eb8ccd825",
+  "format": "uuid",
+  "type": "string"
+}

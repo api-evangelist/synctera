@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/disclosure_list",
+  "title": "disclosure_list",
+  "allOf": [
+    {
+      "properties": {
+        "disclosures": {
+          "description": "Array of disclosures.",
+          "items": {
+            "$ref": "#/components/schemas/disclosure"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "disclosures"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

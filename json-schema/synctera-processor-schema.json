@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/processor",
+  "title": "processor",
+  "description": "The transaction processor",
+  "enum": [
+    "VISA_V1",
+    "MASTERCARD_V1"
+  ],
+  "example": "MASTERCARD_V1",
+  "type": "string"
+}

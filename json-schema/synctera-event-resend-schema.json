@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_resend",
+  "title": "event_resend",
+  "properties": {
+    "event_id": {
+      "description": "id of the event notification you want to resend",
+      "example": "a9561339-8b0f-43ed-a386-dc502c3c80f9",
+      "format": "uuid",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/components/schemas/event_type"
+    }
+  },
+  "required": [
+    "event_type",
+    "event_id"
+  ],
+  "type": "object"
+}

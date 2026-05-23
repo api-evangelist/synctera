@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_update_meta_request",
+  "title": "Transaction Update Meta Request",
+  "properties": {
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "user_data",
+    "external_data"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_event_body",
+  "title": "socure_event_body",
+  "properties": {
+    "environmentName": {
+      "description": "Environment the event belongs to",
+      "type": "string"
+    },
+    "event": {
+      "$ref": "#/components/schemas/socure_watchlist_result"
+    },
+    "id": {
+      "description": "Unique identifier for the monitoring event",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "environmentName",
+    "event"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook",
+  "title": "Webhook",
+  "description": "Webhook object",
+  "properties": {
+    "description": {
+      "description": "A description of what the webhook is used for",
+      "type": "string"
+    },
+    "enabled_events": {
+      "description": "A list of the events that will trigger the webhook",
+      "items": {
+        "$ref": "#/components/schemas/event_type1"
+      },
+      "type": "array"
+    },
+    "id": {
+      "description": "The unique ID of the webhook",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_enabled": {
+      "description": "Set the webhook to be enabled or disabled",
+      "type": "boolean"
+    },
+    "last_updated": {
+      "description": "Timestamp that this webhook was created or the last time any field was changed",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Additional information stored to the webhook",
+      "maxLength": 1024,
+      "type": "string"
+    },
+    "url": {
+      "description": "URL that the webhook will send request to",
+      "format": "uri",
+      "maxLength": 1000,
+      "type": "string"
+    }
+  },
+  "required": [
+    "url",
+    "enabled_events",
+    "is_enabled"
+  ],
+  "type": "object"
+}

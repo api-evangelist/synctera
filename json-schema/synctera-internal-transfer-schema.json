@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_transfer",
+  "title": "internal_transfer",
+  "example": {
+    "amount": 1025,
+    "currency": "USD",
+    "originating_account_id": "1cde7350-f511-4a07-b314-06bf48a96a43",
+    "receiving_account_id": "921e1160-6227-4069-bd24-becf90390289",
+    "type": "ACCOUNT_TO_ACCOUNT"
+  },
+  "properties": {
+    "amount": {
+      "description": "The amount (in cents) to transfer from originating account to receiving account.",
+      "format": "int64",
+      "minimum": 1,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "example": "USD",
+      "type": "string"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Arbitrary key-value metadata to associate with the transaction",
+      "type": "object"
+    },
+    "originating_account_alias": {
+      "description": "An alias representing a GL account to debit. This is alternative to specifying by account id",
+      "example": "ach_suspense",
+      "type": "string"
+    },
+    "originating_account_customer_id": {
+      "description": "The customer id of the owner of the originating account.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "originating_account_id": {
+      "description": "The UUID of the account being debited",
+      "format": "uuid",
+      "type": "string"
+    },
+    "receiving_account_alias": {
+      "description": "An alias representing a GL account to credit. This is an alternative to specifying by account id",
+      "example": "ach_suspense",
+      "type": "string"
+    },
+    "receiving_account_customer_id": {
+      "description": "The customer id of the owner of the receiving account. Only required when type is \"outgoing_remittance\"",
+      "format": "uuid",
+      "type": "string"
+    },
+    "receiving_account_id": {
+      "description": "The UUID of the account being credited",
+      "format": "uuid",
+      "type": "string"
+    },
+    "type": {
+      "description": "The desired transaction type to use for this transfer",
+      "enum": [
+        "ACCOUNT_TO_ACCOUNT",
+        "ACH_CREDIT_SWEEP",
+        "ACH_DEBIT_SWEEP",
+        "ACH_FLOAT_TRANSFER",
+        "CASHBACK",
+        "FEE",
+        "INCOMING_WIRE",
+        "INTEREST_PAYOUT",
+        "MANUAL_ADJUSTMENT",
+        "MANUAL_ADJUSTMENT_REVERSAL",
+        "OUTGOING_INTERNATIONAL_REMITTANCE",
+        "OUTGOING_INTERNATIONAL_REMITTANCE_REVERSAL",
+        "PROMOTIONAL_CREDIT",
+        "SIGN_UP_BONUS",
+        "SUBSCRIPTION_FEE",
+        "TRANSFER_FEE",
+        "TRANSFER_FEE_REVERSAL"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "currency",
+    "type"
+  ],
+  "type": "object"
+}

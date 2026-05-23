@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_fields_generic_response",
+  "title": "template_fields_generic_response",
+  "properties": {
+    "account_type": {
+      "$ref": "#/components/schemas/account_type",
+      "type": "string"
+    },
+    "balance_ceiling": {
+      "$ref": "#/components/schemas/balance_ceiling"
+    },
+    "balance_floor": {
+      "$ref": "#/components/schemas/balance_floor"
+    },
+    "bank_country": {
+      "description": "Bank country of the account",
+      "example": "US",
+      "pattern": "^[A-Z]{2,3}$",
+      "type": "string"
+    },
+    "billing_period": {
+      "$ref": "#/components/schemas/billing_period"
+    },
+    "chargeoff_period": {
+      "default": 90,
+      "description": "The number of days an account can stay delinquent before marking an account as charged-off.\n",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "Account currency. ISO 4217 alphabetic currency code",
+      "example": "USD",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    },
+    "delinquency_period": {
+      "default": 30,
+      "description": "The number of days past the due date to wait for a minimum payment before marking an account as delinquent.\n",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "fee_product_ids": {
+      "description": "A list of fee account products that the current account associates with.",
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "grace_period": {
+      "default": 30,
+      "description": "The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.\n",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "interest_product_id": {
+      "description": "An interest account product that the current account associates with.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "is_ach_enabled": {
+      "default": false,
+      "description": "Enable ACH transaction on ledger.",
+      "type": "boolean"
+    },
+    "is_card_enabled": {
+      "default": false,
+      "description": "Enable card transaction on ledger.",
+      "type": "boolean"
+    },
+    "is_p2p_enabled": {
+      "default": false,
+      "description": "Enable P2P transaction on ledger.",
+      "type": "boolean"
+    },
+    "is_wire_enabled": {
+      "default": false,
+      "description": "Enable wire transaction on ledger.",
+      "type": "boolean"
+    },
+    "minimum_payment": {
+      "$ref": "#/components/schemas/minimum_payment"
+    },
+    "overdraft_limit": {
+      "description": "Account's overdraft limit. Default is 0. Unit in cents.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "spending_limits": {
+      "$ref": "#/components/schemas/spending_limits"
+    }
+  },
+  "required": [
+    "account_type",
+    "currency",
+    "bank_country"
+  ],
+  "type": "object"
+}

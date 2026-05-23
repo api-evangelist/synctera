@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prospect_status",
+  "title": "prospect_status",
+  "description": "Status of the prospect",
+  "enum": [
+    "CREATED",
+    "VERIFIED",
+    "ADMITTED",
+    "WITHDRAWN"
+  ],
+  "type": "string",
+  "x-enumDescriptions": [
+    {
+      "CREATED": "a newly created prospect that has not yet been verified"
+    },
+    {
+      "VERIFIED": "a prospect that has been verified, e.g. the full name was collected, email address was validated, the prospect clicked on a verification link in an email, etc."
+    },
+    {
+      "ADMITTED": "a prospect that has been converted into a customer"
+    },
+    {
+      "WITHDRAWN": "a prospect that is no longer interested in becoming a customer"
+    }
+  ]
+}

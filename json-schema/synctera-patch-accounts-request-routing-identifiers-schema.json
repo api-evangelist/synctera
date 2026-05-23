@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_accounts_request_routing_identifiers",
+  "title": "Identifiers for the bank",
+  "properties": {
+    "ach_routing_number": {
+      "description": "The routing number used for US ACH payments. On write, Synctera will store the entire routing number; on read, we only return the last 4 characters.\n",
+      "example": "756392185",
+      "minLength": 1,
+      "type": "string"
+    },
+    "bank_name": {
+      "description": "The name of the bank managing the account",
+      "example": "Chase",
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

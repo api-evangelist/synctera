@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_person1",
+  "title": "base_person1",
+  "properties": {
+    "ban_status": {
+      "$ref": "#/components/schemas/ban_status",
+      "readOnly": true
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "dob": {
+      "description": "Person's date of birth in RFC 3339 full-date format (YYYY-MM-DD).",
+      "example": "2000-01-01",
+      "format": "date",
+      "type": "string"
+    },
+    "email": {
+      "description": "Person's email.",
+      "example": "Ethelyn_Bauch@hotmail.com",
+      "type": "string"
+    },
+    "first_name": {
+      "description": "Person's first name.",
+      "example": "Jedediah",
+      "type": "string"
+    },
+    "id": {
+      "description": "Person's unique identifier.",
+      "example": "169d1e96-24be-4d56-a3b6-4667da1cd221",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_customer": {
+      "$ref": "#/components/schemas/is_customer"
+    },
+    "last_name": {
+      "description": "Person's last name.",
+      "example": "Purdy",
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "legal_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Person's legal address."
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "middle_name": {
+      "description": "Person's middle name.",
+      "example": "a",
+      "type": "string"
+    },
+    "phone_number": {
+      "description": "Person's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated",
+      "example": "+14374570680",
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "type": "string"
+    },
+    "shipping_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "Person's shipping address."
+    },
+    "ssn": {
+      "description": "Person's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC. The response contains the last 4 digits only (e.g. 6789).",
+      "example": "083-98-3418",
+      "type": "string"
+    },
+    "ssn_source": {
+      "$ref": "#/components/schemas/ssn_source"
+    },
+    "status": {
+      "$ref": "#/components/schemas/status1"
+    },
+    "verification_last_run": {
+      "description": "Date and time KYC verification was last run on the person.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "verification_status": {
+      "$ref": "#/components/schemas/verification_status"
+    }
+  },
+  "type": "object"
+}

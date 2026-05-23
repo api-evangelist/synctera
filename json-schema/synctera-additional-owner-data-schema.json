@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/additional_owner_data",
+  "title": "additional_owner_data",
+  "description": "Contains additional information about the relationship.",
+  "properties": {
+    "percent_ownership": {
+      "description": "Percentage ownership of the related business.",
+      "example": 35.75,
+      "exclusiveMinimum": true,
+      "format": "double",
+      "maximum": 100,
+      "minimum": 0,
+      "type": "number"
+    }
+  },
+  "required": [
+    "percent_ownership"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_vendor_info_detail",
+  "title": "verification_vendor_info_detail",
+  "properties": {
+    "code": {
+      "description": "Vendor specific code.",
+      "example": "R186",
+      "type": "string"
+    },
+    "description": {
+      "description": "Description of vendor specific code.",
+      "example": "Global Watchlist sources selected are correlated with the input identifiers",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

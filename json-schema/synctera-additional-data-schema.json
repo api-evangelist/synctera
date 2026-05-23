@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/additional_data",
+  "title": "additional_data",
+  "description": "Contains additional information about the relationship.",
+  "properties": {
+    "title": {
+      "description": "The professional role or position the person holds at the related organization.",
+      "enum": [
+        "OFFICER",
+        "DIRECTOR"
+      ],
+      "format": "enum",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title"
+  ],
+  "type": "object"
+}

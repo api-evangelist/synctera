@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_disclosure",
+  "title": "base_disclosure",
+  "properties": {
+    "business_id": {
+      "$ref": "#/components/schemas/business_id1"
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "disclosure_date": {
+      "description": "Date and time the disclosure was made.",
+      "example": "2021-06-14T11:21:17Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "event_type": {
+      "description": "Describes how the disclosure was shown and what the user did as a result.\nOne of the following:\n* `DISPLAYED` \u2014\n    The document was made visible to the user,\n    but they did not interact with it.\n* `VIEWED` \u2014\n    The document was made visible to the user,\n    and they interacted enough to see the whole document (e.g. scrolled to the bottom).\n* `ACKNOWLEDGED` \u2014\n    The document was made visible to the user,\n    and they took positive action to confirm that they have read and accepted the document.\n",
+      "enum": [
+        "DISPLAYED",
+        "VIEWED",
+        "ACKNOWLEDGED"
+      ],
+      "example": "ACKNOWLEDGED",
+      "type": "string"
+    },
+    "id": {
+      "$ref": "#/components/schemas/id"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "person_id": {
+      "$ref": "#/components/schemas/person_id"
+    },
+    "type": {
+      "$ref": "#/components/schemas/disclosure_type"
+    },
+    "version": {
+      "$ref": "#/components/schemas/version"
+    }
+  },
+  "type": "object"
+}

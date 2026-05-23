@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_accounts_list",
+  "title": "internal_accounts_list",
+  "allOf": [
+    {
+      "properties": {
+        "internal_accounts": {
+          "description": "Array of internal accounts",
+          "items": {
+            "$ref": "#/components/schemas/internal_account"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "internal_accounts"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

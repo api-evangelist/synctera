@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_details",
+  "title": "card_image_details",
+  "properties": {
+    "card_product_id": {
+      "$ref": "#/components/schemas/card_product_id"
+    },
+    "customer_id": {
+      "$ref": "#/components/schemas/customer_id1"
+    },
+    "id": {
+      "$ref": "#/components/schemas/card_image_id"
+    },
+    "rejection_memo": {
+      "type": "string"
+    },
+    "rejection_reason": {
+      "$ref": "#/components/schemas/card_image_rejection_reason"
+    },
+    "status": {
+      "$ref": "#/components/schemas/card_image_status"
+    }
+  },
+  "required": [
+    "id",
+    "status",
+    "customer_id",
+    "card_product_id"
+  ]
+}

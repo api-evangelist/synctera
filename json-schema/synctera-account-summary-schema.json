@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_summary",
+  "title": "Account Summary",
+  "properties": {
+    "account_number": {
+      "description": "Account number",
+      "type": "string"
+    },
+    "account_status": {
+      "description": "Account Status",
+      "type": "string"
+    },
+    "account_type": {
+      "description": "The type of the account. In lead mode, this always takes the value of the template. If not specified in shadow mode, CHECKING will be assumed.\n",
+      "type": "string"
+    },
+    "balance_ceiling": {
+      "properties": {
+        "balance": {
+          "description": "Maximum balance in the account's currency. Unit in cents.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "balance_floor": {
+      "properties": {
+        "balance": {
+          "description": "Minimum balance in the account's currency. Unit in cents.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "creation_time": {
+      "description": "Account creation time",
+      "format": "date-time",
+      "type": "string"
+    },
+    "currency": {
+      "description": "Account currency or account settlement currency. ISO 4217 alphabetic currency code. Default USD",
+      "example": "YER",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    },
+    "customer_type": {
+      "description": "Customer type",
+      "type": "string"
+    },
+    "financial_institution": {
+      "$ref": "#/components/schemas/financial_institution",
+      "readOnly": true
+    },
+    "id": {
+      "description": "The unique identifier of the account the statement belongs to",
+      "format": "uuid",
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "Account last modification time",
+      "format": "date-time",
+      "type": "string"
+    },
+    "nickname": {
+      "description": "User provided account nickname",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

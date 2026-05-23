@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_details_list",
+  "title": "card_image_details_list",
+  "allOf": [
+    {
+      "properties": {
+        "images": {
+          "description": "Array of image details",
+          "items": {
+            "$ref": "#/components/schemas/card_image_details"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "images"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

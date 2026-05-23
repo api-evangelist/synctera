@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pending_transaction_history_data",
+  "title": "A pending transaction history data",
+  "properties": {
+    "amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "auto_post_at": {
+      "description": "The time the transaction will be automatically posted.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "avail_balance": {
+      "description": "The account \"available balance\" at the time this hold was created (to be deprecated)",
+      "format": "int64",
+      "type": "integer"
+    },
+    "available_balance": {
+      "description": "The account \"available balance\" at the time this hold was created",
+      "format": "int64",
+      "type": "integer"
+    },
+    "balance": {
+      "description": "The account balance at the time this hold was created",
+      "format": "int64",
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "type": "string"
+    },
+    "dc_sign": {
+      "$ref": "#/components/schemas/dc_sign"
+    },
+    "effective_date": {
+      "description": "The effective date of the transaction once it gets posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "expires_at": {
+      "description": "The date that at which this hold is no longer valid.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "idemkey": {
+      "description": "The idempotency key used when initially creating this hold.",
+      "type": "string"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "network": {
+      "description": "The network this transaction is associated with",
+      "type": "string"
+    },
+    "operation": {
+      "enum": [
+        "hold_new",
+        "hold_increase",
+        "hold_decrease",
+        "hold_replace",
+        "hold_decline",
+        "hold_cancel",
+        "hold_post"
+      ],
+      "type": "string"
+    },
+    "reason": {
+      "description": "If a hold has been declined or modified, this will include the reason.",
+      "type": "string"
+    },
+    "req_amount": {
+      "description": "The requested amount, in the case of hold modifications.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "status": {
+      "description": "The status of the hold.",
+      "enum": [
+        "PENDING",
+        "REPLACED",
+        "DECLINED",
+        "RELEASED",
+        "PARTCLEARD",
+        "EXPIRED",
+        "CLEARED",
+        "INTERNAL_ERROR"
+      ],
+      "type": "string"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "total_amount": {
+      "description": "The total amount of the hold. This may be different than `amount` in the case where a hold increase or decrease was requested.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "transaction_id": {
+      "description": "The uuid of the transaction that this pending transaction originated from, if any. This is primary used when a transaction \"posts\", but a subset of the amount reserved until a future settlement date.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "transaction_time": {
+      "description": "The time the transaction occurred.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "type": {
+      "description": "The general type of transaction. For example, \"card\" or \"ach\".",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    },
+    "was_partial": {
+      "description": "Does this hold represent a partial debit (or credit)?",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "memo",
+    "type",
+    "subtype",
+    "operation",
+    "idemkey",
+    "expires_at",
+    "effective_date",
+    "total_amount",
+    "amount",
+    "req_amount",
+    "dc_sign",
+    "currency",
+    "network",
+    "was_partial",
+    "force_post",
+    "status",
+    "reason",
+    "balance",
+    "avail_balance",
+    "available_balance",
+    "transaction_time",
+    "risk_info",
+    "user_data",
+    "external_data",
+    "auto_post_at"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person1",
+  "title": "Person",
+  "properties": {
+    "creation_time": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "last_updated_time": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "middle_name": {
+      "type": "string"
+    },
+    "relationship_type": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_id",
+  "title": "card_image_id",
+  "description": "The unique identifier of a card image",
+  "example": "7b12abf1-bc0a-4837-886d-c37c86ac8950",
+  "format": "uuid",
+  "type": "string"
+}

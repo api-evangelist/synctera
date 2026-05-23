@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_vendor_accounts_request",
+  "title": "add_vendor_accounts_request",
+  "properties": {
+    "business_id": {
+      "description": "The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.\n",
+      "example": "144405a0-1cac-455e-89c9-fd06b97fdbe3",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.\n",
+      "example": "6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_type": {
+      "$ref": "#/components/schemas/ext_account_customer_type"
+    },
+    "vendor": {
+      "$ref": "#/components/schemas/external_account_vendor_values"
+    },
+    "vendor_access_token": {
+      "description": "The token provided to link external accounts. For Plaid, this is their `access_token`.\n",
+      "example": "access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6",
+      "minLength": 1,
+      "type": "string"
+    },
+    "vendor_account_ids": {
+      "description": "The list of vendor account IDs that the customer chose to link. For Plaid, these are `account_id`s.\n",
+      "items": {
+        "description": "The Plaid account_id.",
+        "example": "blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo",
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "vendor_customer_id": {
+      "description": "The identifier provided by the vendor for the customer associated with this external account.\n",
+      "example": 380,
+      "type": "string"
+    },
+    "verify_owner": {
+      "default": false,
+      "description": "If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.\n",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "customer_type",
+    "vendor"
+  ],
+  "type": "object"
+}

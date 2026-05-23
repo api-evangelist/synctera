@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_status",
+  "title": "verification_status",
+  "description": "The result of a KYC/KYB verification. One of the following:\n* `UNVERIFIED` \u2013 verification has not been completed for this customer.\n* `PENDING` \u2013 verification is in progress for this customer.\n* `PROVISIONAL` \u2013 partially verified or verified with restrictions.\n* `ACCEPTED` \u2013 the customer has been verified.\n* `REVIEW` \u2013 verification has run and issues have been identified and require review.\n* `REJECTED` \u2013 the customer was rejected and should not be allowed to take certain actions e.g., open an account.\n",
+  "enum": [
+    "UNVERIFIED",
+    "PENDING",
+    "PROVISIONAL",
+    "ACCEPTED",
+    "REVIEW",
+    "REJECTED"
+  ],
+  "example": "ACCEPTED",
+  "readOnly": true,
+  "type": "string"
+}

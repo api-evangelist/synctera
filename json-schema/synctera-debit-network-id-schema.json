@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/debit_network_id",
+  "title": "debit_network_id",
+  "description": "The unique identifier of a debit network",
+  "example": "386adb92-ccd0-4ae8-ab82-c62702b9c6ea",
+  "format": "uuid",
+  "type": "string"
+}

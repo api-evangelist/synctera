@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_update_request",
+  "title": "application_update_request",
+  "properties": {
+    "enabled": {
+      "description": "To enable or disable aft/oct feature",
+      "type": "boolean"
+    },
+    "processor": {
+      "$ref": "#/components/schemas/processor"
+    }
+  },
+  "type": "object"
+}

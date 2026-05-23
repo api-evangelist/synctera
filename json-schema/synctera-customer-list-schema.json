@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_list",
+  "title": "customer_list",
+  "allOf": [
+    {
+      "properties": {
+        "customers": {
+          "description": "Array of Customers",
+          "items": {
+            "$ref": "#/components/schemas/customer_in_body"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "customers"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

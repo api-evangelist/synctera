@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_access_status",
+  "title": "account_access_status",
+  "description": "Access status for account. Default ACTIVE",
+  "enum": [
+    "ACTIVE",
+    "FROZEN"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/adhoc_verification_response",
+  "title": "adhoc_verification_response",
+  "properties": {
+    "id": {
+      "description": "Unique ID for this verification result.",
+      "example": "e1f96150-4715-424b-8f8c-ec3188628073",
+      "format": "uuid",
+      "type": "string"
+    },
+    "matching_watchlists": {
+      "description": "list of watchlists that the subject of the request matched\n",
+      "items": {
+        "enum": [
+          "US_OFAC"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "result": {
+      "$ref": "#/components/schemas/verification_result"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/vendor_info"
+    }
+  },
+  "required": [
+    "id",
+    "matching_watchlists",
+    "result"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/wire",
+  "title": "Wire",
+  "properties": {
+    "amount": {
+      "description": "Transfer amount in cents ($100 would be 10000)",
+      "example": 10000,
+      "type": "integer"
+    },
+    "bank_message": {
+      "description": "Instructions intended for the financial institutions that are processing the wire.",
+      "type": "string"
+    },
+    "creation_time": {
+      "example": "2022-05-18TT17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "currency": {
+      "description": "3-character currency code",
+      "example": "USD",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The customer UUID representing the person initiating the Wire transfer",
+      "example": "c6f0f83b-0b19-4eb3-b14d-233ef38af14a",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "wire ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "example": "2022-05-18TT17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "originating_account_id": {
+      "description": "Sender account ID",
+      "example": "9ea58e5e-b021-4a2c-bf91-9790cb3ac63e",
+      "format": "uuid",
+      "type": "string"
+    },
+    "receiving_account_id": {
+      "description": "The external account uuid representing the recipient of the wire.",
+      "example": "0b320738-b9e8-4604-984b-6a83828e6163",
+      "format": "uuid",
+      "type": "string"
+    },
+    "recipient_message": {
+      "description": "Information from the originator to the beneficiary (recipient).",
+      "type": "string"
+    },
+    "sender_reference_id": {
+      "description": "Sender's id associated with fedwire transfer",
+      "example": "9F564A6124E65",
+      "readOnly": true,
+      "type": "string"
+    },
+    "status": {
+      "description": "The current status of the transfer",
+      "enum": [
+        "PENDING",
+        "COMPLETED",
+        "CANCELED",
+        "DECLINED"
+      ],
+      "example": "PENDING",
+      "readOnly": true,
+      "type": "string"
+    },
+    "transaction_id": {
+      "description": "ID of the resulting transaction resource",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "transaction_id",
+    "amount",
+    "status",
+    "currency",
+    "customer_id",
+    "originating_account_id",
+    "receiving_account_id",
+    "sender_reference_id",
+    "creation_time",
+    "last_updated_time"
+  ],
+  "type": "object"
+}

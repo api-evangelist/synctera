@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/client_token",
+  "title": "Client Token",
+  "description": "A short-lived, one-time token used for accessing client PINs/PANs",
+  "properties": {
+    "client_token": {
+      "example": "4899e49c-206e-40c8-ab01-c28a8ca7ccc8",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

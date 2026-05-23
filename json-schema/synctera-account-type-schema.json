@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_type",
+  "title": "Account Type",
+  "description": "The type of the account. In lead mode, this always takes the value of the template. If not\nspecified in shadow mode, CHECKING will be assumed. Below mentioned are the account types:\n* SAVING: Savings account\n* CHECKING: Checking account\n* LINE_OF_CREDIT: Line of Credit account\n",
+  "enum": [
+    "SAVING",
+    "CHECKING",
+    "LINE_OF_CREDIT"
+  ],
+  "type": "string"
+}

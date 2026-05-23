@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_line1",
+  "title": "transaction_line1",
+  "properties": {
+    "account_id": {
+      "description": "The account uuid associated with this transaction line",
+      "example": "7f346df6-18b9-4b2f-9857-5f714ddd565e",
+      "type": "string"
+    },
+    "account_no": {
+      "description": "The account number associated with this transaction line",
+      "type": "string"
+    },
+    "amount": {
+      "description": "The amount (in cents) of the transaction",
+      "format": "int64",
+      "type": "integer"
+    },
+    "available_balance": {
+      "description": "The account \"available balance\" at the point in time this transaction was posted",
+      "format": "int64",
+      "type": "integer"
+    },
+    "balance": {
+      "description": "The account balance at the point in time this transaction was posted",
+      "format": "int64",
+      "type": "integer"
+    },
+    "created": {
+      "description": "The creation date of the transaction",
+      "format": "date-time",
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "type": "string"
+    },
+    "dc_sign": {
+      "$ref": "#/components/schemas/dc_sign"
+    },
+    "is_fee": {
+      "description": "Whether or not this line is considered a fee",
+      "type": "boolean"
+    },
+    "is_gl_acc": {
+      "description": "Whether or not this line represents a GL account",
+      "type": "boolean"
+    },
+    "is_offset": {
+      "description": "Whether or not this line is considered the \"offset\" line",
+      "type": "boolean"
+    },
+    "is_primary": {
+      "description": "Whether or not this line is considered the \"primary\" line",
+      "type": "boolean"
+    },
+    "meta": {
+      "nullable": true,
+      "type": "object"
+    },
+    "network": {
+      "description": "The network this transaction is associated with",
+      "type": "string"
+    },
+    "related_line": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "seq": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "tenant": {
+      "description": "The tenant associated with this transaction, in the form \"<bankid>_<partnerid>\"",
+      "type": "string"
+    },
+    "updated": {
+      "description": "The date the transaction was last updated",
+      "format": "date-time",
+      "type": "string"
+    },
+    "uuid": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "uuid",
+    "account_no",
+    "account_id",
+    "tenant",
+    "amount",
+    "dc_sign",
+    "seq",
+    "is_primary",
+    "is_offset",
+    "is_fee",
+    "is_gl_acc",
+    "related_line",
+    "currency",
+    "network",
+    "meta",
+    "balance",
+    "available_balance",
+    "created",
+    "updated"
+  ],
+  "type": "object"
+}

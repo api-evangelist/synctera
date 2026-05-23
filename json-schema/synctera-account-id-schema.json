@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_id",
+  "title": "account_id",
+  "description": "The unique identifier of an account",
+  "example": "4403f645-c2e3-4f8d-9027-127dca09f353",
+  "format": "uuid",
+  "type": "string"
+}

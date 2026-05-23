@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_instruction",
+  "title": "payment_instruction",
+  "discriminator": {
+    "mapping": {
+      "ACH": "#/components/schemas/ach_instruction",
+      "INTERNAL_TRANSFER": "#/components/schemas/internal_transfer_instruction"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/ach_instruction"
+    },
+    {
+      "$ref": "#/components/schemas/internal_transfer_instruction"
+    }
+  ]
+}

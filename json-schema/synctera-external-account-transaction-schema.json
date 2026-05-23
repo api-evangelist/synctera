@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_transaction",
+  "title": "external_account_transaction",
+  "properties": {
+    "amount": {
+      "description": "Transaction amount. Number in cents. E.g. 1000 represents $10.00",
+      "format": "int64",
+      "type": "integer"
+    },
+    "authorized_date": {
+      "description": "Date that the transaction is authorized. ISO 8601 format ( YYYY-MM-DD ).",
+      "format": "date",
+      "nullable": true,
+      "type": "string"
+    },
+    "category": {
+      "description": "Category of the transaction",
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "check_number": {
+      "description": "Check number of the transaction. This field will be null if not a check transaction.",
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code",
+      "example": "USD",
+      "type": "string"
+    },
+    "date": {
+      "description": "For pending transactions, this represents the date of the transaction occurred; for posted transactions, this represents the date of the transaction posted. ISO 8601 format ( YYYY-MM-DD ).\n",
+      "format": "date",
+      "type": "string"
+    },
+    "is_pending": {
+      "description": "Indicates the transaction is pending or unsettled if true.",
+      "type": "boolean"
+    },
+    "merchant_name": {
+      "description": "Merchant name of the transaction",
+      "example": "Fancy store",
+      "type": "string"
+    },
+    "payment_channel": {
+      "description": "channel used to make a payment",
+      "enum": [
+        "IN_STORE",
+        "ONLINE",
+        "OTHER"
+      ],
+      "type": "string",
+      "x-enumDescriptions": [
+        {
+          "IN_STORE": "In store transaction."
+        },
+        {
+          "ONLINE": "Online transaction."
+        },
+        {
+          "OTHER": "Transactions that relate to banks, e.g. fees or deposits."
+        }
+      ]
+    },
+    "payment_method": {
+      "description": "Transfer type of the transaction, e.g. ACH",
+      "type": "string"
+    },
+    "transaction_id": {
+      "description": "case-sensitive transaction ID",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

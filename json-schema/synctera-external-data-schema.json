@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_data",
+  "title": "external_data",
+  "description": "an unstructured json blob representing additional transaction information supplied by the integrator.",
+  "nullable": true,
+  "type": "object"
+}

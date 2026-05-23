@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_type1",
+  "title": "Type of Credit Application",
+  "description": "Type of Credit Application",
+  "enum": [
+    "LINE_OF_CREDIT"
+  ],
+  "example": "LINE_OF_CREDIT",
+  "type": "string",
+  "x-enumDescriptions": [
+    {
+      "LINE_OF_CREDIT": "Line of credit application type"
+    }
+  ]
+}

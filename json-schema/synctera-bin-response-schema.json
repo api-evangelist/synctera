@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_response",
+  "title": "bin_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/bin"
+    }
+  ],
+  "required": [
+    "id",
+    "bank_id",
+    "partner_id",
+    "bin",
+    "processor",
+    "card_brand",
+    "card_category",
+    "card_product_type",
+    "is_tokenization_enabled",
+    "ica_bid",
+    "country",
+    "currency",
+    "bin_status",
+    "account_range_length",
+    "billing_ica",
+    "brand_product_code",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

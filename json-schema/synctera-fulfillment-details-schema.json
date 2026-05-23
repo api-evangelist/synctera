@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/fulfillment_details",
+  "title": "fulfillment_details",
+  "properties": {
+    "ship_date": {
+      "description": "The date that the card was shipped as reported by the card fulfillment provider",
+      "example": "2022-07-19",
+      "format": "date",
+      "readOnly": true,
+      "type": "string"
+    },
+    "shipping_method": {
+      "description": "The specific shipping method as reported by the card fulfillment provider",
+      "example": "UPS Next Day Air Saver",
+      "readOnly": true,
+      "type": "string"
+    },
+    "tracking_number": {
+      "description": "The shipment tracking number",
+      "example": "1ZW3268W1319325382",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

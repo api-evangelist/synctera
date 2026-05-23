@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/rates",
+  "title": "rates",
+  "description": "A list of interest rate. Date intervals between valid_from and valid_to expect to have no overlap.\n",
+  "items": {
+    "$ref": "#/components/schemas/rate_details"
+  },
+  "type": "array"
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_program_response",
+  "title": "card_program_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_program"
+    }
+  ],
+  "required": [
+    "id",
+    "name",
+    "bank_id",
+    "partner_id",
+    "card_brand",
+    "card_category",
+    "card_product_type",
+    "active",
+    "start_date",
+    "end_date",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

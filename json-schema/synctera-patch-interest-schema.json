@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_interest",
+  "title": "patch_interest",
+  "properties": {
+    "accrual_payout_schedule": {
+      "$ref": "#/components/schemas/accrual_payout_schedule"
+    },
+    "calculation_method": {
+      "$ref": "#/components/schemas/calculation_method"
+    },
+    "description": {
+      "description": "User provided description for the current interest.",
+      "example": "The rate is designed for high interest saving account.",
+      "type": "string"
+    },
+    "id": {
+      "description": "Interest ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "product_type": {
+      "enum": [
+        "INTEREST"
+      ],
+      "type": "string"
+    },
+    "rates": {
+      "$ref": "#/components/schemas/rates"
+    }
+  },
+  "required": [
+    "product_type"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_options",
+  "title": "transaction_options",
+  "properties": {
+    "additional_data": {
+      "type": "string"
+    },
+    "card_expiration_date_yymm": {
+      "type": "string"
+    },
+    "database_transaction_timeout": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "encryption_key_id": {
+      "type": "string"
+    },
+    "is_async": {
+      "default": false,
+      "type": "boolean"
+    },
+    "pre_auth_time_limit": {
+      "type": "string"
+    },
+    "send_expiration_date": {
+      "default": false,
+      "type": "boolean"
+    },
+    "send_track_data": {
+      "default": false,
+      "type": "boolean"
+    },
+    "transaction_id": {
+      "type": "string"
+    },
+    "transaction_timeout_threshold_seconds": {
+      "format": "int64",
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

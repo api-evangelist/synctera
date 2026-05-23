@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorization_advice_model",
+  "title": "authorization_advice_model",
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "network_fees": {
+      "items": {
+        "$ref": "#/components/schemas/network_fee_model"
+      },
+      "type": "array"
+    },
+    "original_transaction_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "transaction_options": {
+      "$ref": "#/components/schemas/transaction_options"
+    }
+  },
+  "required": [
+    "amount",
+    "original_transaction_id"
+  ],
+  "type": "object"
+}

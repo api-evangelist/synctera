@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/employment_list",
+  "title": "employment_list",
+  "allOf": [
+    {
+      "properties": {
+        "employment": {
+          "description": "Array of customer employment records.",
+          "items": {
+            "$ref": "#/components/schemas/employment"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "employment"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

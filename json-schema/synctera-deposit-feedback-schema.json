@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/deposit_feedback",
+  "title": "Remote Check Deposit feedback",
+  "description": "Approve or reject deposit transactions",
+  "properties": {
+    "feedback": {
+      "description": "The value of the feedback for the deposit transaction",
+      "enum": [
+        "APPROVE",
+        "REJECT"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

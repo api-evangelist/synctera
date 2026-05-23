@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account",
+  "title": "External account",
+  "properties": {
+    "account_identifiers": {
+      "$ref": "#/components/schemas/account_identifiers"
+    },
+    "account_owner_names": {
+      "description": "The names of the account owners. Values may be masked, in which case the array will be empty.\n",
+      "items": {
+        "example": "Dr. Winston Zieme",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "business_id": {
+      "description": "The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` will be returned.\n",
+      "example": "98f62347-33d0-4421-bfc0-91729390eff1",
+      "format": "uuid",
+      "type": "string"
+    },
+    "creation_time": {
+      "example": "2022-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` will be returned.\n",
+      "example": "e2197030-7aaf-472d-a454-5c1703d46417",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "External account unique identifier",
+      "example": "90928aae-f478-443a-bdcc-00cf888df49b",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "example": "2022-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "User-supplied JSON format metadata.",
+      "type": "object"
+    },
+    "name": {
+      "description": "The official name of the account",
+      "example": "Plaid Checking",
+      "type": "string"
+    },
+    "nickname": {
+      "description": "A user-meaningful name for the account",
+      "example": "Credit Card Account",
+      "nullable": true,
+      "type": "string"
+    },
+    "routing_identifiers": {
+      "$ref": "#/components/schemas/account_routing"
+    },
+    "status": {
+      "description": "The current state of the account",
+      "enum": [
+        "ACTIVE",
+        "CLOSED"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the account",
+      "enum": [
+        "CHECKING",
+        "SAVINGS",
+        "CREDIT_CARD",
+        "MONEY_MARKET",
+        "INVESTMENT_529",
+        "OTHER"
+      ],
+      "type": "string"
+    },
+    "vendor_data": {
+      "$ref": "#/components/schemas/external_account_vendor_data"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/vendor_info"
+    },
+    "verification": {
+      "$ref": "#/components/schemas/account_verification"
+    }
+  },
+  "required": [
+    "id",
+    "account_owner_names",
+    "status",
+    "type",
+    "routing_identifiers",
+    "account_identifiers",
+    "verification",
+    "creation_time",
+    "last_updated_time"
+  ],
+  "type": "object"
+}

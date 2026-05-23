@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/waitlists_list",
+  "title": "Waitlist List",
+  "allOf": [
+    {
+      "properties": {
+        "waitlists": {
+          "description": "Array of Waitlists",
+          "items": {
+            "$ref": "#/components/schemas/waitlist"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "waitlists"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ],
+  "required": [
+    "waitlists"
+  ],
+  "type": "object"
+}

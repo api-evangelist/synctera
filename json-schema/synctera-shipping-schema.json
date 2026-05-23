@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping",
+  "title": "shipping",
+  "description": "Details about the shipping method. If supplied this will override the default shipping address of the customer or account.",
+  "properties": {
+    "address": {
+      "$ref": "#/components/schemas/address1",
+      "description": "The address to which the card will be shipped - Defaults to account shipping address if none supplied"
+    },
+    "care_of_line": {
+      "description": "The name of the person to send in care of",
+      "type": "string"
+    },
+    "is_expedited_fulfillment": {
+      "default": false,
+      "description": "Is the shipment expedited",
+      "example": false,
+      "type": "boolean"
+    },
+    "method": {
+      "default": "LOCAL_MAIL",
+      "description": "The shipping method",
+      "enum": [
+        "LOCAL_MAIL",
+        "TWO_DAY",
+        "OVERNIGHT",
+        "INTERNATIONAL"
+      ],
+      "example": "LOCAL_MAIL",
+      "type": "string"
+    },
+    "phone_number": {
+      "description": "The phone number of the recipient",
+      "example": 2007473385,
+      "pattern": "^\\+[1-9]\\d{1,14}$",
+      "type": "string"
+    },
+    "recipient_name": {
+      "$ref": "#/components/schemas/recipient_name",
+      "description": "The name of the recipient to whom the card will be shipped"
+    }
+  },
+  "type": "object"
+}

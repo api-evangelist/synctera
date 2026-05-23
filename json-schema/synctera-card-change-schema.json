@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_change",
+  "title": "card_change",
+  "description": "Card change details",
+  "properties": {
+    "change_type": {
+      "$ref": "#/components/schemas/change_type"
+    },
+    "channel": {
+      "$ref": "#/components/schemas/change_channel"
+    },
+    "id": {
+      "description": "Unique token",
+      "example": "19d19b55-c8fa-4a78-ae1c-98d37798bec3",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "memo": {
+      "$ref": "#/components/schemas/card_status_reason_memo"
+    },
+    "reason": {
+      "$ref": "#/components/schemas/card_status_reason_code"
+    },
+    "state": {
+      "$ref": "#/components/schemas/card_change_state",
+      "description": "Updated card state"
+    },
+    "updated_at": {
+      "description": "Date of change",
+      "example": "Fri Jul 22 2022 03:09:02 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "updated_by": {
+      "description": "ID of user who initiated the change, if done via Synctera Admin System",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "change_type",
+    "state",
+    "channel",
+    "updated_at",
+    "updated_by"
+  ],
+  "type": "object"
+}

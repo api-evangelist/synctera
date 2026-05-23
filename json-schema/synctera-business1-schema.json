@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business1",
+  "title": "Business",
+  "properties": {
+    "creation_time": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "ein": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "entity_name": {
+      "type": "string"
+    },
+    "formation_date": {
+      "format": "date",
+      "type": "string"
+    },
+    "formation_state": {
+      "type": "string"
+    },
+    "id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "last_updated_time": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "phone_number": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "structure": {
+      "type": "string"
+    },
+    "trade_names": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "verification_last_run": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "verification_status": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

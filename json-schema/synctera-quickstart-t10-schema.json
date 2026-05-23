@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/quickstart_t10",
+  "title": "quickstart_t10",
+  "properties": {
+    "bank_id": {
+      "description": "The ID of the bank partner works with within this program",
+      "type": "integer"
+    },
+    "partner_id": {
+      "description": "The ID of the partner",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "partner_id",
+    "bank_id"
+  ],
+  "type": "object"
+}

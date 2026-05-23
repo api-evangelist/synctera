@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_accounts_request",
+  "title": "add_accounts_request",
+  "properties": {
+    "account_identifiers": {
+      "$ref": "#/components/schemas/add_accounts_request_account_identifiers"
+    },
+    "account_owner_names": {
+      "description": "The names of the account owners.",
+      "items": {
+        "example": "Miss Clark Maggio",
+        "minLength": 1,
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "business_id": {
+      "description": "The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.\n",
+      "example": "fc8d475c-0d6d-4139-8010-93c57ce5eed1",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.\n",
+      "example": "91a0ced5-2403-4a98-9b9f-c4577834eac1",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_type": {
+      "$ref": "#/components/schemas/ext_account_customer_type"
+    },
+    "metadata": {
+      "description": "User-supplied metadata",
+      "type": "object"
+    },
+    "nickname": {
+      "description": "A user-meaningful name for the account",
+      "example": "Money Market Account",
+      "minLength": 1,
+      "type": "string"
+    },
+    "routing_identifiers": {
+      "$ref": "#/components/schemas/add_accounts_request_routing_identifiers"
+    },
+    "type": {
+      "description": "The type of the account",
+      "enum": [
+        "CHECKING",
+        "SAVINGS"
+      ],
+      "type": "string"
+    },
+    "vendor_account_id": {
+      "description": "The ID of the vendor account, will be empty for MANUAL vendor",
+      "example": "blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo",
+      "minLength": 1,
+      "type": "string"
+    },
+    "verification": {
+      "$ref": "#/components/schemas/account_verification"
+    }
+  },
+  "required": [
+    "type",
+    "customer_type",
+    "account_owner_names",
+    "routing_identifiers",
+    "account_identifiers"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/monitoring_status",
+  "title": "monitoring_status",
+  "description": "The status of the alert. Any of the following:\n* `ACTIVE` \u2013 alert has been issued and should be investigated.\n* `SUPPRESSED` \u2013 alert is a false positive, alert should be dismissed, or has been otherwise investigated.\n",
+  "enum": [
+    "ACTIVE",
+    "SUPPRESSED"
+  ],
+  "type": "string"
+}

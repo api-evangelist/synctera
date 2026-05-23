@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/calculation_method",
+  "title": "calculation_method",
+  "enum": [
+    "COMPOUNDED_MONTHLY",
+    "COMPOUNDED_DAILY"
+  ],
+  "type": "string"
+}

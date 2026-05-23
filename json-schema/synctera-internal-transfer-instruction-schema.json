@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_transfer_instruction",
+  "title": "internal_transfer_instruction",
+  "properties": {
+    "request": {
+      "$ref": "#/components/schemas/internal_transfer"
+    },
+    "type": {
+      "enum": [
+        "INTERNAL_TRANSFER"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "request"
+  ],
+  "type": "object"
+}

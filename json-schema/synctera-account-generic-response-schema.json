@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_generic_response",
+  "title": "account_generic_response",
+  "properties": {
+    "access_status": {
+      "$ref": "#/components/schemas/account_access_status"
+    },
+    "access_status_last_updated_time": {
+      "description": "Timestamp of the last modification of the access_status. RFC3339 format.",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "account_number": {
+      "description": "Account number",
+      "maxLength": 50,
+      "readOnly": true,
+      "type": "string"
+    },
+    "account_number_masked": {
+      "description": "The response will contain the bank fintech ID (3 or 6 digits) plus the last 4 digits, with the digits in between replaced with * characters. Shadow mode account numbers will not be masked.",
+      "example": "123*****6789",
+      "maxLength": 50,
+      "readOnly": true,
+      "type": "string"
+    },
+    "account_purpose": {
+      "description": "Purpose of the account",
+      "example": "This account for the account holder's salary deposit.",
+      "type": "string"
+    },
+    "account_type": {
+      "$ref": "#/components/schemas/account_type"
+    },
+    "application_id": {
+      "description": "The application ID for this account.\n",
+      "format": "uuid",
+      "type": "string"
+    },
+    "balance_ceiling": {
+      "$ref": "#/components/schemas/balance_ceiling"
+    },
+    "balance_floor": {
+      "$ref": "#/components/schemas/balance_floor"
+    },
+    "balances": {
+      "description": "A list of balances for account based on different type",
+      "items": {
+        "$ref": "#/components/schemas/balance"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "bank_routing": {
+      "description": "Bank routing number",
+      "maxLength": 9,
+      "readOnly": true,
+      "type": "string"
+    },
+    "billing_period": {
+      "$ref": "#/components/schemas/billing_period"
+    },
+    "business_ids": {
+      "description": "A list of the business IDs of the account holders.",
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "chargeoff_period": {
+      "default": 90,
+      "description": "The number of days an account can stay delinquent before marking an account as charged-off.\n",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "creation_time": {
+      "description": "Account creation timestamp in RFC3339 format",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "credit_limit": {
+      "description": "The credit limit for this line of credit account in cents. Minimum is 0.\n",
+      "example": 2500,
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "Account currency or account settlement currency. ISO 4217 alphabetic currency code. Default USD",
+      "example": "MZN",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    },
+    "customer_ids": {
+      "description": "A list of the customer IDs of the account holders.",
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "customer_type": {
+      "$ref": "#/components/schemas/customer_type"
+    },
+    "delinquency_period": {
+      "default": 30,
+      "description": "The number of days past the due date to wait for a minimum payment before marking an account as delinquent.\n",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "exchange_rate_type": {
+      "description": "Exchange rate type",
+      "example": "M, INTERBANK, CUST",
+      "maxLength": 10,
+      "type": "string"
+    },
+    "fee_product_ids": {
+      "description": "A list of fee account products that the current account associates with.",
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "grace_period": {
+      "description": "The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.\n",
+      "example": 25,
+      "minimum": 0,
+      "type": "integer"
+    },
+    "iban": {
+      "description": "International bank account number",
+      "maxLength": 34,
+      "type": "string"
+    },
+    "id": {
+      "description": "Account ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "interest_product_id": {
+      "description": "An interest account product that the current account associates with.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "is_account_pool": {
+      "description": "Account is investment (variable balance) account or a multi-balance account pool. Default false",
+      "type": "boolean"
+    },
+    "is_ach_enabled": {
+      "description": "A flag to indicate whether ACH transactions are enabled.",
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "is_card_enabled": {
+      "description": "A flag to indicate whether card transactions are enabled.",
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "is_p2p_enabled": {
+      "description": "A flag to indicate whether P2P transactions are enabled.",
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "is_wire_enabled": {
+      "description": "A flag to indicate whether wire transactions are enabled.",
+      "readOnly": true,
+      "type": "boolean"
+    },
+    "last_updated_time": {
+      "description": "Timestamp of the last account modification in RFC3339 format",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "description": "User provided account metadata",
+      "type": "object"
+    },
+    "minimum_payment": {
+      "$ref": "#/components/schemas/minimum_payment"
+    },
+    "nickname": {
+      "description": "User provided account nickname",
+      "type": "string"
+    },
+    "overdraft_limit": {
+      "description": "Account's overdraft limit",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "spending_limits": {
+      "$ref": "#/components/schemas/spending_limits"
+    },
+    "status": {
+      "$ref": "#/components/schemas/status"
+    },
+    "swift_code": {
+      "description": "SWIFT code",
+      "maxLength": 11,
+      "minLength": 8,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

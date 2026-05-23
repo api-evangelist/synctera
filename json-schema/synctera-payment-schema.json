@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment",
+  "title": "payment",
+  "description": "Executed payment",
+  "properties": {
+    "description": {
+      "description": "User provided description for the payment schedule",
+      "type": "string"
+    },
+    "error_details": {
+      "$ref": "#/components/schemas/payment_error_details"
+    },
+    "id": {
+      "description": "Payment ID",
+      "format": "uuid",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "User provided JSON format data for the payment schedule",
+      "type": "object"
+    },
+    "payment_date": {
+      "$ref": "#/components/schemas/payment_date"
+    },
+    "payment_instruction": {
+      "$ref": "#/components/schemas/payment_instruction"
+    },
+    "payment_schedule_id": {
+      "description": "ID of the payment schedule that executed this payment",
+      "format": "uuid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/components/schemas/payment_status"
+    },
+    "transaction_id": {
+      "description": "Transaction ID. It will be included only when status is COMPLETED",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_program",
+  "title": "card_program",
+  "properties": {
+    "active": {
+      "description": "indicates whether program is active",
+      "type": "boolean"
+    },
+    "bank_id": {
+      "description": "The ID of the bank partner works with within this program",
+      "type": "integer"
+    },
+    "card_brand": {
+      "$ref": "#/components/schemas/card_brand"
+    },
+    "card_category": {
+      "$ref": "#/components/schemas/card_category"
+    },
+    "card_product_type": {
+      "$ref": "#/components/schemas/card_product_type"
+    },
+    "creation_time": {
+      "description": "The timestamp representing when the program was created",
+      "example": "Wed Feb 09 2022 14:02:52 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "end_date": {
+      "description": "The time when program became inactive",
+      "example": "Tue Dec 20 2022 13:08:12 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Program ID",
+      "example": "37a054b8-fbdb-44c6-ae20-091f94ada475",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_modified_time": {
+      "description": "The timestamp representing when the program was last modified",
+      "example": "Thu Mar 24 2022 05:09:53 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "name": {
+      "description": "Program name",
+      "type": "string"
+    },
+    "partner_id": {
+      "description": "The ID of the partner program belongs to",
+      "type": "integer"
+    },
+    "start_date": {
+      "description": "The time when program becomes active",
+      "example": "Mon Aug 08 2022 16:52:42 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "bank_id",
+    "partner_id",
+    "card_brand",
+    "card_category",
+    "card_product_type"
+  ],
+  "type": "object"
+}

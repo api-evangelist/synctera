@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pending_transaction",
+  "title": "A pending transaction",
+  "properties": {
+    "account_id": {
+      "description": "The account id associated with the hold",
+      "example": "81f8799f-8888-496f-ad70-1f9ce6cf763b",
+      "type": "string"
+    },
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "created": {
+      "description": "The creation date of the hold",
+      "format": "date-time",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/components/schemas/pending_transaction_data"
+    },
+    "id": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "idemkey": {
+      "description": "The idempotency key used when initially creating this hold.",
+      "type": "string"
+    },
+    "offset_account_id": {
+      "description": "The offset account id associated with the hold",
+      "example": "8ade5876-e302-4cdc-b478-0c789e04e58f",
+      "type": "string"
+    },
+    "offset_account_no": {
+      "description": "The offset account number associated with the hold",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction.",
+      "nullable": true,
+      "type": "string"
+    },
+    "tenant": {
+      "description": "The tenant associated with this hold, in the form \"<bankid>_<partnerid>\"",
+      "type": "string"
+    },
+    "updated": {
+      "description": "The date the hold was last update",
+      "format": "date-time",
+      "type": "string"
+    },
+    "uuid": {
+      "description": "The unique identifier of the hold transaction.",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "tenant",
+    "idemkey",
+    "account_no",
+    "account_id",
+    "created",
+    "updated",
+    "data",
+    "reference_id",
+    "offset_account_no",
+    "offset_account_id"
+  ],
+  "type": "object"
+}

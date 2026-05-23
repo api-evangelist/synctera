@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_data",
+  "title": "transaction_data",
+  "properties": {
+    "external_data": {
+      "description": "an unstructured json blob representing additional transaction information supplied by the integrator.",
+      "type": "object"
+    },
+    "lines": {
+      "description": "The set of accounting entries associated with this transaction. For example, a debit to a customer account will have a corresponding credit in a general ledger account.",
+      "items": {
+        "$ref": "#/components/schemas/transaction_line"
+      },
+      "type": "array"
+    },
+    "memo": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "memo",
+    "lines"
+  ],
+  "type": "object"
+}

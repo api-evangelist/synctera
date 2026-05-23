@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_range_id",
+  "title": "account_range_id",
+  "description": "The unique identifier of a account range",
+  "example": "bc106517-e026-40f0-85a5-ff17a2d792d0",
+  "format": "uuid",
+  "type": "string"
+}

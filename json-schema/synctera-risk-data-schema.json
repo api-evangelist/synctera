@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/risk_data",
+  "title": "risk_data",
+  "properties": {
+    "client_ip": {
+      "description": "Client IP",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

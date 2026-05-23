@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_accounts_request_routing_identifiers",
+  "title": "Identifiers for the bank",
+  "properties": {
+    "ach_routing_number": {
+      "description": "The routing number used for US ACH payments.\n",
+      "example": "756392185",
+      "minLength": 1,
+      "type": "string"
+    },
+    "bank_countries": {
+      "description": "The countries that this bank operates the account in",
+      "items": {
+        "enum": [
+          "US"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "bank_name": {
+      "description": "The name of the bank managing the account",
+      "example": "Chase",
+      "minLength": 1,
+      "type": "string"
+    },
+    "wire_routing_number": {
+      "description": "The routing number used for US wire payments.\n",
+      "example": "915075033",
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "bank_name",
+    "bank_countries",
+    "ach_routing_number"
+  ],
+  "type": "object"
+}

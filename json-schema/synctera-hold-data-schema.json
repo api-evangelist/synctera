@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_data",
+  "title": "hold_data",
+  "properties": {
+    "amount": {
+      "type": "integer"
+    },
+    "availability_time": {
+      "example": "2022-03-18TT17:54:12Z",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "availability_time"
+  ],
+  "type": "object"
+}

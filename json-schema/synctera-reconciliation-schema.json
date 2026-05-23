@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/reconciliation",
+  "title": "Reconciliation",
+  "description": "Reconciliation",
+  "properties": {
+    "file_name": {
+      "description": "Filename of the data to be reconciled",
+      "example": "vp1m0ynhxsm3nb",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "Reconciliation ID",
+      "example": "6b7f32f8-c469-41a5-86f0-c49fc172f019",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "ingestion_status": {
+      "$ref": "#/components/schemas/ingestion_status"
+    }
+  },
+  "required": [
+    "id",
+    "file_name",
+    "ingestion_status"
+  ],
+  "type": "object"
+}

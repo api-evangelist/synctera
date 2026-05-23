@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_alias_list",
+  "title": "customer_alias_list",
+  "allOf": [
+    {
+      "properties": {
+        "customer_alias": {
+          "description": "Array of customer alias",
+          "items": {
+            "$ref": "#/components/schemas/customer_alias"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "customer_alias"
+      ],
+      "type": "object"
+    }
+  ]
+}

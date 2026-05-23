@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_vendor_json",
+  "title": "verification_vendor_json",
+  "properties": {
+    "content_type": {
+      "description": "Describes the content-type encoding received from the vendor.",
+      "enum": [
+        "application/json"
+      ],
+      "type": "string"
+    },
+    "details": {
+      "description": "Array of vendor specific information.",
+      "items": {
+        "$ref": "#/components/schemas/verification_vendor_info_detail"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "json": {
+      "description": "Data representation in JSON.",
+      "type": "object"
+    },
+    "vendor": {
+      "description": "Name of the vendor used.",
+      "example": "SOCURE",
+      "type": "string"
+    }
+  },
+  "required": [
+    "vendor",
+    "content_type",
+    "json"
+  ]
+}

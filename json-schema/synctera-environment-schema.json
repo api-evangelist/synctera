@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/environment",
+  "title": "environment",
+  "description": "Indicates which environment the workspace belongs to",
+  "enum": [
+    "SANDBOX",
+    "LIVE_TESTING",
+    "PROD_LITE",
+    "PROD"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_type1",
+  "title": "event_type1",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/event_type_explicit"
+    },
+    {
+      "$ref": "#/components/schemas/event_type_wildcard"
+    }
+  ]
+}

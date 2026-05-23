@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_id2",
+  "title": "business_id2",
+  "description": "Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.\n",
+  "example": "d4f6d078-ccf9-42c1-a001-df2c96783294",
+  "format": "uuid",
+  "type": "string"
+}

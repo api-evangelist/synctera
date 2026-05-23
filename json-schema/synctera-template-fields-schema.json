@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_fields",
+  "title": "template_fields",
+  "discriminator": {
+    "mapping": {
+      "CHECKING": "#/components/schemas/template_fields_depository",
+      "LINE_OF_CREDIT": "#/components/schemas/template_fields_line_of_credit",
+      "SAVING": "#/components/schemas/template_fields_depository"
+    },
+    "propertyName": "account_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/template_fields_depository"
+    },
+    {
+      "$ref": "#/components/schemas/template_fields_line_of_credit"
+    }
+  ],
+  "type": "object"
+}

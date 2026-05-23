@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_changes_list",
+  "title": "card_changes_list",
+  "allOf": [
+    {
+      "properties": {
+        "changes": {
+          "description": "List of changes in descending chronological order",
+          "items": {
+            "$ref": "#/components/schemas/card_change"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "changes"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

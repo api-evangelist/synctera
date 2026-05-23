@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ach_request_hold_data",
+  "title": "ach_request_hold_data",
+  "properties": {
+    "amount": {
+      "type": "integer"
+    },
+    "duration": {
+      "example": 2,
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "amount",
+    "duration"
+  ],
+  "type": "object"
+}

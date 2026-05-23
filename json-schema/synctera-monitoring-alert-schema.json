@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/monitoring_alert",
+  "title": "monitoring_alert",
+  "properties": {
+    "business_id": {
+      "$ref": "#/components/schemas/business_id3"
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T14:15:22Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for this alert.",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last update.",
+      "example": "2021-12-14T07:15:34Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "person_id": {
+      "$ref": "#/components/schemas/person_id"
+    },
+    "status": {
+      "$ref": "#/components/schemas/monitoring_status"
+    },
+    "type": {
+      "description": "The type of customer alert. Any of the following:\n* `WATCHLIST` \u2013 the customer was added to a known watchlist.\n* `BANKRUPTCY` \u2013 the customer filed for bankruptcy.\n",
+      "enum": [
+        "WATCHLIST",
+        "BANKRUPTCY"
+      ],
+      "readOnly": true,
+      "type": "string"
+    },
+    "urls": {
+      "description": "Where to get more information about this alert.",
+      "example": [
+        "https://example.com/alert-document-1",
+        "https://example.com/alert-document-2"
+      ],
+      "items": {
+        "type": "string"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/vendor_info"
+    }
+  },
+  "type": "object"
+}

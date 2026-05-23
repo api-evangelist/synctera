@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/debit_network_response",
+  "title": "debit_network_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/debit_network"
+    }
+  ],
+  "required": [
+    "id",
+    "name",
+    "active",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_cancel_request",
+  "title": "Hold Cancel Request",
+  "properties": {
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "reason": {
+      "description": "The reason for the cancellation",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "account_no",
+    "reason",
+    "user_data",
+    "external_data",
+    "risk_info",
+    "reference_id"
+  ],
+  "type": "object"
+}

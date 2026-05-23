@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/related_resource_type",
+  "title": "related_resource_type",
+  "description": "Related resource type",
+  "enum": [
+    "CUSTOMER",
+    "BUSINESS"
+  ],
+  "type": "string"
+}

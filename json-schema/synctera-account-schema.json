@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account",
+  "title": "account",
+  "anyOf": [
+    {
+      "$ref": "#/components/schemas/account_depository"
+    },
+    {
+      "$ref": "#/components/schemas/account_line_of_credit"
+    }
+  ],
+  "description": "Account",
+  "type": "object"
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_verification",
+  "title": "PersonVerification",
+  "example": {
+    "customer_consent": true,
+    "customer_ip_address": "66.152.213.183"
+  },
+  "properties": {
+    "customer_consent": {
+      "description": "Whether this customer has consented to a KYC check.\n",
+      "type": "boolean"
+    },
+    "customer_ip_address": {
+      "description": "IP address of the customer being verified.",
+      "example": "75.216.112.104",
+      "pattern": "^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$",
+      "type": "string"
+    },
+    "document_id": {
+      "description": "The ID of the uploaded government-issued identification document provided by the Socure SDK.\n",
+      "example": "1ab2c3de-fg45-6789-a01b-23c45678defg",
+      "type": "string"
+    },
+    "verification_type": {
+      "description": "List of possible checks to run on a customer. This is a legacy field that is now ignored.\n",
+      "items": {
+        "$ref": "#/components/schemas/verification_type"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "customer_consent"
+  ],
+  "type": "object"
+}

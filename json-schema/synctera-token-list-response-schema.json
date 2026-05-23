@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/token_list_response",
+  "title": "token_list_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/token_list"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ],
+  "required": [
+    "digital_wallet_tokens"
+  ]
+}

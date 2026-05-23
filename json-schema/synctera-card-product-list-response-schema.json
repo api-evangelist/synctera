@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_list_response",
+  "title": "card_product_list_response",
+  "allOf": [
+    {
+      "properties": {
+        "card_products": {
+          "description": "Array of Card Products",
+          "items": {
+            "$ref": "#/components/schemas/card_product_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "card_products"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

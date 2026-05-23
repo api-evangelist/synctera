@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_issuance_request",
+  "title": "card_issuance_request",
+  "discriminator": {
+    "mapping": {
+      "PHYSICAL": "#/components/schemas/physical_card_issuance_request",
+      "VIRTUAL": "#/components/schemas/virtual_card_issuance_request"
+    },
+    "propertyName": "form"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/physical_card_issuance_request"
+    },
+    {
+      "$ref": "#/components/schemas/virtual_card_issuance_request"
+    }
+  ],
+  "type": "object"
+}

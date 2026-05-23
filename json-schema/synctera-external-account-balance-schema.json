@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_balance",
+  "title": "External Account Balance",
+  "properties": {
+    "available": {
+      "description": "The available balance of the account",
+      "example": "Number in cents. E.g. 1000 represents $10.00",
+      "format": "int64",
+      "minimum": 0,
+      "nullable": true,
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code",
+      "example": "FJD",
+      "type": "string"
+    },
+    "current": {
+      "description": "The current balance of the account",
+      "example": "Number in cents. E.g. 1000 represents $10.00",
+      "format": "int64",
+      "minimum": 0,
+      "nullable": true,
+      "type": "integer"
+    },
+    "limit": {
+      "description": "The limit on the balance amount",
+      "example": "Number in cents. E.g. 1000 represents $10.00",
+      "format": "int64",
+      "minimum": 0,
+      "nullable": true,
+      "type": "integer"
+    }
+  },
+  "required": [
+    "currency"
+  ],
+  "type": "object"
+}

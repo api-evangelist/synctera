@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person",
+  "title": "person",
+  "allOf": [
+    {
+      "required": [
+        "status",
+        "is_customer"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/base_person1"
+    }
+  ],
+  "description": "Person object used in requests.",
+  "type": "object"
+}

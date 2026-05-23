@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error",
+  "title": "Standard error response (RFC 7807 problem report)",
+  "properties": {
+    "detail": {
+      "description": "a human-readable string explaining this particular error",
+      "example": "missing required fields: first_name, dob",
+      "type": "string"
+    },
+    "status": {
+      "description": "the HTTP status code for this response",
+      "example": 400,
+      "type": "integer"
+    },
+    "title": {
+      "description": "a human-readable string for this general category of error",
+      "example": "Bad Request Body",
+      "type": "string"
+    },
+    "type": {
+      "description": "a URI that identifies this general category of error",
+      "example": "https://dev.synctera.com/errors/bad-request-body",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

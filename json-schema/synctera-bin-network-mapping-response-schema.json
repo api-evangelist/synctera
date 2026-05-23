@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_network_mapping_response",
+  "title": "bin_network_mapping_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/bin_network_mapping"
+    }
+  ],
+  "required": [
+    "bin_id",
+    "network_id",
+    "active",
+    "bank_network_id",
+    "start_date",
+    "end_date",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

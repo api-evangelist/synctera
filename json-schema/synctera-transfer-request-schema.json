@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transfer_request",
+  "title": "transfer_request",
+  "description": "Push to card or pull from card",
+  "properties": {
+    "amount": {
+      "description": "Amount of the transfer in cents",
+      "type": "integer"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "external_card_id": {
+      "description": "The ID of the external card from/to which the transfer will be initiated/received",
+      "example": "b2710751-b575-47d0-a09b-da0994553d93",
+      "format": "uuid",
+      "type": "string"
+    },
+    "originating_account_id": {
+      "description": "The ID of the account to which the transfer will be initiated/received",
+      "example": "3e2a2f28-4910-4934-be22-ded51f926b76",
+      "format": "uuid",
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/transfer_type"
+    }
+  },
+  "required": [
+    "originating_account_id",
+    "amount",
+    "currency",
+    "type",
+    "external_card_id"
+  ],
+  "type": "object"
+}

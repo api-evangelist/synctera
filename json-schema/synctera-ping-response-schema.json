@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ping_response",
+  "title": "ping_response",
+  "properties": {
+    "webhook_status": {
+      "description": "status of webhook endpoint",
+      "example": "alive",
+      "type": "string"
+    }
+  },
+  "required": [
+    "webhook_status"
+  ],
+  "type": "object"
+}

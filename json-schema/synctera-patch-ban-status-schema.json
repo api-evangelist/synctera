@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_ban_status",
+  "title": "patch_ban_status",
+  "properties": {
+    "ban_status": {
+      "$ref": "#/components/schemas/ban_status"
+    }
+  },
+  "required": [
+    "ban_status"
+  ]
+}

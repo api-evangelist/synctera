@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationship",
+  "title": "Account Relationship",
+  "description": "The relationship of the account and the customer/business. Either customer_id OR business_id must be specified, but not both.",
+  "properties": {
+    "business_id": {
+      "description": "Business associated with the current account",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "Personal customer associated with the current account.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "ID of account relationship",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "person_id": {
+      "deprecated": true,
+      "description": "Person associated with the current account. This attribute is deprecated and will be removed in a future API version. Use customer_id instead.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "relationship_type": {
+      "$ref": "#/components/schemas/account_relationship_type"
+    }
+  },
+  "required": [
+    "relationship_type"
+  ],
+  "type": "object"
+}

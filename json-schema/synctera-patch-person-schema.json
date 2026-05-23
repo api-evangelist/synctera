@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_person",
+  "title": "patch_person",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_person1"
+    }
+  ],
+  "description": "Person object for patch purpose.",
+  "type": "object"
+}

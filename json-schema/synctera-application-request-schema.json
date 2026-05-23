@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_request",
+  "title": "application_request",
+  "properties": {
+    "bank_id": {
+      "description": "Bank ID",
+      "type": "integer"
+    },
+    "business_address": {
+      "$ref": "#/components/schemas/address1"
+    },
+    "business_name": {
+      "description": "todo",
+      "type": "string"
+    },
+    "business_phone": {
+      "description": "todo",
+      "type": "string"
+    },
+    "business_tax_id": {
+      "description": "todo",
+      "maxLength": 9,
+      "minLength": 9,
+      "type": "string"
+    },
+    "business_type": {
+      "description": "todo",
+      "enum": [
+        "INDIVIDUAL_SOLE_PROPRIETORSHIP",
+        "CORPORATION",
+        "LIMITED_LIABILITY_COMPANY",
+        "PARTNERSHIP",
+        "ASSOCIATION_ESTATE_TRUST",
+        "TAX_EXEMPT_ORGANIZATION",
+        "INTERNATIONAL_ORGANIZATION",
+        "GOVERNMENT_AGENCY"
+      ],
+      "type": "string"
+    },
+    "dob": {
+      "$ref": "#/components/schemas/external_payment_date"
+    },
+    "doing_business_as": {
+      "description": "todo",
+      "type": "string"
+    },
+    "email": {
+      "description": "todo",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "To enable or disable aft/oct feature",
+      "type": "boolean"
+    },
+    "first_name": {
+      "description": "todo",
+      "type": "string"
+    },
+    "incorporation_date": {
+      "$ref": "#/components/schemas/external_payment_date"
+    },
+    "last_name": {
+      "description": "todo",
+      "type": "string"
+    },
+    "max_transaction_amount": {
+      "description": "Maximum amount that can be transacted for a single transaction in cents",
+      "type": "integer"
+    },
+    "partner_id": {
+      "description": "Partner ID",
+      "type": "integer"
+    },
+    "personal_address": {
+      "$ref": "#/components/schemas/address1"
+    },
+    "phone": {
+      "description": "todo",
+      "type": "string"
+    },
+    "principal_percentage_ownership": {
+      "description": "todo",
+      "type": "string"
+    },
+    "processor": {
+      "$ref": "#/components/schemas/processor"
+    },
+    "tax_id": {
+      "description": "todo",
+      "maxLength": 9,
+      "minLength": 9,
+      "type": "string"
+    },
+    "title": {
+      "description": "todo",
+      "type": "string"
+    },
+    "url": {
+      "description": "todo",
+      "type": "string"
+    }
+  },
+  "required": [
+    "processor",
+    "business_name",
+    "doing_business_as",
+    "business_type",
+    "business_tax_id",
+    "business_phone",
+    "business_address",
+    "max_transaction_amount",
+    "bank_id",
+    "partner_id",
+    "enabled"
+  ],
+  "type": "object"
+}

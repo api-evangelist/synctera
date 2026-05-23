@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transfer_type",
+  "title": "transfer_type",
+  "description": "Type of operation for transfer.\n\nType | Description\n--- | ---\nPUSH | Push fund to the external card from the account_id\nPULL | Pull funds from the external card to the account_id.\n",
+  "enum": [
+    "PULL",
+    "PUSH"
+  ],
+  "example": "PULL",
+  "type": "string"
+}

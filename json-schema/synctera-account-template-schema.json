@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_template",
+  "title": "account_template",
+  "properties": {
+    "application_type": {
+      "$ref": "#/components/schemas/application_type",
+      "type": "string"
+    },
+    "description": {
+      "description": "User provided account template description",
+      "type": "string"
+    },
+    "id": {
+      "description": "Generated ID for the template",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_enabled": {
+      "description": "Whether this template can be used for account creation",
+      "type": "boolean"
+    },
+    "name": {
+      "description": "Unique account template name",
+      "type": "string"
+    },
+    "template": {
+      "$ref": "#/components/schemas/template_fields"
+    }
+  },
+  "required": [
+    "name",
+    "is_enabled",
+    "template"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/provisioning_app_version",
+  "title": "provisioning_app_version",
+  "description": "Version of the application making the provisioning request.",
+  "maxLength": 50,
+  "type": "string"
+}

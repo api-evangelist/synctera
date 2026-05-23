@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/viral_loop_waitlists",
+  "title": "viral_loop_waitlists",
+  "description": "Viral Loop Waitlists",
+  "properties": {
+    "bank_id": {
+      "description": "Bank ID",
+      "readOnly": true,
+      "type": "integer"
+    },
+    "creation_time": {
+      "description": "Creation time",
+      "example": "2009-11-10 23:00:00 +0000 UTC",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "Viral Loop Waitlist ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "Most recent updated time",
+      "example": "2009-11-10 23:00:00 +0000 UTC",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "lead_count": {
+      "description": "Total number of leads/people on the waitlist",
+      "minimum": 0,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "partner_id": {
+      "description": "Partner ID",
+      "readOnly": true,
+      "type": "integer"
+    },
+    "viral_loop_api_token": {
+      "description": "viral loop api token",
+      "minLength": 5,
+      "type": "string",
+      "writeOnly": true
+    }
+  },
+  "required": [
+    "id",
+    "viral_loop_api_token"
+  ],
+  "type": "object"
+}

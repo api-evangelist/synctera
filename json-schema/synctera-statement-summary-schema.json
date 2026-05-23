@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/statement_summary",
+  "title": "Statement",
+  "properties": {
+    "account_id": {
+      "description": "The unique identifier of the account the statement belongs to",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "due_date": {
+      "description": "The limit date when the due amount indicated on the statement should be paid",
+      "format": "date",
+      "readOnly": true,
+      "type": "string"
+    },
+    "end_date": {
+      "description": "The date indicating the ending of the time interval covered by the statement",
+      "format": "date",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "statement ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "issue_date": {
+      "description": "The date when the statement has been issued",
+      "format": "date",
+      "readOnly": true,
+      "type": "string"
+    },
+    "start_date": {
+      "description": "The date indicating the beginning of the time interval covered by the statement",
+      "format": "date",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

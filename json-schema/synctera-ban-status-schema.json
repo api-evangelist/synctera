@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ban_status",
+  "title": "ban_status",
+  "description": "(alpha) Ban status of the person. One of the following:\n* `ALLOWED` \u2013 person is not banned\n* `BANNED` \u2013 person is banned\n",
+  "enum": [
+    "ALLOWED",
+    "BANNED"
+  ],
+  "example": "ALLOWED",
+  "type": "string"
+}

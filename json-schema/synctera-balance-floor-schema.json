@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balance_floor",
+  "title": "balance_floor",
+  "properties": {
+    "balance": {
+      "description": "Minimum balance in the account's currency. Unit in cents.",
+      "format": "int64",
+      "type": "integer"
+    },
+    "linked_account_id": {
+      "description": "ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance floor\n",
+      "format": "uuid",
+      "type": "string"
+    },
+    "overdraft_account_id": {
+      "deprecated": true,
+      "description": "ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance floor\nThis attribute is a deprecated alias for linked_account_id.\n",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "balance"
+  ],
+  "type": "object"
+}

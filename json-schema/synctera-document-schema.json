@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/document",
+  "title": "document",
+  "properties": {
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:04Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "description": {
+      "description": "A description of the attached document.",
+      "type": "string"
+    },
+    "encryption": {
+      "$ref": "#/components/schemas/encryption"
+    },
+    "file_name": {
+      "description": "The name of the document.",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "The unique identifier for this resource.",
+      "example": "d801427e-d927-4161-a054-81a02e8f6c86",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last update.",
+      "example": "2021-06-14T11:23:04Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.\n",
+      "type": "object"
+    },
+    "name": {
+      "description": "A user-friendly name for the document.",
+      "type": "string"
+    },
+    "related_resource_id": {
+      "description": "Related resource ID",
+      "format": "uuid",
+      "type": "string"
+    },
+    "related_resource_type": {
+      "$ref": "#/components/schemas/related_resource_type"
+    }
+  },
+  "type": "object"
+}

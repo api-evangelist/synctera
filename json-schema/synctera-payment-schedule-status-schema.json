@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_schedule_status",
+  "title": "payment_schedule_status",
+  "description": "Status of the payment schedule.\n",
+  "enum": [
+    "ACTIVE",
+    "EXPIRED",
+    "CANCELLED"
+  ],
+  "readOnly": true,
+  "type": "string",
+  "x-enumDescriptions": [
+    {
+      "ACTIVE": "Payment schedule will run the next payment"
+    },
+    {
+      "EXPIRED": "Payment schedule has completed all the payments"
+    },
+    {
+      "CANCELLED": "Payment schedule has cancelled all the future payments"
+    }
+  ]
+}

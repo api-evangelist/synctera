@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_reverse_request",
+  "title": "Transaction Reverse Request",
+  "properties": {
+    "description": {
+      "description": "The description of the transaction",
+      "type": "string"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "offset_description": {
+      "description": "The description of the offset transaction",
+      "type": "string"
+    },
+    "reason": {
+      "description": "The reason for the reversal",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "user_data",
+    "reason",
+    "force_post",
+    "reference_id"
+  ],
+  "type": "object"
+}

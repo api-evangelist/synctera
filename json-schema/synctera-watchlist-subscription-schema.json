@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/watchlist_subscription",
+  "title": "watchlist_subscription",
+  "properties": {
+    "auto_renew": {
+      "description": "Whether this subscription should automatically renew when the subscription period is over (default: vendor-dependent).\n",
+      "type": "boolean"
+    },
+    "created": {
+      "description": "When this subscription was created",
+      "format": "date-time",
+      "type": "string"
+    },
+    "customer_consent": {
+      "description": "Whether this customer has consented to being enrolled for watchlist monitoring\n",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "Unique identifier for this subscription",
+      "format": "uuid",
+      "type": "string"
+    },
+    "period_end": {
+      "description": "The date when monitoring of this individual should end.",
+      "format": "date",
+      "type": "string"
+    },
+    "period_start": {
+      "description": "The date when monitoring of this individual should begin (default: today).",
+      "format": "date",
+      "type": "string"
+    },
+    "provider_subscription_id": {
+      "description": "External provider subscription id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ACTIVE",
+        "INACTIVE"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "customer_consent"
+  ],
+  "type": "object"
+}

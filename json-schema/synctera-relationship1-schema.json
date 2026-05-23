@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/relationship1",
+  "title": "Relationship",
+  "properties": {
+    "id": {
+      "description": "ID of related entity",
+      "example": "821d3254-fed8-4fdc-aa35-7c1c770fd3cf",
+      "format": "uuid",
+      "type": "string"
+    },
+    "relationship_role": {
+      "$ref": "#/components/schemas/relationship_role"
+    }
+  },
+  "required": [
+    "id",
+    "relationship_role"
+  ],
+  "type": "object"
+}

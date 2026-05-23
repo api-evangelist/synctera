@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_schedule",
+  "title": "payment_schedule",
+  "description": "Payment schedule",
+  "properties": {
+    "description": {
+      "description": "User provided description for the payment schedule",
+      "type": "string"
+    },
+    "id": {
+      "description": "Payment schedule ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "description": "User provided JSON format data",
+      "type": "object"
+    },
+    "next_payment_date": {
+      "$ref": "#/components/schemas/payment_date"
+    },
+    "payment_instruction": {
+      "$ref": "#/components/schemas/payment_instruction"
+    },
+    "schedule": {
+      "$ref": "#/components/schemas/schedule_config"
+    },
+    "status": {
+      "$ref": "#/components/schemas/payment_schedule_status"
+    }
+  },
+  "required": [
+    "description",
+    "schedule",
+    "payment_instruction"
+  ],
+  "type": "object"
+}

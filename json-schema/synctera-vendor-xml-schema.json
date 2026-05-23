@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/vendor_xml",
+  "title": "vendor_xml",
+  "properties": {
+    "content_type": {
+      "description": "Describes the content-type encoding received from the vendor",
+      "enum": [
+        "text/xml"
+      ],
+      "type": "string"
+    },
+    "vendor": {
+      "example": "IDOLOGY",
+      "type": "string"
+    },
+    "xml": {
+      "description": "Data representaion in XML",
+      "type": "string"
+    }
+  },
+  "required": [
+    "vendor",
+    "content_type",
+    "xml"
+  ]
+}

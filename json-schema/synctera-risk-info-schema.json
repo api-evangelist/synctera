@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/risk_info",
+  "title": "risk_info",
+  "description": "Information received by the transaction risk/fraud service related to this transaction",
+  "nullable": true,
+  "type": "object"
+}

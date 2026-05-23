@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/contest_ach",
+  "title": "contest_ach",
+  "description": "Contested return",
+  "properties": {
+    "type": {
+      "enum": [
+        "contested_misrouted",
+        "contested_untimely",
+        "contested_timely_original",
+        "contested_corrected",
+        "contested_not_duplicate",
+        "contested_no_errors",
+        "contested_non_acceptance"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

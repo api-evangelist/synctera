@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_status",
+  "title": "card_image_status",
+  "description": "The status of a custom card image",
+  "enum": [
+    "NOT_UPLOADED",
+    "UNREVIEWED",
+    "APPROVED",
+    "REJECTED"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_range_response",
+  "title": "account_range_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/account_range"
+    }
+  ],
+  "required": [
+    "id",
+    "bank_id",
+    "partner_id",
+    "bin_id",
+    "account_range",
+    "is_tokenization_enabled",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

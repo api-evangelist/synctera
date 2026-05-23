@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_relationship_type",
+  "title": "account_relationship_type",
+  "description": "Relationship type",
+  "enum": [
+    "ACCOUNT_HOLDER",
+    "PRIMARY_ACCOUNT_HOLDER",
+    "JOINT_ACCOUNT_HOLDER",
+    "AUTHORIZED_SIGNER"
+  ],
+  "type": "string"
+}

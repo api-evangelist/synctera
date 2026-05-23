@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_access_token",
+  "title": "external_account_access_token",
+  "properties": {
+    "business_id": {
+      "description": "The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.\n",
+      "example": "492c842f-7239-45cd-bc28-edf1a13c7de2",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.\n",
+      "format": "uuid",
+      "type": "string"
+    },
+    "request_id": {
+      "description": "A unique identifier for the request, which can be used for troubleshooting",
+      "readOnly": true,
+      "type": "string"
+    },
+    "vendor_access_token": {
+      "description": "The access token associated with the Item data is being requested for.",
+      "readOnly": true,
+      "type": "string"
+    },
+    "vendor_customer_id": {
+      "description": "An alias for `customer_id` (deprecated).",
+      "format": "uuid",
+      "type": "string",
+      "x-status": "deprecated"
+    },
+    "vendor_institution_id": {
+      "description": "The ID of the institution the access token is requested for\n",
+      "minLength": 1,
+      "type": "string"
+    },
+    "vendor_public_token": {
+      "description": "The user's public token obtained from successful link login.\n",
+      "type": "string"
+    }
+  },
+  "required": [
+    "vendor_public_token",
+    "vendor_institution_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/user_data",
+  "title": "user_data",
+  "description": "An unstructured JSON blob representing additional transaction information specific to each payment rail.",
+  "nullable": true,
+  "type": "object"
+}

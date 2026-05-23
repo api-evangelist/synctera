@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_date",
+  "title": "payment_date",
+  "properties": {
+    "execution_date": {
+      "description": "Execution date for the next payment",
+      "format": "date",
+      "type": "string"
+    },
+    "scheduled_date": {
+      "description": "Scheduled date for the next payment",
+      "format": "date",
+      "type": "string"
+    }
+  },
+  "readOnly": true,
+  "required": [
+    "scheduled_date",
+    "execution_date"
+  ],
+  "type": "object"
+}

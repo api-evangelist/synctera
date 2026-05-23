@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_card_id",
+  "title": "external_card_id",
+  "description": "The unique identifier of external card",
+  "example": "7aeb712d-e9c7-42eb-965f-ce19507b17f8",
+  "format": "uuid",
+  "type": "string"
+}

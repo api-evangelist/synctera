@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_vendor_data",
+  "title": "external_account_vendor_data",
+  "properties": {
+    "account_number_mask": {
+      "description": "The last alphanumeric characters of an account's official account number. Note that the mask may be non-unique between accounts, and it may also not match the mask that the bank displays to the user.\n",
+      "type": "string"
+    },
+    "institution_id": {
+      "description": "The ID of the institution external account belongs",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

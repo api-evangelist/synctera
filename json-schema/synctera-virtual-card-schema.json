@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/virtual_card",
+  "title": "Virtual Card",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_card"
+    }
+  ],
+  "description": "A virtual card"
+}

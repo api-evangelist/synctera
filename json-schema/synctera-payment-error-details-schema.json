@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_error_details",
+  "title": "payment_error_details",
+  "description": "Payment error details. It will be included only when status is ERROR",
+  "properties": {
+    "code": {
+      "type": "string"
+    },
+    "details": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

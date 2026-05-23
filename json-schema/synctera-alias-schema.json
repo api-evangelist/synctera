@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/alias",
+  "title": "Account Alias",
+  "properties": {
+    "account_id": {
+      "description": "Account ID",
+      "format": "uuid",
+      "type": "string"
+    },
+    "account_number": {
+      "description": "Account number",
+      "type": "string"
+    },
+    "alias_info": {
+      "description": "Additional information for the alias",
+      "type": "object"
+    },
+    "alias_name": {
+      "description": "Alias name",
+      "type": "string"
+    },
+    "alias_source": {
+      "description": "Alias source",
+      "type": "string"
+    },
+    "alias_type": {
+      "description": "Alias type",
+      "type": "string"
+    },
+    "id": {
+      "description": "Alias ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

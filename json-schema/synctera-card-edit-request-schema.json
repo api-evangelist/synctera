@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_edit_request",
+  "title": "card_edit_request",
+  "properties": {
+    "card_status": {
+      "$ref": "#/components/schemas/card_status_request"
+    },
+    "customer_id": {
+      "description": "The ID of the customer to whom the card will be issued",
+      "example": "d76464e0-d13c-4bf9-910f-f7992dc86c88",
+      "format": "uuid",
+      "type": "string"
+    },
+    "emboss_name": {
+      "$ref": "#/components/schemas/emboss_name"
+    },
+    "memo": {
+      "$ref": "#/components/schemas/card_status_reason_memo"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/card_metadata"
+    },
+    "reason": {
+      "$ref": "#/components/schemas/card_status_reason_code"
+    }
+  },
+  "type": "object"
+}

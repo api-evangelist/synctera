@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/currency_code",
+  "title": "currency_code",
+  "description": "ISO 4217  Alpha-3 currency code",
+  "example": "USD",
+  "maxLength": 3,
+  "minLength": 3,
+  "type": "string"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/originating_account_id",
+  "title": "originating_account_id",
+  "description": "The unique identifier of an originating account",
+  "example": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d",
+  "format": "uuid",
+  "type": "string"
+}

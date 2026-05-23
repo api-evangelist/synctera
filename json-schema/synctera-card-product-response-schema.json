@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_response",
+  "title": "card_product_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_product"
+    }
+  ],
+  "required": [
+    "id",
+    "name",
+    "card_program_id",
+    "active",
+    "form",
+    "start_date",
+    "digital_wallet_tokenization",
+    "end_date",
+    "creation_time",
+    "last_modified_time"
+  ]
+}

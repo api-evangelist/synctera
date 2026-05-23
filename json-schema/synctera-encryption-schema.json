@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/encryption",
+  "title": "encryption",
+  "default": "NOT_REQUIRED",
+  "enum": [
+    "REQUIRED",
+    "NOT_REQUIRED"
+  ],
+  "type": "string"
+}

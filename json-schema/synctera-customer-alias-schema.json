@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_alias",
+  "title": "Customer Alias",
+  "description": "Represents a customer's alias",
+  "properties": {
+    "alias_info": {
+      "type": "object"
+    },
+    "alias_name": {
+      "type": "string"
+    },
+    "alias_source": {
+      "type": "string"
+    },
+    "alias_type": {
+      "type": "string"
+    },
+    "customer_alias_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

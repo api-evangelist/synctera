@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/details",
+  "title": "details",
+  "description": "A list of individual checks done as part of the due diligence process for the verification type.\n",
+  "items": {
+    "$ref": "#/components/schemas/detail"
+  },
+  "readOnly": true,
+  "type": "array"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/status",
+  "title": "Account Status",
+  "description": "The status of the account\n",
+  "enum": [
+    "APPLICATION_SUBMITTED",
+    "FAILED_KYC",
+    "ACCOUNT_NOT_DESIRED",
+    "ACTIVE_OR_DISBURSED",
+    "CLOSED",
+    "SUSPENDED",
+    "CHARGED_OFF",
+    "ACCOUNT_NEVER_ACTIVE",
+    "ACTIVATED_NOT_DISBURSED",
+    "AWAITING_FIXING",
+    "IN_CLOSING",
+    "RESTRICTED",
+    "DELINQUENT"
+  ],
+  "type": "string"
+}

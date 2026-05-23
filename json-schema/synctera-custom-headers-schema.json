@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/custom_headers",
+  "title": "custom_headers",
+  "properties": {
+    "my_header_name_1": {
+      "type": "string"
+    },
+    "my_header_name_2": {
+      "type": "string"
+    },
+    "my_header_name_3": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

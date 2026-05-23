@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/reconciliation_list",
+  "title": "reconciliation_list",
+  "allOf": [
+    {
+      "properties": {
+        "reconciliations": {
+          "description": "Array of reconciliations",
+          "items": {
+            "$ref": "#/components/schemas/reconciliation"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "reconciliations"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

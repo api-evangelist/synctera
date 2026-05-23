@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_vendor_accounts_error_reason",
+  "title": "add_vendor_accounts_error_reason",
+  "description": "A machine-readable code describing the reason for the failure.",
+  "enum": [
+    "FAILED_VERIFICATION",
+    "UNSUPPORTED_ACCOUNT_TYPE",
+    "DUPLICATE_ACCOUNT",
+    "ACCOUNT_NOT_FOUND",
+    "PROVIDER_ERROR"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card_response",
+  "title": "physical_card_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/physical_card_plus_status"
+    },
+    {
+      "properties": {
+        "physical_card_format": {
+          "$ref": "#/components/schemas/physical_card_format"
+        }
+      },
+      "required": [
+        "form",
+        "id",
+        "customer_id",
+        "account_id",
+        "type",
+        "emboss_name",
+        "card_product_id",
+        "card_brand",
+        "creation_time",
+        "shipping",
+        "physical_card_format"
+      ],
+      "type": "object"
+    }
+  ]
+}

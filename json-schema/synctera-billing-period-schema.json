@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_period",
+  "title": "billing_period",
+  "description": "The scheme for determining an account's billing period.\n",
+  "properties": {
+    "frequency": {
+      "description": "The frequency of billing cycles. Along with the start date, this will determine the start and end of each cycle.\n",
+      "enum": [
+        "ANNUALLY",
+        "MONTHLY",
+        "SEMI_MONTHLY",
+        "BI_WEEKLY",
+        "WEEKLY",
+        "DAILY"
+      ],
+      "type": "string"
+    },
+    "start_date": {
+      "description": "The first day of the first billing cycle for this account. For a monthly billing cycle, this would determine the day of the month each billing cycle will start on.\n",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "start_date",
+    "frequency"
+  ],
+  "type": "object"
+}

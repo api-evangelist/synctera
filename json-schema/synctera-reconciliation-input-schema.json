@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/reconciliation_input",
+  "title": "Reconciliation Input",
+  "description": "Input data for a reconciliation",
+  "properties": {
+    "byte_data": {
+      "description": "Base64url encoded image",
+      "example": "npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y",
+      "format": "byte",
+      "type": "string"
+    },
+    "file_name": {
+      "description": "Filename of the data to be reconciled",
+      "example": "cp2tj9tzpzpckc",
+      "type": "string"
+    }
+  },
+  "required": [
+    "file_name",
+    "byte_data"
+  ],
+  "type": "object"
+}

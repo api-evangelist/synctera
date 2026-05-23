@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/reversal_model",
+  "title": "reversal_model",
+  "example": {
+    "amount": 80,
+    "find_original_window_days": 6,
+    "is_advice": false,
+    "network_fees": [
+      {
+        "amount": 123,
+        "credit_debit": "C",
+        "type": "ISSUER_FEE"
+      },
+      {
+        "amount": 123,
+        "credit_debit": "C",
+        "type": "ISSUER_FEE"
+      }
+    ],
+    "original_transaction_id": "original_transaction_id"
+  },
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "find_original_window_days": {
+      "format": "int32",
+      "type": "integer"
+    },
+    "is_advice": {
+      "default": false,
+      "type": "boolean"
+    },
+    "network_fees": {
+      "items": {
+        "$ref": "#/components/schemas/network_fee_model"
+      },
+      "type": "array"
+    },
+    "original_transaction_id": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "original_transaction_id"
+  ],
+  "type": "object"
+}

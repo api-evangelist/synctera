@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/txn_enhancer",
+  "title": "txn_enhancer",
+  "default": "NONE",
+  "description": "whether to use a transaction enhancer and/or which vendor to use",
+  "enum": [
+    "NONE",
+    "MX"
+  ],
+  "example": "NONE",
+  "type": "string"
+}

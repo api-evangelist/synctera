@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_range",
+  "title": "account_range",
+  "properties": {
+    "account_range": {
+      "items": {
+        "example": [
+          2222222200,
+          2222222210
+        ],
+        "format": "int64",
+        "maxLength": 2,
+        "minLength": 2,
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "bank_id": {
+      "description": "The bank ID",
+      "type": "integer"
+    },
+    "bin_id": {
+      "description": "The ID of the BIN this account range belogns to",
+      "example": "3d911b32-5b2b-4d7f-80fa-9ba6ba1b9030",
+      "format": "uuid",
+      "type": "string"
+    },
+    "creation_time": {
+      "description": "The timestamp representing when the account range was created",
+      "example": "Sat Jan 08 2022 23:14:44 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "end_date": {
+      "description": "The time when account range becomes inactive",
+      "example": "Tue Jan 10 2023 05:33:30 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Account Range Id",
+      "example": "5ccafc74-3c14-42c7-8794-a6ff9ba9ffd2",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_tokenization_enabled": {
+      "default": false,
+      "description": "Controls whether account range allows tokenization",
+      "example": false,
+      "type": "boolean"
+    },
+    "last_modified_time": {
+      "description": "The timestamp representing when the account range was last modified",
+      "example": "Mon Dec 20 2021 23:22:49 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "partner_id": {
+      "description": "The partner ID",
+      "type": "integer"
+    },
+    "physical_card_format": {
+      "$ref": "#/components/schemas/physical_card_format"
+    },
+    "start_date": {
+      "description": "The time when account range becomes active",
+      "example": "Fri Dec 24 2021 21:53:48 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bank_id",
+    "partner_id",
+    "bin_id",
+    "account_range"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_accounts_transaction_list",
+  "title": "external_accounts_transaction_list",
+  "properties": {
+    "transactions": {
+      "description": "Array of transactions of a given external account",
+      "items": {
+        "$ref": "#/components/schemas/external_account_transaction"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "transactions"
+  ],
+  "type": "object"
+}

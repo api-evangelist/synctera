@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_trigger",
+  "title": "Webhook event trigger",
+  "description": "Webhook event object that will be returned after triggering the given event. Only id, type and event_time will have value.",
+  "properties": {
+    "event_resource": {
+      "deprecated": true,
+      "description": "Json string of object associated with the event. For example, if your event is ACCOUNT.CREATED, You can refer to Acccount to parse the account event to obtain the ID, status etc.\n",
+      "type": "string"
+    },
+    "event_resource_changed_fields": {
+      "deprecated": true,
+      "description": "Json string of object associated with the event related to a resource change. This only contains those fields that have value changed on the event, and the field values are prior to the resource change event.\n",
+      "type": "string"
+    },
+    "event_time": {
+      "description": "Timestamp of the current event raised",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique event ID of the webhook request. Use event endpoints to get more event summary data",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "deprecated": true,
+      "description": "Metadata that stored in the webhook subscription",
+      "maxLength": 1024,
+      "type": "string"
+    },
+    "response_history": {
+      "deprecated": true,
+      "description": "Response history of the webhook request",
+      "items": {
+        "$ref": "#/components/schemas/response_history_item"
+      },
+      "type": "array"
+    },
+    "status": {
+      "deprecated": true,
+      "description": "Current event status. Failing event will keep retry until it is purged.",
+      "enum": [
+        "RUNNING",
+        "SUCCESS",
+        "RETRYING"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "$ref": "#/components/schemas/event_type_explicit"
+    },
+    "url": {
+      "deprecated": true,
+      "description": "URL that the current event will be sent to",
+      "maxLength": 1024,
+      "type": "string"
+    },
+    "webhook_id": {
+      "deprecated": true,
+      "description": "Webhook the current event belongs to",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

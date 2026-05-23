@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_options",
+  "title": "card_options",
+  "properties": {
+    "billing_address": {
+      "$ref": "#/components/schemas/billing_address"
+    },
+    "card_present": {
+      "default": false,
+      "type": "boolean"
+    },
+    "cvv": {
+      "maxLength": 3,
+      "minLength": 0,
+      "type": "string"
+    },
+    "expiration": {
+      "maxLength": 4,
+      "minLength": 4,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_response1",
+  "title": "application_response1",
+  "properties": {
+    "created_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "enabled": {
+      "description": "To enable or disable aft/oct feature",
+      "type": "boolean"
+    },
+    "external_id": {
+      "description": "The id of the application from processor",
+      "type": "string"
+    },
+    "id": {
+      "description": "The id of the application",
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "2020-01-01T00:00:00.000Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "processor": {
+      "$ref": "#/components/schemas/processor"
+    }
+  },
+  "required": [
+    "id",
+    "created_time",
+    "last_modified_time",
+    "processor",
+    "enabled"
+  ],
+  "type": "object"
+}

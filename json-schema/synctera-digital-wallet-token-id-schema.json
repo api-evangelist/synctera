@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/digital_wallet_token_id",
+  "title": "digital_wallet_token_id",
+  "description": "The unique identifier of a digital wallet token",
+  "format": "string",
+  "type": "string"
+}

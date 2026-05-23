@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/fee",
+  "title": "fee",
+  "properties": {
+    "amount": {
+      "description": "Fee amount",
+      "format": "int64",
+      "type": "integer"
+    },
+    "currency": {
+      "description": "Fee currency code in ISO 4217",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    },
+    "fee_type": {
+      "description": "Fee type",
+      "enum": [
+        "MONTHLY_FEE",
+        "ANNUAL_FEE",
+        "ATM_WITHDRWAL_FEE",
+        "OVERDRAFT_FEE",
+        "ACH_FEE",
+        "WIRE_FEE"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "description": "Fee ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "product_type": {
+      "enum": [
+        "INTEREST",
+        "FEE"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "product_type",
+    "fee_type",
+    "amount",
+    "currency"
+  ],
+  "type": "object"
+}

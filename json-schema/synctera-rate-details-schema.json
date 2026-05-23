@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/rate_details",
+  "title": "rate_details",
+  "properties": {
+    "accrual_period": {
+      "enum": [
+        "DAILY",
+        "MONTHLY"
+      ],
+      "type": "string"
+    },
+    "rate": {
+      "description": "Rate in basis points. E.g. 5 represents 0.05%",
+      "format": "int32",
+      "type": "integer"
+    },
+    "valid_from": {
+      "description": "Rate effective start date. Inclusive.",
+      "format": "date",
+      "type": "string"
+    },
+    "valid_to": {
+      "description": "Rate effective end date. Exclusive.",
+      "format": "date",
+      "type": "string"
+    }
+  },
+  "required": [
+    "valid_from",
+    "rate",
+    "accrual_period"
+  ],
+  "type": "object"
+}

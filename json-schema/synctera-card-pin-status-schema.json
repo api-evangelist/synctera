@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_pin_status",
+  "title": "card_pin_status",
+  "description": "The status of the card PIN",
+  "enum": [
+    "SET",
+    "CHANGED"
+  ],
+  "readOnly": true,
+  "type": "string"
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_activation_request",
+  "title": "card_activation_request",
+  "properties": {
+    "activation_code": {
+      "description": "An activation code provided with the card required to prove possession of the card",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The ID of the customer for which card is being activated",
+      "example": "1acf447c-544b-41b4-94f9-bd96b03cc48e",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "activation_code",
+    "customer_id"
+  ],
+  "type": "object"
+}

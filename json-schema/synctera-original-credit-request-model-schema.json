@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/original_credit_request_model",
+  "title": "original_credit_request_model",
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "card_acceptor": {
+      "$ref": "#/components/schemas/card_acceptor_model"
+    },
+    "card_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "mid": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "screening_score": {
+      "type": "string"
+    },
+    "sender_data": {
+      "$ref": "#/components/schemas/original_credit_sender_data"
+    },
+    "transactionPurpose": {
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "account_to_account",
+        "person_to_person",
+        "prepaid",
+        "wallet_transfer",
+        "money_transfer_by_bank",
+        "business_to_business",
+        "disbursement",
+        "government_disbursement",
+        "gambling_payout",
+        "loyalty",
+        "merchant_disbursement",
+        "online_gambling_payout",
+        "pension_disbursement",
+        "prepaid_loads",
+        "card_bill_payment",
+        "bill_payment",
+        "cash_claim",
+        "cash_in",
+        "cash_out",
+        "mobile_air_time_payment",
+        "money_transfer_by_merchant",
+        "face_to_face_merchant_payment",
+        "government_payment",
+        "payments_goods_services"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "amount",
+    "card_id",
+    "mid",
+    "type"
+  ],
+  "type": "object"
+}

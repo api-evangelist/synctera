@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/status1",
+  "title": "status1",
+  "description": "Status of the person. One of the following:\n* `ACTIVE` \u2013 is an integrator defined status.  Integrators should set a person to active if they believe the person to be qualified for conducting business.  Synctera will combine this status with other statuses such a verification to determine if the person is eligible for specific actions such as initiating transactions or issuing a card.\n* `DECEASED` \u2013 person is deceased.\n* `DENIED` \u2013 customer was turned down.\n* `DORMANT` \u2013 person is no longer active.\n* `ESCHEAT` \u2013 person's assets are abandoned and are property of the state.\n* `FROZEN` \u2013 person's actions are blocked for security, legal, or other reasons.\n* `INACTIVE` \u2013 an inactive status indicating that the person is no longer active.\n* `PROSPECT` \u2013 a potential customer, used for information-gathering and disclosures.\n* `SANCTION` \u2013 person is on a sanctions list and should be carefully monitored.\n",
+  "enum": [
+    "ACTIVE",
+    "DECEASED",
+    "DENIED",
+    "DORMANT",
+    "ESCHEAT",
+    "FROZEN",
+    "INACTIVE",
+    "PROSPECT",
+    "SANCTION"
+  ],
+  "example": "ACTIVE",
+  "type": "string"
+}

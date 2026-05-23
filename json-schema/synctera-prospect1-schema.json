@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prospect1",
+  "title": "Prospect",
+  "allOf": [
+    {
+      "properties": {
+        "creation_time": {
+          "description": "Creation time",
+          "example": "2009-11-10 23:00:00 +0000 UTC",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "email": {
+          "description": "Email",
+          "example": "someone@example.com",
+          "format": "email",
+          "type": "string"
+        },
+        "email_validation": {
+          "enum": [
+            "PENDING",
+            "VALID",
+            "INVALID"
+          ],
+          "readOnly": true,
+          "type": "string",
+          "x-enumDescriptions": [
+            {
+              "PENDING": "email address is pending for validation"
+            },
+            {
+              "VALID": "valid email address"
+            },
+            {
+              "INVALID": "invalid email address"
+            }
+          ]
+        },
+        "id": {
+          "description": "Prospect ID",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "last_updated_time": {
+          "description": "Most recent updated time",
+          "example": "2009-11-10 23:00:00 +0000 UTC",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "points": {
+          "description": "Number of referral points",
+          "example": 100,
+          "type": "integer"
+        },
+        "recaptcha_token": {
+          "description": "A token used to verify the user is not a robot",
+          "type": "string",
+          "writeOnly": true,
+          "x-external": false
+        },
+        "referral_code": {
+          "description": "Referral code",
+          "example": "BJDD302M",
+          "readOnly": true,
+          "type": "string"
+        },
+        "referred_by": {
+          "description": "UUID of the referrer",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "referred_by_code": {
+          "description": "Referral code of the referrer",
+          "example": "gz82fxvz",
+          "type": "string"
+        },
+        "referred_prospects": {
+          "description": "Number of people this prospect referred",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vendor_info": {
+          "$ref": "#/components/schemas/vendor_info",
+          "readOnly": true
+        },
+        "verification_token": {
+          "description": "Verification token sent to prospect",
+          "example": "ABD37C31",
+          "readOnly": true,
+          "type": "string"
+        },
+        "waitlist_id": {
+          "description": "Waitlist ID",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "waitlist_position": {
+          "description": "Prospect's number in the waitlist",
+          "example": 1,
+          "nullable": true,
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "email"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/prospect_editable"
+    }
+  ]
+}

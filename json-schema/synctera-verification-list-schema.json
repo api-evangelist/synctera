@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_list",
+  "title": "verification_list",
+  "allOf": [
+    {
+      "properties": {
+        "verifications": {
+          "description": "Array of verification results.",
+          "items": {
+            "$ref": "#/components/schemas/verification"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "verifications"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_change_state",
+  "title": "card_change_state",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/card_fulfillment_status"
+    },
+    {
+      "$ref": "#/components/schemas/card_status"
+    },
+    {
+      "$ref": "#/components/schemas/card_pin_status"
+    }
+  ]
+}

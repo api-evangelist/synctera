@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_reason_code",
+  "title": "socure_reason_code",
+  "description": "Applicable reason code for the transaction.",
+  "type": "string"
+}

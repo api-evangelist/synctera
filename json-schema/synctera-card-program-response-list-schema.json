@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_program_response_list",
+  "title": "card_program_response_list",
+  "allOf": [
+    {
+      "properties": {
+        "programs": {
+          "description": "Array of Card Programs",
+          "items": {
+            "$ref": "#/components/schemas/card_program_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "programs"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

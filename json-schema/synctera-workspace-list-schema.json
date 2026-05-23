@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/workspace_list",
+  "title": "workspace_list",
+  "allOf": [
+    {
+      "properties": {
+        "workspaces": {
+          "description": "Array of Workspaces.",
+          "items": {
+            "$ref": "#/components/schemas/workspace"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "workspaces"
+      ],
+      "type": "object"
+    }
+  ]
+}

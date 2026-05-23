@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/token_list",
+  "title": "token_list",
+  "properties": {
+    "digital_wallet_tokens": {
+      "description": "Array of Digital Wallet Token information of a Card",
+      "items": {
+        "$ref": "#/components/schemas/digital_wallet_token_response"
+      },
+      "type": "array"
+    }
+  },
+  "type": "object"
+}

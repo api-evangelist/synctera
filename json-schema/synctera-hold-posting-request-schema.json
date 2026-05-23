@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_posting_request",
+  "title": "hold_posting_request",
+  "properties": {
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "effective_date": {
+      "description": "The effective date of the transaction once it gets posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "hold_amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "subtype",
+    "account_no",
+    "amount",
+    "hold_amount",
+    "effective_date",
+    "user_data",
+    "external_data",
+    "risk_info"
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_network_mapping",
+  "title": "bin_network_mapping",
+  "properties": {
+    "active": {
+      "description": "indicates whether mapping is active",
+      "type": "boolean"
+    },
+    "bank_network_id": {
+      "description": "ID debit network uses to identify a bank",
+      "type": "string"
+    },
+    "bin_id": {
+      "description": "The ID of the bank's BIN that uses this debit network",
+      "format": "uuid",
+      "type": "string"
+    },
+    "creation_time": {
+      "description": "The timestamp representing when BIN network mapping was created",
+      "example": "Mon Jul 04 2022 05:18:48 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "end_date": {
+      "description": "The time when mapping becomes inactive",
+      "example": "Sun Jul 24 2022 05:41:16 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "last_modified_time": {
+      "description": "The timestamp representing when the BIN network mapping was last modified",
+      "example": "Mon Mar 21 2022 12:46:48 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "network_id": {
+      "description": "The ID of the debit_network associated with the BIN of the bank",
+      "format": "uuid",
+      "type": "string"
+    },
+    "start_date": {
+      "description": "The time when mapping becomes active",
+      "example": "Tue Jun 07 2022 12:40:30 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bin_id",
+    "network_id",
+    "active",
+    "bank_network_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prospect",
+  "title": "Customer",
+  "allOf": [
+    {
+      "properties": {
+        "dob": {
+          "description": "Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)",
+          "example": "2000-01-01",
+          "format": "date",
+          "type": "string"
+        },
+        "first_name": {
+          "description": "Customer's first name",
+          "example": "Chyna",
+          "type": "string"
+        },
+        "last_name": {
+          "description": "Customer's last name",
+          "example": "Daugherty",
+          "type": "string"
+        },
+        "status": {
+          "description": "Customer's status",
+          "enum": [
+            "ACTIVE",
+            "ESCHEAT",
+            "DECEASED",
+            "DENIED",
+            "DORMANT",
+            "FROZEN",
+            "INACTIVE",
+            "PROSPECT",
+            "SANCTION"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/base_person"
+    }
+  ],
+  "description": "A prospect has a unique identifier. It can be upgrade to a customer with required information",
+  "type": "object"
+}

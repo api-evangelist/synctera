@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_account_product",
+  "title": "patch_account_product",
+  "discriminator": {
+    "mapping": {
+      "FEE": "#/components/schemas/fee",
+      "INTEREST": "#/components/schemas/patch_interest"
+    },
+    "propertyName": "product_type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/patch_interest"
+    },
+    {
+      "$ref": "#/components/schemas/fee"
+    }
+  ],
+  "type": "object"
+}

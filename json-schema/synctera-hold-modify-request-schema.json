@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/hold_modify_request",
+  "title": "Hold Modify Request",
+  "properties": {
+    "account_no": {
+      "description": "The account number associated with the hold",
+      "type": "string"
+    },
+    "allow_partial": {
+      "type": "boolean"
+    },
+    "amount": {
+      "description": "The amount of the hold.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "effective_date": {
+      "description": "The effective date of the transaction once it gets posted",
+      "format": "date-time",
+      "type": "string"
+    },
+    "expires_at": {
+      "description": "The date that at which this hold is no longer valid.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "user_data": {
+      "$ref": "#/components/schemas/user_data"
+    }
+  },
+  "required": [
+    "subtype",
+    "account_no",
+    "amount",
+    "expires_at",
+    "effective_date",
+    "allow_partial",
+    "user_data",
+    "external_data",
+    "risk_info",
+    "force_post"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_watchlist_result",
+  "title": "socure_watchlist_result",
+  "description": "Encapsulates the relationship between a person and any number of watchlists. That is, this tells you which watchlists a person is believed to be on (there might be false positives for similar names).\n",
+  "properties": {
+    "globalWatchlist": {
+      "$ref": "#/components/schemas/socure_global_watchlist"
+    },
+    "referenceId": {
+      "description": "A 36 character reference ID included with every ID+ response.",
+      "type": "string"
+    }
+  },
+  "required": [
+    "referenceId"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_depository",
+  "title": "account_depository",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/account_base"
+    },
+    {
+      "properties": {
+        "balance_ceiling": {
+          "$ref": "#/components/schemas/balance_ceiling"
+        },
+        "balance_floor": {
+          "$ref": "#/components/schemas/balance_floor"
+        },
+        "fee_product_ids": {
+          "description": "A list of fee account products that the current account associates with.",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "interest_product_id": {
+          "description": "An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_MONTHLY.\n",
+          "format": "uuid",
+          "type": "string"
+        },
+        "overdraft_limit": {
+          "description": "Account's overdraft limit",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "spending_limits": {
+          "$ref": "#/components/schemas/spending_limits"
+        }
+      }
+    }
+  ],
+  "description": "Account representing either a checking or saving account.",
+  "type": "object"
+}

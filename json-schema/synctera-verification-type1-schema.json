@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_type1",
+  "title": "verification_type1",
+  "description": "The verification run on the customer. One the following:\n  * `IDENTITY` \u2013 verify that the information provided is associated with the identity of a real person or business.\n  * `WATCHLIST` \u2013 checks watchlists for known fraud, money laundering, and other suspicious activity.\n  * `RELATED_ENTITIES` \u2013 represents dependent verification checks for related parties (e.g. all beneficial owners must pass KYC for a business to pass KYB).\n  * `MANUAL_REVIEW` \u2013 represents the outcome of a manual review of the verification done on a party (note: overrides the outcome of other verification types).\n",
+  "enum": [
+    "IDENTITY",
+    "WATCHLIST",
+    "RELATED_ENTITIES",
+    "MANUAL_REVIEW"
+  ],
+  "example": "IDENTITY",
+  "type": "string"
+}

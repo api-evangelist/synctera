@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_person_business_relationship",
+  "title": "patch_person_business_relationship",
+  "allOf": [
+    {
+      "properties": {
+        "additional_data": {
+          "$ref": "#/components/schemas/additional_data"
+        },
+        "creation_time": {
+          "description": "The date and time the resource was created.",
+          "example": "2021-06-14T11:23:41Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "from_person_id": {
+          "description": "Unique ID for the subject person.\n",
+          "example": "df0737e9-efc9-42a8-b26f-6efa4cac88c0",
+          "format": "uuid",
+          "type": "string"
+        },
+        "id": {
+          "description": "Relationship unique identifier.",
+          "example": "c0e64981-dc1f-42d3-a7be-f7dfd369c019",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "last_updated_time": {
+          "description": "The date and time the resource was last updated.",
+          "example": "2022-01-18T17:54:12Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/metadata"
+        },
+        "relationship_type": {
+          "description": "The relationship type. One of the following:\n* `BENEFICIAL_OWNER_OF` \u2013 a person who directly or indirectly owns a portion of the business.\n* `MANAGING_PERSON_OF` \u2013 a person who is an officer, director, or other notable person of an organization.\n* `OWNER_OF` \u2013 a business with ownership of another business.\n",
+          "enum": [
+            "BENEFICIAL_OWNER_OF",
+            "MANAGING_PERSON_OF",
+            "OWNER_OF"
+          ],
+          "example": "BENEFICIAL_OWNER_OF",
+          "format": "enum",
+          "type": "string"
+        },
+        "to_business_id": {
+          "description": "Unique ID for the related business.\n",
+          "example": "5a5a9d68-bd44-4953-a5c8-35059c00e14d",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "required": [
+        "relationship_type"
+      ]
+    }
+  ],
+  "description": "Denotes the relationship between specified person and business.",
+  "type": "object"
+}

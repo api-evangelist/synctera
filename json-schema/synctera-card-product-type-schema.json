@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_type",
+  "title": "card_product_type",
+  "description": "The type of the card product",
+  "enum": [
+    "DEBIT",
+    "CREDIT",
+    "PREPAID"
+  ],
+  "type": "string"
+}

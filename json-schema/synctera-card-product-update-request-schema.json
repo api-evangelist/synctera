@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_update_request",
+  "title": "card_product_update_request",
+  "additionalProperties": false,
+  "properties": {
+    "digital_wallet_tokenization": {
+      "$ref": "#/components/schemas/digital_wallet_tokenization"
+    }
+  },
+  "type": "object"
+}

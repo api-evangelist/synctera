@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer",
+  "title": "Customer",
+  "allOf": [
+    {
+      "properties": {
+        "dob": {
+          "description": "Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)",
+          "example": "2000-01-01",
+          "format": "date",
+          "type": "string"
+        },
+        "first_name": {
+          "description": "Customer's first name",
+          "example": "Baron",
+          "type": "string"
+        },
+        "last_name": {
+          "description": "Customer's last name",
+          "example": "Rau",
+          "type": "string"
+        },
+        "status": {
+          "description": "Customer's status",
+          "enum": [
+            "ACTIVE",
+            "ESCHEAT",
+            "DECEASED",
+            "DENIED",
+            "DORMANT",
+            "FROZEN",
+            "INACTIVE",
+            "PROSPECT",
+            "SANCTION"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "status"
+      ]
+    },
+    {
+      "$ref": "#/components/schemas/base_person"
+    }
+  ],
+  "description": "Details of a customer",
+  "type": "object"
+}

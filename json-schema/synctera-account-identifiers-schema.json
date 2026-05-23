@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_identifiers",
+  "title": "Identifiers for the account",
+  "properties": {
+    "iban": {
+      "description": "The IBAN of the account. Value may be masked, in which case only the last four digits are returned.\n",
+      "example": "CY06470650023917R423TV710402",
+      "type": "string"
+    },
+    "number": {
+      "description": "The account number. Value may be masked, in which case only the last four digits are returned.\n",
+      "example": "78277121",
+      "type": "string"
+    }
+  },
+  "required": [
+    "number"
+  ],
+  "type": "object"
+}

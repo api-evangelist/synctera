@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_account_link_token",
+  "title": "external_account_link_token",
+  "properties": {
+    "business_id": {
+      "description": "The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.\n",
+      "example": "d3087ca5-aaf9-4f7c-9241-58ab458e15ac",
+      "format": "uuid",
+      "type": "string"
+    },
+    "client_name": {
+      "description": "The name of your application, as it should be displayed in Link. Maximum length of 30 characters.",
+      "type": "string"
+    },
+    "country_codes": {
+      "description": "Country codes in the ISO-3166-1 alpha-2 country code standard.",
+      "items": {
+        "enum": [
+          "US"
+        ],
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "customer_id": {
+      "description": "The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.\n",
+      "example": "3d92aac9-bdf5-498f-96b0-e67da46be85e",
+      "format": "uuid",
+      "type": "string"
+    },
+    "expiration": {
+      "description": "The expiration date for the link_token. Expires in 4 hours.",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "language": {
+      "description": "The language that corresponds to the link token. For Plaid, see their [documentation](https://plaid.com/docs/api/tokens/#link-token-create-request-language) for a list of allowed values.\n",
+      "enum": [
+        "EN",
+        "FR",
+        "ES",
+        "NL",
+        "DE"
+      ],
+      "type": "string"
+    },
+    "link_customization_name": {
+      "description": "The name of the Link customization from the Plaid Dashboard to be applied to Link. If not specified, the default customization will be used. When using a Link customization, the language in the customization must match the language selected via the language parameter, and the countries in the customization should match the country codes selected via country_codes.\n",
+      "type": "string"
+    },
+    "link_token": {
+      "description": "A link_token, which can be supplied to Link in order to initialize it and receive a public_token, which can be exchanged for an access_token.\n",
+      "readOnly": true,
+      "type": "string"
+    },
+    "redirect_uri": {
+      "description": "A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview.\n",
+      "type": "string"
+    },
+    "request_id": {
+      "description": "A unique identifier for the request, which can be used for troubleshooting.",
+      "readOnly": true,
+      "type": "string"
+    },
+    "sdk_type": {
+      "default": "WEB",
+      "description": "Describes the environment of the client code running a vendor-supplied SDK",
+      "enum": [
+        "WEB",
+        "IOS",
+        "ANDROID"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "description": "The type of the link token. DEPOSITORY for checking and savings accounts, CREDIT for credit card type accounts, INVESTMENT for investment accounts, and MICRO_DEPOSIT for depository accounts with support for micro-deposits verification.",
+      "enum": [
+        "DEPOSITORY",
+        "CREDIT",
+        "INVESTMENT",
+        "MICRO_DEPOSIT"
+      ],
+      "type": "string"
+    },
+    "vendor_access_token": {
+      "description": "The access token associated with the Item data is being requested for.",
+      "type": "string"
+    },
+    "vendor_institution_id": {
+      "description": "The ID of the institution the access token is requested for. If present the link token will be created in an update mode.\n",
+      "minLength": 1,
+      "type": "string"
+    },
+    "verify_owner": {
+      "default": false,
+      "description": "If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.\n",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "client_name",
+    "language",
+    "country_codes",
+    "type"
+  ],
+  "type": "object"
+}

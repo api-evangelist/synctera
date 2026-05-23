@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_mode",
+  "title": "card_image_mode",
+  "description": "The image mode of a card product. If the card product supports custom card images, this value determines how the images will be handled during card issuance. REQUIRED means that cards issued with this card product must have the ID of an image that has been uploaded. Note that the image does not necessarily have to have been approved prior to the issuance request. This mode is currently disabled. REQUIRED_APPROVED_FIRST means that cards issued with this card product must have the ID of an image that has been uploaded and approved.\n",
+  "enum": [
+    "REQUIRED",
+    "REQUIRED_APPROVED_FIRST"
+  ],
+  "type": "string"
+}

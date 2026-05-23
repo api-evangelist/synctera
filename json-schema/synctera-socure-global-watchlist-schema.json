@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_global_watchlist",
+  "title": "socure_global_watchlist",
+  "properties": {
+    "matches": {
+      "$ref": "#/components/schemas/socure_matches"
+    },
+    "reasonCodes": {
+      "description": "Array of reason codes",
+      "items": {
+        "$ref": "#/components/schemas/socure_reason_code"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "matches"
+  ],
+  "type": "object"
+}

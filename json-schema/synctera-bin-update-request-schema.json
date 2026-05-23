@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_update_request",
+  "title": "bin_update_request",
+  "additionalProperties": false,
+  "properties": {
+    "bin_status": {
+      "$ref": "#/components/schemas/bin_status"
+    },
+    "card_brand": {
+      "$ref": "#/components/schemas/card_brand"
+    },
+    "card_category": {
+      "$ref": "#/components/schemas/card_category"
+    },
+    "card_product_type": {
+      "$ref": "#/components/schemas/card_product_type"
+    },
+    "end_date": {
+      "description": "The time when bin is decommissioned",
+      "example": "Sun Jan 08 2023 07:10:34 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "is_tokenization_enabled": {
+      "description": "Controls whether bin allows tokenization",
+      "example": true,
+      "type": "boolean"
+    },
+    "physical_card_format": {
+      "$ref": "#/components/schemas/physical_card_format"
+    },
+    "start_date": {
+      "description": "The time when bin goes live",
+      "example": "Sun Nov 21 2021 08:38:38 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

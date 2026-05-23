@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_account_patch",
+  "title": "internal_account_patch",
+  "properties": {
+    "description": {
+      "description": "A user provided description for the current account",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

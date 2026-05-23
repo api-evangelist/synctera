@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_acceptor_model",
+  "title": "card_acceptor_model",
+  "example": {
+    "address": "address",
+    "city": "city",
+    "country": "country",
+    "ecommerce_security_level_indicator": "ecommerce_security_level_indicator",
+    "mcc": "mcc",
+    "name": "name",
+    "partial_approval_capable": false,
+    "state": "state",
+    "zip": "zip"
+  },
+  "properties": {
+    "address": {
+      "maxLength": 255,
+      "minLength": 0,
+      "type": "string"
+    },
+    "city": {
+      "maxLength": 40,
+      "minLength": 0,
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "ecommerce_security_level_indicator": {
+      "type": "string"
+    },
+    "mcc": {
+      "maxLength": 5,
+      "minLength": 0,
+      "type": "string"
+    },
+    "name": {
+      "maxLength": 50,
+      "minLength": 0,
+      "type": "string"
+    },
+    "partial_approval_capable": {
+      "default": false,
+      "type": "boolean"
+    },
+    "state": {
+      "type": "string"
+    },
+    "zip": {
+      "maxLength": 10,
+      "minLength": 0,
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

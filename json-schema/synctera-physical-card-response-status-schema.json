@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card_response_status",
+  "title": "physical_card_response_status",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_status_object"
+    },
+    {
+      "properties": {
+        "card_fulfillment_status": {
+          "$ref": "#/components/schemas/card_fulfillment_status"
+        },
+        "fulfillment_details": {
+          "$ref": "#/components/schemas/fulfillment_details"
+        },
+        "tracking_number": {
+          "deprecated": true,
+          "description": "This contains all shipping details as provided by the card fulfillment provider, including the tracking\nnumber. This field is deprecated. Instead, please use the fulfillment_details object, which includes a\nfield for just the tracking number.\n",
+          "example": "Ship Date [2022-07-19], Shipping Method [UPS Next Day Air Saver]; Tracking Number [1ZW3268W1319325382]",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "card_status",
+        "status_reason",
+        "card_fulfillment_status"
+      ],
+      "type": "object"
+    }
+  ]
+}

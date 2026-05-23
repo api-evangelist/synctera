@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification_type",
+  "title": "verification_type",
+  "description": "The type of check run on the customer.",
+  "enum": [
+    "fraud",
+    "synthetic",
+    "emailrisk",
+    "phonerisk",
+    "addressrisk",
+    "kyc",
+    "social",
+    "watchliststandard",
+    "watchlistpremier",
+    "watchlistplus",
+    "documentverification",
+    "alertlist",
+    "decision"
+  ],
+  "example": "kyc",
+  "type": "string"
+}

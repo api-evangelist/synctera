@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/brand_product_code",
+  "title": "brand_product_code",
+  "description": "The Mastercard or Visa Product Code - 3 alpha-numeric characters",
+  "maxLength": 3,
+  "minLength": 3,
+  "type": "string"
+}

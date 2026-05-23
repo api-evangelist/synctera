@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/waitlist",
+  "title": "Waitlist",
+  "allOf": [
+    {
+      "description": "Waitlist",
+      "properties": {
+        "creation_time": {
+          "description": "Creation time",
+          "example": "2009-11-10 23:00:00 +0000 UTC",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Waitlist ID",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "last_updated_time": {
+          "description": "Most recent updated time",
+          "example": "2009-11-10 23:00:00 +0000 UTC",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "num_admitted": {
+          "description": "Current number of prospects in this waitlist with a status of admitted",
+          "example": 100,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "num_created": {
+          "description": "Current number of prospects in this waitlist with a status of created",
+          "example": 100,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "num_prospects": {
+          "description": "Current number of prospects in this waitlist, in any state",
+          "example": 1000,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "num_verified": {
+          "description": "Current number of prospects in this waitlist with a status of verified",
+          "example": 700,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "num_withdrawn": {
+          "description": "Current number of prospects in this waitlist with a status of withdrawn",
+          "example": 100,
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "increment",
+        "waitlist_name"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/waitlist_editable"
+    }
+  ]
+}

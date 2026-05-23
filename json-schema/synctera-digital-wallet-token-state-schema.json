@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/digital_wallet_token_state",
+  "title": "digital_wallet_token_state",
+  "description": "Current status of the Digital Wallet Token",
+  "enum": [
+    "REQUESTED",
+    "REQUEST_DECLINED",
+    "ACTIVE",
+    "SUSPENDED",
+    "TERMINATED"
+  ],
+  "type": "string"
+}

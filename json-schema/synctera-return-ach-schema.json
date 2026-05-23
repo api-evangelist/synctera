@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/return_ach",
+  "title": "return_ach",
+  "description": "Regular return",
+  "properties": {
+    "type": {
+      "enum": [
+        "insufficient_funds",
+        "acc_closed",
+        "acc_not_found",
+        "acc_invalid",
+        "unauthorized_corp_debit",
+        "return_requested",
+        "auth_revoked",
+        "payment_stopped",
+        "uncollected_funds",
+        "unauthorized_debit",
+        "failed_terms",
+        "account_sold",
+        "acc_frozen",
+        "fields_not_processable",
+        "improper_effective_date",
+        "non_transaction_account",
+        "credit_refused",
+        "duplicate_transaction",
+        "corp_receiver_unauthorized",
+        "permissible_return",
+        "source_document_presented",
+        "source_document_stop_payment",
+        "improper_source_document",
+        "state_law_affecting_acceptance",
+        "ineligible_or_improper_entry",
+        "item_stop_payment"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type"
+  ],
+  "type": "object"
+}

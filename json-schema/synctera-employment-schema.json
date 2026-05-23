@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/employment",
+  "title": "Customer employment record",
+  "description": "A period of time in which a customer is (was) employed by a particular employer.\n",
+  "properties": {
+    "employer_name": {
+      "description": "Name of customer's employer.",
+      "example": "ABC, Inc.",
+      "type": "string"
+    },
+    "employment_from": {
+      "description": "First day of employment.",
+      "example": "2016-05-11T00:00:00Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "employment_hours": {
+      "description": "Number of hours spent per week working for specified employment.",
+      "example": 37.5,
+      "format": "float",
+      "maximum": 80,
+      "minimum": 0,
+      "type": "number"
+    },
+    "employment_income": {
+      "description": "Annual income in cents.",
+      "example": 5000000,
+      "type": "integer"
+    },
+    "employment_income_currency": {
+      "description": "The 3-letter alphabetic ISO 4217 code for the currency in which the employee was paid.\n",
+      "example": "USD",
+      "type": "string"
+    },
+    "employment_info": {
+      "description": "A collection of arbitrary key-value pairs providing additional information about this employment relationship.\n",
+      "type": "object"
+    },
+    "employment_occupation": {
+      "description": "Customer's work title, profession, or field.",
+      "example": "clerk",
+      "type": "string"
+    },
+    "employment_to": {
+      "description": "Last day of employment.",
+      "example": "2018-11-19T00:00:00Z",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique ID for this employment relationship.",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    }
+  },
+  "required": [
+    "employer_name"
+  ],
+  "type": "object"
+}

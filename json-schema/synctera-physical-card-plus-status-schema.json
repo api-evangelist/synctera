@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card_plus_status",
+  "title": "physical_card_plus_status",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/physical_card"
+    },
+    {
+      "$ref": "#/components/schemas/physical_card_response_status"
+    }
+  ]
+}

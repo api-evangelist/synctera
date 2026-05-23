@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/detail",
+  "title": "detail",
+  "description": "An object containing information about an individual check performed.",
+  "properties": {
+    "description": {
+      "description": "Human-readable description explaining the individual check.",
+      "example": "Email address is correlated with the individual's name",
+      "type": "string"
+    },
+    "label": {
+      "description": "Human-readable grouping describing the aspect of the customer's identity examined by this check.",
+      "example": "Email",
+      "type": "string"
+    },
+    "result": {
+      "description": "The result of the individual check. One of the following:\n* `PASS` \u2013 the check passed contributing to a positive outcome (or accepted verification result).\n* `WARN` \u2013 the results of the check were inconclusive and might require review.\n* `FAIL` \u2013 the check failed and might result in a failing outcome (or rejected verification_result).\n",
+      "enum": [
+        "PASS",
+        "WARN",
+        "FAIL"
+      ],
+      "example": "PASS",
+      "type": "string"
+    },
+    "vendor_code": {
+      "description": "Machine-readable description of the individual check. This field contains vendor-specific terms and may not be populated in all cases.",
+      "example": "R940",
+      "type": "string"
+    }
+  },
+  "readOnly": true,
+  "type": "object"
+}

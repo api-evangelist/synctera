@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/disclosure_type",
+  "title": "disclosure_type",
+  "description": "Describes the regulatory requirement that triggered the disclosure.\nOne of the following:\n* `ACH_AUTHORIZATION` \u2013\n    The ACH Authorization & Agreement Disclosure serves as a method of disclosing\n    and obtaining consent from a consumer to conduct ACH and pre-authorized\n    electronic transactions to and from their account. Record of obtaining this\n    consent should be retained, in accordance with Reg E, for no less than 2 years\n    from the date the disclosure was made to the consumer.\n* `CARDHOLDER_AGREEMENT` \u2013\n    The Cardholder Agreement is a legal document that details the terms of a card\n    agreement between either a consumer or a business, and the financial\n    institution that issues the card. The Agreement governs the use of the\n    account.\n* `E_SIGN` \u2013\n    US law with rules around electronic agreements/documents/disclosures:\n    used to obtain consent from consumers to receive electronic communications\n    (agreements, disclosures, statements, etc) about their accounts.\n* `KYC_DATA_COLLECTION` \u2013\n    Document advising the customer that you will collect their personal information\n    (name, date of birth, tax ID, etc.)\n    and will be validating their information against external data/documentation.\n* `PRIVACY_NOTICE` \u2013\n    Document that tells customers what is done with their non-public information,\n    who it is shared with, how is is secured,\n    and how they can opt out of it being shared beyond Synctera.\n* `REG_CC` \u2013\n    US regulation that implements the Expedited Funds Availability Act:\n    describes standards for when a financial institution\n    makes funds available in a deposit account.\n* `REG_DD` \u2013\n    US regulation that implements the Truth in Savings Act,\n    to inform customers about the terms and rules for a deposit account.\n* `REG_E` \u2013\n    US regulation that implements the Electronic Funds Transfer Act:\n    covers liability for electronic transactions,\n    disputes for fraudulent or unrecognized electronic transactions,\n    and consent for electronic debits from a consumer's account.\n* `TERMS_AND_CONDITIONS` \u2013\n    A detailed agreement between you and the consumer for the\n    structure, terms, fees, charges, rates of the product or service,\n    and the rules for the relationship between you and the consumer.\n",
+  "enum": [
+    "ACH_AUTHORIZATION",
+    "CARDHOLDER_AGREEMENT",
+    "E_SIGN",
+    "KYC_DATA_COLLECTION",
+    "PRIVACY_NOTICE",
+    "REG_CC",
+    "REG_DD",
+    "REG_E",
+    "TERMS_AND_CONDITIONS"
+  ],
+  "type": "string"
+}

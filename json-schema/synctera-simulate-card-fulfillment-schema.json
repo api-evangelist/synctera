@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/simulate_card_fulfillment",
+  "title": "simulate_card_fulfillment",
+  "properties": {
+    "card_fulfillment_status": {
+      "$ref": "#/components/schemas/card_fulfillment_status"
+    }
+  },
+  "required": [
+    "card_fulfillment_status"
+  ],
+  "type": "object"
+}

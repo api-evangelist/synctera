@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/risk_rating_list",
+  "title": "risk_rating_list",
+  "allOf": [
+    {
+      "properties": {
+        "risk_ratings": {
+          "description": "Array of customer risk ratings",
+          "items": {
+            "$ref": "#/components/schemas/risk_rating"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "risk_ratings"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

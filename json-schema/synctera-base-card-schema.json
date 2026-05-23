@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_card",
+  "title": "base_card",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_format"
+    },
+    {
+      "properties": {
+        "account_id": {
+          "description": "The ID of the account to which the card will be linked",
+          "example": "98d3a7dd-8b7e-4b93-94b0-f5c9bcf88b39",
+          "format": "uuid",
+          "type": "string"
+        },
+        "bin": {
+          "description": "The bin number",
+          "type": "string"
+        },
+        "card_brand": {
+          "$ref": "#/components/schemas/card_brand"
+        },
+        "card_product_id": {
+          "description": "The card product to which the card is attached",
+          "example": "f453e97a-83f8-4810-bdbc-8df324fc4241",
+          "format": "uuid",
+          "type": "string"
+        },
+        "creation_time": {
+          "description": "The timestamp representing when the card issuance request was made",
+          "example": "Tue Feb 08 2022 13:13:56 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customer_id": {
+          "description": "The ID of the customer to whom the card will be issued",
+          "example": "a33e874c-4fa5-4c6f-850f-0778ffa097e9",
+          "format": "uuid",
+          "type": "string"
+        },
+        "emboss_name": {
+          "$ref": "#/components/schemas/emboss_name"
+        },
+        "expiration_month": {
+          "example": "06",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expiration_time": {
+          "description": "The timestamp representing when the card would expire at",
+          "example": "Sat Mar 05 2022 01:33:52 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expiration_year": {
+          "example": "25",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Card ID",
+          "example": "57f266f7-5661-4e83-8a9a-ac19c76fb82f",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "is_pin_set": {
+          "default": false,
+          "description": "indicates whether a pin has been set on the card",
+          "example": true,
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "last_four": {
+          "description": "The last 4 digits of the card PAN",
+          "example": "1234",
+          "readOnly": true,
+          "type": "string"
+        },
+        "last_modified_time": {
+          "description": "The timestamp representing when the card was last modified at",
+          "example": "Sun Nov 21 2021 04:23:47 GMT+0000 (Coordinated Universal Time)",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/card_metadata"
+        },
+        "reissue_reason": {
+          "description": "This is the reason the card needs to be reissued, if any. The reason determines several behaviours:\n  - whether or not the new card will use the same PAN as the original card\n  - the old card will be terminated and if so, when it will be terminated\n\nReason                 | Same PAN | Terminate Old Card\n---------------------- | -------- | ------------------\nEXPIRATION             | yes      | on activation\nLOST                   | no       | immediately\nSTOLEN                 | no       | immediately\nDAMAGED                | yes      | on activation\nVIRTUAL_TO_PHYSICAL(*) | yes      | on activation\nPRODUCT_CHANGE         | yes      | on activation\nNAME_CHANGE(**)        | yes      | on activation\nAPPEARANCE             | yes      | on activation\n\n(*) VIRTUAL_TO_PHYSICAL is deprecated. Please use PRODUCT_CHANGE whenever reissuing from one\ncard product to another, including from a virtual product to a physical product.\n\n(**) NAME_CHANGE is deprecated. Please use APPEARANCE whenever reissuing in order to change the\nappearance of a card, such as the printed name or custom image.\n\nFor all reasons, the new card will use the same PIN as the original card and digital wallet tokens will\nreassigned to the new card\n",
+          "enum": [
+            "EXPIRATION",
+            "LOST",
+            "STOLEN",
+            "DAMAGED",
+            "NAME_CHANGE",
+            "VIRTUAL_TO_PHYSICAL",
+            "PRODUCT_CHANGE",
+            "APPEARANCE"
+          ],
+          "type": "string"
+        },
+        "reissued_from_id": {
+          "description": "When reissuing a card, specify the card to be replaced here. When getting a card's details, if this card was issued as a reissuance of another card, this ID refers to the card was replaced. If this field is set, then reissue_reason must also be set.\n",
+          "example": "6d346154-0b81-493f-87b2-2996bf9a1c0a",
+          "format": "uuid",
+          "type": "string"
+        },
+        "reissued_to_id": {
+          "description": "If this card was reissued, this ID refers to the card that replaced it.",
+          "example": "abfc62db-8ea8-4218-a3fe-d534c34acc09",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Indicates the type of card to be issued",
+          "enum": [
+            "DEBIT"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "form"
+      ],
+      "type": "object"
+    }
+  ]
+}

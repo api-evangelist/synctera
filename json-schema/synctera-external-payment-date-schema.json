@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_payment_date",
+  "title": "external_payment_date",
+  "description": "Principal\u2019s date of birth",
+  "properties": {
+    "day": {
+      "description": "Day of birth",
+      "type": "integer"
+    },
+    "month": {
+      "description": "Month of birth",
+      "type": "integer"
+    },
+    "year": {
+      "description": "Year of birth",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "day",
+    "month",
+    "year"
+  ],
+  "type": "object"
+}

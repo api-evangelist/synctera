@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_status",
+  "title": "payment_status",
+  "description": "Payment request status",
+  "enum": [
+    "COMPLETED",
+    "ERROR"
+  ],
+  "type": "string"
+}

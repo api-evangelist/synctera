@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/socure_matches",
+  "title": "socure_matches",
+  "additionalProperties": {
+    "$ref": "#/components/schemas/socure_match_list"
+  },
+  "description": "Contains key-value pair of the Source list name and an array of details about that match.",
+  "type": "object"
+}

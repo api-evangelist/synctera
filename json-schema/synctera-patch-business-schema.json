@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_business",
+  "title": "patch_business",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base"
+    }
+  ],
+  "description": "Represents a business customer.",
+  "type": "object"
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_program_id",
+  "title": "card_program_id",
+  "description": "The unique identifier of a cards program",
+  "example": "d038350d-a45f-42f9-8ecd-dd130637140b",
+  "format": "uuid",
+  "type": "string"
+}

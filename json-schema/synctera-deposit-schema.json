@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/deposit",
+  "title": "Remote Check Deposit",
+  "description": "Deposit using remote deposit capture",
+  "properties": {
+    "account_id": {
+      "description": "The ID of the account",
+      "example": "ab144f71-3708-4625-8df3-d9307804475e",
+      "format": "uuid",
+      "type": "string"
+    },
+    "back_image_id": {
+      "description": "ID of the uploaded image of the back of the check",
+      "example": "a745e775-9d35-46a5-812d-4a7663178a3b",
+      "format": "uuid",
+      "type": "string"
+    },
+    "business_id": {
+      "$ref": "#/components/schemas/business_id4"
+    },
+    "check_amount": {
+      "description": "Amount on check in ISO 4217 minor currency units",
+      "example": 8032,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "creation_time": {
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "date_captured": {
+      "description": "Date the deposit was captured, in RFC 3339 format",
+      "example": "2022-01-02T03:04:05.678Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "date_processed": {
+      "description": "Date the deposit was processed, in RFC 3339 format",
+      "example": "2022-01-02T03:04:05.678Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "deposit_amount": {
+      "description": "Amount deposited in ISO 4217 minor currency units",
+      "example": 6207,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "deposit_currency": {
+      "description": "ISO 4217 currency code for the deposit amount",
+      "example": "USD",
+      "type": "string"
+    },
+    "front_image_id": {
+      "description": "ID of the uploaded image of the front of the check",
+      "example": "a6be36a2-1211-4c7f-b38e-14923e009262",
+      "format": "uuid",
+      "type": "string"
+    },
+    "id": {
+      "description": "Remote Check Deposit ID",
+      "example": "69170eba-daa5-4c06-9a6d-abc1d4733f67",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "person_id": {
+      "$ref": "#/components/schemas/person_id"
+    },
+    "status": {
+      "description": "The status of the deposit",
+      "enum": [
+        "SUBMITTED",
+        "PENDING",
+        "FAILED",
+        "REJECTED"
+      ],
+      "readOnly": true,
+      "type": "string"
+    },
+    "transaction_id": {
+      "description": "The ID of the transaction associated with this deposit",
+      "example": "261343ed-2752-4e07-b14f-5cafcd38361c",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "vendor_info": {
+      "$ref": "#/components/schemas/vendor_info1"
+    }
+  },
+  "required": [
+    "id",
+    "account_id",
+    "transaction_id",
+    "check_amount",
+    "deposit_currency",
+    "status",
+    "deposit_amount",
+    "date_processed",
+    "date_captured",
+    "front_image_id",
+    "back_image_id",
+    "vendor_info"
+  ],
+  "type": "object"
+}

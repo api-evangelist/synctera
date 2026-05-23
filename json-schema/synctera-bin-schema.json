@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin",
+  "title": "bin",
+  "properties": {
+    "account_range_length": {
+      "description": "Account range length",
+      "type": "integer"
+    },
+    "bank_id": {
+      "description": "The bank ID",
+      "type": "integer"
+    },
+    "billing_ica": {
+      "description": "The ICA to which fees will be billed",
+      "type": "string"
+    },
+    "bin": {
+      "description": "The bin number",
+      "type": "string"
+    },
+    "bin_status": {
+      "$ref": "#/components/schemas/bin_status"
+    },
+    "brand_product_code": {
+      "$ref": "#/components/schemas/brand_product_code"
+    },
+    "card_brand": {
+      "$ref": "#/components/schemas/card_brand"
+    },
+    "card_category": {
+      "$ref": "#/components/schemas/card_category"
+    },
+    "card_product_type": {
+      "$ref": "#/components/schemas/card_product_type"
+    },
+    "country": {
+      "$ref": "#/components/schemas/country_code"
+    },
+    "creation_time": {
+      "description": "The timestamp representing when the bin was created",
+      "example": "Thu Sep 16 2021 23:52:38 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "currency": {
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "digital_wallet_active": {
+      "default": false,
+      "description": "Determines if bin supports digital wallet tokenization",
+      "example": true,
+      "type": "boolean"
+    },
+    "end_date": {
+      "description": "The time when bin is decommissioned",
+      "example": "Sun Nov 27 2022 14:47:06 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "ica_bid": {
+      "description": "ICA/BID",
+      "type": "string"
+    },
+    "id": {
+      "description": "Bin ID",
+      "example": "73d7087a-6a67-406e-8070-8d53e8134e06",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_tokenization_enabled": {
+      "default": false,
+      "description": "Controls whether bin allows tokenization",
+      "example": false,
+      "type": "boolean"
+    },
+    "last_modified_time": {
+      "description": "The timestamp representing when the bin was last modified",
+      "example": "Tue May 10 2022 22:00:58 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "pan_utilization": {
+      "description": "Pan utilization",
+      "type": "integer"
+    },
+    "partner_id": {
+      "description": "The partner ID",
+      "type": "integer"
+    },
+    "physical_card_format": {
+      "$ref": "#/components/schemas/physical_card_format"
+    },
+    "processor": {
+      "description": "The name of the card processor",
+      "type": "string"
+    },
+    "start_date": {
+      "description": "The time when bin goes live",
+      "example": "Tue Nov 16 2021 11:24:37 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bank_id",
+    "partner_id",
+    "bin",
+    "processor",
+    "card_brand",
+    "card_category",
+    "card_product_type",
+    "ica_bid",
+    "country",
+    "currency",
+    "account_range_length",
+    "billing_ica",
+    "brand_product_code",
+    "pan_utilization"
+  ],
+  "type": "object"
+}

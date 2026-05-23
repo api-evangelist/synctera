@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook_request",
+  "title": "webhook_request",
+  "properties": {
+    "active": {
+      "description": "indicates whether webhook is active",
+      "type": "boolean"
+    },
+    "config": {
+      "$ref": "#/components/schemas/webhook_config"
+    },
+    "events": {
+      "description": "list of webhook events, use * to receive all notifications",
+      "items": {
+        "$ref": "#/components/schemas/webhook_event"
+      },
+      "type": "array"
+    },
+    "id": {
+      "description": "id of the webhook",
+      "example": "e1dad623-98fa-48ee-8910-00a0b85ccbca",
+      "format": "uuid",
+      "type": "string"
+    },
+    "name": {
+      "description": "name of the webhook",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

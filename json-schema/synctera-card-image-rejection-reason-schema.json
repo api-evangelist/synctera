@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_image_rejection_reason",
+  "title": "card_image_rejection_reason",
+  "description": "The category of reason that a card image was rejected",
+  "enum": [
+    "COPYRIGHT",
+    "TRADEMARK",
+    "BRANDED",
+    "PROMOTIONAL",
+    "INAPPROPRIATE",
+    "OTHER"
+  ],
+  "type": "string"
+}

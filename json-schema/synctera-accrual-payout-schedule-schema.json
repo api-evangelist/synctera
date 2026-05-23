@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/accrual_payout_schedule",
+  "title": "accrual_payout_schedule",
+  "enum": [
+    "NONE",
+    "MONTHLY"
+  ],
+  "type": "string"
+}

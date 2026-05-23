@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_payment_schedule",
+  "title": "patch_payment_schedule",
+  "description": "Patch request for payment schedule",
+  "properties": {
+    "status": {
+      "description": "Target payment schedule status",
+      "enum": [
+        "CANCELLED"
+      ],
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

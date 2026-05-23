@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_vendor_accounts_response",
+  "title": "add_vendor_accounts_response",
+  "properties": {
+    "added_accounts": {
+      "items": {
+        "$ref": "#/components/schemas/external_account",
+        "description": "Information about a successfully added external account."
+      },
+      "type": "array"
+    },
+    "deleted_accounts": {
+      "items": {
+        "$ref": "#/components/schemas/external_account",
+        "description": "Information about a successfully deleted external account."
+      },
+      "type": "array"
+    },
+    "failed_accounts": {
+      "items": {
+        "$ref": "#/components/schemas/add_vendor_account_failure",
+        "description": "Information about an external account that could not be added."
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "added_accounts",
+    "failed_accounts"
+  ],
+  "type": "object"
+}

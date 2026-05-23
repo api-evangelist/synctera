@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/provider_type",
+  "title": "provider_type",
+  "description": "Name of the organization that provided this data.",
+  "enum": [
+    "IDOLOGY",
+    "SOCURE"
+  ],
+  "example": "SOCURE",
+  "type": "string"
+}

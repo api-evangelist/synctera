@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_id",
+  "title": "card_product_id",
+  "description": "The unique identifier of a cards product",
+  "example": "d6180286-ae04-4bdb-ac62-bce0b4b06f91",
+  "format": "uuid",
+  "type": "string"
+}

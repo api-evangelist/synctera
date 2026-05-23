@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/address1",
+  "title": "address1",
+  "properties": {
+    "address_line_1": {
+      "description": "Street address line 1",
+      "example": "0624 Kulas Turnpike",
+      "type": "string"
+    },
+    "address_line_2": {
+      "description": "String address line 2",
+      "example": "Apt. 024",
+      "type": "string"
+    },
+    "city": {
+      "description": "City",
+      "example": "Jastfort",
+      "type": "string"
+    },
+    "country_code": {
+      "description": "ISO-3166-1 Alpha-2 country code",
+      "example": "CG",
+      "type": "string"
+    },
+    "postal_code": {
+      "description": "Postal code",
+      "example": "49633",
+      "type": "string"
+    },
+    "state": {
+      "description": "State, region, province, or prefecture",
+      "example": "ID",
+      "type": "string"
+    }
+  },
+  "required": [
+    "address_line_1",
+    "city",
+    "state",
+    "country_code",
+    "postal_code"
+  ],
+  "type": "object"
+}

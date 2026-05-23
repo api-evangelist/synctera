@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/physical_card",
+  "title": "Physical Card",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_card"
+    },
+    {
+      "properties": {
+        "card_image_id": {
+          "description": "The ID of the custom card image used for this card",
+          "example": "48c31767-938f-452e-a5d5-be07293c4407",
+          "format": "uuid",
+          "type": "string"
+        },
+        "shipping": {
+          "$ref": "#/components/schemas/shipping"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "description": "Details pertaining to issuing a new physical card"
+}

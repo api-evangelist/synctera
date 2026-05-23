@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/base_statement",
+  "title": "base_statement",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/statement_summary"
+    },
+    {
+      "properties": {
+        "account_summary": {
+          "$ref": "#/components/schemas/account_summary",
+          "readOnly": true
+        },
+        "authorized_signer": {
+          "items": {
+            "$ref": "#/components/schemas/person1"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "disclosure": {
+          "type": "string"
+        },
+        "joint_account_holders": {
+          "items": {
+            "$ref": "#/components/schemas/person1"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "primary_account_holder_business": {
+          "$ref": "#/components/schemas/business1"
+        },
+        "primary_account_holder_personal": {
+          "$ref": "#/components/schemas/person1"
+        },
+        "transactions": {
+          "items": {
+            "$ref": "#/components/schemas/transaction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "type": "object"
+}

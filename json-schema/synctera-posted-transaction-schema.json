@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/posted_transaction",
+  "title": "A posted transaction",
+  "properties": {
+    "created": {
+      "description": "The creation date of the transaction",
+      "format": "date-time",
+      "type": "string"
+    },
+    "data": {
+      "$ref": "#/components/schemas/posted_transaction_data"
+    },
+    "effective_date": {
+      "description": "The \"effective date\" of a transaction. This may be earlier than posted_date in some cases (for example, a transaction that occurs on a Saturday may not be posted until the following Monday, but would have an effective date of Saturday)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "idemkey": {
+      "description": "The idempotency key used when initially creating this transaction.",
+      "example": "80e9e648-c016-421a-bab5-7f311c5a9fdd",
+      "type": "string"
+    },
+    "info_only": {
+      "description": "Whether or not this transaction represents a purely informational operation or an actual money movement",
+      "type": "boolean"
+    },
+    "lead_mode": {
+      "description": "Whether or not this transaction was created operating in \"lead ledger\" mode",
+      "type": "boolean"
+    },
+    "posted_date": {
+      "description": "The date the transaction was posted. This is the date any money is considered to be added or removed from an account.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "reference_id": {
+      "description": "An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.",
+      "nullable": true,
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "subtype": {
+      "description": "The specific transaction type. For example, for `ach`, this may be \"outgoing_debit\".",
+      "type": "string"
+    },
+    "tenant": {
+      "description": "The tenant associated with this transaction, in the form \"<bankid>_<partnerid>\"",
+      "type": "string"
+    },
+    "transaction_time": {
+      "description": "The time the transaction occurred.",
+      "format": "date-time",
+      "type": "string"
+    },
+    "type": {
+      "description": "The general type of transaction. For example, \"card\" or \"ach\".",
+      "type": "string"
+    },
+    "updated": {
+      "description": "The date the transaction was last updated",
+      "format": "date-time",
+      "type": "string"
+    },
+    "uuid": {
+      "description": "The unique identifier of the transaction.",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "uuid",
+    "tenant",
+    "idemkey",
+    "type",
+    "subtype",
+    "status",
+    "info_only",
+    "lead_mode",
+    "data",
+    "posted_date",
+    "effective_date",
+    "transaction_time",
+    "created",
+    "updated",
+    "reference_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/minimum_payment_type",
+  "title": "minimum_payment_type",
+  "description": "* RATE_OR_AMOUNT: >\n  Describes a minimum payment scheme where the amount calculated is either a portion\n  of the balance due, or a fixed, maximum amount, whichever is lesser. For example, if\n  set to 1.00% and $30, the minimum payment will be calculated as 1.00% of the balance,\n  but only up to a maximum of $30.\n",
+  "enum": [
+    "RATE_OR_AMOUNT"
+  ],
+  "type": "string"
+}

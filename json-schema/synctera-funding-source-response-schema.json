@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/funding_source_response",
+  "title": "funding_source_response",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/funding_source"
+    }
+  ],
+  "required": [
+    "id",
+    "url",
+    "name"
+  ]
+}

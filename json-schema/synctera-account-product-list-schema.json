@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_product_list",
+  "title": "account_product_list",
+  "allOf": [
+    {
+      "properties": {
+        "account_products": {
+          "description": "Array of account products",
+          "items": {
+            "$ref": "#/components/schemas/account_product"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "account_products"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

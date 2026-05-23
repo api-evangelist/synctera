@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_and_debit_network_list",
+  "title": "bin_and_debit_network_list",
+  "allOf": [
+    {
+      "properties": {
+        "bin_and_debit_networks": {
+          "description": "Array of BINs and debit networks",
+          "items": {
+            "$ref": "#/components/schemas/bin_and_debit_network"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "bin_and_debit_networks"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

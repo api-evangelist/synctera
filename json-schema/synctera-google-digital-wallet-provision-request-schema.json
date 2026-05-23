@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/google_digital_wallet_provision_request",
+  "title": "google_digital_wallet_provision_request",
+  "properties": {
+    "device_id": {
+      "description": "The user\u2019s Android device ID; the device\u2019s unique identifier.",
+      "maxLength": 24,
+      "type": "string"
+    },
+    "device_type": {
+      "$ref": "#/components/schemas/device_type"
+    },
+    "provisioning_app_version": {
+      "$ref": "#/components/schemas/provisioning_app_version"
+    },
+    "wallet_account_id": {
+      "description": "The user\u2019s Google wallet account ID.",
+      "maxLength": 50,
+      "type": "string"
+    }
+  },
+  "required": [
+    "device_type",
+    "provisioning_app_version",
+    "wallet_account_id",
+    "device_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application",
+  "title": "Credit application details",
+  "properties": {
+    "application_details": {
+      "description": "Details about the applicant. The exact schema is to be determined with your bank.",
+      "example": {
+        "annual_salary": 50000,
+        "fico_score": 700
+      },
+      "type": "object"
+    },
+    "customer_id": {
+      "description": "Customer ID for the application",
+      "format": "uuid",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/components/schemas/application_status",
+      "default": "APPLICATION_SUBMITTED"
+    },
+    "type": {
+      "$ref": "#/components/schemas/application_type1"
+    }
+  },
+  "required": [
+    "customer_id",
+    "application_details",
+    "type"
+  ],
+  "type": "object"
+}

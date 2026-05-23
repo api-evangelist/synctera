@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/metadata",
+  "title": "metadata",
+  "description": "Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.\n",
+  "type": "object"
+}

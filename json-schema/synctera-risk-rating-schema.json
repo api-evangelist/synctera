@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/risk_rating",
+  "title": "Customer Risk Rating",
+  "description": "Represents a customer's risk profile",
+  "properties": {
+    "configuration_id": {
+      "description": "The risk configuration id used in risk score calculation",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "Risk rating ID",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "next_review": {
+      "description": "The next review date where customer risk will be calculated",
+      "format": "date-time",
+      "type": "string"
+    },
+    "risk_level": {
+      "description": "A textual representation of the customer risk score",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "type": "string"
+    },
+    "risk_review": {
+      "description": "The date the customer risk rating was calculated",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "risk_score": {
+      "description": "The cumulative score of all risk rating fields",
+      "format": "float",
+      "type": "number"
+    }
+  },
+  "type": "object"
+}

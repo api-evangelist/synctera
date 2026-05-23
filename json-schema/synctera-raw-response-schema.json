@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/raw_response",
+  "title": "Raw response from providers.",
+  "deprecated": true,
+  "properties": {
+    "provider": {
+      "$ref": "#/components/schemas/provider_type"
+    },
+    "raw_data": {
+      "description": "Raw data from an external provider, as a JSON string.",
+      "example": "{}",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/minimum_payment",
+  "title": "minimum_payment",
+  "description": "The scheme for calculating the minimum payment due for outstanding balances in a billing period.\n",
+  "discriminator": {
+    "mapping": {
+      "RATE_OR_AMOUNT": "#/components/schemas/minimum_payment_rate_or_amount"
+    },
+    "propertyName": "type"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/minimum_payment_rate_or_amount"
+    }
+  ],
+  "type": "object"
+}

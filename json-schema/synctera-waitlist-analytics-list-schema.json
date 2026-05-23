@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/waitlist_analytics_list",
+  "title": "Waitlist Analytics List",
+  "properties": {
+    "waitlist_analytics": {
+      "description": "Array of Waitlist Analytics",
+      "items": {
+        "$ref": "#/components/schemas/waitlist_analytics"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "waitlist_analytics"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_line",
+  "title": "transaction_line",
+  "properties": {
+    "account_id": {
+      "description": "The account uuid associated with this transaction line",
+      "example": "75c8658d-4ffc-46a2-b33f-50f785026060",
+      "type": "string"
+    },
+    "account_no": {
+      "description": "The account number associated with this transaction line",
+      "type": "string"
+    },
+    "amount": {
+      "description": "The amount (in cents) of the transaction",
+      "type": "integer"
+    },
+    "currency": {
+      "description": "ISO 4217 alphabetic currency code of the transfer amount",
+      "type": "string"
+    },
+    "dc_sign": {
+      "$ref": "#/components/schemas/dc_sign"
+    },
+    "uuid": {
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "uuid",
+    "account_no",
+    "account_id",
+    "amount",
+    "currency",
+    "dc_sign"
+  ],
+  "type": "object"
+}

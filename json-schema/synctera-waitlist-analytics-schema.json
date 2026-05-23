@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/waitlist_analytics",
+  "title": "Waitlist Analytics",
+  "description": "Daily Waitlist Analytics",
+  "properties": {
+    "admitted": {
+      "description": "Total number of prospects that were admitted on the given day",
+      "example": 100,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "created": {
+      "description": "Total number of prospects that signed up on the given day",
+      "example": 103,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "date": {
+      "description": "Date",
+      "example": "2021-05-17",
+      "readOnly": true,
+      "type": "string"
+    },
+    "deleted": {
+      "description": "Total number of prospects that were deleted on the given day",
+      "example": 2,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "verified": {
+      "description": "Total number of prospects that were verified on the given day",
+      "example": 50,
+      "readOnly": true,
+      "type": "integer"
+    },
+    "withdrawn": {
+      "description": "Total number of prospects that were withdrawn on the given day",
+      "example": 5,
+      "readOnly": true,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

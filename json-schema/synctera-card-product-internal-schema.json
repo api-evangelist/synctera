@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_product_internal",
+  "title": "card_product_internal",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_product"
+    },
+    {
+      "properties": {
+        "account_range_id": {
+          "description": "Account Range ID",
+          "example": "3b366454-0b36-4024-a68a-6a0563fc9677",
+          "format": "uuid",
+          "type": "string"
+        },
+        "auto_allocate_range": {
+          "description": "Identifies whether a new account range will be automatically allocated",
+          "type": "boolean"
+        },
+        "bank_id": {
+          "description": "Bank ID",
+          "type": "integer"
+        },
+        "bin_id": {
+          "description": "BIN ID",
+          "example": "59bf3b88-d4b7-4bf2-a43a-8e43194651bf",
+          "format": "uuid",
+          "type": "string"
+        },
+        "funding_source_id": {
+          "description": "Funding Source ID",
+          "example": "e06f43f7-3d08-4b92-acaf-cd233ce7cb59",
+          "format": "uuid",
+          "type": "string"
+        },
+        "partner_id": {
+          "description": "Partner ID",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bank_id",
+        "partner_id",
+        "funding_source_id",
+        "bin_id",
+        "account_range_id",
+        "auto_allocate_range"
+      ],
+      "type": "object"
+    }
+  ],
+  "description": "Card Product Internal"
+}

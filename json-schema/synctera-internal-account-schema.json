@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/internal_account",
+  "title": "internal_account",
+  "properties": {
+    "account_number": {
+      "description": "Generated internal account number",
+      "maxLength": 17,
+      "minLength": 14,
+      "readOnly": true,
+      "type": "string"
+    },
+    "balances": {
+      "description": "A list of balances for internal account based on different type",
+      "items": {
+        "$ref": "#/components/schemas/balance"
+      },
+      "readOnly": true,
+      "type": "array"
+    },
+    "bank_routing": {
+      "description": "Bank routing number",
+      "maxLength": 9,
+      "readOnly": true,
+      "type": "string"
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T11:23:41Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "currency": {
+      "description": "Account currency or account settlement currency. ISO 4217 alphabetic currency code.",
+      "example": "VEF",
+      "pattern": "^[A-Z]{3}$",
+      "type": "string"
+    },
+    "description": {
+      "description": "A user provided description for the current account",
+      "type": "string"
+    },
+    "gl_type": {
+      "description": "Whether the account will represent assets or liabilities",
+      "enum": [
+        "ASSET",
+        "LIABILITY"
+      ],
+      "type": "string"
+    },
+    "id": {
+      "description": "Generated ID for internal account",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "is_system_acc": {
+      "default": false,
+      "description": "Is a system-controlled internal account",
+      "type": "boolean"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last updated.",
+      "example": "2022-01-18T17:54:12Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "ACTIVE"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "currency"
+  ],
+  "type": "object"
+}

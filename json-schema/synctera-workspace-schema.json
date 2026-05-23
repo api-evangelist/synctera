@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/workspace",
+  "title": "Workspace access for given user",
+  "properties": {
+    "bank_id": {
+      "description": "Bank ID",
+      "type": "integer"
+    },
+    "bank_name": {
+      "description": "First Name",
+      "type": "string"
+    },
+    "environment": {
+      "$ref": "#/components/schemas/environment"
+    },
+    "partner_id": {
+      "description": "Partner ID",
+      "type": "integer"
+    },
+    "partner_name": {
+      "description": "Last Name",
+      "type": "string"
+    },
+    "rank": {
+      "description": "Each workspace has a rank. The highest-ranked (lowest numerical value) workspace is\nintended to be presented first within its environment.\n",
+      "type": "integer"
+    },
+    "verification_status": {
+      "enum": [
+        "UNVERIFIED",
+        "PENDING",
+        "PROVISIONAL",
+        "ACCEPTED",
+        "REVIEW",
+        "REJECTED"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "bank_id",
+    "partner_id",
+    "bank_name",
+    "partner_name",
+    "environment",
+    "verification_status",
+    "rank"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/watchlist_suppress",
+  "title": "watchlist_suppress",
+  "properties": {
+    "provider_subject_id": {
+      "description": "The id of the subject (person) for whom future alerts should be suppressed.\n",
+      "type": "string"
+    },
+    "provider_subscription_id": {
+      "description": "The provider's id for the subscription that caused the alert(s) that are being suppressed.\n",
+      "type": "string"
+    },
+    "status": {
+      "description": "The status of this suppression",
+      "enum": [
+        "SUPPRESS",
+        "UNSUPPRESS"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "provider_subscription_id",
+    "provider_subject_id",
+    "status"
+  ],
+  "type": "object"
+}

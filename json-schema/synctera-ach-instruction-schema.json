@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ach_instruction",
+  "title": "ach_instruction",
+  "properties": {
+    "request": {
+      "$ref": "#/components/schemas/outgoing_ach_request"
+    },
+    "type": {
+      "enum": [
+        "ACH"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "request"
+  ],
+  "type": "object"
+}

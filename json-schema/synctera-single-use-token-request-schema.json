@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/single_use_token_request",
+  "title": "single_use_token_request",
+  "properties": {
+    "account_id": {
+      "description": "The ID of the account to which the token will be linked",
+      "example": "9aea04bb-b7c7-46b5-817d-1af05e6b22f2",
+      "format": "uuid",
+      "type": "string"
+    },
+    "customer_id": {
+      "description": "The ID of the customer to whom the token will be issued",
+      "example": "e167fa0d-ee40-4a6e-b1ba-f61593fd254e",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "customer_id",
+    "account_id"
+  ],
+  "type": "object"
+}

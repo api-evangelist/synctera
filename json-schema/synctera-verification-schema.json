@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verification",
+  "title": "verification",
+  "allOf": [
+    {
+      "required": [
+        "verification_type",
+        "verification_time",
+        "result"
+      ]
+    },
+    {
+      "properties": {
+        "business_id": {
+          "$ref": "#/components/schemas/business_id5"
+        },
+        "creation_time": {
+          "description": "The date and time the resource was created.",
+          "example": "2021-06-14T11:23:41Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "details": {
+          "$ref": "#/components/schemas/details"
+        },
+        "id": {
+          "description": "Unique ID for this verification result.",
+          "example": "379b0b05-bb49-4812-a9c9-3efe72df042f",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "last_updated_time": {
+          "description": "The date and time the resource was last updated.",
+          "example": "2022-01-18T17:54:12Z",
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/metadata"
+        },
+        "person_id": {
+          "$ref": "#/components/schemas/person_id"
+        },
+        "result": {
+          "$ref": "#/components/schemas/verification_result"
+        },
+        "vendor_info": {
+          "$ref": "#/components/schemas/vendor_info"
+        },
+        "verification_time": {
+          "description": "The date and time the verification was completed.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "verification_type": {
+          "$ref": "#/components/schemas/verification_type1"
+        }
+      },
+      "type": "object"
+    }
+  ],
+  "description": "Verification result.",
+  "type": "object"
+}

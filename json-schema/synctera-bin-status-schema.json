@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_status",
+  "title": "bin_status",
+  "description": "Bin status",
+  "enum": [
+    "ACTIVE",
+    "INACTIVE"
+  ],
+  "type": "string"
+}

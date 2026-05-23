@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/posted_transaction_data",
+  "title": "posted_transaction_data",
+  "properties": {
+    "external_data": {
+      "$ref": "#/components/schemas/external_data"
+    },
+    "force_post": {
+      "description": "Whether or not the hold was forced (spending controls ignored)",
+      "type": "boolean"
+    },
+    "hold_id": {
+      "description": "The uuid of the hold (pending transaction) that this transaction originated from, if any.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "lines": {
+      "description": "The set of accounting entries associated with this transaction. For example, a debit to a customer account will have a corresponding credit in a general ledger account.",
+      "items": {
+        "$ref": "#/components/schemas/transaction_line1"
+      },
+      "type": "array"
+    },
+    "memo": {
+      "description": "A short note to the recipient",
+      "type": "string"
+    },
+    "metadata": {
+      "nullable": true,
+      "type": "object"
+    },
+    "original_trx": {
+      "description": "The \"original\" transaction that this transaction is related to. This is only populated in the case of reversed transactions.",
+      "format": "uuid",
+      "type": "string"
+    },
+    "risk_info": {
+      "$ref": "#/components/schemas/risk_info"
+    },
+    "user_data": {
+      "description": "An unstructured JSON blob representing additional transaction information specific to each payment rail.",
+      "nullable": true,
+      "type": "object"
+    }
+  },
+  "required": [
+    "memo",
+    "user_data",
+    "external_data",
+    "risk_info",
+    "metadata",
+    "lines",
+    "force_post"
+  ],
+  "type": "object"
+}

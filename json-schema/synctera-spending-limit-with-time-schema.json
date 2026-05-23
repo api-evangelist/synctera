@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/spending_limit_with_time",
+  "title": "spending_limit_with_time",
+  "description": "Limit over a specific time period.",
+  "properties": {
+    "amount": {
+      "description": "Maximum amount allowed within the time range. Unit in cents.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "transactions": {
+      "description": "Maximum number of transactions allowed within the time range",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

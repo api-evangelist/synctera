@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balance_ceiling",
+  "title": "balance_ceiling",
+  "properties": {
+    "balance": {
+      "description": "Maximum balance in the account's currency. Unit in cents.",
+      "format": "int64",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "linked_account_id": {
+      "description": "ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance ceiling\n",
+      "format": "uuid",
+      "type": "string"
+    },
+    "overflow_account_id": {
+      "deprecated": true,
+      "description": "ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance ceiling\nThis attribute is a deprecated alias for linked_account_id.\n",
+      "format": "uuid",
+      "type": "string"
+    }
+  },
+  "required": [
+    "balance"
+  ],
+  "type": "object"
+}

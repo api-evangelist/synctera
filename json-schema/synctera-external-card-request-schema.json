@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/external_card_request",
+  "title": "external_card_request",
+  "properties": {
+    "business_id": {
+      "$ref": "#/components/schemas/business_id"
+    },
+    "customer_id": {
+      "$ref": "#/components/schemas/customer_id1"
+    },
+    "token": {
+      "description": "The token that was returned via tokenization iframe",
+      "type": "string"
+    }
+  },
+  "required": [
+    "token",
+    "customer_id"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/prospect_editable",
+  "title": "Prospect",
+  "properties": {
+    "first_name": {
+      "description": "First Name",
+      "example": "John",
+      "type": "string"
+    },
+    "last_name": {
+      "description": "Last Name",
+      "example": "Smith",
+      "type": "string"
+    },
+    "metadata": {
+      "description": "Client supplied json metadata to be stored with the prospect",
+      "example": "{'foo':'bar'}",
+      "type": "string"
+    },
+    "source": {
+      "description": "Source of prospect",
+      "example": "email",
+      "type": "string"
+    },
+    "status": {
+      "$ref": "#/components/schemas/prospect_status",
+      "readOnly": false
+    }
+  },
+  "type": "object"
+}

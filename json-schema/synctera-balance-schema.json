@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balance",
+  "title": "balance",
+  "properties": {
+    "balance": {
+      "description": "balance in ISO 4217 minor currency units. Unit in cents.",
+      "example": 43,
+      "format": "int64",
+      "readOnly": true,
+      "type": "integer"
+    },
+    "type": {
+      "$ref": "#/components/schemas/balance_type"
+    }
+  },
+  "required": [
+    "type",
+    "balance"
+  ],
+  "type": "object"
+}

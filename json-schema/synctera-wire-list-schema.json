@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/wire_list",
+  "title": "Wire List",
+  "allOf": [
+    {
+      "properties": {
+        "wires": {
+          "description": "Array of wires",
+          "items": {
+            "$ref": "#/components/schemas/wire"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "wires"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

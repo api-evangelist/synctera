@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verify_response",
+  "title": "verify_response",
+  "allOf": [
+    {
+      "properties": {
+        "verification_status": {
+          "$ref": "#/components/schemas/verification_status"
+        },
+        "verifications": {
+          "description": "Array of verification results.",
+          "items": {
+            "$ref": "#/components/schemas/verification"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "verification_status",
+        "verifications"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

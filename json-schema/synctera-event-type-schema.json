@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_type",
+  "title": "event_type",
+  "description": "The reason for issuing/re-issuing a card",
+  "enum": [
+    "usertransition",
+    "businesstransition",
+    "cardtransition",
+    "transaction",
+    "digitalwallettokentransition",
+    "chargebacktransition",
+    "commandomodetransition",
+    "casetransition",
+    "directdeposittransition",
+    "banktransfertransition"
+  ],
+  "type": "string"
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ext_account_customer_type",
+  "title": "ext_account_customer_type",
+  "description": "The type of customer in the external financial institution. _Not_ necessarily the customer type on Synctera's platform: a business customer might link to the owner's personal account at an external financial institution.\n",
+  "enum": [
+    "PERSONAL",
+    "BUSINESS"
+  ],
+  "type": "string"
+}

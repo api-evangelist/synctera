@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/financial_request_model",
+  "title": "financial_request_model",
+  "properties": {
+    "amount": {
+      "description": "The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "card_acceptor": {
+      "$ref": "#/components/schemas/card_acceptor_model"
+    },
+    "card_id": {
+      "format": "uuid",
+      "type": "string"
+    },
+    "cash_back_amount": {
+      "description": "Cash back amount in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "is_pre_auth": {
+      "default": false,
+      "type": "boolean"
+    },
+    "mid": {
+      "maxLength": 50,
+      "minLength": 1,
+      "type": "string"
+    },
+    "pin": {
+      "maxLength": 15,
+      "minLength": 1,
+      "type": "string"
+    },
+    "transaction_options": {
+      "$ref": "#/components/schemas/transaction_options"
+    }
+  },
+  "required": [
+    "amount",
+    "card_acceptor",
+    "card_id",
+    "mid"
+  ],
+  "type": "object"
+}

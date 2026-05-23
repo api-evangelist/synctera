@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_routing",
+  "title": "Routing information for the account",
+  "properties": {
+    "ach_routing_number": {
+      "description": "The routing number used for US ACH payments. Only appears if `bank_countries` contains `US`. Value may be masked, in which case only the last four digits are returned.\n",
+      "example": "756392185",
+      "type": "string"
+    },
+    "bank_countries": {
+      "description": "The countries that this bank operates the account in",
+      "items": {
+        "enum": [
+          "US",
+          "CA"
+        ],
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "bank_name": {
+      "description": "The name of the bank managing the account",
+      "example": "Chase",
+      "type": "string"
+    },
+    "eft_routing_number": {
+      "description": "The routing number used for EFT payments, identifying a Canadian bank, consisting of the institution number and the branch number. Only appears if `bank_countries` contains `CA`. Value may be masked, in which case only the last four digits are returned.\n",
+      "example": "02101140",
+      "type": "string"
+    },
+    "swift_code": {
+      "description": "The SWIFT code for the bank. Value may be masked, in which case only the last four characters are returned.\n",
+      "example": "CHASUS3AXXX",
+      "type": "string"
+    },
+    "wire_routing_number": {
+      "description": "The routing number used for domestic wire payments. Only appears if `bank_countries` contains `US`. Value may be masked, in which case only the last four digits are returned.\n",
+      "example": "756392185",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bank_name",
+    "bank_countries"
+  ],
+  "type": "object"
+}

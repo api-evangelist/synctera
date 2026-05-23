@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/alias_list",
+  "title": "alias_list",
+  "properties": {
+    "aliases": {
+      "description": "Array of account alias",
+      "items": {
+        "$ref": "#/components/schemas/alias"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "aliases"
+  ],
+  "type": "object"
+}

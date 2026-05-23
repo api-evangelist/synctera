@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/google_digital_wallet_provision_response",
+  "title": "google_digital_wallet_provision_response",
+  "properties": {
+    "card_id": {
+      "$ref": "#/components/schemas/card_id"
+    },
+    "created_time": {
+      "example": "Sat Feb 26 2022 07:31:38 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "last_modified_time": {
+      "example": "Tue Nov 23 2021 12:04:53 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "push_tokenize_request_data": {
+      "$ref": "#/components/schemas/push_tokenize_request_data"
+    }
+  },
+  "type": "object"
+}

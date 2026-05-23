@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/get_viral_loop_waitlists",
+  "title": "get_viral_loop_waitlists",
+  "description": "Get Viral Loop Waitlists",
+  "properties": {
+    "lead_count": {
+      "description": "total number of leads/people on the waitlist",
+      "minimum": 0,
+      "readOnly": true,
+      "type": "integer"
+    }
+  },
+  "type": "object"
+}

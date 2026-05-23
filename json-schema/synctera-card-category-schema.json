@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_category",
+  "title": "card_category",
+  "description": "The category of the card",
+  "enum": [
+    "CONSUMER",
+    "COMMERCIAL"
+  ],
+  "type": "string"
+}

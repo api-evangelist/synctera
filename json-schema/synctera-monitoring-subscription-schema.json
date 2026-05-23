@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/monitoring_subscription",
+  "title": "monitoring_subscription",
+  "properties": {
+    "business_id": {
+      "$ref": "#/components/schemas/business_id3"
+    },
+    "creation_time": {
+      "description": "The date and time the resource was created.",
+      "example": "2021-06-14T14:15:22Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for this subscription.",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_updated_time": {
+      "description": "The date and time the resource was last update.",
+      "example": "2021-12-14T07:15:34Z",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    },
+    "person_id": {
+      "$ref": "#/components/schemas/person_id"
+    }
+  },
+  "type": "object"
+}

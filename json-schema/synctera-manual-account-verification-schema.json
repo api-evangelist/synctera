@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/manual_account_verification",
+  "title": "Information specific to Manual verification",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/base_account_verification"
+    }
+  ]
+}

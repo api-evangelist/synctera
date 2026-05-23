@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_list",
+  "title": "template_list",
+  "allOf": [
+    {
+      "properties": {
+        "account_templates": {
+          "description": "Array of account templates",
+          "items": {
+            "$ref": "#/components/schemas/account_template_response"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "account_templates"
+      ],
+      "type": "object"
+    },
+    {
+      "$ref": "#/components/schemas/paginated_response"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_address",
+  "title": "billing_address",
+  "properties": {
+    "address": {
+      "type": "string"
+    },
+    "compressed_zip": {
+      "type": "string"
+    },
+    "first_name": {
+      "type": "string"
+    },
+    "last_name": {
+      "type": "string"
+    },
+    "zip": {
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/id",
+  "title": "id",
+  "description": "The unique identifier for this resource.",
+  "example": "b0888080-7759-40ae-b82b-5864ced6ad36",
+  "format": "uuid",
+  "readOnly": true,
+  "type": "string"
+}

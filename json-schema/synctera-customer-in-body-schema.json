@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer_in_body",
+  "title": "customer_in_body",
+  "discriminator": {
+    "mapping": {
+      "ACTIVE": "#/components/schemas/customer",
+      "DECEASED": "#/components/schemas/customer",
+      "DENIED": "#/components/schemas/customer",
+      "DORMANT": "#/components/schemas/customer",
+      "ESCHEAT": "#/components/schemas/customer",
+      "FROZEN": "#/components/schemas/customer",
+      "INACTIVE": "#/components/schemas/customer",
+      "PROSPECT": "#/components/schemas/prospect",
+      "SANCTION": "#/components/schemas/customer"
+    },
+    "propertyName": "status"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/customer"
+    },
+    {
+      "$ref": "#/components/schemas/prospect"
+    }
+  ],
+  "type": "object"
+}

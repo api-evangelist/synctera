@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_status_reason_memo",
+  "title": "card_status_reason_memo",
+  "description": "Additional details about the reason for the status change",
+  "maxLength": 255,
+  "type": "string"
+}

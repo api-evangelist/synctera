@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/emboss_name",
+  "title": "emboss_name",
+  "description": "The customer details to emboss on the card - Defaults to customer first and last name. Is limited to 21 characters. Valid characters are A-Z, a-z, 0-9, space ( ), period (.), comma (,), forward slash (/), hyphen (-), ampersand (&), single quote (').",
+  "properties": {
+    "line_1": {
+      "description": "line 1",
+      "example": "Krystal Bosco DVM",
+      "type": "string"
+    },
+    "line_2": {
+      "description": "line 2",
+      "example": "Lesch, Schimmel and Green",
+      "type": "string"
+    }
+  },
+  "required": [
+    "line_1"
+  ],
+  "type": "object"
+}

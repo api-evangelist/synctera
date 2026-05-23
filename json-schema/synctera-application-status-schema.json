@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_status",
+  "title": "Application Status",
+  "description": "Status of the credit application\n",
+  "enum": [
+    "APPLICATION_SUBMITTED",
+    "CREDIT_APPROVED",
+    "CREDIT_DENIED",
+    "CREDIT_NOT_ACCEPTED_BY_CUSTOMER",
+    "CREDIT_ACCEPTED_BY_CUSTOMER"
+  ],
+  "type": "string",
+  "x-enumDescriptions": [
+    {
+      "APPLICATION_SUBMITTED": "Credit application has been submitted"
+    },
+    {
+      "CREDIT_APPROVED": "Credit application has been approved"
+    },
+    {
+      "CREDIT_DENIED": "Credit application has been denied"
+    },
+    {
+      "CREDIT_NOT_ACCEPTED_BY_CUSTOMER": "Credit application has not been accepted by the customer"
+    },
+    {
+      "CREDIT_ACCEPTED_BY_CUSTOMER": "Credit application has been accepted by the customer"
+    }
+  ]
+}

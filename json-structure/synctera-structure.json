@@ -1,0 +1,5144 @@
+{
+  "provider": "Synctera",
+  "providerId": "synctera",
+  "kind": "json-structure",
+  "description": "Structural overview of the Synctera API surface; extracted from openapi/.",
+  "schemaCount": 457,
+  "operationCount": 174,
+  "schemas": [
+    {
+      "name": "account",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_access_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_base",
+      "type": "object",
+      "propertyCount": 25,
+      "required": []
+    },
+    {
+      "name": "account_creation",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_depository",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_generic_response",
+      "type": "object",
+      "propertyCount": 39,
+      "required": []
+    },
+    {
+      "name": "account_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_id_query_schema",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_identifiers",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "number"
+      ]
+    },
+    {
+      "name": "account_line_of_credit",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_product",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_product_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_range",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "bank_id",
+        "partner_id",
+        "bin_id",
+        "account_range"
+      ]
+    },
+    {
+      "name": "account_range_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_range_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "bank_id",
+        "partner_id",
+        "bin_id",
+        "account_range",
+        "is_tokenization_enabled",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "account_range_response_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_range_update_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "account_relationship_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_routing",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "bank_name",
+        "bank_countries"
+      ]
+    },
+    {
+      "name": "account_summary",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "account_template",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "is_enabled",
+        "template"
+      ]
+    },
+    {
+      "name": "account_template_response",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "is_enabled",
+        "template"
+      ]
+    },
+    {
+      "name": "account_to_account_transfer_request",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "uuid",
+        "source_account_no",
+        "source_account_alias",
+        "dest_account_no",
+        "dest_account_alias",
+        "type",
+        "subtype",
+        "amount",
+        "currency",
+        "effective_date",
+        "memo",
+        "user_data",
+        "external_data"
+      ]
+    },
+    {
+      "name": "account_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_verification",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "accrual_payout_schedule",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ach_instruction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "request"
+      ]
+    },
+    {
+      "name": "ach_request_hold_data",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "amount",
+        "duration"
+      ]
+    },
+    {
+      "name": "add_accounts_request",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "type",
+        "customer_type",
+        "account_owner_names",
+        "routing_identifiers",
+        "account_identifiers"
+      ]
+    },
+    {
+      "name": "add_accounts_request_account_identifiers",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "number"
+      ]
+    },
+    {
+      "name": "add_accounts_request_routing_identifiers",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "bank_name",
+        "bank_countries",
+        "ach_routing_number"
+      ]
+    },
+    {
+      "name": "add_vendor_account_failure",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "vendor_account_id",
+        "reason",
+        "reason_description"
+      ]
+    },
+    {
+      "name": "add_vendor_accounts_error_reason",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "add_vendor_accounts_request",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "customer_type",
+        "vendor"
+      ]
+    },
+    {
+      "name": "add_vendor_accounts_response",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "added_accounts",
+        "failed_accounts"
+      ]
+    },
+    {
+      "name": "additional_data",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "title"
+      ]
+    },
+    {
+      "name": "additional_owner_data",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "percent_ownership"
+      ]
+    },
+    {
+      "name": "address",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "address_line_1",
+        "country_code"
+      ]
+    },
+    {
+      "name": "address1",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "address_line_1",
+        "city",
+        "state",
+        "country_code",
+        "postal_code"
+      ]
+    },
+    {
+      "name": "address2",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "adhoc_verification_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "payer_id",
+        "payee_id"
+      ]
+    },
+    {
+      "name": "adhoc_verification_response",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id",
+        "matching_watchlists",
+        "result"
+      ]
+    },
+    {
+      "name": "alias",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "alias_list",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "aliases"
+      ]
+    },
+    {
+      "name": "apple_digital_wallet_provision_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "device_type",
+        "provisioning_app_version",
+        "certificates",
+        "nonce",
+        "nonce_signature"
+      ]
+    },
+    {
+      "name": "apple_digital_wallet_provision_response",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "application",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "customer_id",
+        "application_details",
+        "type"
+      ]
+    },
+    {
+      "name": "application_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "application_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "application_patch",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "application_request",
+      "type": "object",
+      "propertyCount": 22,
+      "required": [
+        "processor",
+        "business_name",
+        "doing_business_as",
+        "business_type",
+        "business_tax_id",
+        "business_phone",
+        "business_address",
+        "max_transaction_amount",
+        "bank_id",
+        "partner_id",
+        "enabled"
+      ]
+    },
+    {
+      "name": "application_response",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "customer_id",
+        "application_details",
+        "type",
+        "status",
+        "id",
+        "creation_time",
+        "last_updated_time"
+      ]
+    },
+    {
+      "name": "application_response1",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "created_time",
+        "last_modified_time",
+        "processor",
+        "enabled"
+      ]
+    },
+    {
+      "name": "application_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "application_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "application_type1",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "application_update_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "auth_request_model",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "amount",
+        "card_id",
+        "mid"
+      ]
+    },
+    {
+      "name": "authorization_advice_model",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "amount",
+        "original_transaction_id"
+      ]
+    },
+    {
+      "name": "balance",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "balance"
+      ]
+    },
+    {
+      "name": "balance_ceiling",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "balance"
+      ]
+    },
+    {
+      "name": "balance_floor",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "balance"
+      ]
+    },
+    {
+      "name": "balance_inquiry_request_model",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "account_type",
+        "card_acceptor",
+        "card_id",
+        "mid"
+      ]
+    },
+    {
+      "name": "balance_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ban_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bank_debit_network_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "base",
+      "type": "object",
+      "propertyCount": 18,
+      "required": []
+    },
+    {
+      "name": "base_account_verification",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "status",
+        "vendor"
+      ]
+    },
+    {
+      "name": "base_card",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "base_disclosure",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "base_master_disclosure",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "base_person",
+      "type": "object",
+      "propertyCount": 16,
+      "required": []
+    },
+    {
+      "name": "base_person1",
+      "type": "object",
+      "propertyCount": 19,
+      "required": []
+    },
+    {
+      "name": "base_statement",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "base_template_fields",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "account_type",
+        "currency",
+        "bank_country"
+      ]
+    },
+    {
+      "name": "billing_address",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "billing_period",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "start_date",
+        "frequency"
+      ]
+    },
+    {
+      "name": "bin",
+      "type": "object",
+      "propertyCount": 23,
+      "required": [
+        "bank_id",
+        "partner_id",
+        "bin",
+        "processor",
+        "card_brand",
+        "card_category",
+        "card_product_type",
+        "ica_bid",
+        "country",
+        "currency",
+        "account_range_length",
+        "billing_ica",
+        "brand_product_code",
+        "pan_utilization"
+      ]
+    },
+    {
+      "name": "bin_and_debit_network",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "bin",
+        "debit_network",
+        "bank_network_id"
+      ]
+    },
+    {
+      "name": "bin_and_debit_network_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bin_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bin_network_mapping",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "bin_id",
+        "network_id",
+        "active",
+        "bank_network_id"
+      ]
+    },
+    {
+      "name": "bin_network_mapping_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "bin_id",
+        "network_id",
+        "active",
+        "bank_network_id",
+        "start_date",
+        "end_date",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "bin_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "bank_id",
+        "partner_id",
+        "bin",
+        "processor",
+        "card_brand",
+        "card_category",
+        "card_product_type",
+        "is_tokenization_enabled",
+        "ica_bid",
+        "country",
+        "currency",
+        "bin_status",
+        "account_range_length",
+        "billing_ica",
+        "brand_product_code",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "bin_response_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bin_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bin_update_request",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "brand_product_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_business_owner_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id1",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id2",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id3",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id4",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_id5",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "business1",
+      "type": "object",
+      "propertyCount": 14,
+      "required": []
+    },
+    {
+      "name": "calculation_method",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_acceptor_model",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "card_activation_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "activation_code",
+        "customer_id"
+      ]
+    },
+    {
+      "name": "card_brand",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_category",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_change",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "change_type",
+        "state",
+        "channel",
+        "updated_at",
+        "updated_by"
+      ]
+    },
+    {
+      "name": "card_change_state",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_changes_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_edit_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "card_format",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "form"
+      ]
+    },
+    {
+      "name": "card_fulfillment_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_image_details",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "id",
+        "status",
+        "customer_id",
+        "card_product_id"
+      ]
+    },
+    {
+      "name": "card_image_details_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_image_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_image_mode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_image_rejection_reason",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_image_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_issuance_request",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_metadata",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_options",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "card_pin",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "card_pin_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product_internal",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "name",
+        "card_program_id",
+        "active",
+        "form",
+        "start_date",
+        "digital_wallet_tokenization",
+        "end_date",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "card_product_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_product_update_request",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "card_program",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "name",
+        "bank_id",
+        "partner_id",
+        "card_brand",
+        "card_category",
+        "card_product_type"
+      ]
+    },
+    {
+      "name": "card_program_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_program_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "name",
+        "bank_id",
+        "partner_id",
+        "card_brand",
+        "card_category",
+        "card_product_type",
+        "active",
+        "start_date",
+        "end_date",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "card_program_response_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_program_update_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "card_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_status_object",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "card_status"
+      ]
+    },
+    {
+      "name": "card_status_reason_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_status_reason_memo",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_status_request",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_widget_url_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "change_channel",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "change_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "clearing_model",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "amount",
+        "original_transaction_id"
+      ]
+    },
+    {
+      "name": "client_token",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "contest_ach",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "country_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "create_card_image_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "customer_id",
+        "card_product_id"
+      ]
+    },
+    {
+      "name": "create_gateway_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "url",
+        "card_products"
+      ]
+    },
+    {
+      "name": "create_webhook_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "currency_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "custom_headers",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "customer",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_alias",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "customer_alias_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_id1",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_in_body",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_kyc_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_verification",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "customer_consent"
+      ]
+    },
+    {
+      "name": "customer_verification_result",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "verification_type",
+        "result",
+        "verification_time"
+      ]
+    },
+    {
+      "name": "customer_verification_result_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer_verify_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "dc_sign",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "debit_network",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "debit_network_create_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "debit_network_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "debit_network_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "name",
+        "active",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "debit_network_response_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "delete_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "deposit",
+      "type": "object",
+      "propertyCount": 17,
+      "required": [
+        "id",
+        "account_id",
+        "transaction_id",
+        "check_amount",
+        "deposit_currency",
+        "status",
+        "deposit_amount",
+        "date_processed",
+        "date_captured",
+        "front_image_id",
+        "back_image_id",
+        "vendor_info"
+      ]
+    },
+    {
+      "name": "deposit_feedback",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "deposit_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "detail",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "details",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "device_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "digital_wallet_token_address_verification",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "digital_wallet_token_edit_request",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "token_status"
+      ]
+    },
+    {
+      "name": "digital_wallet_token_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "digital_wallet_token_response",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "digital_wallet_token_state",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "digital_wallet_tokenization",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "disclosure",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "disclosure_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "disclosure_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "disclosure_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "disclosure1",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "type",
+        "version",
+        "timestamp",
+        "event_type"
+      ]
+    },
+    {
+      "name": "dishonor_ach",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "document",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "document_creation",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "file"
+      ]
+    },
+    {
+      "name": "document_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "emboss_name",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "line_1"
+      ]
+    },
+    {
+      "name": "employment",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "employer_name"
+      ]
+    },
+    {
+      "name": "employment_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "encryption",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "enhanced_transaction",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "environment",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "error",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "event",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "event_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "event_resend",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "event_type",
+        "event_id"
+      ]
+    },
+    {
+      "name": "event_trigger",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "event_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "event_type_explicit",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "event_type_wildcard",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "event_type1",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ext_account_customer_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_account",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "account_owner_names",
+        "status",
+        "type",
+        "routing_identifiers",
+        "account_identifiers",
+        "verification",
+        "creation_time",
+        "last_updated_time"
+      ]
+    },
+    {
+      "name": "external_account_access_token",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "vendor_public_token",
+        "vendor_institution_id"
+      ]
+    },
+    {
+      "name": "external_account_balance",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "currency"
+      ]
+    },
+    {
+      "name": "external_account_link_token",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "client_name",
+        "language",
+        "country_codes",
+        "type"
+      ]
+    },
+    {
+      "name": "external_account_transaction",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "external_account_vendor_data",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "external_account_vendor_values",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_accounts_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_accounts_transaction_list",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "transactions"
+      ]
+    },
+    {
+      "name": "external_card_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_card_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_card_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "token",
+        "customer_id"
+      ]
+    },
+    {
+      "name": "external_card_response",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "id",
+        "currency",
+        "customer_id",
+        "expiration_month",
+        "expiration_year",
+        "last_four",
+        "name"
+      ]
+    },
+    {
+      "name": "external_card_verifications",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "external_data",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "external_payment_date",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "day",
+        "month",
+        "year"
+      ]
+    },
+    {
+      "name": "fee",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "product_type",
+        "fee_type",
+        "amount",
+        "currency"
+      ]
+    },
+    {
+      "name": "financial_institution",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "financial_request_model",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "amount",
+        "card_acceptor",
+        "card_id",
+        "mid"
+      ]
+    },
+    {
+      "name": "finicity_account_verification",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "form",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "fulfillment_details",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "funding_source",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "funding_source_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "id",
+        "url",
+        "name"
+      ]
+    },
+    {
+      "name": "funding_source_response_list",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "funding_sources"
+      ]
+    },
+    {
+      "name": "gateway_custom_headers",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "gateway_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "gateway_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "gateway_response",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "active",
+        "url",
+        "card_products",
+        "creation_time",
+        "last_modified_time"
+      ]
+    },
+    {
+      "name": "get_viral_loop_waitlists",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "google_digital_wallet_provision_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "device_type",
+        "provisioning_app_version",
+        "wallet_account_id",
+        "device_id"
+      ]
+    },
+    {
+      "name": "google_digital_wallet_provision_response",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "hold_cancel_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "account_no",
+        "reason",
+        "user_data",
+        "external_data",
+        "risk_info",
+        "reference_id"
+      ]
+    },
+    {
+      "name": "hold_create_request",
+      "type": "object",
+      "propertyCount": 22,
+      "required": [
+        "type",
+        "subtype",
+        "amount",
+        "dc_sign",
+        "expires_at",
+        "effective_date",
+        "currency",
+        "account_no",
+        "user_data",
+        "external_data",
+        "allow_partial",
+        "force_post",
+        "network",
+        "reference_id",
+        "memo",
+        "auto_post_at",
+        "status",
+        "decline_reason",
+        "transaction_time"
+      ]
+    },
+    {
+      "name": "hold_data",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "amount",
+        "availability_time"
+      ]
+    },
+    {
+      "name": "hold_decline_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "account_no",
+        "reason",
+        "user_data",
+        "external_data",
+        "risk_info",
+        "reference_id"
+      ]
+    },
+    {
+      "name": "hold_modify_request",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "subtype",
+        "account_no",
+        "amount",
+        "expires_at",
+        "effective_date",
+        "allow_partial",
+        "user_data",
+        "external_data",
+        "risk_info",
+        "force_post"
+      ]
+    },
+    {
+      "name": "hold_patch_request",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "user_data",
+        "risk_info",
+        "external_data",
+        "expires_at",
+        "auto_post_at",
+        "reference_id",
+        "enhanced_transaction"
+      ]
+    },
+    {
+      "name": "hold_posting_request",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "subtype",
+        "account_no",
+        "amount",
+        "hold_amount",
+        "effective_date",
+        "user_data",
+        "external_data",
+        "risk_info"
+      ]
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "id_list_query_schema",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "in_app_provisioning",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "ingestion_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "interest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "product_type",
+        "calculation_method",
+        "rates",
+        "accrual_payout_schedule"
+      ]
+    },
+    {
+      "name": "internal_account",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "status",
+        "currency"
+      ]
+    },
+    {
+      "name": "internal_account_patch",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "internal_accounts_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "internal_transfer",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "amount",
+        "currency",
+        "type"
+      ]
+    },
+    {
+      "name": "internal_transfer_instruction",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "type",
+        "request"
+      ]
+    },
+    {
+      "name": "internal_transfer_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "is_customer",
+      "type": "boolean",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "manual_account_verification",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "manual_entry",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "master_disclosure",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "master_disclosure_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "metadata",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "minimum_payment",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "minimum_payment_rate_or_amount",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "rate",
+        "min_amount"
+      ]
+    },
+    {
+      "name": "minimum_payment_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "monitoring_alert",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "monitoring_alert_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "monitoring_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "monitoring_subscription",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "monitoring_subscription_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "network_fee_model",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "type",
+        "amount"
+      ]
+    },
+    {
+      "name": "original_credit_request_model",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "amount",
+        "card_id",
+        "mid",
+        "type"
+      ]
+    },
+    {
+      "name": "original_credit_sender_data",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "funding_source"
+      ]
+    },
+    {
+      "name": "originating_account_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "outgoing_ach",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "bank_id",
+        "partner_id",
+        "external_id",
+        "account_no",
+        "amount",
+        "source_account_no",
+        "is_same_day",
+        "effective_date",
+        "trace_no",
+        "status",
+        "memo"
+      ]
+    },
+    {
+      "name": "outgoing_ach_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "outgoing_ach_patch",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "outgoing_ach_request",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "customer_id",
+        "amount",
+        "currency",
+        "receiving_account_id",
+        "dc_sign",
+        "originating_account_id"
+      ]
+    },
+    {
+      "name": "paginated_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "patch_account_product",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_accounts_request_account_identifiers",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "patch_accounts_request_routing_identifiers",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "patch_ban_status",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "ban_status"
+      ]
+    },
+    {
+      "name": "patch_business",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_business_business_owner_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_customer",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "patch_document",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "patch_external_account",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "patch_interest",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "product_type"
+      ]
+    },
+    {
+      "name": "patch_payment_schedule",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "patch_person",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_person_business_owner_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_person_business_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch_relationship_in",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "payment_date",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "scheduled_date",
+        "execution_date"
+      ]
+    },
+    {
+      "name": "payment_error_details",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "payment_instruction",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_schedule",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "description",
+        "schedule",
+        "payment_instruction"
+      ]
+    },
+    {
+      "name": "payment_schedule_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_schedule_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "pending_transaction",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "uuid",
+        "tenant",
+        "idemkey",
+        "account_no",
+        "account_id",
+        "created",
+        "updated",
+        "data",
+        "reference_id",
+        "offset_account_no",
+        "offset_account_id"
+      ]
+    },
+    {
+      "name": "pending_transaction_data",
+      "type": "object",
+      "propertyCount": 27,
+      "required": [
+        "memo",
+        "type",
+        "subtype",
+        "operation",
+        "idemkey",
+        "expires_at",
+        "effective_date",
+        "total_amount",
+        "amount",
+        "req_amount",
+        "dc_sign",
+        "currency",
+        "network",
+        "was_partial",
+        "force_post",
+        "status",
+        "reason",
+        "balance",
+        "avail_balance",
+        "available_balance",
+        "auto_post_at",
+        "risk_info",
+        "user_data",
+        "external_data",
+        "history",
+        "transaction_time"
+      ]
+    },
+    {
+      "name": "pending_transaction_history",
+      "type": "object",
+      "propertyCount": 12,
+      "required": [
+        "id",
+        "uuid",
+        "tenant",
+        "idemkey",
+        "account_no",
+        "account_id",
+        "created",
+        "updated",
+        "data",
+        "reference_id",
+        "offset_account_no",
+        "offset_account_id"
+      ]
+    },
+    {
+      "name": "pending_transaction_history_data",
+      "type": "object",
+      "propertyCount": 26,
+      "required": [
+        "memo",
+        "type",
+        "subtype",
+        "operation",
+        "idemkey",
+        "expires_at",
+        "effective_date",
+        "total_amount",
+        "amount",
+        "req_amount",
+        "dc_sign",
+        "currency",
+        "network",
+        "was_partial",
+        "force_post",
+        "status",
+        "reason",
+        "balance",
+        "avail_balance",
+        "available_balance",
+        "transaction_time",
+        "risk_info",
+        "user_data",
+        "external_data",
+        "auto_post_at"
+      ]
+    },
+    {
+      "name": "pending_transactions",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "next_page_token",
+        "result"
+      ]
+    },
+    {
+      "name": "person",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "person_business_owner_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "person_business_relationship",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "person_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "person_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "person1",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "physical_card",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "physical_card_format",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "physical_card_issuance_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "physical_card_plus_status",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "physical_card_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "physical_card_response_status",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ping_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "webhook_status"
+      ]
+    },
+    {
+      "name": "plaid_account_verification",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "posted_transaction",
+      "type": "object",
+      "propertyCount": 16,
+      "required": [
+        "id",
+        "uuid",
+        "tenant",
+        "idemkey",
+        "type",
+        "subtype",
+        "status",
+        "info_only",
+        "lead_mode",
+        "data",
+        "posted_date",
+        "effective_date",
+        "transaction_time",
+        "created",
+        "updated",
+        "reference_id"
+      ]
+    },
+    {
+      "name": "posted_transaction_data",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "memo",
+        "user_data",
+        "external_data",
+        "risk_info",
+        "metadata",
+        "lines",
+        "force_post"
+      ]
+    },
+    {
+      "name": "posted_transactions",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "next_page_token",
+        "result"
+      ]
+    },
+    {
+      "name": "prefill_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "processor",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "prospect",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "prospect_editable",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "prospect_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "prospect1",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "prospects_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "provider_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "provisioning_app_version",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "provisioning_controls",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "push_tokenize_request_data",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "quickstart_t10",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "partner_id",
+        "bank_id"
+      ]
+    },
+    {
+      "name": "quickstart_t10_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "card_program",
+        "card_products"
+      ]
+    },
+    {
+      "name": "rate_details",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "valid_from",
+        "rate",
+        "accrual_period"
+      ]
+    },
+    {
+      "name": "rates",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "raw_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "recipient_name",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "first_name",
+        "last_name"
+      ]
+    },
+    {
+      "name": "reconciliation",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "file_name",
+        "ingestion_status"
+      ]
+    },
+    {
+      "name": "reconciliation_input",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "file_name",
+        "byte_data"
+      ]
+    },
+    {
+      "name": "reconciliation_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "related_resource_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "relationship",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "relationship_type"
+      ]
+    },
+    {
+      "name": "relationship_in",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "relationship_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "relationship_role",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "relationship1",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id",
+        "relationship_role"
+      ]
+    },
+    {
+      "name": "relationships_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "resend_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "response_history_item",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "return_ach",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "type"
+      ]
+    },
+    {
+      "name": "reversal_model",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "amount",
+        "original_transaction_id"
+      ]
+    },
+    {
+      "name": "risk_data",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "risk_info",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "risk_rating",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "risk_rating_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "savings_summary",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "schedule_config",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "start_date",
+        "frequency",
+        "interval"
+      ]
+    },
+    {
+      "name": "shipping",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "simulate_card_fulfillment",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "card_fulfillment_status"
+      ]
+    },
+    {
+      "name": "simulation_response_model",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "single_use_token_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "customer_id",
+        "account_id"
+      ]
+    },
+    {
+      "name": "single_use_token_response",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "expires"
+      ]
+    },
+    {
+      "name": "socure_event_body",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "id",
+        "environmentName",
+        "event"
+      ]
+    },
+    {
+      "name": "socure_global_watchlist",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "matches"
+      ]
+    },
+    {
+      "name": "socure_match",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "entityId",
+        "status"
+      ]
+    },
+    {
+      "name": "socure_match_list",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "socure_matches",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "socure_reason_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "socure_watchlist_result",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "referenceId"
+      ]
+    },
+    {
+      "name": "spending_limit_with_time",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "spending_limits",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "ssn_source",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "statement",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "statement_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "statement_summary",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "status1",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "template_fields",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "template_fields_depository",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "template_fields_generic_response",
+      "type": "object",
+      "propertyCount": 18,
+      "required": [
+        "account_type",
+        "currency",
+        "bank_country"
+      ]
+    },
+    {
+      "name": "template_fields_line_of_credit",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "template_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "token_list",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "token_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": [
+        "digital_wallet_tokens"
+      ]
+    },
+    {
+      "name": "transaction",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "id",
+        "uuid",
+        "type",
+        "subtype",
+        "status",
+        "data",
+        "posted_date",
+        "effective_date"
+      ]
+    },
+    {
+      "name": "transaction_data",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "memo",
+        "lines"
+      ]
+    },
+    {
+      "name": "transaction_direct_post_request",
+      "type": "object",
+      "propertyCount": 21,
+      "required": [
+        "uuid",
+        "type",
+        "subtype",
+        "amount",
+        "account_no",
+        "account_alias",
+        "dc_sign",
+        "network",
+        "reference_id",
+        "currency",
+        "effective_date",
+        "force_post",
+        "user_data",
+        "external_data",
+        "memo",
+        "risk_info",
+        "info_only",
+        "transaction_time"
+      ]
+    },
+    {
+      "name": "transaction_line",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "uuid",
+        "account_no",
+        "account_id",
+        "amount",
+        "currency",
+        "dc_sign"
+      ]
+    },
+    {
+      "name": "transaction_line1",
+      "type": "object",
+      "propertyCount": 19,
+      "required": [
+        "uuid",
+        "account_no",
+        "account_id",
+        "tenant",
+        "amount",
+        "dc_sign",
+        "seq",
+        "is_primary",
+        "is_offset",
+        "is_fee",
+        "is_gl_acc",
+        "related_line",
+        "currency",
+        "network",
+        "meta",
+        "balance",
+        "available_balance",
+        "created",
+        "updated"
+      ]
+    },
+    {
+      "name": "transaction_options",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "transaction_reverse_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "user_data",
+        "reason",
+        "force_post",
+        "reference_id"
+      ]
+    },
+    {
+      "name": "transaction_update_meta_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "user_data",
+        "external_data"
+      ]
+    },
+    {
+      "name": "transfer_list_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "transfer_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "originating_account_id",
+        "amount",
+        "currency",
+        "type",
+        "external_card_id"
+      ]
+    },
+    {
+      "name": "transfer_response",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "account_id",
+        "id",
+        "amount",
+        "currency",
+        "status",
+        "customer_id",
+        "country_code",
+        "created_time",
+        "last_modified_time",
+        "type"
+      ]
+    },
+    {
+      "name": "transfer_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "txn_enhancer",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "update_card_image_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "status"
+      ]
+    },
+    {
+      "name": "update_gateway_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "update_transfer",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "user_data",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vendor_info",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vendor_info1",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vendor_json",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "vendor",
+        "content_type",
+        "json"
+      ]
+    },
+    {
+      "name": "vendor_xml",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "vendor",
+        "content_type",
+        "xml"
+      ]
+    },
+    {
+      "name": "verification",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_request",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_result",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_type1",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_vendor_info",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "verification_vendor_info_detail",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "verification_vendor_json",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "vendor",
+        "content_type",
+        "json"
+      ]
+    },
+    {
+      "name": "verification_vendor_xml",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "vendor",
+        "content_type",
+        "xml"
+      ]
+    },
+    {
+      "name": "verify_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "version",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "viral_loop_waitlists",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "id",
+        "viral_loop_api_token"
+      ]
+    },
+    {
+      "name": "virtual_card",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "virtual_card_issuance_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "virtual_card_plus_status",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "virtual_card_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "virtual_card_response_status",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "waitlist",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "waitlist_analytics",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "waitlist_analytics_list",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "waitlist_analytics"
+      ]
+    },
+    {
+      "name": "waitlist_editable",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "waitlists_list",
+      "type": "object",
+      "propertyCount": 0,
+      "required": [
+        "waitlists"
+      ]
+    },
+    {
+      "name": "wallet_provider_card_on_file",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "watchlist_alert",
+      "type": "object",
+      "propertyCount": 9,
+      "required": [
+        "status"
+      ]
+    },
+    {
+      "name": "watchlist_alert_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "watchlist_subscription",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "customer_consent"
+      ]
+    },
+    {
+      "name": "watchlist_subscription_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "watchlist_suppress",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "provider_subscription_id",
+        "provider_subject_id",
+        "status"
+      ]
+    },
+    {
+      "name": "webhook",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "url",
+        "enabled_events",
+        "is_enabled"
+      ]
+    },
+    {
+      "name": "webhook_config",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "webhook_event",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "webhook_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "webhook_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "webhook_response",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "widget_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "wire",
+      "type": "object",
+      "propertyCount": 13,
+      "required": [
+        "id",
+        "transaction_id",
+        "amount",
+        "status",
+        "currency",
+        "customer_id",
+        "originating_account_id",
+        "receiving_account_id",
+        "sender_reference_id",
+        "creation_time",
+        "last_updated_time"
+      ]
+    },
+    {
+      "name": "wire_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "wire_request",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "customer_id",
+        "originating_account_id",
+        "receiving_account_id",
+        "amount",
+        "currency"
+      ]
+    },
+    {
+      "name": "withdrawal_request_model",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "amount",
+        "card_id",
+        "mid"
+      ]
+    },
+    {
+      "name": "workspace",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "bank_id",
+        "partner_id",
+        "bank_name",
+        "partner_name",
+        "environment",
+        "verification_status",
+        "rank"
+      ]
+    },
+    {
+      "name": "workspace_list",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/accounts",
+      "operationId": "listAccounts",
+      "summary": "List accounts",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts",
+      "operationId": "createAccount",
+      "summary": "Create an account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/{account_id}",
+      "operationId": "getAccount",
+      "summary": "Get account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/accounts/{account_id}",
+      "operationId": "updateAccount",
+      "summary": "Update account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounts/{account_id}",
+      "operationId": "patchAccount",
+      "summary": "Patch account",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/{account_id}/relationships",
+      "operationId": "listAccountRelationship",
+      "summary": "List account relationships",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts/{account_id}/relationships",
+      "operationId": "createAccountRelationship",
+      "summary": "Create account relationship",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/{account_id}/relationships/{relationship_id}",
+      "operationId": "getAccountRelationship",
+      "summary": "Get account relationship",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/accounts/{account_id}/relationships/{relationship_id}",
+      "operationId": "updateAccountRelationship",
+      "summary": "Update account relationship",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounts/{account_id}/relationships/{relationship_id}",
+      "operationId": "DeleteAccountRelationship",
+      "summary": "Delete account relationship",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/products",
+      "operationId": "listAccountResourceProducts",
+      "summary": "List account products",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts/products",
+      "operationId": "createAccountResourceProduct",
+      "summary": "Create an account product",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/accounts/products/{product_id}",
+      "operationId": "patchAccountProduct",
+      "summary": "Patch account product",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/templates",
+      "operationId": "listAccountTemplates",
+      "summary": "List account templates",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/accounts/templates",
+      "operationId": "createAccountTemplate",
+      "summary": "Create an account template",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/accounts/templates/{template_id}",
+      "operationId": "getAccountTemplate",
+      "summary": "Get account template",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/accounts/templates/{template_id}",
+      "operationId": "updateAccountTemplate",
+      "summary": "Update account template",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/accounts/templates/{template_id}",
+      "operationId": "DeleteAccountTemplate",
+      "summary": "Delete account template",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ach",
+      "operationId": "listTransactionsOut",
+      "summary": "List sent ACH transactions",
+      "tags": [
+        "ACH"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/ach",
+      "operationId": "addTransactionOut",
+      "summary": "Send an ACH",
+      "tags": [
+        "ACH"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/ach/{transaction_id}",
+      "operationId": "getTransactionOut",
+      "summary": "Get a sent ACH transaction",
+      "tags": [
+        "ACH"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/ach/{transaction_id}",
+      "operationId": "patchTransactionOut",
+      "summary": "Update a sent ACH transaction",
+      "tags": [
+        "ACH"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications",
+      "operationId": "listApplications",
+      "summary": "List credit applications.",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/applications",
+      "operationId": "createApplication",
+      "summary": "Create a credit application.",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/applications/{application_id}",
+      "operationId": "getApplication",
+      "summary": "Get Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/applications/{application_id}",
+      "operationId": "patchApplication",
+      "summary": "Patch Application",
+      "tags": [
+        "Applications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/businesses",
+      "operationId": "listBusinesses",
+      "summary": "List business",
+      "tags": [
+        "Businesses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/businesses",
+      "operationId": "createBusiness",
+      "summary": "Create a business",
+      "tags": [
+        "Businesses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/businesses/{business_id}",
+      "operationId": "getBusiness",
+      "summary": "Get business",
+      "tags": [
+        "Businesses"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/businesses/{business_id}",
+      "operationId": "updateBusiness",
+      "summary": "Patch business",
+      "tags": [
+        "Businesses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards",
+      "operationId": "listCards",
+      "summary": "List Cards",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards",
+      "operationId": "issueCard",
+      "summary": "Issue a Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/{card_id}",
+      "operationId": "getCard",
+      "summary": "Get Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/cards/{card_id}",
+      "operationId": "updateCard",
+      "summary": "Update Card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/{card_id}/barcodes",
+      "operationId": "getCardBarcode",
+      "summary": "Get Card Barcode",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/{card_id}/changes",
+      "operationId": "listChanges",
+      "summary": "List Card Changes",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{card_id}/client_token",
+      "operationId": "getClientAccessToken",
+      "summary": "Get a client token",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{card_id}/digital_wallet_tokens/applepay",
+      "operationId": "createDigitalWalletApple",
+      "summary": "Create digital wallet token provision request for Apple Pay",
+      "tags": [
+        "Digital Wallet Tokens"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{card_id}/digital_wallet_tokens/googlepay",
+      "operationId": "createDigitalWalletGoogle",
+      "summary": "Create digital wallet token provision request for Google Pay",
+      "tags": [
+        "Digital Wallet Tokens"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/{card_id}/webhook_simulations/fulfillment",
+      "operationId": "simulateCardFulfillmentEvent",
+      "summary": "Simulate Card Fulfillment Event",
+      "tags": [
+        "Card Webhook Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/activate",
+      "operationId": "activateCard",
+      "summary": "Activate a card",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/card_widget_url",
+      "operationId": "getCardWidgetURL",
+      "summary": "Get card widget URL",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/digital_wallet_tokens",
+      "operationId": "listDigitalWalletTokens",
+      "summary": "List Digital Wallet Tokens",
+      "tags": [
+        "Digital Wallet Tokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/digital_wallet_tokens/{digital_wallet_token_id}",
+      "operationId": "getDigitalWalletToken",
+      "summary": "Get Digital Wallet Token",
+      "tags": [
+        "Digital Wallet Tokens"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/cards/digital_wallet_tokens/{digital_wallet_token_id}",
+      "operationId": "updateDigitalWalletTokenStatus",
+      "summary": "Update Digital Wallet Token's life cycle status",
+      "tags": [
+        "Digital Wallet Tokens"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/gateways",
+      "operationId": "listGateways",
+      "summary": "List Gateways",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/gateways",
+      "operationId": "createGateway",
+      "summary": "Create Gateway",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/gateways/{gateway_id}",
+      "operationId": "getGateway",
+      "summary": "Get Gateway",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/cards/gateways/{gateway_id}",
+      "operationId": "updateGateway",
+      "summary": "Update Gateway",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/images",
+      "operationId": "listCardImageDetails",
+      "summary": "List Card Image Details",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/images",
+      "operationId": "createCardImage",
+      "summary": "Create Card Image",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/images/{card_image_id}",
+      "operationId": "getCardImageDetails",
+      "summary": "Get Card Image Details",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/cards/images/{card_image_id}",
+      "operationId": "updateCardImageDetails",
+      "summary": "Update Card Image Details",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/images/{card_image_id}/data",
+      "operationId": "getCardImageData",
+      "summary": "Get Card Image Data",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/images/{card_image_id}/data",
+      "operationId": "uploadCardImageData",
+      "summary": "Upload Card Image",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/cards/products",
+      "operationId": "listCardProducts",
+      "summary": "List Card Products",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/single_use_token",
+      "operationId": "getClientSingleUseToken",
+      "summary": "Get single-use token",
+      "tags": [
+        "Cards"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/authorization",
+      "operationId": "simulateAuthorization",
+      "summary": "Simulate authorization",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/authorization/advice",
+      "operationId": "simulateAuthorizationAdvice",
+      "summary": "Simulate authorization advice",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/clearing",
+      "operationId": "simulateClearing",
+      "summary": "Simulate clearing or refund",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/financial",
+      "operationId": "simulateFinancial",
+      "summary": "Simulate financial",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/financial/advice",
+      "operationId": "simulateFinancialAdvice",
+      "summary": "Simulate financial advice",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/financial/balance_inquiry",
+      "operationId": "simulateBalanceInquiry",
+      "summary": "Simulate balance inquiry",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/financial/original_credit",
+      "operationId": "simulateOriginalCredit",
+      "summary": "Simulate OCT",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/financial/withdrawal",
+      "operationId": "simulateWithdrawal",
+      "summary": "Simulate ATM withdrawal",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/cards/transaction_simulations/reversal",
+      "operationId": "simulateReversal",
+      "summary": "Simulate reversal",
+      "tags": [
+        "Card Transaction Simulations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers",
+      "operationId": "listCustomers",
+      "summary": "List Customers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers",
+      "operationId": "createCustomer",
+      "summary": "Create a Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}",
+      "operationId": "getCustomer",
+      "summary": "Get Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/customers/{customer_id}",
+      "operationId": "updateCustomer",
+      "summary": "Update Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/customers/{customer_id}",
+      "operationId": "patchCustomer",
+      "summary": "Patch Customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/disclosures",
+      "operationId": "listDisclosures1",
+      "summary": "List Disclosures",
+      "tags": [
+        "Disclosures"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/disclosures",
+      "operationId": "createDisclosure1",
+      "summary": "Create a Disclosure",
+      "tags": [
+        "Disclosures"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/employment",
+      "operationId": "getAllCustomerEmployment",
+      "summary": "List customer employment records",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/employment",
+      "operationId": "createCustomerEmployment",
+      "summary": "Create employment record",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/employment/{employment_id}",
+      "operationId": "getPartyEmployment",
+      "summary": "Get customer employment record",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/customers/{customer_id}/employment/{employment_id}",
+      "operationId": "updatePartyEmployment",
+      "summary": "Update customer employment record",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/prefill",
+      "operationId": "prefillCustomer",
+      "summary": "Prefill customer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/risk_ratings",
+      "operationId": "getAllCustomerRiskRatings",
+      "summary": "List customer risk ratings",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/risk_ratings",
+      "operationId": "createCustomerRiskRating",
+      "summary": "Create customer risk rating",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/risk_ratings/{risk_rating_id}",
+      "operationId": "getCustomerRiskRating",
+      "summary": "Get customer risk rating",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/verifications",
+      "operationId": "listVerifications",
+      "summary": "List verification results",
+      "tags": [
+        "KYC Verification"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/verifications",
+      "operationId": "createCustomerVerificationResult",
+      "summary": "Create a customer verification result",
+      "tags": [
+        "KYC Verification"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/verifications/{verification_id}",
+      "operationId": "getVerification",
+      "summary": "Get verification result",
+      "tags": [
+        "KYC Verification"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/verify",
+      "operationId": "verifyCustomer",
+      "summary": "Verify a customer's identity",
+      "tags": [
+        "KYC Verification"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/watchlists/alerts",
+      "operationId": "listWatchlistAlerts",
+      "summary": "List watchlist monitoring alerts for a customer",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/watchlists/alerts/{alert_id}",
+      "operationId": "getWatchlistAlert",
+      "summary": "Retrieve watchlist monitoring alert",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/customers/{customer_id}/watchlists/alerts/{alert_id}",
+      "operationId": "updateWatchlistAlert",
+      "summary": "Update watchlist alert",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/watchlists/subscriptions",
+      "operationId": "listWatchlistSubscriptions",
+      "summary": "List watchlist monitoring subscriptions for a customer",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/watchlists/subscriptions",
+      "operationId": "watchlistSubscribe",
+      "summary": "Subscribe a customer to watchlist monitoring",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/customers/{customer_id}/watchlists/subscriptions/{subscription_id}",
+      "operationId": "getWatchlistSubscription",
+      "summary": "Retrieve watchlist monitoring subscription",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/customers/{customer_id}/watchlists/subscriptions/{subscription_id}",
+      "operationId": "updateWatchlistSubscription",
+      "summary": "Update watchlist monitoring subscription",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/customers/{customer_id}/watchlists/suppressions",
+      "operationId": "suppressWatchlistEntityAlert",
+      "summary": "Suppress entity alert",
+      "tags": [
+        "Watchlist"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/disclosures",
+      "operationId": "listDisclosures",
+      "summary": "List disclosures",
+      "tags": [
+        "Disclosures"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/disclosures",
+      "operationId": "createDisclosure",
+      "summary": "Create disclosure record",
+      "tags": [
+        "Disclosures"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/disclosures/{disclosure_id}",
+      "operationId": "getDisclosure",
+      "summary": "Get disclosure",
+      "tags": [
+        "Disclosures"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents",
+      "operationId": "listDocuments",
+      "summary": "List documents",
+      "tags": [
+        "Documents (alpha)"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/documents",
+      "operationId": "createDocument",
+      "summary": "Create a document",
+      "tags": [
+        "Documents (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents/{document_id}",
+      "operationId": "getDocument",
+      "summary": "Get a document",
+      "tags": [
+        "Documents (alpha)"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/documents/{document_id}",
+      "operationId": "updateDocument",
+      "summary": "Update a document",
+      "tags": [
+        "Documents (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/documents/{document_id}/contents",
+      "operationId": "getDocumentContents",
+      "summary": "Get a document",
+      "tags": [
+        "Documents (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_accounts",
+      "operationId": "listExternalAccounts",
+      "summary": "List external accounts",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_accounts",
+      "operationId": "addExternalAccounts",
+      "summary": "Add an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_accounts/{external_account_id}",
+      "operationId": "getExternalAccount",
+      "summary": "Get an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/external_accounts/{external_account_id}",
+      "operationId": "deleteExternalAccount",
+      "summary": "Delete an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/external_accounts/{external_account_id}",
+      "operationId": "updateExternalAccount",
+      "summary": "Patch an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_accounts/{external_account_id}/balance",
+      "operationId": "getExternalAccountBalance",
+      "summary": "Get an external account balance",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_accounts/{external_account_id}/transactions",
+      "operationId": "getExternalAccountTransactions",
+      "summary": "List transactions of a given external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_accounts/access_tokens",
+      "operationId": "createAccessToken",
+      "summary": "Create a permanent access token for an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_accounts/add_vendor_accounts",
+      "operationId": "addVendorExternalAccounts",
+      "summary": "Add external accounts through a vendor, such as Plaid.",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_accounts/link_tokens",
+      "operationId": "createVerificationLinkToken",
+      "summary": "Create a link token to verify an external account",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_accounts/sync_vendor_accounts",
+      "operationId": "syncVendorExternalAccounts",
+      "summary": "Sync external accounts through a vendor, such as Plaid.",
+      "tags": [
+        "External Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_cards",
+      "operationId": "listExternalCards",
+      "summary": "List external cards",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_cards/{external_card_id}",
+      "operationId": "getExternalCard",
+      "summary": "Get a external card",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_cards/tokens",
+      "operationId": "createExternalCardFromToken",
+      "summary": "Create external card from token",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_cards/transfers",
+      "operationId": "listExternalCardTransfers",
+      "summary": "List external transfers",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/external_cards/transfers",
+      "operationId": "createExternalCardTransfer",
+      "summary": "Create external card transfer",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/external_cards/transfers/{transfer_id}",
+      "operationId": "getExternalCardTransfer",
+      "summary": "Get an external card transfer",
+      "tags": [
+        "External Cards (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/internal_accounts",
+      "operationId": "listInternalAccounts",
+      "summary": "List internal accounts",
+      "tags": [
+        "Internal Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/internal_accounts",
+      "operationId": "addInternalAccounts",
+      "summary": "Add internal accounts",
+      "tags": [
+        "Internal Accounts"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/internal_accounts/{internal_account_id}",
+      "operationId": "patchInternalAccount",
+      "summary": "Patch internal account",
+      "tags": [
+        "Internal Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/alerts",
+      "operationId": "listAlerts",
+      "summary": "List monitoring alerts",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/alerts/{alert_id}",
+      "operationId": "getAlert",
+      "summary": "Retrieve a monitoring alert",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/monitoring/alerts/{alert_id}",
+      "operationId": "updateAlert",
+      "summary": "Update a monitoring alert",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/subscriptions",
+      "operationId": "listSubscriptions",
+      "summary": "List monitoring subscriptions",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/monitoring/subscriptions",
+      "operationId": "createSubscription",
+      "summary": "Subscribe a customer or business to monitoring",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/monitoring/subscriptions/{subscription_id}",
+      "operationId": "getSubscription",
+      "summary": "Retrieve monitoring subscription",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/monitoring/subscriptions/{subscription_id}",
+      "operationId": "deleteSubscription",
+      "summary": "Delete monitoring subscription",
+      "tags": [
+        "Monitoring"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/payment_schedules",
+      "operationId": "listPaymentSchedules",
+      "summary": "List payment schedules",
+      "tags": [
+        "PaymentSchedules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/payment_schedules",
+      "operationId": "createPaymentSchedule",
+      "summary": "Create a payment schedule",
+      "tags": [
+        "PaymentSchedules"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/payment_schedules/{payment_schedule_id}",
+      "operationId": "patchPaymentSchedule",
+      "summary": "Update a payment schedule",
+      "tags": [
+        "PaymentSchedules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/payment_schedules/payments",
+      "operationId": "listPayments",
+      "summary": "List payments",
+      "tags": [
+        "PaymentSchedules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/persons",
+      "operationId": "listPersons",
+      "summary": "List persons",
+      "tags": [
+        "Persons"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/persons",
+      "operationId": "createPerson",
+      "summary": "Create a person",
+      "tags": [
+        "Persons"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/persons/{person_id}",
+      "operationId": "getPerson",
+      "summary": "Get person",
+      "tags": [
+        "Persons"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/persons/{person_id}",
+      "operationId": "updatePerson",
+      "summary": "Update person",
+      "tags": [
+        "Persons"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/persons/{person_id}/prefill",
+      "operationId": "prefillPerson",
+      "summary": "Prefill person",
+      "tags": [
+        "Persons"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/rdc/deposits",
+      "operationId": "listRdcDeposits",
+      "summary": "List Remote Check Deposits",
+      "tags": [
+        "Remote Check Deposit (beta)"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/rdc/deposits",
+      "operationId": "createRdcDeposit",
+      "summary": "Create a Remote Check Deposit",
+      "tags": [
+        "Remote Check Deposit (beta)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/rdc/deposits/{deposit_id}",
+      "operationId": "getRdcDeposit",
+      "summary": "Get Remote Check Deposit",
+      "tags": [
+        "Remote Check Deposit (beta)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reconciliations",
+      "operationId": "listReconciliations",
+      "summary": "List reconciliations",
+      "tags": [
+        "Reconciliations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/reconciliations",
+      "operationId": "createReconciliation",
+      "summary": "Create a reconciliation",
+      "tags": [
+        "Reconciliations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/reconciliations/{reconciliation_id}",
+      "operationId": "getReconciliation",
+      "summary": "Get reconciliation",
+      "tags": [
+        "Reconciliations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/relationships",
+      "operationId": "listRelationships",
+      "summary": "List relationships",
+      "tags": [
+        "Relationships"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/relationships",
+      "operationId": "createRelationship",
+      "summary": "Create a relationship",
+      "tags": [
+        "Relationships"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/relationships/{relationship_id}",
+      "operationId": "getRelationship",
+      "summary": "Get relationship",
+      "tags": [
+        "Relationships"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/relationships/{relationship_id}",
+      "operationId": "deleteRelationship",
+      "summary": "Delete relationship",
+      "tags": [
+        "Relationships"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/relationships/{relationship_id}",
+      "operationId": "updateRelationship",
+      "summary": "Update relationship",
+      "tags": [
+        "Relationships"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/statements",
+      "operationId": "listStatements",
+      "summary": "List statements",
+      "tags": [
+        "Statements"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/statements/{statement_id}",
+      "operationId": "getStatement",
+      "summary": "Get a statement",
+      "tags": [
+        "Statements"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/transactions/internal_transfer",
+      "operationId": "createInternalTransfer",
+      "summary": "Create an internal transfer",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/pending",
+      "operationId": "listPendingTransactions",
+      "summary": "List pending transactions",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/pending/{id}",
+      "operationId": "getPendingTransactionByID",
+      "summary": "Get a pending transaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/posted",
+      "operationId": "listPostedTransactions",
+      "summary": "List posted transactions",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/transactions/posted/{id}",
+      "operationId": "getPostedTransactionByID",
+      "summary": "Get a posted transaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/verifications",
+      "operationId": "listVerifications1",
+      "summary": "List verifications",
+      "tags": [
+        "KYC/KYB Verifications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/verifications",
+      "operationId": "createVerification",
+      "summary": "Create a verification",
+      "tags": [
+        "KYC/KYB Verifications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/verifications/{verification_id}",
+      "operationId": "getVerification1",
+      "summary": "Get verification",
+      "tags": [
+        "KYC/KYB Verifications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/verifications/adhoc",
+      "operationId": "verifyAdHoc",
+      "summary": "Check if an individual is on any watchlists",
+      "tags": [
+        "KYC/KYB Verifications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/verifications/verify",
+      "operationId": "verify",
+      "summary": "Verify a customer's identity",
+      "tags": [
+        "KYC/KYB Verifications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks",
+      "operationId": "listWebhooks1",
+      "summary": "List webhooks",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks",
+      "operationId": "createWebhook1",
+      "summary": "Create a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "getWebhook1",
+      "summary": "Get a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "updateWebhook",
+      "summary": "Update a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/webhooks/{webhook_id}",
+      "operationId": "deleteWebhook",
+      "summary": "Delete a webhook",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}/events",
+      "operationId": "listEvents",
+      "summary": "List webhook events",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/webhooks/{webhook_id}/events/{event_id}",
+      "operationId": "getEvent",
+      "summary": "Get webhook event",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks/{webhook_id}/events/{event_id}/resend",
+      "operationId": "resendEvent",
+      "summary": "Resend an event",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/webhooks/trigger",
+      "operationId": "triggerEvent",
+      "summary": "Trigger an event",
+      "tags": [
+        "Webhooks"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/wipe",
+      "operationId": "wipeWorkspace",
+      "summary": "Delete data",
+      "tags": [
+        "Sandbox Wipe (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/wires",
+      "operationId": "listWires",
+      "summary": "List wires",
+      "tags": [
+        "Wires (alpha)"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/wires",
+      "operationId": "createWire",
+      "summary": "Send a wire",
+      "tags": [
+        "Wires (alpha)"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/wires/{wire_id}",
+      "operationId": "getWire",
+      "summary": "Get a wire by id",
+      "tags": [
+        "Wires (alpha)"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/wires/{wire_id}",
+      "operationId": "cancelWire",
+      "summary": "Cancel an outgoing wire",
+      "tags": [
+        "Wires (alpha)"
+      ]
+    }
+  ]
+}

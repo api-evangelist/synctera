@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/debit_network",
+  "title": "debit_network",
+  "properties": {
+    "active": {
+      "description": "indicates whether debit network is active",
+      "type": "boolean"
+    },
+    "creation_time": {
+      "description": "The timestamp representing when the debit network was created",
+      "example": "Sat Dec 25 2021 20:56:19 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "end_date": {
+      "description": "The time when debit network became inactive",
+      "example": "Thu Jul 06 2023 08:14:39 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    },
+    "id": {
+      "description": "Debit Network ID",
+      "example": "8921a7ec-ed00-45c7-8cbe-27ff6a0662d4",
+      "format": "uuid",
+      "readOnly": true,
+      "type": "string"
+    },
+    "last_modified_time": {
+      "description": "The timestamp representing when the debit network was last modified",
+      "example": "Wed Sep 29 2021 23:47:36 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "readOnly": true,
+      "type": "string"
+    },
+    "name": {
+      "description": "The name describing the debit network",
+      "type": "string"
+    },
+    "start_date": {
+      "description": "The time when debit network goes live",
+      "example": "Wed Sep 22 2021 18:46:56 GMT+0000 (Coordinated Universal Time)",
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "type": "object"
+}

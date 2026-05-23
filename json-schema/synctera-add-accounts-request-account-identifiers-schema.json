@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/add_accounts_request_account_identifiers",
+  "title": "Identifiers for the account",
+  "properties": {
+    "number": {
+      "description": "The account number. On write, Synctera will store the entire account number; on read, we only return the last 4 characters.\n",
+      "example": "78277121",
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "number"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/network_fee_model",
+  "title": "network_fee_model",
+  "example": {
+    "amount": 123,
+    "credit_debit": "C",
+    "type": "ISSUER_FEE"
+  },
+  "properties": {
+    "amount": {
+      "description": "The amount of the fee in the smallest whole denomination of the applicable currency (eg. For USD use cents)",
+      "type": "integer"
+    },
+    "credit_debit": {
+      "description": "C = credit; D = debit",
+      "enum": [
+        "C",
+        "D"
+      ],
+      "type": "string"
+    },
+    "type": {
+      "enum": [
+        "ISSUER_FEE",
+        "SWITCH_FEE",
+        "PINDEBIT_ASSOC_FEE",
+        "ACQUIRER_FEE",
+        "INTERCHANGE_FEE",
+        "CUR_CONV_CARDHOLDER_FEE",
+        "CUR_CONV_ISSUER_FEE",
+        "CROSS_BORDER_ISSUER_FEE"
+      ],
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "amount"
+  ],
+  "type": "object"
+}

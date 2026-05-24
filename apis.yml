@@ -60,6 +60,8 @@ common:
     url: rate-limits/synctera-rate-limits.yml
   - type: FinOps
     url: finops/synctera-finops.yml
+  - type: LLMsTxt
+    url: https://docs.synctera.com/llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

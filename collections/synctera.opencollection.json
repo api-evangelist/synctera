@@ -1,0 +1,4674 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID(s). Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "linked_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only resources that are linked to the specified backing account in balance_floor or balance_ceiling. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "overdraft_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Overdraft account ID(s). Multiple IDs can be provided as a comma-separated list.\nThis parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.\n"
+              },
+              {
+                "name": "overflow_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Overflow account ID(s). Multiple IDs can be provided as a comma-separated list.\nThis parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.\n"
+              },
+              {
+                "name": "account_number",
+                "value": "",
+                "type": "query",
+                "description": "Account number(s). Multiple account numbers can be provided as a comma-separated list.\nWhen only a single account number is provided, any * characters in the string are wildcards, and match any characters.\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interest_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Interest product ID that accounts associate with. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_type",
+                "value": "",
+                "type": "query",
+                "description": "Customer type of the account, BUSINESS or PERSONAL\n"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned accounts.\n"
+              }
+            ]
+          },
+          "docs": "Get paginated list of Accounts associated"
+        },
+        {
+          "info": {
+            "name": "Create an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shadow mode or lead mode account. You need to determine the mode according to integrator configuration, and specify the required fields accordingly.\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - account_template_id\n  - relationships\n"
+        },
+        {
+          "info": {
+            "name": "Get account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ]
+          },
+          "docs": "Get an account"
+        },
+        {
+          "info": {
+            "name": "Update account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - All fields are required.\n\nPlease note:\n  - access_status needs to be in ACTIVE.\n  - PUT request cannot change access_status.\n"
+        },
+        {
+          "info": {
+            "name": "Patch account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch account.\n\nImmutable fields:\n  - account_number\n  - account_type\n  - account_template_id\n  - customer_type\n\nPlease note:\n  - Other fields cannot be modified when access_status is FROZEN.\n  - access_status has to be patched individually without other fields.\n"
+        },
+        {
+          "info": {
+            "name": "List account relationships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all customers of an account"
+        },
+        {
+          "info": {
+            "name": "Create account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a customer to an account"
+        },
+        {
+          "info": {
+            "name": "Get account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ]
+          },
+          "docs": "Get account relationship by ID"
+        },
+        {
+          "info": {
+            "name": "Update account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account relationship. Only relationship_type can be updated. customer_id should not be modified."
+        },
+        {
+          "info": {
+            "name": "Delete account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ]
+          },
+          "docs": "Delete account relationship"
+        },
+        {
+          "info": {
+            "name": "List account products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for type INTEREST. All rates in interest resource have to have valid_from later or equal to start_date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for type INTEREST. All rates in interest resource have to have valid_to earlier or equal to end_date."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of account product"
+              }
+            ]
+          },
+          "docs": "List account Products\n"
+        },
+        {
+          "info": {
+            "name": "Create an account product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/products",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an account product. Rates cannot be nil or empty.\n"
+        },
+        {
+          "info": {
+            "name": "Patch account product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/accounts/products/:product_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Product ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch account product. Rates requires at minimum 1 entry if specified.\n"
+        },
+        {
+          "info": {
+            "name": "List account templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List account templates\n"
+        },
+        {
+          "info": {
+            "name": "Create an account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/templates",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an account template. An account template is need when create an account in a lead mode\n"
+        },
+        {
+          "info": {
+            "name": "Get account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ]
+          },
+          "docs": "Get an account template"
+        },
+        {
+          "info": {
+            "name": "Update account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account template\n"
+        },
+        {
+          "info": {
+            "name": "Delete account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ]
+          },
+          "docs": "Delete account template"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ACH",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List sent ACH transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/ach",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List sent ACH transactions"
+        },
+        {
+          "info": {
+            "name": "Send an ACH",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/ach",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an ACH\n"
+        },
+        {
+          "info": {
+            "name": "Get a sent ACH transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/ach/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID in the ledger"
+              }
+            ]
+          },
+          "docs": "Get a single sent ACH transaction"
+        },
+        {
+          "info": {
+            "name": "Update a sent ACH transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/ach/:transaction_id",
+            "params": [
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID in the ledger"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a sent ACH transaction (either status or funds availability)"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List credit applications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/applications",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "A list of customer unique identifiers, with a comma separating any values."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status of the credit application\n"
+              }
+            ]
+          },
+          "docs": "List credit applications.\n"
+        },
+        {
+          "info": {
+            "name": "Create a credit application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/applications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a credit application.\n"
+        },
+        {
+          "info": {
+            "name": "Get Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/applications/:application_id",
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the application."
+              }
+            ]
+          },
+          "docs": "Get application by ID.\n"
+        },
+        {
+          "info": {
+            "name": "Patch Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/applications/:application_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "application_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Application.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Businesses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List business",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/businesses",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "entity_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_customer",
+                "value": "",
+                "type": "query",
+                "description": "If true, show only customers. If false, show non-customer parties."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned businesses.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of businesses associated with the authorized requester."
+        },
+        {
+          "info": {
+            "name": "Create a business",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/businesses",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a business who may act as a customer or a related business. You can then verify the identity of this customer and associate them with other people and accounts.\n"
+        },
+        {
+          "info": {
+            "name": "Get business",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/businesses/:business_id",
+            "params": [
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "path",
+                "description": "Business's unique identifier."
+              }
+            ]
+          },
+          "docs": "Get business by ID."
+        },
+        {
+          "info": {
+            "name": "Patch business",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/businesses/:business_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "path",
+                "description": "Business's unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update business by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID(s). Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "emboss_name",
+                "value": "",
+                "type": "query",
+                "description": "emboss name"
+              },
+              {
+                "name": "last_four",
+                "value": "",
+                "type": "query",
+                "description": "The last 4 digits of the card PAN"
+              },
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "query",
+                "description": "The date representing when the card would expire at"
+              },
+              {
+                "name": "card_type",
+                "value": "",
+                "type": "query",
+                "description": "Indicates the type of card"
+              },
+              {
+                "name": "card_brand",
+                "value": "",
+                "type": "query",
+                "description": "The brand of a card product"
+              },
+              {
+                "name": "form",
+                "value": "",
+                "type": "query",
+                "description": "The format of the card"
+              },
+              {
+                "name": "card_product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "card_status",
+                "value": "",
+                "type": "query",
+                "description": "The status of a card"
+              },
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query",
+                "description": "The postal code of a card user"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned cards.\n"
+              }
+            ]
+          },
+          "docs": "List of cards matching query parameters\n"
+        },
+        {
+          "info": {
+            "name": "Issue a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issue or reissue a new card for a customer\n"
+        },
+        {
+          "info": {
+            "name": "Get Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details about a card that has been issued\n"
+        },
+        {
+          "info": {
+            "name": "Update Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/:card_id",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Integrators can update the card resource to change status, update shipping (if the card hasn't been shipped) or edit metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Get Card Barcode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id/barcodes",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint is for testing environment only to provide access to barcode of a test card\n"
+        },
+        {
+          "info": {
+            "name": "List Card Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id/changes",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List card change history\n"
+        },
+        {
+          "info": {
+            "name": "Get a client token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/client_token",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a client access token for interacting with a card.  This token will be used on the client to identify the card for flows like viewing Full PAN or setting the PIN in a PCI compliant manner.\n"
+        },
+        {
+          "info": {
+            "name": "Activate a card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a card\n"
+        },
+        {
+          "info": {
+            "name": "Get card widget URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/card_widget_url",
+            "params": [
+              {
+                "name": "widget_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of widget for which to construct the URL"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the card (required for set PIN widget)"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a URL address of the specified widget for a given card\n"
+        },
+        {
+          "info": {
+            "name": "List Gateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/gateways",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of gateways matching query parameters\n"
+        },
+        {
+          "info": {
+            "name": "Create Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Authorization Gateway Configuration\n"
+        },
+        {
+          "info": {
+            "name": "Get Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/gateways/:gateway_id",
+            "params": [
+              {
+                "name": "gateway_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details of an Authorization Gateway that has been configured\n"
+        },
+        {
+          "info": {
+            "name": "Update Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/gateways/:gateway_id",
+            "params": [
+              {
+                "name": "gateway_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Authorization Gateway configuration\n"
+        },
+        {
+          "info": {
+            "name": "List Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all card image details\n"
+        },
+        {
+          "info": {
+            "name": "Create Card Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/images",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a card image entity. Note that this does not include the image data itself. You can upload the image data via a subsequent uploadCardImageData request using the ID created here.\n"
+        },
+        {
+          "info": {
+            "name": "Get Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get card image details"
+        },
+        {
+          "info": {
+            "name": "Update Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update card image details. The only detail that can be updated is the card status as APPROVED or REJECTED."
+        },
+        {
+          "info": {
+            "name": "Get Card Image Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id/data",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get card image data"
+        },
+        {
+          "info": {
+            "name": "Upload Card Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id/data",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Upload card image data"
+        },
+        {
+          "info": {
+            "name": "List Card Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Card Products"
+        },
+        {
+          "info": {
+            "name": "Get single-use token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/single_use_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a single-use access token. This type of token authorizes a single request to access API endpoints and data associated with a particular user\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Digital Wallet Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create digital wallet token provision request for Apple Pay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/digital_wallet_tokens/applepay",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create digital wallet token provision request for Apple Pay"
+        },
+        {
+          "info": {
+            "name": "Create digital wallet token provision request for Google Pay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/digital_wallet_tokens/googlepay",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create digital wallet token provision request for Google Pay"
+        },
+        {
+          "info": {
+            "name": "List Digital Wallet Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_state",
+                "value": "",
+                "type": "query",
+                "description": "The status of the Digital Wallet Token"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Digital Wallet Tokens\n"
+        },
+        {
+          "info": {
+            "name": "Get Digital Wallet Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens/:digital_wallet_token_id",
+            "params": [
+              {
+                "name": "digital_wallet_token_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details about the digital wallet token of a card\n"
+        },
+        {
+          "info": {
+            "name": "Update Digital Wallet Token's life cycle status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens/:digital_wallet_token_id",
+            "params": [
+              {
+                "name": "digital_wallet_token_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The status of a digital wallet token can be updated as, ACTIVE to SUSPENDED, SUSPENDED to ACTIVE, ACTIVE to TERMINATED or SUSPENDED to TERMINATED.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Card Webhook Simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Simulate Card Fulfillment Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/webhook_simulations/fulfillment",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is for testing environment only to trigger a simulated change in card fulfillment status event\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Card Transaction Simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Simulate authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/authorization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate an `authorization` type transaction by including the `card_token` and other authorization details in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate authorization advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/authorization/advice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An authorization advice allows an amount to be decreased after the authorization. This endpoint allows you to simulate post-swipe adjustments.\n\nSimulate an `authorization.advice` type transaction by including the `original_transaction_token` and other authorization details in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate clearing or refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/clearing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate an `authorization.clearing` type transaction by including the `original_transaction_token` and `amount` in your request. To simulate a refund type transaction, set the `is_refund` field to true.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate financial",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A \"financial\" is a transaction message class that includes ATM transactions, PIN-debit transactions, and balance inquiries.\n\nSimulate a `pindebit` type transaction by including the `card_token` and `amount` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate financial advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/advice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a financial advice by including the `original_transaction_token` and other authorization details in JSON format in the body of the request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate balance inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/balance_inquiry",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a `pindebit.balanceinquiry` type transaction by sending a POST request to the `/simulate/financial/balanceinquiry` endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate OCT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/original_credit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This Original Credit Transaction (OCT) enables the cardholder to receive funds on the specified card from an external source via the card network. Use this endpoint to simulate a transaction that is similar to a wire transfer and not linked to any purchase.\n\nSimulate an OCT by including the `card_token`, `amount`, `mid`, and `type` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate ATM withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/withdrawal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a `pindebit.atm.withdrawal` type transaction by including the `card_token` and `amount` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate reversal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/reversal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A reversal releases the hold that was placed on account funds by an authorization, thus returning the funds to the account.\n\nSimulate an `authorization.reversal` type transaction by including the `original_transaction_token` and `amount` in your request.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ssn_last_4",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned customers.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of Customers associated with the authorized requester"
+        },
+        {
+          "info": {
+            "name": "Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The customer object represents your customer's identity. You can then verify the identity of this customer and associate them with other people and accounts.\nNote that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "Get Customer based on ID"
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update customer based on ID\nNote that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "Patch Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch fields of customer based on ID\nNote that if:\n  * legal address is provided in the request, AND\n  * shipping_address is not provided in the request, AND\n  * the customer resource does not have shipping_address\n  then shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "List customer employment records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              }
+            ]
+          },
+          "docs": "Get a list of customer's current employment records. To see historic employment pass the `include_history` flag.\n"
+        },
+        {
+          "info": {
+            "name": "Create employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a customer employment record."
+        },
+        {
+          "info": {
+            "name": "Get customer employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment/:employment_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "employment_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the employment record."
+              }
+            ]
+          },
+          "docs": "Get a single record of customer employment"
+        },
+        {
+          "info": {
+            "name": "Update customer employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment/:employment_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "employment_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the employment record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single record of customer employment."
+        },
+        {
+          "info": {
+            "name": "Prefill customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/prefill",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prefill takes a subset of a person's information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.\n"
+        },
+        {
+          "info": {
+            "name": "List customer risk ratings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              }
+            ]
+          },
+          "docs": "Get list of customer risk ratings"
+        },
+        {
+          "info": {
+            "name": "Create customer risk rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create customer risk rating"
+        },
+        {
+          "info": {
+            "name": "Get customer risk rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings/:risk_rating_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "risk_rating_id",
+                "value": "",
+                "type": "path",
+                "description": "Risk Rating ID"
+              }
+            ]
+          },
+          "docs": "Get a customer risk rating"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Disclosures",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Disclosures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/disclosures",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of disclosures associated with the authorized requester"
+        },
+        {
+          "info": {
+            "name": "Create a Disclosure",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/disclosures",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Disclosures to be made to customers\n"
+        },
+        {
+          "info": {
+            "name": "List disclosures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/disclosures",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of disclosures associated with the authorized requester."
+        },
+        {
+          "info": {
+            "name": "Create disclosure record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/disclosures",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record the fact that a regulatory document was disclosed to a customer."
+        },
+        {
+          "info": {
+            "name": "Get disclosure",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/disclosures/:disclosure_id",
+            "params": [
+              {
+                "name": "disclosure_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for the disclosure."
+              }
+            ]
+          },
+          "docs": "Get disclosure by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "KYC Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List verification results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List verification results.\n\nThis endpoint will be removed in API v1. Use `GET /v0/verifications?customer_id={customer_id}` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Create a customer verification result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a verification result for a customer.\nThis endpoint will be removed in API v1. Use `POST /v0/verifications` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Get verification result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications/:verification_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the verification."
+              }
+            ]
+          },
+          "docs": "Get verification result by ID.\n\nThis endpoint will be removed in API v1. Use `GET /v0/verifications/{verification_id}` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Verify a customer's identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verify",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate identity verification for a customer and run the specified identity checks.\n\nVerifying a personal customer requires that the following fields already be set:\n* `first_name`\n* `last_name`\n* `dob`\n* `email`\n* `phone_number`\n* `legal_address`\n* `ssn`\n\nThis endpoint will be removed in API v1. Use `POST /v0/verifications/verify` instead.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Watchlist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List watchlist monitoring alerts for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "List watchlist monitoring alerts for a customer"
+        },
+        {
+          "info": {
+            "name": "Retrieve watchlist monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts/:alert_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this watchlist alert."
+              }
+            ]
+          },
+          "docs": "Retrieve watchlist monitoring alert"
+        },
+        {
+          "info": {
+            "name": "Update watchlist alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts/:alert_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this watchlist alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update watchlist alert"
+        },
+        {
+          "info": {
+            "name": "List watchlist monitoring subscriptions for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "List watchlist monitoring subscriptions for a customer"
+        },
+        {
+          "info": {
+            "name": "Subscribe a customer to watchlist monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe a customer to watchlist monitoring"
+        },
+        {
+          "info": {
+            "name": "Retrieve watchlist monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Watchlist monitoring subscription ID"
+              }
+            ]
+          },
+          "docs": "Retrieve watchlist monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Update watchlist monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Watchlist monitoring subscription ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update watchlist monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Suppress entity alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/suppressions",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suppress entity alert"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/documents",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of documents."
+        },
+        {
+          "info": {
+            "name": "Create a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/documents",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Docs\n"
+        },
+        {
+          "info": {
+            "name": "Get a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/documents/:document_id",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a document."
+              }
+            ]
+          },
+          "docs": "Returns the bytes of the requested document."
+        },
+        {
+          "info": {
+            "name": "Update a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/documents/:document_id",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a document."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update document attributes by document ID"
+        },
+        {
+          "info": {
+            "name": "Get a document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/documents/:document_id/contents",
+            "params": [
+              {
+                "name": "document_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a document."
+              }
+            ]
+          },
+          "docs": "Returns the bytes of the requested document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "External Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List external accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_accounts",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "A list of customer unique identifiers, with a comma separating any values."
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "A list of business unique identifiers, with a comma separating any values."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of all external accounts assigned to customers.\n"
+        },
+        {
+          "info": {
+            "name": "Add an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an external account for a customer. The account will be created in an unverified state.\n"
+        },
+        {
+          "info": {
+            "name": "Get an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_accounts/:external_account_id",
+            "params": [
+              {
+                "name": "external_account_id",
+                "value": "",
+                "type": "path",
+                "description": "External Account ID"
+              }
+            ]
+          },
+          "docs": "Returns an external account, given an external account ID.\n"
+        },
+        {
+          "info": {
+            "name": "Patch an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/external_accounts/:external_account_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "external_account_id",
+                "value": "",
+                "type": "path",
+                "description": "External Account ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Edits an unverified external account, given an external account ID.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/external_accounts/:external_account_id",
+            "params": [
+              {
+                "name": "external_account_id",
+                "value": "",
+                "type": "path",
+                "description": "External Account ID"
+              }
+            ]
+          },
+          "docs": "Deletes an external account, given an external account ID. If no accounts left, the access token to the financial institution will be removed\n"
+        },
+        {
+          "info": {
+            "name": "Get an external account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_accounts/:external_account_id/balance",
+            "params": [
+              {
+                "name": "external_account_id",
+                "value": "",
+                "type": "path",
+                "description": "External Account ID"
+              },
+              {
+                "name": "max_age",
+                "value": "",
+                "type": "query",
+                "description": "Optional relative age of a balance in seconds. If the balance is older than the requested seconds it will fail. This field is optional for most financial institutions, but required for some, so you should probably send it.\n"
+              }
+            ]
+          },
+          "docs": "Returns an external account balance, given an external account ID.\n"
+        },
+        {
+          "info": {
+            "name": "List transactions of a given external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_accounts/:external_account_id/transactions",
+            "params": [
+              {
+                "name": "external_account_id",
+                "value": "",
+                "type": "path",
+                "description": "External Account ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for transactions. Date is inclusive. Date must be in UTC."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for transactions. Date is exclusive. Date must be in UTC."
+              }
+            ]
+          },
+          "docs": "Returns a list of transactions on from the external account, given an external account ID. Maximum 500 transctions will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Create a permanent access token for an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_accounts/access_tokens",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a permanent access token for an external account"
+        },
+        {
+          "info": {
+            "name": "Add external accounts through a vendor, such as Plaid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_accounts/add_vendor_accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added, so it's important that the caller checks the response body.\n"
+        },
+        {
+          "info": {
+            "name": "Create a link token to verify an external account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_accounts/link_tokens",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a link token to verify an external account"
+        },
+        {
+          "info": {
+            "name": "Sync external accounts through a vendor, such as Plaid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_accounts/sync_vendor_accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sync external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added and deletions if the account is removed by the end user, so it's important that the caller checks the response body.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "External Cards (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List external cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List external cards\n"
+        },
+        {
+          "info": {
+            "name": "Get a external card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/:external_card_id",
+            "params": [
+              {
+                "name": "external_card_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an external card"
+              }
+            ]
+          },
+          "docs": "Get an external card\n"
+        },
+        {
+          "info": {
+            "name": "Create external card from token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_cards/tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an external card from token - You must first tokenize the external card using the external card iframe. You will receive a token for the external card upon successful completion. This endpoint will persist the external card and associate it to a customer. The customer's name and address should match that of the external card as entered in the iframe. <br>NB: Tokens should be associated right away. Tokens not associated within 30 mins of creation will be invalidated.</br> NB: If a valid bu"
+        },
+        {
+          "info": {
+            "name": "List external transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/transfers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_card_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originating_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of an external transfer"
+              }
+            ]
+          },
+          "docs": "List external card transfer\n"
+        },
+        {
+          "info": {
+            "name": "Create external card transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_cards/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a external card transfer\n"
+        },
+        {
+          "info": {
+            "name": "Get an external card transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/transfers/:transfer_id",
+            "params": [
+              {
+                "name": "transfer_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a transfer"
+              }
+            ]
+          },
+          "docs": "Get an external transfer\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Internal Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List internal accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/internal_accounts",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Internal account ID(s). Multiple IDs can be provided as a comma-separated list.\n"
+              }
+            ]
+          },
+          "docs": "Returns a list of all internal accounts.\n"
+        },
+        {
+          "info": {
+            "name": "Add internal accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/internal_accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add an internal account\n"
+        },
+        {
+          "info": {
+            "name": "Patch internal account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/internal_accounts/:internal_account_id",
+            "params": [
+              {
+                "name": "internal_account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the internal account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch internal account.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monitoring alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/alerts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List monitoring alerts"
+        },
+        {
+          "info": {
+            "name": "Retrieve a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/alerts/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this monitoring alert."
+              }
+            ]
+          },
+          "docs": "Retrieve a monitoring alert"
+        },
+        {
+          "info": {
+            "name": "Update a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/monitoring/alerts/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this monitoring alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a monitoring alert"
+        },
+        {
+          "info": {
+            "name": "List monitoring subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List monitoring subscriptions"
+        },
+        {
+          "info": {
+            "name": "Subscribe a customer or business to monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is rarely needed. Since August 2022, watchlist monitoring is automatically enabled for all businesses and customers who are verified (KYC/KYB) through Synctera's platform.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for monitoring subscription."
+              }
+            ]
+          },
+          "docs": "Retrieve monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Delete monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for monitoring subscription."
+              }
+            ]
+          },
+          "docs": "Delete monitoring subscription"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PaymentSchedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payment schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/payment_schedules",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Get paginated list of payment schedules"
+        },
+        {
+          "info": {
+            "name": "Create a payment schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/payment_schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payment schedule"
+        },
+        {
+          "info": {
+            "name": "Update a payment schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/payment_schedules/:payment_schedule_id",
+            "params": [
+              {
+                "name": "payment_schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "Payment schedule ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a payment schedule"
+        },
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/payment_schedules/payments",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "query",
+                "description": "Payment schedule IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Get paginated list of payments"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Persons",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/persons",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ban_status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_customer",
+                "value": "",
+                "type": "query",
+                "description": "If true, show only customers. If false, show non-customer parties."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned persons.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of persons associated with the authorized requester."
+        },
+        {
+          "info": {
+            "name": "Create a person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/persons",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a person who may act as a personal customer or a director/officer/owner of a business. You can then verify the identity of this customer and associate them with other people and accounts.\n"
+        },
+        {
+          "info": {
+            "name": "Get person",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/persons/:person_id",
+            "params": [
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "path",
+                "description": "Person's unique identifier."
+              }
+            ]
+          },
+          "docs": "Get person by ID."
+        },
+        {
+          "info": {
+            "name": "Update person",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/persons/:person_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "path",
+                "description": "Person's unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update person by ID."
+        },
+        {
+          "info": {
+            "name": "Prefill person",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/persons/:person_id/prefill",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "path",
+                "description": "Person's unique identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prefill takes a subset of a person's information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Remote Check Deposit (beta)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Check Deposits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/rdc/deposits",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of the deposits made using remote deposit capture associated with an account"
+        },
+        {
+          "info": {
+            "name": "Create a Remote Check Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/rdc/deposits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deposit using remote deposit capture to an account\n"
+        },
+        {
+          "info": {
+            "name": "Get Remote Check Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/rdc/deposits/:deposit_id",
+            "params": [
+              {
+                "name": "deposit_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a deposit for a remote deposit capture"
+              }
+            ]
+          },
+          "docs": "Retrieves one deposit made using remote deposit capture associated with an account"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reconciliations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reconciliations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/reconciliations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of reconciliations"
+        },
+        {
+          "info": {
+            "name": "Create a reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/reconciliations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new reconciliation job\n"
+        },
+        {
+          "info": {
+            "name": "Get reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/reconciliations/:reconciliation_id",
+            "params": [
+              {
+                "name": "reconciliation_id",
+                "value": "",
+                "type": "path",
+                "description": "Reconciliation id"
+              }
+            ]
+          },
+          "docs": "Retrieves one reconciliation by id"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Relationships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List relationships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/relationships",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "from_person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "from_business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "to_business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "relationship_type",
+                "value": "",
+                "type": "query",
+                "description": "The relationship type. Any of the following:\n* `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.\n* `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.\n* `OWNER_OF` – a business with ownership of another business.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of relationships viewable by the authorized requester."
+        },
+        {
+          "info": {
+            "name": "Create a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/relationships",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a party relationship."
+        },
+        {
+          "info": {
+            "name": "Get relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ]
+          },
+          "docs": "Get relationship by ID."
+        },
+        {
+          "info": {
+            "name": "Update relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update relationship by ID."
+        },
+        {
+          "info": {
+            "name": "Delete relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ]
+          },
+          "docs": "Delete party relationship by ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/statements",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "The account's unique identifier provided by Synctera"
+              }
+            ]
+          },
+          "docs": "Get list of statements"
+        },
+        {
+          "info": {
+            "name": "Get a statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/statements/:statement_id",
+            "params": [
+              {
+                "name": "statement_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a statement"
+              }
+            ]
+          },
+          "docs": "Get a statement"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an internal transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/transactions/internal_transfer",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an internal transfer"
+        },
+        {
+          "info": {
+            "name": "List pending transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/pending",
+            "params": [
+              {
+                "name": "account_no",
+                "value": "",
+                "type": "query",
+                "description": "Account number"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date greater than from_date"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date less than or equal to to_date"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the transaction"
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "query",
+                "description": "Only display holds linked to the provided transaction id"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given type"
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given subtype"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of pending transactions matching the provided filters\n"
+        },
+        {
+          "info": {
+            "name": "Get a pending transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/pending/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID"
+              }
+            ]
+          },
+          "docs": "Get a pending transaction by its uuid\n"
+        },
+        {
+          "info": {
+            "name": "List posted transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/posted",
+            "params": [
+              {
+                "name": "account_no",
+                "value": "",
+                "type": "query",
+                "description": "Account number"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date greater than from_date"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date less than or equal to to_date"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given type"
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given subtype"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of posted transactions matching the provided filters\n"
+        },
+        {
+          "info": {
+            "name": "Get a posted transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/posted/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID"
+              }
+            ]
+          },
+          "docs": "Get a posted transaction by its uuid\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "KYC/KYB Verifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/verifications",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "verification_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of verification run. Multiple values can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "result",
+                "value": "",
+                "type": "query",
+                "description": "The result of the verification that was run on the party. Multiple values can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List customer verification results."
+        },
+        {
+          "info": {
+            "name": "Create a verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload evidence of an externally performed KYC/KYB.  You may use your own KYC/KYB provider and upload evidence of that result to Synctera instead of using Synctera's providers.\n"
+        },
+        {
+          "info": {
+            "name": "Get verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/verifications/:verification_id",
+            "params": [
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path",
+                "description": "Verification's unique identifier."
+              }
+            ]
+          },
+          "docs": "Get customer verification result."
+        },
+        {
+          "info": {
+            "name": "Check if an individual is on any watchlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications/adhoc",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if an individual is on any watchlists"
+        },
+        {
+          "info": {
+            "name": "Verify a customer's identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications/verify",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate identity verification and run the specified identity checks.\n\nVerifying a personal customer requires that the following fields already be set:\n* `first_name`\n* `last_name`\n* `dob`\n* `email`\n* `phone_number`\n* `legal_address`\n* `ssn`\n\nVerifying a business customer requires that the following fields already be set:\n* `entity_name`\n* `legal_address`\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/webhooks",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "is_enabled_only",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all webhooks"
+        },
+        {
+          "info": {
+            "name": "Create a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook"
+        },
+        {
+          "info": {
+            "name": "Get a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Get a webhook"
+        },
+        {
+          "info": {
+            "name": "Update a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a webhook"
+        },
+        {
+          "info": {
+            "name": "Delete a webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              }
+            ]
+          },
+          "docs": "Delete a webhook"
+        },
+        {
+          "info": {
+            "name": "List webhook events",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id/events",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date of date range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.. start_date is alias of start_time and is deprecated. Please use start_time instead."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "End date of date range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.. end_date is alias of end_time and is deprecated. Please use end_time instead."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Start time of date-time range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "End time of date-time range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List webhook events. This response will not associate with the event response history."
+        },
+        {
+          "info": {
+            "name": "Get webhook event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id/events/:event_id",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              },
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook event ID"
+              }
+            ]
+          },
+          "docs": "Get webhook event by ID"
+        },
+        {
+          "info": {
+            "name": "Resend an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/webhooks/:webhook_id/events/:event_id/resend",
+            "params": [
+              {
+                "name": "webhook_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook ID"
+              },
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "Webhook event ID"
+              },
+              {
+                "name": "delay",
+                "value": "",
+                "type": "query",
+                "description": "Delay the event triggering in seconds"
+              }
+            ]
+          },
+          "docs": "Resend a webhook event"
+        },
+        {
+          "info": {
+            "name": "Trigger an event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/webhooks/trigger",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trigger an specific event for webhook testing purpose"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sandbox Wipe (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/wipe"
+          },
+          "docs": "Delete the customer and account related data, leaving other configuration data intact. This enables use cases such as bulk data deletion between tests.\nData associated with below resources will be deleted:\n  - Accounts\n  - Account applications\n  - ACH\n  - Businesses\n  - Cards\n  - Card images\n  - Cases\n  - Customers\n  - Disclosures\n  - External Accounts\n  - Internal Accounts\n  - Payment schedules and history\n  - Persons\n  - RDC\n  - Relationships\n  - Transactions (including for Internal Accounts)\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Wires (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wires",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/wires",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originating_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "receiving_account_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of wires"
+        },
+        {
+          "info": {
+            "name": "Send a wire",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/wires",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an outgoing wire transfer"
+        },
+        {
+          "info": {
+            "name": "Get a wire by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/wires/:wire_id",
+            "params": [
+              {
+                "name": "wire_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a wire"
+              }
+            ]
+          },
+          "docs": "Get a wire by id"
+        },
+        {
+          "info": {
+            "name": "Cancel an outgoing wire",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/wires/:wire_id",
+            "params": [
+              {
+                "name": "wire_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a wire"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel an outgoing tranfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

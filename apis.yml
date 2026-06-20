@@ -6,7 +6,7 @@ description: Synctera is a Banking-as-a-Service platform connecting fintechs to 
   network of sponsor banks. Provides REST APIs for personal/business customers, accounts,
   cards, internal transfers, payment schedules, ACH payments, mRDC, KYC/KYB verification,
   document verification, and disclosures.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - FinTech
   - BaaS

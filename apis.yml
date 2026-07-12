@@ -48,6 +48,10 @@ apis:
     - type: Documentation
       url: https://docs.synctera.com/api-reference
 common:
+  - type: DomainSecurity
+    url: security/synctera-domain-security.yml
+  - type: Authentication
+    url: authentication/synctera-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/synctera
   - type: LinkedIn

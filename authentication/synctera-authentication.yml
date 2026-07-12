@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/synctera-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: api_key
+  sources:
+  - openapi/synctera-openapi.json

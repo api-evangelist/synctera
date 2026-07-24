@@ -1,0 +1,571 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Watchlist API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Request to enroll, renew, or cancel watchlist monitors
+  name: Watchlist
+paths:
+  /customers/{customer_id}/watchlists/alerts:
+    description: 'List, retrieve, or update watchlist alerts. **Deprecated:** use `/v0/monitoring/alerts`.
+
+      '
+    summary: Subscriptions to watchlist alerts
+    get:
+      deprecated: true
+      operationId: listWatchlistAlerts
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_alert_list'
+          description: List of watchlist alerts
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List watchlist monitoring alerts for a customer
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+  /customers/{customer_id}/watchlists/alerts/{alert_id}:
+    description: 'Retrieve or update a single watchlist alert. **Deprecated:** use `/v0/monitoring/alerts/{alert_id}` instead.
+
+      '
+    summary: Retrieve or update a single watchlist alert.
+    get:
+      deprecated: true
+      operationId: getWatchlistAlert
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/alert_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_alert'
+          description: A single watchlist alert
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Retrieve watchlist monitoring alert
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+    put:
+      deprecated: true
+      operationId: updateWatchlistAlert
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/alert_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/watchlist_alert'
+        description: A watchlist body
+        required: true
+      responses:
+        '200':
+          description: Watchlist alert was updated
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update watchlist alert
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+  /customers/{customer_id}/watchlists/subscriptions:
+    description: 'Create, list, or retrieve watchlist subscriptions **Deprecated:** use `/v0/monitoring/subscriptions`
+
+      '
+    summary: Subscriptions to watchlist monitoring
+    get:
+      deprecated: true
+      operationId: listWatchlistSubscriptions
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_subscription_list'
+          description: List of watchlist subscriptions
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List watchlist monitoring subscriptions for a customer
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+    post:
+      deprecated: true
+      operationId: watchlistSubscribe
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/watchlist_subscription'
+        description: A watchlist subscription
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_subscription'
+          description: New watchlist subscription
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Subscribe a customer to watchlist monitoring
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+  /customers/{customer_id}/watchlists/subscriptions/{subscription_id}:
+    description: 'Retrieve or update a single watchlist subscription **Deprecated:** use `/v0/monitoring/subscriptions/{subscription_id}`.
+
+      '
+    summary: Watchlist monitoring subscription
+    get:
+      deprecated: true
+      operationId: getWatchlistSubscription
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/subscription_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_subscription'
+          description: A single watchlist subscription
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Retrieve watchlist monitoring subscription
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+    put:
+      deprecated: true
+      operationId: updateWatchlistSubscription
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/subscription_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/watchlist_subscription'
+        description: 'Watchlist monitoring subscription to be updated. The only field that matters is `status`; all other fields are ignored.
+
+          '
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/watchlist_subscription'
+          description: Updated watchlist subscription
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update watchlist monitoring subscription
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+  /customers/{customer_id}/watchlists/suppressions:
+    description: 'Suppress or unsuppress current and future alerts for the given subject (person).
+
+      '
+    summary: Update suppression of watchlist alerts for one subject
+    post:
+      deprecated: true
+      operationId: suppressWatchlistEntityAlert
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/watchlist_suppress'
+        description: A watchlist suppression object
+        required: true
+      responses:
+        '200':
+          description: Watchlist alerts belonging to entity was updated
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Suppress entity alert
+      tags:
+      - Watchlist
+      x-external: true
+      x-status: deprecated
+components:
+  schemas:
+    watchlist_subscription_list:
+      allOf:
+      - properties:
+          subscriptions:
+            items:
+              $ref: '#/components/schemas/watchlist_subscription'
+            type: array
+        required:
+        - subscriptions
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/vendor_json'
+          text/xml: '#/components/schemas/vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/vendor_json'
+      - $ref: '#/components/schemas/vendor_xml'
+      title: Vendor Info
+      type: object
+    vendor_xml:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - text/xml
+          type: string
+        vendor:
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    watchlist_alert:
+      properties:
+        created:
+          description: When this alert was created
+          format: date-time
+          type: string
+        id:
+          description: Unique identifier for this alert
+          format: uuid
+          type: string
+        provider_info:
+          description: 'The information provided to Synctera that triggered this alert, as an arbitrary JSON object. Interpretation of this object is up to the client.
+
+            '
+          type: object
+        provider_subject_id:
+          description: The id of the provider subject for this alert
+          type: string
+        provider_subscription_id:
+          description: The id of the provider subscription for this alert
+          type: string
+        provider_watchlist_name:
+          description: The name of the provider for this alert
+          type: string
+        status:
+          description: The status of this alert
+          enum:
+          - ACTIVE
+          - SUPPRESSED
+          type: string
+        urls:
+          description: 'Where to get more information about this alert (according to our third-party data provider).
+
+            '
+          items:
+            type: string
+          type: array
+        vendor_info:
+          $ref: '#/components/schemas/vendor_info'
+      required:
+      - status
+      type: object
+    watchlist_suppress:
+      properties:
+        provider_subject_id:
+          description: 'The id of the subject (person) for whom future alerts should be suppressed.
+
+            '
+          type: string
+        provider_subscription_id:
+          description: 'The provider''s id for the subscription that caused the alert(s) that are being suppressed.
+
+            '
+          type: string
+        status:
+          description: The status of this suppression
+          enum:
+          - SUPPRESS
+          - UNSUPPRESS
+          type: string
+      required:
+      - provider_subscription_id
+      - provider_subject_id
+      - status
+      type: object
+    vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - application/json
+          type: string
+        json:
+          description: Data representation in JSON
+          type: object
+        vendor:
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    watchlist_subscription:
+      properties:
+        auto_renew:
+          description: 'Whether this subscription should automatically renew when the subscription period is over (default: vendor-dependent).
+
+            '
+          type: boolean
+        created:
+          description: When this subscription was created
+          format: date-time
+          type: string
+        customer_consent:
+          description: 'Whether this customer has consented to being enrolled for watchlist monitoring
+
+            '
+          type: boolean
+        id:
+          description: Unique identifier for this subscription
+          format: uuid
+          type: string
+        period_end:
+          description: The date when monitoring of this individual should end.
+          format: date
+          type: string
+        period_start:
+          description: 'The date when monitoring of this individual should begin (default: today).'
+          format: date
+          type: string
+        provider_subscription_id:
+          description: External provider subscription id
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+      required:
+      - customer_consent
+      type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    watchlist_alert_list:
+      allOf:
+      - properties:
+          alerts:
+            items:
+              $ref: '#/components/schemas/watchlist_alert'
+            type: array
+        required:
+        - alerts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+  parameters:
+    alert_id:
+      description: Unique identifier for this watchlist alert.
+      in: path
+      name: alert_id
+      required: true
+      schema:
+        example: ff23b9d0-4e64-4b98-9f4a-3591ed08121a
+        format: uuid
+        type: string
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    subscription_id:
+      description: Watchlist monitoring subscription ID
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        example: ddcacaa4-e0e4-4652-ae9f-5ef7f1b7d7e1
+        format: uuid
+        type: string
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,153 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Card Webhook Simulations API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to generate simulated webhooks
+  name: Card Webhook Simulations
+paths:
+  /cards/{card_id}/webhook_simulations/fulfillment:
+    description: 'Simulate card fulfillment event
+
+      '
+    summary: Card Webhook Simulations
+    post:
+      description: 'This endpoint is for testing environment only to trigger a simulated change in card fulfillment status event
+
+        '
+      operationId: simulateCardFulfillmentEvent
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/simulate_card_fulfillment'
+        description: Desired simulated fulfillment status change value
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/simulate_card_fulfillment'
+          description: Simulated fulfillment status change value
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Simulate Card Fulfillment Event
+      tags:
+      - Card Webhook Simulations
+      x-external: true
+components:
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  schemas:
+    simulate_card_fulfillment:
+      properties:
+        card_fulfillment_status:
+          $ref: '#/components/schemas/card_fulfillment_status'
+      required:
+      - card_fulfillment_status
+      type: object
+    card_fulfillment_status:
+      description: The status indicating the state of the card issuance
+      enum:
+      - ISSUED
+      - REISSUED
+      - ORDERED
+      - REJECTED
+      - REORDERED
+      - SHIPPED
+      - DIGITALLY_PRESENTED
+      type: string
+    card_id:
+      description: The unique identifier of a card
+      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
+      format: uuid
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+  parameters:
+    card_id:
+      in: path
+      name: card_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/card_id'
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

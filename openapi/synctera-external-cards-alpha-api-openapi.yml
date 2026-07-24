@@ -1,0 +1,655 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts External Cards (alpha) API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Push and pull from cards
+  name: External Cards (alpha)
+paths:
+  /external_cards:
+    get:
+      description: 'List external cards
+
+        '
+      operationId: listExternalCards
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/customer_id_query'
+      - $ref: '#/components/parameters/business_id_query1'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_card_list_response'
+          description: External cards list
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List external cards
+      tags:
+      - External Cards (alpha)
+      x-external: true
+  /external_cards/{external_card_id}:
+    description: 'External Card
+
+      '
+    summary: Get External Card
+    get:
+      description: 'Get an external card
+
+        '
+      operationId: getExternalCard
+      parameters:
+      - $ref: '#/components/parameters/external_card_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_card_response'
+          description: External card details
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a external card
+      tags:
+      - External Cards (alpha)
+      x-external: true
+  /external_cards/tokens:
+    post:
+      description: 'Create an external card from token - You must first tokenize the external card using the external card iframe. You will receive a token for the external card upon successful completion. This endpoint will persist the external card and associate it to a customer. The customer''s name and address should match that of the external card as entered in the iframe. <br>NB: Tokens should be associated right away. Tokens not associated within 30 mins of creation will be invalidated.</br> NB: If a valid business_id is provided, the address verification for the external card will be done against the address of the business. Otherwise, the address of the customer will be used. In either case, the name of the customer will be used to match the name of the cardholder.
+
+        '
+      operationId: createExternalCardFromToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/external_card_request'
+        description: Details of the card to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_card_response'
+          description: External card created
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create external card from token
+      tags:
+      - External Cards (alpha)
+      x-external: true
+  /external_cards/transfers:
+    get:
+      description: 'List external card transfer
+
+        '
+      operationId: listExternalCardTransfers
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/customer_id_query_array1'
+      - $ref: '#/components/parameters/external_card_id_query'
+      - $ref: '#/components/parameters/originating_account_id_query_array'
+      - $ref: '#/components/parameters/external_transfer_type_query'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_list_response'
+          description: External transfer list
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List external transfers
+      tags:
+      - External Cards (alpha)
+      x-external: true
+    post:
+      description: 'Create a external card transfer
+
+        '
+      operationId: createExternalCardTransfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/transfer_request'
+        description: Details of the transfer to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_response'
+          description: External card transfer created
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create external card transfer
+      tags:
+      - External Cards (alpha)
+      x-external: true
+  /external_cards/transfers/{transfer_id}:
+    description: 'External card transfer
+
+      '
+    summary: External Card Transfer
+    get:
+      description: 'Get an external transfer
+
+        '
+      operationId: getExternalCardTransfer
+      parameters:
+      - $ref: '#/components/parameters/transfer_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transfer_response'
+          description: External card transfer details
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get an external card transfer
+      tags:
+      - External Cards (alpha)
+      x-external: true
+components:
+  responses:
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    external_card_id:
+      description: The unique identifier of an external card
+      in: path
+      name: external_card_id
+      required: true
+      schema:
+        example: 411e5190-c495-4344-9fb5-0a3c7bab0345
+        format: uuid
+        type: string
+    transfer_id:
+      description: The unique identifier of a transfer
+      in: path
+      name: transfer_id
+      required: true
+      schema:
+        example: 1b7767fe-7dcd-43d5-85cf-c4392bb3e830
+        format: uuid
+        type: string
+    originating_account_id_query_array:
+      explode: false
+      in: query
+      name: originating_account_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/originating_account_id'
+        type: array
+      style: form
+      x-external: true
+    external_card_id_query:
+      in: query
+      name: external_card_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/external_card_id'
+      x-external: true
+    customer_id_query:
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/customer_id1'
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    business_id_query1:
+      in: query
+      name: business_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/business_id'
+      x-external: true
+    external_transfer_type_query:
+      description: The type of an external transfer
+      in: query
+      name: type
+      required: false
+      schema:
+        $ref: '#/components/schemas/transfer_type'
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    customer_id_query_array1:
+      explode: false
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/customer_id1'
+        type: array
+      style: form
+      x-external: true
+  schemas:
+    external_card_request:
+      properties:
+        business_id:
+          $ref: '#/components/schemas/business_id'
+        customer_id:
+          $ref: '#/components/schemas/customer_id1'
+        token:
+          description: The token that was returned via tokenization iframe
+          type: string
+      required:
+      - token
+      - customer_id
+      type: object
+    external_card_id:
+      description: The unique identifier of external card
+      example: 7aeb712d-e9c7-42eb-965f-ce19507b17f8
+      format: uuid
+      type: string
+    business_id:
+      description: The unique identifier of a business
+      example: 4d742b70-9176-4f4b-bcbb-b42fe29b106d
+      format: uuid
+      type: string
+    external_card_list_response:
+      allOf:
+      - properties:
+          external_cards:
+            description: Array of External Cards
+            items:
+              $ref: '#/components/schemas/external_card_response'
+            type: array
+        required:
+        - external_cards
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    transfer_response:
+      properties:
+        account_id:
+          description: The ID of the account to which the card will be linked
+          example: a4037077-95cc-4746-806e-e19f32a2a5ab
+          format: uuid
+          type: string
+        amount:
+          description: Amount of the transfer in cents
+          type: integer
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: US
+          type: string
+        created_time:
+          example: '2020-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        currency:
+          $ref: '#/components/schemas/currency_code'
+        customer_id:
+          description: The ID of the customer for which card is being activated
+          example: a2d8305b-38bc-4f9e-a860-66b4ccbc52bc
+          format: uuid
+          type: string
+        id:
+          description: The id of the transfer
+          type: string
+        last_modified_time:
+          example: '2020-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        status:
+          description: The status of the transfer
+          enum:
+          - SUCCEEDED
+          - PENDING
+          - FAILED
+          type: string
+        transaction_id:
+          description: The transaction ID
+          format: uuid
+          type: string
+        type:
+          $ref: '#/components/schemas/transfer_type'
+      required:
+      - account_id
+      - id
+      - amount
+      - currency
+      - status
+      - customer_id
+      - country_code
+      - created_time
+      - last_modified_time
+      - type
+      type: object
+    transfer_type:
+      description: 'Type of operation for transfer.
+
+
+        Type | Description
+
+        --- | ---
+
+        PUSH | Push fund to the external card from the account_id
+
+        PULL | Pull funds from the external card to the account_id.
+
+        '
+      enum:
+      - PULL
+      - PUSH
+      example: PULL
+      type: string
+    transfer_request:
+      description: Push to card or pull from card
+      properties:
+        amount:
+          description: Amount of the transfer in cents
+          type: integer
+        currency:
+          $ref: '#/components/schemas/currency_code'
+        external_card_id:
+          description: The ID of the external card from/to which the transfer will be initiated/received
+          example: b2710751-b575-47d0-a09b-da0994553d93
+          format: uuid
+          type: string
+        originating_account_id:
+          description: The ID of the account to which the transfer will be initiated/received
+          example: 3e2a2f28-4910-4934-be22-ded51f926b76
+          format: uuid
+          type: string
+        type:
+          $ref: '#/components/schemas/transfer_type'
+      required:
+      - originating_account_id
+      - amount
+      - currency
+      - type
+      - external_card_id
+      type: object
+    processor:
+      description: The transaction processor
+      enum:
+      - VISA_V1
+      - MASTERCARD_V1
+      example: MASTERCARD_V1
+      type: string
+    originating_account_id:
+      description: The unique identifier of an originating account
+      example: a6f8870c-1e7e-45ba-833d-cbc1eead9d2d
+      format: uuid
+      type: string
+    customer_id1:
+      description: The unique identifier of a customer
+      example: 8da2b02b-81f2-41f3-a32e-041eb8ccd825
+      format: uuid
+      type: string
+    currency_code:
+      description: ISO 4217  Alpha-3 currency code
+      example: USD
+      maxLength: 3
+      minLength: 3
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    transfer_list_response:
+      allOf:
+      - properties:
+          external_transfers:
+            description: Array of External transfer
+            items:
+              $ref: '#/components/schemas/transfer_response'
+            type: array
+        required:
+        - external_transfers
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    external_card_verifications:
+      description: Verify card passed AVS and CVV checks in order to use PULL transfer. Verify card is eligible to receive push-to-card disbursements. For example, the inquiry_details object will contain a push_funds_block_indicator attribute that indicates if it is eligible for push-to-card disbursements.
+      properties:
+        address_verification_results:
+          description: 'Address verification results
+
+
+            Status | Description
+
+            --- | ---
+
+            VERIFIED | Address verified
+
+            NOT_VERIFIED | Address not verified
+
+            ADDRESS_NO_MATCH | Postal/ZIP match, street addresses do not match or street address not included in request
+
+            '
+          enum:
+          - VERIFIED
+          - NOT_VERIFIED
+          - ADDRESS_NO_MATCH
+          type: string
+        card_type:
+          description: Indicates whether the external card is credit, debit, prepaid, deferred debit, or charge.
+          enum:
+          - CREDIT
+          - DEBIT
+          - CHARGE_PAID
+          - PREPAID
+          - DEFERRED_DEBIT
+          type: string
+        cvv2_result:
+          description: "Card Verification Value results\n\nStatus | Description\n--- | ---\nVERIFIED | CVV and expiration dates verified\nINCORRECT | Either CVV or expiration date is incorrect\nNOT_SUPPORTED | \tIssuer does not participate in CVV2 service\n"
+          enum:
+          - VERIFIED
+          - INCORRECT
+          - NOT_SUPPORTED
+          type: string
+        fast_funds_indicator:
+          description: Indicates if card is Fast Funds eligible (i.e. if the funds will settle in 30 mins or less). If not eligible, typically funds will settle within 2 business days.
+          type: boolean
+        online_gambling_block_indicator:
+          description: Indicates if the card can receive push-payments for online gambling payouts.
+          type: boolean
+        processor:
+          $ref: '#/components/schemas/processor'
+        push_funds_block_indicator:
+          description: Indicates if the associated card can receive push-to-card disbursements.
+          type: boolean
+        state:
+          enum:
+          - SUCCEEDED
+          - FAILED
+          type: string
+      type: object
+    external_card_response:
+      properties:
+        created_time:
+          example: '2020-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        currency:
+          $ref: '#/components/schemas/currency_code'
+        customer_id:
+          $ref: '#/components/schemas/customer_id1'
+        expiration_month:
+          example: '06'
+          readOnly: true
+          type: string
+        expiration_year:
+          example: '25'
+          readOnly: true
+          type: string
+        id:
+          description: External card ID
+          type: string
+        last_four:
+          description: The last 4 digits of the card PAN
+          example: '1234'
+          readOnly: true
+          type: string
+        last_modified_time:
+          example: '2020-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        name:
+          description: The external card holder name
+          example: Jean Valjean
+          type: string
+        verifications:
+          $ref: '#/components/schemas/external_card_verifications'
+      required:
+      - id
+      - currency
+      - customer_id
+      - expiration_month
+      - expiration_year
+      - last_four
+      - name
+      type: object
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

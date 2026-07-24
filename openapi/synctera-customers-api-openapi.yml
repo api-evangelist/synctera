@@ -1,0 +1,1128 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Customers API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to create and manage customers
+  name: Customers
+paths:
+  /customers:
+    description: 'The Customer object represents your customer''s identity.  You can then verify the identity of this customer and associate them with other people and accounts
+
+      '
+    summary: Customer
+    get:
+      description: Retrieves paginated list of Customers associated with the authorized requester
+      operationId: listCustomers
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/first_name'
+      - $ref: '#/components/parameters/last_name'
+      - $ref: '#/components/parameters/phone_number'
+      - $ref: '#/components/parameters/email'
+      - $ref: '#/components/parameters/ssn_last_4'
+      - $ref: '#/components/parameters/status2'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/customer_sort_by_query'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_list'
+          description: List of customers
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Customers
+      tags:
+      - Customers
+      x-external: true
+    post:
+      description: 'The customer object represents your customer''s identity. You can then verify the identity of this customer and associate them with other people and accounts.
+
+        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.
+
+        '
+      operationId: createCustomer
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_in_body'
+        description: Customer to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_in_body'
+          description: Created customer
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a Customer
+      tags:
+      - Customers
+      x-external: true
+  /customers/{customer_id}:
+    description: 'This resource represents a customer.  Each customer is identified by a customer `ID`
+
+      '
+    summary: Customer
+    get:
+      description: Get Customer based on ID
+      operationId: getCustomer
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_in_body'
+          description: Customer
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Customer
+      tags:
+      - Customers
+      x-external: true
+    patch:
+      description: "Patch fields of customer based on ID\nNote that if:\n  * legal address is provided in the request, AND\n  * shipping_address is not provided in the request, AND\n  * the customer resource does not have shipping_address\n  then shipping_address will be set to a copy of the legal_address.\n"
+      operationId: patchCustomer
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_customer'
+        description: Customer to be patched
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_in_body'
+          description: Patched customer
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Patch Customer
+      tags:
+      - Customers
+      x-external: true
+    put:
+      description: 'Update customer based on ID
+
+        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.
+
+        '
+      operationId: updateCustomer
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer_in_body'
+        description: Customer to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer_in_body'
+          description: Updated customer
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update Customer
+      tags:
+      - Customers
+      x-external: true
+  /customers/{customer_id}/employment:
+    summary: Customer employment group operations
+    get:
+      description: 'Get a list of customer''s current employment records. To see historic employment pass the `include_history` flag.
+
+        '
+      operationId: getAllCustomerEmployment
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/include_history'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employment_list'
+          description: List of customer employment records.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List customer employment records
+      tags:
+      - Customers
+      x-external: true
+    post:
+      description: Create a customer employment record.
+      operationId: createCustomerEmployment
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employment'
+        description: Customer employment record to create.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employment'
+          description: Created customer employment record.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create employment record
+      tags:
+      - Customers
+      x-external: true
+  /customers/{customer_id}/employment/{employment_id}:
+    summary: Customer employment operations
+    get:
+      description: Get a single record of customer employment
+      operationId: getPartyEmployment
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/employment_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employment'
+          description: Customer employment record.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get customer employment record
+      tags:
+      - Customers
+      x-external: true
+    put:
+      description: Update a single record of customer employment.
+      operationId: updatePartyEmployment
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/employment_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employment'
+        description: Customer employment to update.
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/employment'
+          description: Updated customer employment record
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update customer employment record
+      tags:
+      - Customers
+      x-external: true
+  /customers/{customer_id}/prefill:
+    post:
+      description: 'Prefill takes a subset of a person''s information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.
+
+        '
+      operationId: prefillCustomer
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/prefill_request'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/prefill_request'
+          description: Prefill response.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Prefill customer
+      tags:
+      - Customers
+      x-external: true
+      x-status: alpha
+  /customers/{customer_id}/risk_ratings:
+    summary: Risk Rating group operations
+    get:
+      description: Get list of customer risk ratings
+      operationId: getAllCustomerRiskRatings
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/include_history'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/risk_rating_list'
+          description: List of customer risk ratings
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List customer risk ratings
+      tags:
+      - Customers
+      x-external: true
+    post:
+      description: Create customer risk rating
+      operationId: createCustomerRiskRating
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/risk_rating'
+        description: 'Create a customer risk rating. With a risk rating in request body, Synctera
+
+          validates the data and saves it. With no request body, Synctera runs an
+
+          automated risk analysis and saves the result.
+
+          '
+        required: false
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/risk_rating'
+          description: Created risk rating
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create customer risk rating
+      tags:
+      - Customers
+      x-external: true
+  /customers/{customer_id}/risk_ratings/{risk_rating_id}:
+    summary: Risk Rating
+    get:
+      description: Get a customer risk rating
+      operationId: getCustomerRiskRating
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/risk_rating_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/risk_rating'
+          description: Customer risk rating of id
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get customer risk rating
+      tags:
+      - Customers
+      x-external: true
+components:
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  schemas:
+    relationship_role:
+      description: CUSTODIAN - Related party is the custodian e.g. the parent, BENEFICIARY - Related party is the beneficiary e.g. the dependent, PARTNER - Related party is the partner
+      enum:
+      - CUSTODIAN
+      - BENEFICIARY
+      - PARTNER
+      example: CUSTODIAN
+      title: Relationship Role
+      type: string
+    employment:
+      description: 'A period of time in which a customer is (was) employed by a particular employer.
+
+        '
+      properties:
+        employer_name:
+          description: Name of customer's employer.
+          example: ABC, Inc.
+          type: string
+        employment_from:
+          description: First day of employment.
+          example: '2016-05-11T00:00:00Z'
+          format: date-time
+          type: string
+        employment_hours:
+          description: Number of hours spent per week working for specified employment.
+          example: 37.5
+          format: float
+          maximum: 80
+          minimum: 0
+          type: number
+        employment_income:
+          description: Annual income in cents.
+          example: 5000000
+          type: integer
+        employment_income_currency:
+          description: 'The 3-letter alphabetic ISO 4217 code for the currency in which the employee was paid.
+
+            '
+          example: USD
+          type: string
+        employment_info:
+          description: 'A collection of arbitrary key-value pairs providing additional information about this employment relationship.
+
+            '
+          type: object
+        employment_occupation:
+          description: Customer's work title, profession, or field.
+          example: clerk
+          type: string
+        employment_to:
+          description: Last day of employment.
+          example: '2018-11-19T00:00:00Z'
+          format: date-time
+          type: string
+        id:
+          description: Unique ID for this employment relationship.
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - employer_name
+      title: Customer employment record
+      type: object
+    patch_customer:
+      description: Customer object for patch purpose. All fields are optional
+      properties:
+        dob:
+          description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
+          example: '2000-01-01'
+          format: date
+          type: string
+        email:
+          description: Customer's email
+          example: Hanna_Lubowitz@yahoo.com
+          type: string
+        first_name:
+          description: Customer's first name
+          example: Viva
+          type: string
+        last_name:
+          description: Customer's last name
+          example: Will
+          type: string
+        legal_address:
+          $ref: '#/components/schemas/address'
+          description: Customer's legal address
+        metadata:
+          description: User-supplied JSON format metadata. Do not use to store PII.
+          type: object
+        middle_name:
+          description: Customer's middle name
+          example: c
+          type: string
+        phone_number:
+          description: Customer's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.
+          example: '+14374570680'
+          pattern: ^\+[1-9]\d{1,14}$
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/address'
+          description: Customer's shipping address
+        ssn:
+          description: Customer's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC on a customer. Must be compiled with ^\d{3}-\d{2}-\d{4}$. Response contains the last 4 digits only (e.g. 6789).
+          example: 797-39-8489
+          type: string
+        status:
+          description: Customer's status
+          enum:
+          - ACTIVE
+          - ESCHEAT
+          - DECEASED
+          - DENIED
+          - DORMANT
+          - FROZEN
+          - INACTIVE
+          - PROSPECT
+          - SANCTION
+          type: string
+      title: Customer
+      type: object
+    prospect:
+      allOf:
+      - properties:
+          dob:
+            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
+            example: '2000-01-01'
+            format: date
+            type: string
+          first_name:
+            description: Customer's first name
+            example: Chyna
+            type: string
+          last_name:
+            description: Customer's last name
+            example: Daugherty
+            type: string
+          status:
+            description: Customer's status
+            enum:
+            - ACTIVE
+            - ESCHEAT
+            - DECEASED
+            - DENIED
+            - DORMANT
+            - FROZEN
+            - INACTIVE
+            - PROSPECT
+            - SANCTION
+            type: string
+        required:
+        - status
+      - $ref: '#/components/schemas/base_person'
+      description: A prospect has a unique identifier. It can be upgrade to a customer with required information
+      title: Customer
+      type: object
+    risk_rating:
+      description: Represents a customer's risk profile
+      properties:
+        configuration_id:
+          description: The risk configuration id used in risk score calculation
+          format: uuid
+          readOnly: true
+          type: string
+        id:
+          description: Risk rating ID
+          format: uuid
+          readOnly: true
+          type: string
+        next_review:
+          description: The next review date where customer risk will be calculated
+          format: date-time
+          type: string
+        risk_level:
+          description: A textual representation of the customer risk score
+          enum:
+          - low
+          - medium
+          - high
+          type: string
+        risk_review:
+          description: The date the customer risk rating was calculated
+          format: date-time
+          readOnly: true
+          type: string
+        risk_score:
+          description: The cumulative score of all risk rating fields
+          format: float
+          type: number
+      title: Customer Risk Rating
+      type: object
+    risk_rating_list:
+      allOf:
+      - properties:
+          risk_ratings:
+            description: Array of customer risk ratings
+            items:
+              $ref: '#/components/schemas/risk_rating'
+            type: array
+        required:
+        - risk_ratings
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    ban_status:
+      description: '(alpha) Ban status of the person. One of the following:
+
+        * `ALLOWED` – person is not banned
+
+        * `BANNED` – person is banned
+
+        '
+      enum:
+      - ALLOWED
+      - BANNED
+      example: ALLOWED
+      type: string
+    ssn_source:
+      description: 'Describes the collection method for the customer''s SSN:
+
+        * `MANUAL` – the full 9 digits of the customer''s SSN was collected.
+
+        * `PREFILL` – the customer''s SSN was collected using SSN Prefill.
+
+        '
+      enum:
+      - MANUAL
+      - PREFILL
+      readOnly: true
+      type: string
+    base_person:
+      properties:
+        ban_status:
+          $ref: '#/components/schemas/ban_status'
+          readOnly: true
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        email:
+          description: Customer's email
+          example: Ahmed.Stracke90@gmail.com
+          type: string
+        id:
+          description: Customer unique identifier
+          example: a0e330bd-fa30-4c1b-882c-abdaac24e7ec
+          format: uuid
+          readOnly: true
+          type: string
+        kyc_exempt:
+          description: Customer's KYC exemption
+          readOnly: true
+          type: boolean
+        kyc_last_run:
+          description: Date and time KYC was last run on the customer
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        kyc_status:
+          $ref: '#/components/schemas/customer_kyc_status'
+          readOnly: true
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        legal_address:
+          $ref: '#/components/schemas/address'
+          description: Customer's legal address
+        metadata:
+          description: User-supplied metadata. Do not use to store PII.
+          type: object
+        middle_name:
+          description: Customer's middle name
+          example: c
+          type: string
+        phone_number:
+          description: Customer's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.
+          example: '+14374570680'
+          pattern: ^\+[1-9]\d{1,14}$
+          type: string
+        related_customers:
+          description: Customer's relationships with other accounts eg. guardian
+          items:
+            $ref: '#/components/schemas/relationship1'
+          type: array
+        shipping_address:
+          $ref: '#/components/schemas/address'
+          description: Customer's shipping address
+        ssn:
+          description: Customer's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC on a customer. Input must match the pattern ^\d{3}-\d{2}-\d{4}$. The response contains the last 4 digits only (e.g. 6789).
+          example: 651-36-1079
+          type: string
+        ssn_source:
+          $ref: '#/components/schemas/ssn_source'
+      type: object
+    customer_in_body:
+      discriminator:
+        mapping:
+          ACTIVE: '#/components/schemas/customer'
+          DECEASED: '#/components/schemas/customer'
+          DENIED: '#/components/schemas/customer'
+          DORMANT: '#/components/schemas/customer'
+          ESCHEAT: '#/components/schemas/customer'
+          FROZEN: '#/components/schemas/customer'
+          INACTIVE: '#/components/schemas/customer'
+          PROSPECT: '#/components/schemas/prospect'
+          SANCTION: '#/components/schemas/customer'
+        propertyName: status
+      oneOf:
+      - $ref: '#/components/schemas/customer'
+      - $ref: '#/components/schemas/prospect'
+      type: object
+    customer_kyc_status:
+      description: Customer's KYC status
+      enum:
+      - UNVERIFIED
+      - REVIEW
+      - PROVIDER_FAILURE
+      - ACCEPTED
+      - REJECTED
+      - PROVISIONAL
+      type: string
+    address:
+      properties:
+        address_line_1:
+          description: Street address line 1
+          example: 4992 Curtis Ports
+          type: string
+        address_line_2:
+          description: String address line 2
+          example: Apt. 877
+          type: string
+        city:
+          description: City
+          example: East Winstonview
+          type: string
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: US
+          pattern: ^[A-Z]{2}$
+          type: string
+        postal_code:
+          description: Postal code
+          example: '28620'
+          type: string
+        state:
+          description: State, region, province, or prefecture
+          example: NJ
+          type: string
+      required:
+      - address_line_1
+      - country_code
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    customer_list:
+      allOf:
+      - properties:
+          customers:
+            description: Array of Customers
+            items:
+              $ref: '#/components/schemas/customer_in_body'
+            type: array
+        required:
+        - customers
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    customer:
+      allOf:
+      - properties:
+          dob:
+            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
+            example: '2000-01-01'
+            format: date
+            type: string
+          first_name:
+            description: Customer's first name
+            example: Baron
+            type: string
+          last_name:
+            description: Customer's last name
+            example: Rau
+            type: string
+          status:
+            description: Customer's status
+            enum:
+            - ACTIVE
+            - ESCHEAT
+            - DECEASED
+            - DENIED
+            - DORMANT
+            - FROZEN
+            - INACTIVE
+            - PROSPECT
+            - SANCTION
+            type: string
+        required:
+        - status
+      - $ref: '#/components/schemas/base_person'
+      description: Details of a customer
+      title: Customer
+      type: object
+    employment_list:
+      allOf:
+      - properties:
+          employment:
+            description: Array of customer employment records.
+            items:
+              $ref: '#/components/schemas/employment'
+            type: array
+        required:
+        - employment
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    prefill_request:
+      properties:
+        ssn_filled:
+          description: If true, the person's SSN was successfully populated.
+          example: true
+          readOnly: true
+          type: boolean
+        ssn_last4:
+          description: Last four digits of person's Social Security number (SSN).
+          example: 4271
+          type: string
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    relationship1:
+      properties:
+        id:
+          description: ID of related entity
+          example: 821d3254-fed8-4fdc-aa35-7c1c770fd3cf
+          format: uuid
+          type: string
+        relationship_role:
+          $ref: '#/components/schemas/relationship_role'
+      required:
+      - id
+      - relationship_role
+      title: Relationship
+      type: object
+  parameters:
+    customer_sort_by_query:
+      description: 'Specifies the sort order for the returned customers.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - creation_time:asc
+          - creation_time:desc
+          - last_updated_time:asc
+          - last_updated_time:desc
+          - first_name:asc
+          - first_name:desc
+          - last_name:asc
+          - last_name:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    ssn_last_4:
+      in: query
+      name: ssn_last_4
+      required: false
+      schema:
+        description: Only return resources where the last 4 characters of the SSN match the specified value.
+        example: '6789'
+        maxLength: 4
+        minLength: 4
+        type: string
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    first_name:
+      in: query
+      name: first_name
+      required: false
+      schema:
+        description: Only return resources where the first_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Alice
+        type: string
+      x-external: true
+    status2:
+      in: query
+      name: status
+      required: false
+      schema:
+        description: Only return resources where with the specified status.
+        enum:
+        - ACTIVE
+        - DECEASED
+        - DENIED
+        - DORMANT
+        - ESCHEAT
+        - FROZEN
+        - INACTIVE
+        - PROSPECT
+        - SANCTION
+        example: ACTIVE
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    include_history:
+      description: If true, include old (inactive) records as well.
+      in: query
+      name: include_history
+      required: false
+      schema:
+        default: false
+        type: boolean
+      x-external: true
+    risk_rating_id:
+      description: Risk Rating ID
+      in: path
+      name: risk_rating_id
+      required: true
+      schema:
+        example: 25ae35db-92b9-4b74-82d9-140a07eece71
+        format: uuid
+        type: string
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    employment_id:
+      description: Unique ID for the employment record.
+      in: path
+      name: employment_id
+      required: true
+      schema:
+        example: 4675ebf0-0691-4a2b-b1db-7ca6f4ff9ec5
+        format: uuid
+        type: string
+    phone_number:
+      in: query
+      name: phone_number
+      required: false
+      schema:
+        description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
+        example: '+12065550100'
+        type: string
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    email:
+      in: query
+      name: email
+      required: false
+      schema:
+        description: Only return resources where the email field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: john.doe@example.com
+        type: string
+      x-external: true
+    last_name:
+      in: query
+      name: last_name
+      required: false
+      schema:
+        description: Only return resources where the last_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Smith
+        type: string
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

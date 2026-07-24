@@ -1,0 +1,1968 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Request to create and manage accounts
+  name: Accounts
+paths:
+  /accounts:
+    summary: Accounts
+    get:
+      description: Get paginated list of Accounts associated
+      operationId: listAccounts
+      parameters:
+      - $ref: '#/components/parameters/account_id_query'
+      - $ref: '#/components/parameters/linked_account_id_query'
+      - $ref: '#/components/parameters/overdraft_account_id_query'
+      - $ref: '#/components/parameters/overflow_account_id_query'
+      - $ref: '#/components/parameters/account_number'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/interest_product_id_query'
+      - $ref: '#/components/parameters/customer_type'
+      - $ref: '#/components/parameters/customer_id_query_one'
+      - $ref: '#/components/parameters/business_id_query'
+      - $ref: '#/components/parameters/person_id_query'
+      - $ref: '#/components/parameters/first_name'
+      - $ref: '#/components/parameters/last_name'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/account_sort_by_query'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_list'
+          description: List of accounts
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List accounts
+      tags:
+      - Accounts
+      x-external: true
+    post:
+      description: "Create a shadow mode or lead mode account. You need to determine the mode according to integrator configuration, and specify the required fields accordingly.\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - account_template_id\n  - relationships\n"
+      operationId: createAccount
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account_creation'
+        description: Account to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_generic_response'
+          description: Created account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+      summary: Create an account
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/{account_id}:
+    summary: account
+    get:
+      description: Get an account
+      operationId: getAccount
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_generic_response'
+          description: Account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Get account
+      tags:
+      - Accounts
+      x-external: true
+    patch:
+      description: "Patch account.\n\nImmutable fields:\n  - account_number\n  - account_type\n  - account_template_id\n  - customer_type\n\nPlease note:\n  - Other fields cannot be modified when access_status is FROZEN.\n  - access_status has to be patched individually without other fields.\n"
+      operationId: patchAccount
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/account_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account'
+        description: Account fields to be patched
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_generic_response'
+          description: Updated account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Patch account
+      tags:
+      - Accounts
+      x-external: true
+    put:
+      description: "Update account\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - All fields are required.\n\nPlease note:\n  - access_status needs to be in ACTIVE.\n  - PUT request cannot change access_status.\n"
+      operationId: updateAccount
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account'
+        description: Account to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_generic_response'
+          description: Updated account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Update account
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/{account_id}/relationships:
+    summary: Account Relationship
+    get:
+      description: List all customers of an account
+      operationId: listAccountRelationship
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship_list'
+          description: List of account relationships
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: List account relationships
+      tags:
+      - Accounts
+      x-external: true
+    post:
+      description: Add a customer to an account
+      operationId: createAccountRelationship
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/account_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/relationship'
+        description: Account relationship object
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship'
+          description: Account relationship object
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Create account relationship
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/{account_id}/relationships/{relationship_id}:
+    summary: Account Relationship
+    delete:
+      description: Delete account relationship
+      operationId: DeleteAccountRelationship
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      - $ref: '#/components/parameters/relationship_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Delete account relationship
+      tags:
+      - Accounts
+      x-external: true
+    get:
+      description: Get account relationship by ID
+      operationId: getAccountRelationship
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      - $ref: '#/components/parameters/relationship_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship'
+          description: Account relationship
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Get account relationship
+      tags:
+      - Accounts
+      x-external: true
+    put:
+      description: Update account relationship. Only relationship_type can be updated. customer_id should not be modified.
+      operationId: updateAccountRelationship
+      parameters:
+      - $ref: '#/components/parameters/account_id_path'
+      - $ref: '#/components/parameters/relationship_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/relationship'
+        description: Account relationship to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship'
+          description: Updated account relationship
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Update account relationship
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/products:
+    summary: Account products
+    get:
+      description: 'List account Products
+
+        '
+      operationId: listAccountResourceProducts
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - description: Date range filtering for type INTEREST. All rates in interest resource have to have valid_from later or equal to start_date.
+        in: query
+        name: start_date
+        required: false
+        schema:
+          format: date
+          type: string
+        x-external: true
+      - description: Date range filtering for type INTEREST. All rates in interest resource have to have valid_to earlier or equal to end_date.
+        in: query
+        name: end_date
+        required: false
+        schema:
+          format: date
+          type: string
+        x-external: true
+      - description: Type of account product
+        in: query
+        name: product_type
+        required: true
+        schema:
+          enum:
+          - FEE
+          - INTEREST
+          type: string
+        x-external: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_product_list'
+          description: List of account products
+      summary: List account products
+      tags:
+      - Accounts
+      x-external: true
+    post:
+      description: 'Create an account product. Rates cannot be nil or empty.
+
+        '
+      operationId: createAccountResourceProduct
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account_product'
+        description: Account product to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_product'
+          description: Account product created
+      summary: Create an account product
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/products/{product_id}:
+    summary: Account products
+    patch:
+      description: 'Patch account product. Rates requires at minimum 1 entry if specified.
+
+        '
+      operationId: patchAccountProduct
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/product_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_account_product'
+        description: Account product fields to be patched
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_product'
+          description: Updated account product
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+      summary: Patch account product
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/templates:
+    summary: Accounts
+    get:
+      description: 'List account templates
+
+        '
+      operationId: listAccountTemplates
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/template_list'
+          description: List of account templates
+      summary: List account templates
+      tags:
+      - Accounts
+      x-external: true
+    post:
+      description: 'Create an account template. An account template is need when create an account in a lead mode
+
+        '
+      operationId: createAccountTemplate
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account_template'
+        description: Account template to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_template_response'
+          description: Account template created
+      summary: Create an account template
+      tags:
+      - Accounts
+      x-external: true
+  /accounts/templates/{template_id}:
+    summary: account
+    delete:
+      description: Delete account template
+      operationId: DeleteAccountTemplate
+      parameters:
+      - $ref: '#/components/parameters/template_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+      summary: Delete account template
+      tags:
+      - Accounts
+      x-external: true
+    get:
+      description: Get an account template
+      operationId: getAccountTemplate
+      parameters:
+      - $ref: '#/components/parameters/template_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_template_response'
+          description: Account Template
+      summary: Get account template
+      tags:
+      - Accounts
+      x-external: true
+    put:
+      description: 'Update account template
+
+        '
+      operationId: updateAccountTemplate
+      parameters:
+      - $ref: '#/components/parameters/template_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account_template'
+        description: Account template to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account_template_response'
+          description: Account template updated
+      summary: Update account template
+      tags:
+      - Accounts
+      x-external: true
+components:
+  schemas:
+    balance_ceiling:
+      properties:
+        balance:
+          description: Maximum balance in the account's currency. Unit in cents.
+          format: int64
+          minimum: 0
+          type: integer
+        linked_account_id:
+          description: 'ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance ceiling
+
+            '
+          format: uuid
+          type: string
+        overflow_account_id:
+          deprecated: true
+          description: 'ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance ceiling
+
+            This attribute is a deprecated alias for linked_account_id.
+
+            '
+          format: uuid
+          type: string
+      required:
+      - balance
+      type: object
+    balance:
+      properties:
+        balance:
+          description: balance in ISO 4217 minor currency units. Unit in cents.
+          example: 43
+          format: int64
+          readOnly: true
+          type: integer
+        type:
+          $ref: '#/components/schemas/balance_type'
+      required:
+      - type
+      - balance
+      type: object
+    balance_floor:
+      properties:
+        balance:
+          description: Minimum balance in the account's currency. Unit in cents.
+          format: int64
+          type: integer
+        linked_account_id:
+          description: 'ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance floor
+
+            '
+          format: uuid
+          type: string
+        overdraft_account_id:
+          deprecated: true
+          description: 'ID of linked backing account for just-in-time (JIT) funding of transactions to maintain the balance floor
+
+            This attribute is a deprecated alias for linked_account_id.
+
+            '
+          format: uuid
+          type: string
+      required:
+      - balance
+      type: object
+    spending_limits:
+      description: Account spending limits
+      properties:
+        day:
+          $ref: '#/components/schemas/spending_limit_with_time'
+        description:
+          description: User provided description on the spending limits
+          type: string
+        lifetime:
+          $ref: '#/components/schemas/spending_limit_with_time'
+        month:
+          $ref: '#/components/schemas/spending_limit_with_time'
+        transaction:
+          description: Individual transaction limit
+          properties:
+            amount:
+              description: Maximum amount allowed. Unit in cents.
+              format: int64
+              minimum: 0
+              type: integer
+          type: object
+        week:
+          $ref: '#/components/schemas/spending_limit_with_time'
+      type: object
+    base_template_fields:
+      properties:
+        account_type:
+          $ref: '#/components/schemas/account_type'
+          type: string
+        bank_country:
+          description: Bank country of the account. ISO 3166-1 Alpha-2 or Alpha-3 country code.
+          example: US
+          pattern: ^[A-Z]{2,3}$
+          type: string
+        currency:
+          description: Account currency. ISO 4217 alphabetic currency code
+          example: USD
+          pattern: ^[A-Z]{3}$
+          type: string
+      required:
+      - account_type
+      - currency
+      - bank_country
+      type: object
+    account_depository:
+      allOf:
+      - $ref: '#/components/schemas/account_base'
+      - properties:
+          balance_ceiling:
+            $ref: '#/components/schemas/balance_ceiling'
+          balance_floor:
+            $ref: '#/components/schemas/balance_floor'
+          fee_product_ids:
+            description: A list of fee account products that the current account associates with.
+            items:
+              format: uuid
+              type: string
+            type: array
+          interest_product_id:
+            description: 'An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_MONTHLY.
+
+              '
+            format: uuid
+            type: string
+          overdraft_limit:
+            description: Account's overdraft limit
+            format: int64
+            minimum: 0
+            type: integer
+          spending_limits:
+            $ref: '#/components/schemas/spending_limits'
+      description: Account representing either a checking or saving account.
+      type: object
+    account_generic_response:
+      properties:
+        access_status:
+          $ref: '#/components/schemas/account_access_status'
+        access_status_last_updated_time:
+          description: Timestamp of the last modification of the access_status. RFC3339 format.
+          format: date-time
+          readOnly: true
+          type: string
+        account_number:
+          description: Account number
+          maxLength: 50
+          readOnly: true
+          type: string
+        account_number_masked:
+          description: The response will contain the bank fintech ID (3 or 6 digits) plus the last 4 digits, with the digits in between replaced with * characters. Shadow mode account numbers will not be masked.
+          example: 123*****6789
+          maxLength: 50
+          readOnly: true
+          type: string
+        account_purpose:
+          description: Purpose of the account
+          example: This account for the account holder's salary deposit.
+          type: string
+        account_type:
+          $ref: '#/components/schemas/account_type'
+        application_id:
+          description: 'The application ID for this account.
+
+            '
+          format: uuid
+          type: string
+        balance_ceiling:
+          $ref: '#/components/schemas/balance_ceiling'
+        balance_floor:
+          $ref: '#/components/schemas/balance_floor'
+        balances:
+          description: A list of balances for account based on different type
+          items:
+            $ref: '#/components/schemas/balance'
+          readOnly: true
+          type: array
+        bank_routing:
+          description: Bank routing number
+          maxLength: 9
+          readOnly: true
+          type: string
+        billing_period:
+          $ref: '#/components/schemas/billing_period'
+        business_ids:
+          description: A list of the business IDs of the account holders.
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        chargeoff_period:
+          default: 90
+          description: 'The number of days an account can stay delinquent before marking an account as charged-off.
+
+            '
+          minimum: 0
+          type: integer
+        creation_time:
+          description: Account creation timestamp in RFC3339 format
+          format: date-time
+          readOnly: true
+          type: string
+        credit_limit:
+          description: 'The credit limit for this line of credit account in cents. Minimum is 0.
+
+            '
+          example: 2500
+          format: int64
+          minimum: 0
+          type: integer
+        currency:
+          description: Account currency or account settlement currency. ISO 4217 alphabetic currency code. Default USD
+          example: MZN
+          pattern: ^[A-Z]{3}$
+          type: string
+        customer_ids:
+          description: A list of the customer IDs of the account holders.
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        customer_type:
+          $ref: '#/components/schemas/customer_type'
+        delinquency_period:
+          default: 30
+          description: 'The number of days past the due date to wait for a minimum payment before marking an account as delinquent.
+
+            '
+          minimum: 0
+          type: integer
+        exchange_rate_type:
+          description: Exchange rate type
+          example: M, INTERBANK, CUST
+          maxLength: 10
+          type: string
+        fee_product_ids:
+          description: A list of fee account products that the current account associates with.
+          items:
+            format: uuid
+            type: string
+          type: array
+        grace_period:
+          description: 'The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.
+
+            '
+          example: 25
+          minimum: 0
+          type: integer
+        iban:
+          description: International bank account number
+          maxLength: 34
+          type: string
+        id:
+          description: Account ID
+          format: uuid
+          readOnly: true
+          type: string
+        interest_product_id:
+          description: An interest account product that the current account associates with.
+          format: uuid
+          type: string
+        is_account_pool:
+          description: Account is investment (variable balance) account or a multi-balance account pool. Default false
+          type: boolean
+        is_ach_enabled:
+          description: A flag to indicate whether ACH transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_card_enabled:
+          description: A flag to indicate whether card transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_p2p_enabled:
+          description: A flag to indicate whether P2P transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_wire_enabled:
+          description: A flag to indicate whether wire transactions are enabled.
+          readOnly: true
+          type: boolean
+        last_updated_time:
+          description: Timestamp of the last account modification in RFC3339 format
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: User provided account metadata
+          type: object
+        minimum_payment:
+          $ref: '#/components/schemas/minimum_payment'
+        nickname:
+          description: User provided account nickname
+          type: string
+        overdraft_limit:
+          description: Account's overdraft limit
+          format: int64
+          minimum: 0
+          type: integer
+        spending_limits:
+          $ref: '#/components/schemas/spending_limits'
+        status:
+          $ref: '#/components/schemas/status'
+        swift_code:
+          description: SWIFT code
+          maxLength: 11
+          minLength: 8
+          type: string
+      type: object
+    accrual_payout_schedule:
+      enum:
+      - NONE
+      - MONTHLY
+      type: string
+    fee:
+      properties:
+        amount:
+          description: Fee amount
+          format: int64
+          type: integer
+        currency:
+          description: Fee currency code in ISO 4217
+          pattern: ^[A-Z]{3}$
+          type: string
+        fee_type:
+          description: Fee type
+          enum:
+          - MONTHLY_FEE
+          - ANNUAL_FEE
+          - ATM_WITHDRWAL_FEE
+          - OVERDRAFT_FEE
+          - ACH_FEE
+          - WIRE_FEE
+          type: string
+        id:
+          description: Fee ID
+          format: uuid
+          readOnly: true
+          type: string
+        product_type:
+          enum:
+          - INTEREST
+          - FEE
+          type: string
+      required:
+      - product_type
+      - fee_type
+      - amount
+      - currency
+      type: object
+    template_fields_depository:
+      allOf:
+      - $ref: '#/components/schemas/base_template_fields'
+      - properties:
+          balance_ceiling:
+            $ref: '#/components/schemas/balance_ceiling'
+          balance_floor:
+            $ref: '#/components/schemas/balance_floor'
+          fee_product_ids:
+            description: A list of fee account products that the current account associates with.
+            items:
+              format: uuid
+              type: string
+            type: array
+          interest_product_id:
+            description: 'An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_MONTHLY.
+
+              '
+            format: uuid
+            type: string
+          is_ach_enabled:
+            default: false
+            description: Enable ACH transaction.
+            type: boolean
+          is_card_enabled:
+            default: false
+            description: Enable card transaction.
+            type: boolean
+          is_p2p_enabled:
+            default: false
+            description: Enable P2P transaction.
+            type: boolean
+          is_wire_enabled:
+            default: false
+            description: Enable wire transaction.
+            type: boolean
+          overdraft_limit:
+            description: Account's overdraft limit. Default is 0. Unit in cents.
+            format: int64
+            minimum: 0
+            type: integer
+          spending_limits:
+            $ref: '#/components/schemas/spending_limits'
+      type: object
+    account_template:
+      properties:
+        application_type:
+          $ref: '#/components/schemas/application_type'
+          type: string
+        description:
+          description: User provided account template description
+          type: string
+        id:
+          description: Generated ID for the template
+          format: uuid
+          readOnly: true
+          type: string
+        is_enabled:
+          description: Whether this template can be used for account creation
+          type: boolean
+        name:
+          description: Unique account template name
+          type: string
+        template:
+          $ref: '#/components/schemas/template_fields'
+      required:
+      - name
+      - is_enabled
+      - template
+      type: object
+    balance_type:
+      description: 'For `SAVING` and `CHECKING` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of money in the account. Equal to the sum of credits minus debits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the account balance minus any pending debits.
+
+
+        For `LINE_OF_CREDIT` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of credit currently in use. Equal to the sum of debits minus credits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the amount of credit available. Equal to the credit limit minus `account_balance` minus any pending debits.
+
+        '
+      enum:
+      - ACCOUNT_BALANCE
+      - AVAILABLE_BALANCE
+      type: string
+    template_fields:
+      discriminator:
+        mapping:
+          CHECKING: '#/components/schemas/template_fields_depository'
+          LINE_OF_CREDIT: '#/components/schemas/template_fields_line_of_credit'
+          SAVING: '#/components/schemas/template_fields_depository'
+        propertyName: account_type
+      oneOf:
+      - $ref: '#/components/schemas/template_fields_depository'
+      - $ref: '#/components/schemas/template_fields_line_of_credit'
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    account_line_of_credit:
+      allOf:
+      - $ref: '#/components/schemas/account_base'
+      - properties:
+          chargeoff_period:
+            default: 90
+            description: 'The number of days an account can stay delinquent before marking an account as charged-off.
+
+              '
+            minimum: 0
+            type: integer
+          credit_limit:
+            description: 'The credit limit for this line of credit account in cents. Minimum is 0.
+
+              '
+            example: 2500
+            format: int64
+            minimum: 0
+            type: integer
+          delinquency_period:
+            default: 30
+            description: 'The number of days past the due date to wait for a minimum payment before marking an account as delinquent.
+
+              '
+            minimum: 0
+            type: integer
+          grace_period:
+            description: 'The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.
+
+              '
+            example: 25
+            minimum: 0
+            type: integer
+          interest_product_id:
+            description: 'An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_DAILY.
+
+              '
+            format: uuid
+            type: string
+          minimum_payment:
+            $ref: '#/components/schemas/minimum_payment'
+        type: object
+      description: Account representing a line of credit account.
+      type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    account:
+      anyOf:
+      - $ref: '#/components/schemas/account_depository'
+      - $ref: '#/components/schemas/account_line_of_credit'
+      description: Account
+      type: object
+    account_template_response:
+      properties:
+        application_type:
+          $ref: '#/components/schemas/application_type'
+          type: string
+        description:
+          description: Account template description
+          type: string
+        id:
+          description: Generated ID for the template
+          format: uuid
+          type: string
+        is_enabled:
+          description: Whether this template can be used for account creation
+          type: boolean
+        name:
+          description: Unique account template name
+          type: string
+        template:
+          $ref: '#/components/schemas/template_fields_generic_response'
+      required:
+      - name
+      - is_enabled
+      - template
+      type: object
+    rate_details:
+      properties:
+        accrual_period:
+          enum:
+          - DAILY
+          - MONTHLY
+          type: string
+        rate:
+          description: Rate in basis points. E.g. 5 represents 0.05%
+          format: int32
+          type: integer
+        valid_from:
+          description: Rate effective start date. Inclusive.
+          format: date
+          type: string
+        valid_to:
+          description: Rate effective end date. Exclusive.
+          format: date
+          type: string
+      required:
+      - valid_from
+      - rate
+      - accrual_period
+      type: object
+    relationship:
+      description: The relationship of the account and the customer/business. Either customer_id OR business_id must be specified, but not both.
+      properties:
+        business_id:
+          description: Business associated with the current account
+          format: uuid
+          type: string
+        customer_id:
+          description: Personal customer associated with the current account.
+          format: uuid
+          type: string
+        id:
+          description: ID of account relationship
+          format: uuid
+          readOnly: true
+          type: string
+        person_id:
+          deprecated: true
+          description: Person associated with the current account. This attribute is deprecated and will be removed in a future API version. Use customer_id instead.
+          format: uuid
+          type: string
+        relationship_type:
+          $ref: '#/components/schemas/account_relationship_type'
+      required:
+      - relationship_type
+      title: Account Relationship
+      type: object
+    account_type:
+      description: 'The type of the account. In lead mode, this always takes the value of the template. If not
+
+        specified in shadow mode, CHECKING will be assumed. Below mentioned are the account types:
+
+        * SAVING: Savings account
+
+        * CHECKING: Checking account
+
+        * LINE_OF_CREDIT: Line of Credit account
+
+        '
+      enum:
+      - SAVING
+      - CHECKING
+      - LINE_OF_CREDIT
+      title: Account Type
+      type: string
+    account_creation:
+      allOf:
+      - $ref: '#/components/schemas/account'
+      - properties:
+          account_template_id:
+            description: Account template ID
+            format: uuid
+            type: string
+          relationships:
+            description: List of the relationship for this account to the parties
+            items:
+              $ref: '#/components/schemas/relationship'
+            type: array
+        type: object
+    account_product:
+      discriminator:
+        mapping:
+          FEE: '#/components/schemas/fee'
+          INTEREST: '#/components/schemas/interest'
+        propertyName: product_type
+      oneOf:
+      - $ref: '#/components/schemas/interest'
+      - $ref: '#/components/schemas/fee'
+      type: object
+    minimum_payment:
+      description: 'The scheme for calculating the minimum payment due for outstanding balances in a billing period.
+
+        '
+      discriminator:
+        mapping:
+          RATE_OR_AMOUNT: '#/components/schemas/minimum_payment_rate_or_amount'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/minimum_payment_rate_or_amount'
+      type: object
+    relationship_list:
+      allOf:
+      - properties:
+          relationships:
+            description: Array of relationships
+            items:
+              $ref: '#/components/schemas/relationship'
+            type: array
+        required:
+        - relationships
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    calculation_method:
+      enum:
+      - COMPOUNDED_MONTHLY
+      - COMPOUNDED_DAILY
+      type: string
+    template_fields_line_of_credit:
+      allOf:
+      - $ref: '#/components/schemas/base_template_fields'
+      - properties:
+          chargeoff_period:
+            default: 90
+            description: 'The number of days an account can stay delinquent before marking an account as charged-off.
+
+              '
+            minimum: 0
+            type: integer
+          delinquency_period:
+            default: 30
+            description: 'The number of days past the due date to wait for a minimum payment before marking an account as delinquent.
+
+              '
+            minimum: 0
+            type: integer
+          grace_period:
+            default: 30
+            description: 'The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.
+
+              '
+            minimum: 0
+            type: integer
+          interest_product_id:
+            description: 'An interest account product that the current account associates with. The account product must have its calculation_method set to COMPOUNDED_DAILY.
+
+              '
+            format: uuid
+            type: string
+          minimum_payment:
+            $ref: '#/components/schemas/minimum_payment'
+        required:
+        - minimum_payment
+      type: object
+    account_list:
+      allOf:
+      - properties:
+          accounts:
+            description: Array of Accounts
+            items:
+              $ref: '#/components/schemas/account_generic_response'
+            type: array
+        required:
+        - accounts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    template_fields_generic_response:
+      properties:
+        account_type:
+          $ref: '#/components/schemas/account_type'
+          type: string
+        balance_ceiling:
+          $ref: '#/components/schemas/balance_ceiling'
+        balance_floor:
+          $ref: '#/components/schemas/balance_floor'
+        bank_country:
+          description: Bank country of the account
+          example: US
+          pattern: ^[A-Z]{2,3}$
+          type: string
+        billing_period:
+          $ref: '#/components/schemas/billing_period'
+        chargeoff_period:
+          default: 90
+          description: 'The number of days an account can stay delinquent before marking an account as charged-off.
+
+            '
+          minimum: 0
+          type: integer
+        currency:
+          description: Account currency. ISO 4217 alphabetic currency code
+          example: USD
+          pattern: ^[A-Z]{3}$
+          type: string
+        delinquency_period:
+          default: 30
+          description: 'The number of days past the due date to wait for a minimum payment before marking an account as delinquent.
+
+            '
+          minimum: 0
+          type: integer
+        fee_product_ids:
+          description: A list of fee account products that the current account associates with.
+          items:
+            format: uuid
+            type: string
+          type: array
+        grace_period:
+          default: 30
+          description: 'The number of days past the billing period to allow for payment before it is considered due. This directly infers the due date for a payment.
+
+            '
+          minimum: 0
+          type: integer
+        interest_product_id:
+          description: An interest account product that the current account associates with.
+          format: uuid
+          type: string
+        is_ach_enabled:
+          default: false
+          description: Enable ACH transaction on ledger.
+          type: boolean
+        is_card_enabled:
+          default: false
+          description: Enable card transaction on ledger.
+          type: boolean
+        is_p2p_enabled:
+          default: false
+          description: Enable P2P transaction on ledger.
+          type: boolean
+        is_wire_enabled:
+          default: false
+          description: Enable wire transaction on ledger.
+          type: boolean
+        minimum_payment:
+          $ref: '#/components/schemas/minimum_payment'
+        overdraft_limit:
+          description: Account's overdraft limit. Default is 0. Unit in cents.
+          format: int64
+          minimum: 0
+          type: integer
+        spending_limits:
+          $ref: '#/components/schemas/spending_limits'
+      required:
+      - account_type
+      - currency
+      - bank_country
+      type: object
+    application_type:
+      description: 'The type of the application.
+
+        * LINE_OF_CREDIT: line of credit application
+
+        * RESTRICTED_ACCOUNT: restricted account application
+
+        '
+      enum:
+      - LINE_OF_CREDIT
+      - RESTRICTED_ACCOUNT
+      title: Application Type
+      type: string
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    patch_interest:
+      properties:
+        accrual_payout_schedule:
+          $ref: '#/components/schemas/accrual_payout_schedule'
+        calculation_method:
+          $ref: '#/components/schemas/calculation_method'
+        description:
+          description: User provided description for the current interest.
+          example: The rate is designed for high interest saving account.
+          type: string
+        id:
+          description: Interest ID
+          format: uuid
+          readOnly: true
+          type: string
+        product_type:
+          enum:
+          - INTEREST
+          type: string
+        rates:
+          $ref: '#/components/schemas/rates'
+      required:
+      - product_type
+      type: object
+    account_product_list:
+      allOf:
+      - properties:
+          account_products:
+            description: Array of account products
+            items:
+              $ref: '#/components/schemas/account_product'
+            type: array
+        required:
+        - account_products
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    patch_account_product:
+      discriminator:
+        mapping:
+          FEE: '#/components/schemas/fee'
+          INTEREST: '#/components/schemas/patch_interest'
+        propertyName: product_type
+      oneOf:
+      - $ref: '#/components/schemas/patch_interest'
+      - $ref: '#/components/schemas/fee'
+      type: object
+    rates:
+      description: 'A list of interest rate. Date intervals between valid_from and valid_to expect to have no overlap.
+
+        '
+      items:
+        $ref: '#/components/schemas/rate_details'
+      type: array
+    minimum_payment_type:
+      description: "* RATE_OR_AMOUNT: >\n  Describes a minimum payment scheme where the amount calculated is either a portion\n  of the balance due, or a fixed, maximum amount, whichever is lesser. For example, if\n  set to 1.00% and $30, the minimum payment will be calculated as 1.00% of the balance,\n  but only up to a maximum of $30.\n"
+      enum:
+      - RATE_OR_AMOUNT
+      type: string
+    minimum_payment_rate_or_amount:
+      properties:
+        min_amount:
+          description: 'The maximum amount to charge as a minimum payment, in cents. For example, to set the maximum to $30, set this value to 3000.
+
+            '
+          format: int64
+          type: integer
+        rate:
+          description: 'The percentage of the balance to use, in basis points. For example, to set 12.5% of the balance, set this value to 1250.
+
+            '
+          type: integer
+        type:
+          $ref: '#/components/schemas/minimum_payment_type'
+          type: string
+      required:
+      - type
+      - rate
+      - min_amount
+      type: object
+    account_relationship_type:
+      description: Relationship type
+      enum:
+      - ACCOUNT_HOLDER
+      - PRIMARY_ACCOUNT_HOLDER
+      - JOINT_ACCOUNT_HOLDER
+      - AUTHORIZED_SIGNER
+      type: string
+    spending_limit_with_time:
+      description: Limit over a specific time period.
+      properties:
+        amount:
+          description: Maximum amount allowed within the time range. Unit in cents.
+          format: int64
+          minimum: 0
+          type: integer
+        transactions:
+          description: Maximum number of transactions allowed within the time range
+          format: int64
+          minimum: 0
+          type: integer
+      type: object
+    template_list:
+      allOf:
+      - properties:
+          account_templates:
+            description: Array of account templates
+            items:
+              $ref: '#/components/schemas/account_template_response'
+            type: array
+        required:
+        - account_templates
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    account_base:
+      properties:
+        access_status:
+          $ref: '#/components/schemas/account_access_status'
+        account_number:
+          description: Account number
+          maxLength: 50
+          readOnly: true
+          type: string
+        account_number_masked:
+          description: The response will contain the bank fintech ID (3 or 6 digits) plus the last 4 digits, with the digits in between replaced with * characters. Shadow mode account numbers will not be masked.
+          example: 123*****6789
+          maxLength: 50
+          readOnly: true
+          type: string
+        account_purpose:
+          description: Purpose of the account
+          example: This account for the account holder's salary deposit.
+          type: string
+        account_type:
+          $ref: '#/components/schemas/account_type'
+        application_id:
+          description: 'The application ID for this account.
+
+            '
+          format: uuid
+          type: string
+        balances:
+          description: A list of balances for account based on different type
+          items:
+            $ref: '#/components/schemas/balance'
+          readOnly: true
+          type: array
+        bank_routing:
+          description: Bank routing number
+          maxLength: 9
+          readOnly: true
+          type: string
+        creation_time:
+          description: Account creation timestamp in RFC3339 format
+          format: date-time
+          readOnly: true
+          type: string
+        currency:
+          description: Account currency or account settlement currency. ISO 4217 alphabetic currency code. Default USD
+          example: SVC
+          pattern: ^[A-Z]{3}$
+          type: string
+        customer_ids:
+          description: A list of the customer IDs of the account holders.
+          items:
+            format: uuid
+            type: string
+          readOnly: true
+          type: array
+        customer_type:
+          $ref: '#/components/schemas/customer_type'
+        exchange_rate_type:
+          description: Exchange rate type
+          example: M, INTERBANK, CUST
+          maxLength: 10
+          type: string
+        iban:
+          description: International bank account number
+          maxLength: 34
+          type: string
+        id:
+          description: Account ID
+          format: uuid
+          readOnly: true
+          type: string
+        is_account_pool:
+          description: Account is investment (variable balance) account or a multi-balance account pool. Default false
+          type: boolean
+        is_ach_enabled:
+          description: A flag to indicate whether ACH transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_card_enabled:
+          description: A flag to indicate whether card transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_p2p_enabled:
+          description: A flag to indicate whether P2P transactions are enabled.
+          readOnly: true
+          type: boolean
+        is_wire_enabled:
+          description: A flag to indicate whether wire transactions are enabled.
+          readOnly: true
+          type: boolean
+        last_updated_time:
+          description: Timestamp of the last account modification in RFC3339 format
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: User provided account metadata
+          type: object
+        nickname:
+          description: User provided account nickname
+          type: string
+        status:
+          $ref: '#/components/schemas/status'
+        swift_code:
+          description: SWIFT code
+          maxLength: 11
+          minLength: 8
+          type: string
+      type: object
+    interest:
+      properties:
+        accrual_payout_schedule:
+          $ref: '#/components/schemas/accrual_payout_schedule'
+        calculation_method:
+          $ref: '#/components/schemas/calculation_method'
+        description:
+          description: User provided description for the current interest.
+          example: The rate is designed for high interest saving account.
+          type: string
+        id:
+          description: Interest ID
+          format: uuid
+          readOnly: true
+          type: string
+        product_type:
+          enum:
+          - INTEREST
+          - FEE
+          type: string
+        rates:
+          $ref: '#/components/schemas/rates'
+      required:
+      - product_type
+      - calculation_method
+      - rates
+      - accrual_payout_schedule
+      type: object
+    account_access_status:
+      description: Access status for account. Default ACTIVE
+      enum:
+      - ACTIVE
+      - FROZEN
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    customer_type:
+      description: Customer type
+      enum:
+      - BUSINESS
+      - PERSONAL
+      readOnly: true
+      title: Customer Type
+      type: string
+    account_id_query_schema:
+      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+      items:
+        format: uuid
+        type: string
+      type: array
+    billing_period:
+      description: 'The scheme for determining an account''s billing period.
+
+        '
+      properties:
+        frequency:
+          description: 'The frequency of billing cycles. Along with the start date, this will determine the start and end of each cycle.
+
+            '
+          enum:
+          - ANNUALLY
+          - MONTHLY
+          - SEMI_MONTHLY
+          - BI_WEEKLY
+          - WEEKLY
+          - DAILY
+          type: string
+        start_date:
+          description: 'The first day of the first billing cycle for this account. For a monthly billing cycle, this would determine the day of the month each billing cycle will start on.
+
+            '
+          format: date-time
+          type: string
+      required:
+      - start_date
+      - frequency
+      type: object
+    status:
+      description: 'The status of the account
+
+        '
+      enum:
+      - APPLICATION_SUBMITTED
+      - FAILED_KYC
+      - ACCOUNT_NOT_DESIRED
+      - ACTIVE_OR_DISBURSED
+      - CLOSED
+      - SUSPENDED
+      - CHARGED_OFF
+      - ACCOUNT_NEVER_ACTIVE
+      - ACTIVATED_NOT_DISBURSED
+      - AWAITING_FIXING
+      - IN_CLOSING
+      - RESTRICTED
+      - DELINQUENT
+      title: Account Status
+      type: string
+  parameters:
+    status:
+      in: query
+      name: status
+      required: false
+      schema:
+        $ref: '#/components/schemas/status'
+      x-external: true
+    customer_id_query_one:
+      deprecated: true
+      description: The customer's unique identifier
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/customer_id'
+      x-external: true
+    template_id:
+      description: Account Template ID
+      in: path
+      name: template_id
+      required: true
+      schema:
+        example: 72aad5e2-302a-4683-8d33-2510afae6eab
+        format: uuid
+        type: string
+    last_name:
+      in: query
+      name: last_name
+      required: false
+      schema:
+        description: Only return resources where the last_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Smith
+        type: string
+      x-external: true
+    linked_account_id_query:
+      description: 'Return only resources that are linked to the specified backing account in balance_floor or balance_ceiling. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: linked_account_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    interest_product_id_query:
+      description: Interest product ID that accounts associate with. Multiple IDs can be provided as a comma-separated list.
+      in: query
+      name: interest_product_id
+      required: false
+      schema:
+        type: string
+      x-external: true
+    product_id:
+      description: Account Product ID
+      in: path
+      name: product_id
+      required: true
+      schema:
+        example: 95a2e06d-83ab-458b-b3b8-962941411ee6
+        format: uuid
+        type: string
+    overdraft_account_id_query:
+      deprecated: true
+      description: 'Overdraft account ID(s). Multiple IDs can be provided as a comma-separated list.
+
+        This parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.
+
+        '
+      explode: false
+      in: query
+      name: overdraft_account_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
+    first_name:
+      in: query
+      name: first_name
+      required: false
+      schema:
+        description: Only return resources where the first_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Alice
+        type: string
+      x-external: true
+    business_id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: business_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    person_id_query:
+      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: person_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    account_sort_by_query:
+      description: 'Specifies the sort order for the returned accounts.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - account_number:asc
+          - account_number:desc
+          - account_type:asc
+          - account_type:desc
+          - first_name:asc
+          - first_name:desc
+          - last_name:asc
+          - last_name:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    account_id_query:
+      description: 'Account ID(s). Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    relationship_id:
+      description: Relationship ID of the account associate with the account entity
+      in: path
+      name: relationship_id
+      required: true
+      schema:
+        example: 1558a413-6b1c-45e0-8da0-386ae5b46b75
+        format: uuid
+        type: string
+    account_id_path:
+      description: Unique identifier for the account.
+      in: path
+      name: account_id
+      required: true
+      schema:
+        example: 12dbc24c-3cfc-46dc-a164-0977434afabf
+        format: uuid
+        type: string
+    overflow_account_id_query:
+      deprecated: true
+      description: 'Overflow account ID(s). Multiple IDs can be provided as a comma-separated list.
+
+        This parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.
+
+        '
+      explode: false
+      in: query
+      name: overflow_account_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
+    customer_type:
+      description: 'Customer type of the account, BUSINESS or PERSONAL
+
+        '
+      in: query
+      name: customer_type
+      schema:
+        $ref: '#/components/schemas/customer_type'
+      x-external: true
+    account_number:
+      description: 'Account number(s). Multiple account numbers can be provided as a comma-separated list.
+
+        When only a single account number is provided, any * characters in the string are wildcards, and match any characters.
+
+        '
+      explode: false
+      in: query
+      name: account_number
+      required: false
+      schema:
+        example: '2345678108180014864'
+        items:
+          type: string
+        type: array
+      style: form
+      x-external: true
+  responses:
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    account_closed:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Account has been closed
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

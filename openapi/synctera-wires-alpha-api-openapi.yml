@@ -1,0 +1,441 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Wires (alpha) API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Create and manage wire transfers
+  name: Wires (alpha)
+paths:
+  /wires:
+    summary: Wire
+    get:
+      description: Get paginated list of wires
+      operationId: listWires
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/status6'
+      - $ref: '#/components/parameters/customer_id'
+      - $ref: '#/components/parameters/originating_account_id'
+      - $ref: '#/components/parameters/receiving_account_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/wire_list'
+          description: List of wires
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List wires
+      tags:
+      - Wires (alpha)
+      x-external: true
+      x-status: alpha
+    post:
+      description: Create an outgoing wire transfer
+      operationId: createWire
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/wire_request'
+        description: Wire transfer request
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/wire'
+          description: Created wire
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Send a wire
+      tags:
+      - Wires (alpha)
+      x-external: true
+      x-status: alpha
+  /wires/{wire_id}:
+    summary: Wire
+    get:
+      description: Get a wire by id
+      operationId: getWire
+      parameters:
+      - $ref: '#/components/parameters/wire_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/wire'
+          description: wire
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a wire by id
+      tags:
+      - Wires (alpha)
+      x-external: true
+      x-status: alpha
+    patch:
+      description: Cancel an outgoing tranfer
+      operationId: cancelWire
+      parameters:
+      - $ref: '#/components/parameters/wire_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_transfer'
+        description: wire to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/wire'
+          description: Updated wire
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Cancel an outgoing wire
+      tags:
+      - Wires (alpha)
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    update_transfer:
+      properties:
+        status:
+          description: Field value must be set to CANCELED
+          enum:
+          - CANCELED
+          example: CANCELED
+          type: string
+      title: Change Status
+      type: object
+    wire_list:
+      allOf:
+      - properties:
+          wires:
+            description: Array of wires
+            items:
+              $ref: '#/components/schemas/wire'
+            type: array
+        required:
+        - wires
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+      title: Wire List
+    wire_request:
+      properties:
+        amount:
+          description: Transfer amount in cents ($100 would be 10000)
+          example: 10000
+          type: integer
+        bank_message:
+          description: Instructions intended for the financial institutions that are processing the wire.
+          maxLength: 210
+          type: string
+        currency:
+          description: 3-character currency code
+          enum:
+          - USD
+          example: USD
+          type: string
+        customer_id:
+          description: The customer UUID representing the person initiating the Wire transfer
+          example: 98f0e4c8-220b-463c-8981-7413c65ee6c9
+          format: uuid
+          type: string
+        metadata:
+          description: Additional transfer metadata structured as key-value pairs
+          type: object
+        originating_account_id:
+          description: Sender account ID
+          example: ed92890d-7111-465a-a972-1b6839e88eb2
+          format: uuid
+          type: string
+        receiving_account_id:
+          description: The external account uuid representing the recipient of the wire.
+          example: 72b70665-ba18-412e-a91f-cd59f72c6cd0
+          format: uuid
+          type: string
+        recipient_message:
+          description: Information from the originator to the beneficiary (recipient).
+          maxLength: 140
+          type: string
+      required:
+      - customer_id
+      - originating_account_id
+      - receiving_account_id
+      - amount
+      - currency
+      title: Wire payment request payload
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    wire:
+      properties:
+        amount:
+          description: Transfer amount in cents ($100 would be 10000)
+          example: 10000
+          type: integer
+        bank_message:
+          description: Instructions intended for the financial institutions that are processing the wire.
+          type: string
+        creation_time:
+          example: 2022-05-18TT17:54:12Z
+          format: date-time
+          readOnly: true
+          type: string
+        currency:
+          description: 3-character currency code
+          example: USD
+          type: string
+        customer_id:
+          description: The customer UUID representing the person initiating the Wire transfer
+          example: c6f0f83b-0b19-4eb3-b14d-233ef38af14a
+          format: uuid
+          type: string
+        id:
+          description: wire ID
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          example: 2022-05-18TT17:54:12Z
+          format: date-time
+          readOnly: true
+          type: string
+        originating_account_id:
+          description: Sender account ID
+          example: 9ea58e5e-b021-4a2c-bf91-9790cb3ac63e
+          format: uuid
+          type: string
+        receiving_account_id:
+          description: The external account uuid representing the recipient of the wire.
+          example: 0b320738-b9e8-4604-984b-6a83828e6163
+          format: uuid
+          type: string
+        recipient_message:
+          description: Information from the originator to the beneficiary (recipient).
+          type: string
+        sender_reference_id:
+          description: Sender's id associated with fedwire transfer
+          example: 9F564A6124E65
+          readOnly: true
+          type: string
+        status:
+          description: The current status of the transfer
+          enum:
+          - PENDING
+          - COMPLETED
+          - CANCELED
+          - DECLINED
+          example: PENDING
+          readOnly: true
+          type: string
+        transaction_id:
+          description: ID of the resulting transaction resource
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - id
+      - transaction_id
+      - amount
+      - status
+      - currency
+      - customer_id
+      - originating_account_id
+      - receiving_account_id
+      - sender_reference_id
+      - creation_time
+      - last_updated_time
+      title: Wire
+      type: object
+  parameters:
+    originating_account_id:
+      in: query
+      name: originating_account_id
+      required: false
+      schema:
+        example: 1a43dcf4-97b8-4522-850d-4de9061cf1b4
+        format: uuid
+        type: string
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    status6:
+      in: query
+      name: status
+      required: false
+      schema:
+        description: Optional query parameter that can be use to filter the list of returned wires by transfer status
+        enum:
+        - PENDING
+        - COMPLETED
+        - CANCELLED
+        example: PENDING
+        type: string
+      x-external: true
+    customer_id:
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        example: 3b601be1-1c91-4136-bca8-6754cc78f713
+        format: uuid
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    receiving_account_id:
+      in: query
+      name: receiving_account_id
+      required: false
+      schema:
+        example: 2c0b200c-7b43-4110-83f4-79370103ded8
+        format: uuid
+        type: string
+      x-external: true
+    wire_id:
+      description: The unique identifier of a wire
+      in: path
+      name: wire_id
+      required: true
+      schema:
+        example: e7c5e3cb-0294-4243-b418-47025997de7f
+        format: uuid
+        type: string
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

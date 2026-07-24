@@ -1,0 +1,576 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Monitoring API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to manage monitoring subscriptions and alerts for customers.
+  name: Monitoring
+paths:
+  /monitoring/alerts:
+    get:
+      operationId: listAlerts
+      parameters:
+      - $ref: '#/components/parameters/id_query1'
+      - $ref: '#/components/parameters/person_id_query'
+      - $ref: '#/components/parameters/business_id_query'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/monitoring_alert_list'
+          description: List of alerts.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List monitoring alerts
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+  /monitoring/alerts/{alert_id}:
+    get:
+      operationId: getAlert
+      parameters:
+      - $ref: '#/components/parameters/monitoring_alert_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/monitoring_alert'
+          description: A single monitoring alert.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Retrieve a monitoring alert
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+    patch:
+      operationId: updateAlert
+      parameters:
+      - $ref: '#/components/parameters/monitoring_alert_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/monitoring_alert'
+        description: Monitoring alert to update.
+        required: true
+      responses:
+        '200':
+          description: Updated monitoring alert.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update a monitoring alert
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+  /monitoring/subscriptions:
+    get:
+      operationId: listSubscriptions
+      parameters:
+      - $ref: '#/components/parameters/id_query1'
+      - $ref: '#/components/parameters/person_id_query'
+      - $ref: '#/components/parameters/business_id_query'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/monitoring_subscription_list'
+          description: List of monitoring subscriptions.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List monitoring subscriptions
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+    post:
+      description: 'This endpoint is rarely needed. Since August 2022, watchlist monitoring is automatically enabled for all businesses and customers who are verified (KYC/KYB) through Synctera''s platform.
+
+        '
+      operationId: createSubscription
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/monitoring_subscription'
+        description: The monitoring subscription.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/monitoring_subscription'
+          description: The new monitoring subscription.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Subscribe a customer or business to monitoring
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+  /monitoring/subscriptions/{subscription_id}:
+    delete:
+      operationId: deleteSubscription
+      parameters:
+      - $ref: '#/components/parameters/monitoring_subscription_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Delete monitoring subscription
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+    get:
+      operationId: getSubscription
+      parameters:
+      - $ref: '#/components/parameters/monitoring_subscription_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/monitoring_subscription'
+          description: A single monitoring subscription.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Retrieve monitoring subscription
+      tags:
+      - Monitoring
+      x-external: true
+      x-status: alpha
+components:
+  parameters:
+    person_id_query:
+      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: person_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    monitoring_alert_id:
+      description: Unique identifier for this monitoring alert.
+      in: path
+      name: alert_id
+      required: true
+      schema:
+        example: 4a09a067-2f01-475d-bc62-50f245536017
+        format: uuid
+        type: string
+    monitoring_subscription_id:
+      description: Unique identifier for monitoring subscription.
+      in: path
+      name: subscription_id
+      required: true
+      schema:
+        example: d3682b94-3a25-41ee-8358-2308cb4a71b1
+        format: uuid
+        type: string
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    id_query1:
+      description: 'Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    business_id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: business_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+  schemas:
+    vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/vendor_json'
+          text/xml: '#/components/schemas/vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/vendor_json'
+      - $ref: '#/components/schemas/vendor_xml'
+      title: Vendor Info
+      type: object
+    monitoring_alert:
+      properties:
+        business_id:
+          $ref: '#/components/schemas/business_id3'
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T14:15:22Z'
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: Unique identifier for this alert.
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          description: The date and time the resource was last update.
+          example: '2021-12-14T07:15:34Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        person_id:
+          $ref: '#/components/schemas/person_id'
+        status:
+          $ref: '#/components/schemas/monitoring_status'
+        type:
+          description: 'The type of customer alert. Any of the following:
+
+            * `WATCHLIST` – the customer was added to a known watchlist.
+
+            * `BANKRUPTCY` – the customer filed for bankruptcy.
+
+            '
+          enum:
+          - WATCHLIST
+          - BANKRUPTCY
+          readOnly: true
+          type: string
+        urls:
+          description: Where to get more information about this alert.
+          example:
+          - https://example.com/alert-document-1
+          - https://example.com/alert-document-2
+          items:
+            type: string
+          readOnly: true
+          type: array
+        vendor_info:
+          $ref: '#/components/schemas/vendor_info'
+      type: object
+    vendor_xml:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - text/xml
+          type: string
+        vendor:
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    monitoring_alert_list:
+      allOf:
+      - properties:
+          alerts:
+            items:
+              $ref: '#/components/schemas/monitoring_alert'
+            type: array
+        required:
+        - alerts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    monitoring_subscription:
+      properties:
+        business_id:
+          $ref: '#/components/schemas/business_id3'
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T14:15:22Z'
+          format: date-time
+          readOnly: true
+          type: string
+        id:
+          description: Unique identifier for this subscription.
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          description: The date and time the resource was last update.
+          example: '2021-12-14T07:15:34Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        person_id:
+          $ref: '#/components/schemas/person_id'
+      type: object
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - application/json
+          type: string
+        json:
+          description: Data representation in JSON
+          type: object
+        vendor:
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    business_id3:
+      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
+
+        '
+      example: 6042d105-837c-4d02-99e1-59b9c18f2edf
+      format: uuid
+      type: string
+    monitoring_subscription_list:
+      allOf:
+      - properties:
+          subscriptions:
+            items:
+              $ref: '#/components/schemas/monitoring_subscription'
+            type: array
+        required:
+        - subscriptions
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    monitoring_status:
+      description: 'The status of the alert. Any of the following:
+
+        * `ACTIVE` – alert has been issued and should be investigated.
+
+        * `SUPPRESSED` – alert is a false positive, alert should be dismissed, or has been otherwise investigated.
+
+        '
+      enum:
+      - ACTIVE
+      - SUPPRESSED
+      type: string
+    person_id:
+      description: 'Unique ID for the person. Exactly one of `person_id` or `business_id` must be set.
+
+        '
+      example: 2c0bf949-9f59-4a04-82d4-9a86e0ccec2c
+      format: uuid
+      type: string
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

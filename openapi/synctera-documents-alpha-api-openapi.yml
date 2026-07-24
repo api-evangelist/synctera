@@ -1,0 +1,395 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Documents (alpha) API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- name: Documents (alpha)
+paths:
+  /documents:
+    summary: Documents
+    get:
+      description: Returns a paginated list of documents.
+      operationId: listDocuments
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document_list'
+          description: List documents.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List documents
+      tags:
+      - Documents (alpha)
+      x-external: true
+      x-status: alpha
+    post:
+      description: 'Docs
+
+        '
+      operationId: createDocument
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/document_creation'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+          description: Created document representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a document
+      tags:
+      - Documents (alpha)
+      x-external: true
+      x-status: alpha
+  /documents/{document_id}:
+    summary: Document
+    get:
+      description: Returns the bytes of the requested document.
+      operationId: getDocument
+      parameters:
+      - $ref: '#/components/parameters/document_id'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: The requested document.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a document
+      tags:
+      - Documents (alpha)
+      x-external: true
+      x-status: alpha
+    patch:
+      description: Update document attributes by document ID
+      operationId: updateDocument
+      parameters:
+      - $ref: '#/components/parameters/document_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_document'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/document'
+          description: Updated document properties.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update a document
+      tags:
+      - Documents (alpha)
+      x-external: true
+      x-status: alpha
+  /documents/{document_id}/contents:
+    summary: Document
+    get:
+      description: Returns the bytes of the requested document.
+      operationId: getDocumentContents
+      parameters:
+      - $ref: '#/components/parameters/document_id'
+      responses:
+        '200':
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: The requested document.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a document
+      tags:
+      - Documents (alpha)
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    document_list:
+      allOf:
+      - properties:
+          documents:
+            description: Array of documents.
+            items:
+              $ref: '#/components/schemas/document'
+            type: array
+        required:
+        - documents
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    encryption:
+      default: NOT_REQUIRED
+      enum:
+      - REQUIRED
+      - NOT_REQUIRED
+      type: string
+    document:
+      properties:
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:04Z'
+          format: date-time
+          readOnly: true
+          type: string
+        description:
+          description: A description of the attached document.
+          type: string
+        encryption:
+          $ref: '#/components/schemas/encryption'
+        file_name:
+          description: The name of the document.
+          readOnly: true
+          type: string
+        id:
+          description: The unique identifier for this resource.
+          example: d801427e-d927-4161-a054-81a02e8f6c86
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          description: The date and time the resource was last update.
+          example: '2021-06-14T11:23:04Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
+
+            '
+          type: object
+        name:
+          description: A user-friendly name for the document.
+          type: string
+        related_resource_id:
+          description: Related resource ID
+          format: uuid
+          type: string
+        related_resource_type:
+          $ref: '#/components/schemas/related_resource_type'
+      type: object
+    related_resource_type:
+      description: Related resource type
+      enum:
+      - CUSTOMER
+      - BUSINESS
+      type: string
+    patch_document:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    document_creation:
+      properties:
+        description:
+          type: string
+        encryption:
+          $ref: '#/components/schemas/encryption'
+        file:
+          format: binary
+          type: string
+        metadata:
+          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
+
+            '
+          type: object
+        name:
+          type: string
+        related_resource_id:
+          description: Related resource ID
+          format: uuid
+          type: string
+        related_resource_type:
+          $ref: '#/components/schemas/related_resource_type'
+      required:
+      - file
+      type: object
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    document_id:
+      description: The unique identifier of a document.
+      in: path
+      name: document_id
+      required: true
+      schema:
+        example: dd8cd509-ce52-4990-8f84-316558e68e9a
+        format: uuid
+        type: string
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

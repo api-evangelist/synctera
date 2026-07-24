@@ -1,0 +1,369 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Remote Check Deposit (beta) API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- name: Remote Check Deposit (beta)
+paths:
+  /rdc/deposits:
+    description: 'The Remote Check Deposits collection represents all the deposits made using remote deposit capture associated with an account
+
+      '
+    summary: Remote Check Deposits
+    get:
+      description: Retrieves a paginated list of the deposits made using remote deposit capture associated with an account
+      operationId: listRdcDeposits
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deposit_list'
+          description: List of deposits made with remote deposit capture
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+      summary: List Remote Check Deposits
+      tags:
+      - Remote Check Deposit (beta)
+      x-external: true
+    post:
+      description: 'Create a new deposit using remote deposit capture to an account
+
+        '
+      operationId: createRdcDeposit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/deposit'
+        description: Attributes of the Remote Check Deposit to create
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deposit'
+          description: Successful creation of a deposit using remote deposit capture
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+      summary: Create a Remote Check Deposit
+      tags:
+      - Remote Check Deposit (beta)
+      x-external: true
+  /rdc/deposits/{deposit_id}:
+    description: 'The Remote Check Deposit represents one deposit made using remote deposit capture associated with an account
+
+      '
+    summary: Remote Check Deposit by Id
+    get:
+      description: Retrieves one deposit made using remote deposit capture associated with an account
+      operationId: getRdcDeposit
+      parameters:
+      - $ref: '#/components/parameters/deposit_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/deposit'
+          description: Successful retrieval of a Remote Check Deposit
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+      summary: Get Remote Check Deposit
+      tags:
+      - Remote Check Deposit (beta)
+      x-external: true
+components:
+  schemas:
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    vendor_info1:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/vendor_json'
+          text/xml: '#/components/schemas/vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/vendor_json'
+      - $ref: '#/components/schemas/vendor_xml'
+      readOnly: true
+      title: Vendor Info
+      type: object
+    deposit:
+      description: Deposit using remote deposit capture
+      properties:
+        account_id:
+          description: The ID of the account
+          example: ab144f71-3708-4625-8df3-d9307804475e
+          format: uuid
+          type: string
+        back_image_id:
+          description: ID of the uploaded image of the back of the check
+          example: a745e775-9d35-46a5-812d-4a7663178a3b
+          format: uuid
+          type: string
+        business_id:
+          $ref: '#/components/schemas/business_id4'
+        check_amount:
+          description: Amount on check in ISO 4217 minor currency units
+          example: 8032
+          minimum: 1
+          type: integer
+        creation_time:
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        date_captured:
+          description: Date the deposit was captured, in RFC 3339 format
+          example: '2022-01-02T03:04:05.678Z'
+          format: date-time
+          readOnly: true
+          type: string
+        date_processed:
+          description: Date the deposit was processed, in RFC 3339 format
+          example: '2022-01-02T03:04:05.678Z'
+          format: date-time
+          readOnly: true
+          type: string
+        deposit_amount:
+          description: Amount deposited in ISO 4217 minor currency units
+          example: 6207
+          readOnly: true
+          type: integer
+        deposit_currency:
+          description: ISO 4217 currency code for the deposit amount
+          example: USD
+          type: string
+        front_image_id:
+          description: ID of the uploaded image of the front of the check
+          example: a6be36a2-1211-4c7f-b38e-14923e009262
+          format: uuid
+          type: string
+        id:
+          description: Remote Check Deposit ID
+          example: 69170eba-daa5-4c06-9a6d-abc1d4733f67
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        person_id:
+          $ref: '#/components/schemas/person_id'
+        status:
+          description: The status of the deposit
+          enum:
+          - SUBMITTED
+          - PENDING
+          - FAILED
+          - REJECTED
+          readOnly: true
+          type: string
+        transaction_id:
+          description: The ID of the transaction associated with this deposit
+          example: 261343ed-2752-4e07-b14f-5cafcd38361c
+          format: uuid
+          readOnly: true
+          type: string
+        vendor_info:
+          $ref: '#/components/schemas/vendor_info1'
+      required:
+      - id
+      - account_id
+      - transaction_id
+      - check_amount
+      - deposit_currency
+      - status
+      - deposit_amount
+      - date_processed
+      - date_captured
+      - front_image_id
+      - back_image_id
+      - vendor_info
+      title: Remote Check Deposit
+      type: object
+    vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - application/json
+          type: string
+        json:
+          description: Data representation in JSON
+          type: object
+        vendor:
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    person_id:
+      description: 'Unique ID for the person. Exactly one of `person_id` or `business_id` must be set.
+
+        '
+      example: 2c0bf949-9f59-4a04-82d4-9a86e0ccec2c
+      format: uuid
+      type: string
+    deposit_list:
+      allOf:
+      - properties:
+          deposits:
+            description: Array of  Remote Check Deposits
+            items:
+              $ref: '#/components/schemas/deposit'
+            type: array
+        required:
+        - deposits
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    vendor_xml:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - text/xml
+          type: string
+        vendor:
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    business_id4:
+      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
+
+        '
+      example: 2c334624-265b-4ac9-9a30-0a1d45ea4bd0
+      format: uuid
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    deposit_id_path:
+      description: ID of a deposit for a remote deposit capture
+      in: path
+      name: deposit_id
+      required: true
+      schema:
+        example: 1985f769-dd31-4128-95db-f765355e6631
+        format: uuid
+        type: string
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

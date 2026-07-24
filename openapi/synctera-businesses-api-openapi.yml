@@ -1,0 +1,583 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Businesses API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'A legal entity (corporation, partnership, etc.) that is relevant to the Synctera platform in some way: a business customer or some other organization that has an ownership share in such a business customer.
+
+    '
+  name: Businesses
+paths:
+  /businesses:
+    summary: Businesses
+    get:
+      description: Retrieves paginated list of businesses associated with the authorized requester.
+      operationId: listBusinesses
+      parameters:
+      - $ref: '#/components/parameters/id_query'
+      - $ref: '#/components/parameters/entity_name'
+      - $ref: '#/components/parameters/phone_number'
+      - $ref: '#/components/parameters/status1'
+      - $ref: '#/components/parameters/is_customer'
+      - $ref: '#/components/parameters/business_sort_by_query'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/business_list'
+          description: List of businesses.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List business
+      tags:
+      - Businesses
+      x-external: true
+      x-status: alpha
+    post:
+      description: 'Create a business who may act as a customer or a related business. You can then verify the identity of this customer and associate them with other people and accounts.
+
+        '
+      operationId: createBusiness
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/business'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/business'
+          description: The created business.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a business
+      tags:
+      - Businesses
+      x-external: true
+      x-status: alpha
+  /businesses/{business_id}:
+    get:
+      description: Get business by ID.
+      operationId: getBusiness
+      parameters:
+      - $ref: '#/components/parameters/business_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/business'
+          description: Business representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get business
+      tags:
+      - Businesses
+      x-external: true
+      x-status: alpha
+    patch:
+      description: Update business by ID.
+      operationId: updateBusiness
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/business_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_business'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/business'
+          description: Updated business representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Patch business
+      tags:
+      - Businesses
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    verification_status:
+      description: 'The result of a KYC/KYB verification. One of the following:
+
+        * `UNVERIFIED` – verification has not been completed for this customer.
+
+        * `PENDING` – verification is in progress for this customer.
+
+        * `PROVISIONAL` – partially verified or verified with restrictions.
+
+        * `ACCEPTED` – the customer has been verified.
+
+        * `REVIEW` – verification has run and issues have been identified and require review.
+
+        * `REJECTED` – the customer was rejected and should not be allowed to take certain actions e.g., open an account.
+
+        '
+      enum:
+      - UNVERIFIED
+      - PENDING
+      - PROVISIONAL
+      - ACCEPTED
+      - REVIEW
+      - REJECTED
+      example: ACCEPTED
+      readOnly: true
+      type: string
+    patch_business:
+      allOf:
+      - $ref: '#/components/schemas/base'
+      description: Represents a business customer.
+      type: object
+    business:
+      allOf:
+      - required:
+        - status
+        - is_customer
+      - $ref: '#/components/schemas/base'
+      description: Represents a business customer.
+      type: object
+    business_list:
+      allOf:
+      - properties:
+          businesses:
+            description: Array of businesses.
+            items:
+              $ref: '#/components/schemas/business'
+            type: array
+        required:
+        - businesses
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    base:
+      properties:
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        ein:
+          description: U.S. Employer Identification Number (EIN) for this business, in the format xx-xxxxxxx.
+          example: 12-3456789
+          type: string
+        email:
+          description: Business's email.
+          example: Coty_Nolan@gmail.com
+          type: string
+        entity_name:
+          description: Business's legal name.
+          example: Apex Corporation
+          type: string
+        formation_date:
+          description: Date the business was legally registered in RFC 3339 full-date format (YYYY-MM-DD).
+          example: '2000-01-01'
+          format: date
+          type: string
+        formation_state:
+          description: U.S. state where the business is legally registered (2-letter abbreviation).
+          example: OK
+          type: string
+        id:
+          description: Business's unique identifier.
+          example: 7605b35b-e6dd-48bc-b16c-fc26c3961338
+          format: uuid
+          readOnly: true
+          type: string
+        is_customer:
+          $ref: '#/components/schemas/is_customer'
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        legal_address:
+          $ref: '#/components/schemas/address'
+          description: Business's legal address.
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        phone_number:
+          description: Business's phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated.
+          example: '+14374570680'
+          pattern: ^\+[1-9]\d{1,14}$
+          type: string
+        status:
+          description: 'Status of the business. One of the following:
+
+            * `PROSPECT` – a potential customer, used for information-gathering and disclosures.
+
+            * `ACTIVE` –  is an integrator defined status.  Integrators should set a business to active if they believe the person to be qualified for conducting business.  Synctera will combine this status with other statuses such a verification to determine if the business is eligible for specific actions such as initiating transactions or issuing a card.
+
+            * `FROZEN` – business''s actions are blocked for security, legal, or other reasons.
+
+            * `SANCTION` – business is on a sanctions list and should be carefully monitored.
+
+            * `DISSOLVED` – an inactive status indicating a business entity has filed articles of dissolution or a certificate of termination to terminate its existence.
+
+            * `CANCELLED` – an inactive status indicating that a business entity has filed a cancellation or has failed to file its periodic report after notice of forfeiture of its rights to do business.
+
+            * `SUSPENDED` – an inactive status indicating that the business entity has lost the right to operate in it''s registered jurisdiction.
+
+            * `MERGED` – an inactive status indicating that the business entity has terminated existence by merging into another entity.
+
+            * `INACTIVE` – an inactive status indicating that the business entity is no longer active.
+
+            * `CONVERTED` – An inactive status indicating that the business entity has been converted to another type of business entity in the same jurisdiction.
+
+            '
+          enum:
+          - PROSPECT
+          - ACTIVE
+          - FROZEN
+          - SANCTION
+          - DISSOLVED
+          - CANCELLED
+          - SUSPENDED
+          - MERGED
+          - INACTIVE
+          - CONVERTED
+          type: string
+        structure:
+          description: Business's legal structure.
+          enum:
+          - SOLE_PROPRIETORSHIP
+          - PARTNERSHIP
+          - LLC
+          - CORPORATION
+          - S_CORPORATION
+          - NON_PROFIT
+          - OTHER
+          example: CORPORATION
+          type: string
+        trade_names:
+          description: Other names by which this business is known.
+          example:
+          - Apex
+          - Apex LLC
+          - CorporationID#77231
+          items:
+            type: string
+          type: array
+        verification_last_run:
+          description: Date and time KYB verification was last run on the business.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        verification_status:
+          $ref: '#/components/schemas/verification_status'
+        website:
+          description: Business's website.
+          example: https://example.com
+          type: string
+      type: object
+    is_customer:
+      description: True for personal and business customers with a direct relationship with the fintech or bank.
+      example: true
+      type: boolean
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    address:
+      properties:
+        address_line_1:
+          description: Street address line 1
+          example: 4992 Curtis Ports
+          type: string
+        address_line_2:
+          description: String address line 2
+          example: Apt. 877
+          type: string
+        city:
+          description: City
+          example: East Winstonview
+          type: string
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: US
+          pattern: ^[A-Z]{2}$
+          type: string
+        postal_code:
+          description: Postal code
+          example: '28620'
+          type: string
+        state:
+          description: State, region, province, or prefecture
+          example: NJ
+          type: string
+      required:
+      - address_line_1
+      - country_code
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+  parameters:
+    id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    is_customer:
+      description: If true, show only customers. If false, show non-customer parties.
+      in: query
+      name: is_customer
+      required: false
+      schema:
+        type: boolean
+      x-external: true
+    status1:
+      in: query
+      name: status
+      required: false
+      schema:
+        description: 'Status of the business. One of the following:
+
+          * `PROSPECT` – a potential customer, used for information-gathering and disclosures.
+
+          * `ACTIVE` –  is an integrator defined status.  Integrators should set a business to active if they believe the person to be qualified for conducting business.  Synctera will combine this status with other statuses such a verification to determine if the business is eligible for specific actions such as initiating transactions or issuing a card.
+
+          * `FROZEN` – business''s actions are blocked for security, legal, or other reasons.
+
+          * `SANCTION` – business is on a sanctions list and should be carefully monitored.
+
+          * `DISSOLVED` – an inactive status indicating a business entity has filed articles of dissolution or a certificate of termination to terminate its existence.
+
+          * `CANCELLED` – an inactive status indicating that a business entity has filed a cancellation or has failed to file its periodic report after notice of forfeiture of its rights to do business.
+
+          * `SUSPENDED` – an inactive status indicating that the business entity has lost the right to operate in it''s registered jurisdiction.
+
+          * `MERGED` – an inactive status indicating that the business entity has terminated existence by merging into another entity.
+
+          * `INACTIVE` – an inactive status indicating that the business entity is no longer active.
+
+          * `CONVERTED` – An inactive status indicating that the business entity has been converted to another type of business entity in the same jurisdiction.
+
+          '
+        enum:
+        - PROSPECT
+        - ACTIVE
+        - FROZEN
+        - SANCTION
+        - DISSOLVED
+        - CANCELLED
+        - SUSPENDED
+        - MERGED
+        - INACTIVE
+        - CONVERTED
+        type: string
+      x-external: true
+    business_sort_by_query:
+      description: 'Specifies the sort order for the returned businesses.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - entity_name:asc
+          - entity_name:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    entity_name:
+      in: query
+      name: entity_name
+      required: false
+      schema:
+        description: Only return resources where the `entity_name` field matches the specified string. Any `*` characters in the string are wildcards, and match any characters.
+        example: Apex Corporation
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    business_id_path:
+      description: Business's unique identifier.
+      in: path
+      name: business_id
+      required: true
+      schema:
+        example: 21b74a02-b7c7-49f4-a497-98ba5cbedb27
+        format: uuid
+        type: string
+    phone_number:
+      in: query
+      name: phone_number
+      required: false
+      schema:
+        description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
+        example: '+12065550100'
+        type: string
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

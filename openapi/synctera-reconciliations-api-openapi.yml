@@ -1,0 +1,270 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Reconciliations API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to create and manage reconciliation
+  name: Reconciliations
+paths:
+  /reconciliations:
+    description: 'The Reconcilations collections represents the jobs reconciling transactions.
+
+      '
+    summary: Reconciliations
+    get:
+      description: Retrieves paginated list of reconciliations
+      operationId: listReconciliations
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reconciliation_list'
+          description: List of reconciliations
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List reconciliations
+      tags:
+      - Reconciliations
+      x-external: true
+      x-status: alpha
+    post:
+      description: 'Create a new reconciliation job
+
+        '
+      operationId: createReconciliation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/reconciliation_input'
+        description: Reconciliation to perform
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reconciliation'
+          description: Successful creation of a reconciliation
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a reconciliation
+      tags:
+      - Reconciliations
+      x-external: true
+      x-status: alpha
+  /reconciliations/{reconciliation_id}:
+    description: 'The Reconcilations collections represents the jobs reconciling transactions.
+
+      '
+    summary: Reconciliation by ID
+    get:
+      description: Retrieves one reconciliation by id
+      operationId: getReconciliation
+      parameters:
+      - $ref: '#/components/parameters/reconciliation_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/reconciliation'
+          description: Successful retrieval of a reconciliation
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+      summary: Get reconciliation
+      tags:
+      - Reconciliations
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    reconciliation_input:
+      description: Input data for a reconciliation
+      properties:
+        byte_data:
+          description: Base64url encoded image
+          example: npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y
+          format: byte
+          type: string
+        file_name:
+          description: Filename of the data to be reconciled
+          example: cp2tj9tzpzpckc
+          type: string
+      required:
+      - file_name
+      - byte_data
+      title: Reconciliation Input
+      type: object
+    reconciliation:
+      description: Reconciliation
+      properties:
+        file_name:
+          description: Filename of the data to be reconciled
+          example: vp1m0ynhxsm3nb
+          readOnly: true
+          type: string
+        id:
+          description: Reconciliation ID
+          example: 6b7f32f8-c469-41a5-86f0-c49fc172f019
+          format: uuid
+          readOnly: true
+          type: string
+        ingestion_status:
+          $ref: '#/components/schemas/ingestion_status'
+      required:
+      - id
+      - file_name
+      - ingestion_status
+      title: Reconciliation
+      type: object
+    reconciliation_list:
+      allOf:
+      - properties:
+          reconciliations:
+            description: Array of reconciliations
+            items:
+              $ref: '#/components/schemas/reconciliation'
+            type: array
+        required:
+        - reconciliations
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    ingestion_status:
+      description: Reconciliation ingestion status values
+      enum:
+      - IN_PROCESS
+      - COMPLETED
+      - FAILED
+      title: Reconciliation Ingestion Status Values
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    reconciliation_id:
+      description: Reconciliation id
+      in: path
+      name: reconciliation_id
+      required: true
+      schema:
+        example: 6917767f-50b9-475e-91c0-ed7d1efc8e13
+        format: uuid
+        type: string
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

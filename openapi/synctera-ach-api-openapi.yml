@@ -1,0 +1,463 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts ACH API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Create and manage payments
+  name: ACH
+paths:
+  /ach:
+    description: 'The ACH object represents your sent ACH.
+
+      '
+    summary: Sent ACH
+    get:
+      description: List sent ACH transactions
+      operationId: listTransactionsOut
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/outgoing_ach_list'
+          description: List of sent ACH transactions.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List sent ACH transactions
+      tags:
+      - ACH
+      x-external: true
+    post:
+      description: 'Send an ACH
+
+        '
+      operationId: addTransactionOut
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/outgoing_ach_request'
+        description: Send ACH request
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/outgoing_ach'
+          description: Sent ACH response
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Send an ACH
+      tags:
+      - ACH
+      x-external: true
+  /ach/{transaction_id}:
+    summary: Sent ACH detail
+    get:
+      description: Get a single sent ACH transaction
+      operationId: getTransactionOut
+      parameters:
+      - $ref: '#/components/parameters/transaction_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/outgoing_ach'
+          description: Sent ACH transaction representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a sent ACH transaction
+      tags:
+      - ACH
+      x-external: true
+    patch:
+      description: Update a sent ACH transaction (either status or funds availability)
+      operationId: patchTransactionOut
+      parameters:
+      - $ref: '#/components/parameters/transaction_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/outgoing_ach_patch'
+        description: Update sent ach transaction
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/outgoing_ach'
+          description: Sent ACH transaction representation.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update a sent ACH transaction
+      tags:
+      - ACH
+      x-external: true
+components:
+  schemas:
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    ach_request_hold_data:
+      properties:
+        amount:
+          type: integer
+        duration:
+          example: 2
+          minimum: 0
+          type: integer
+      required:
+      - amount
+      - duration
+      type: object
+    outgoing_ach_list:
+      allOf:
+      - properties:
+          transactions:
+            description: Array of sent ACH transactions.
+            items:
+              $ref: '#/components/schemas/outgoing_ach'
+            type: array
+        required:
+        - transactions
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    outgoing_ach_patch:
+      description: Update sent ach transaction
+      properties:
+        funds_availability_time:
+          example: 2022-03-18TT17:54:12Z
+          format: date-time
+          type: string
+        status:
+          enum:
+          - CANCELED
+          type: string
+      type: object
+    hold_data:
+      properties:
+        amount:
+          type: integer
+        availability_time:
+          example: 2022-03-18TT17:54:12Z
+          format: date-time
+          type: string
+      required:
+      - amount
+      - availability_time
+      type: object
+    risk_data:
+      properties:
+        client_ip:
+          description: Client IP
+          type: string
+      type: object
+    outgoing_ach_request:
+      description: Send an ACH
+      properties:
+        amount:
+          description: Amount to transfer in ISO 4217 minor currency units
+          example: 607
+          type: integer
+        company_entry_description:
+          description: Company entry description ACH field. Originator inserts this field's value to provide the Receiver with a description of the entry's purpose.
+          example: PAYROLL
+          maxLength: 10
+          type: string
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          example: USD
+          type: string
+        customer_id:
+          description: The customer's unique identifier
+          example: 2071f55a-0aeb-4f62-85a9-68f72856d463
+          format: uuid
+          type: string
+        dc_sign:
+          description: The type of transaction (debit or credit). A debit is a transfer in and a credit is a transfer out of the originating account
+          enum:
+          - debit
+          - credit
+          example: debit
+          type: string
+        effective_date:
+          description: Effective date transaction proccesses (is_same_day needs to be false or not present at all)
+          example: '2022-03-18'
+          format: date
+          type: string
+        external_data:
+          description: Additional transfer metadata structured as key-value pairs
+          type: object
+        final_customer_id:
+          description: ID of the international customer that receives the final remittance transfer (required for OFAC enabled payments)
+          format: uuid
+          type: string
+        hold:
+          $ref: '#/components/schemas/ach_request_hold_data'
+        id:
+          example: 1f453c98-9c30-42b7-9835-cfc1e33f5e70
+          format: uuid
+          readOnly: true
+          type: string
+        is_same_day:
+          description: Send as same day ACH transaction (use only is_same_day without specific effective_date)
+          type: boolean
+        memo:
+          description: Memo for the payment
+          type: string
+        originating_account_id:
+          description: The unique identifier for an originating account
+          example: 4394f57f-3396-4661-bd03-27684791611f
+          format: uuid
+          type: string
+        receiving_account_id:
+          description: The unique identifier for an receiving account
+          example: 18b1f30b-227f-4720-9956-4c6805e5cdfa
+          format: uuid
+          type: string
+        reference_info:
+          description: Will be sent to the ACH network and maps to Addenda record 05 - the recipient bank will receive this info
+          example: Tempore atque et cum.
+          type: string
+        risk:
+          $ref: '#/components/schemas/risk_data'
+          example: null
+      required:
+      - customer_id
+      - amount
+      - currency
+      - receiving_account_id
+      - dc_sign
+      - originating_account_id
+      title: Send ACH requests
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    outgoing_ach:
+      description: Represents a sent ACH transaction.
+      properties:
+        account_name:
+          description: Receiving account name
+          example: Bruce Wayne
+          type: string
+        account_no:
+          description: Receiving account number
+          example: '122455799'
+          type: string
+        amount:
+          description: Transaction amount in cents
+          example: 1560
+          type: integer
+        bank_id:
+          example: 1
+          type: integer
+        effective_date:
+          description: Effective date of the transaction
+          example: '2022-03-25'
+          format: date
+          type: string
+        external_id:
+          description: Transaction ID in the ledger
+          example: 27f6473f-50fd-4dae-8c05-41b9bc3b4e3f
+          format: uuid
+          type: string
+        hold:
+          $ref: '#/components/schemas/hold_data'
+        id:
+          example: 2cbc0558-e2c5-4ffa-b30c-44a1389d6920
+          format: uuid
+          type: string
+        is_same_day:
+          description: Was initiated as same-day ACH transaction
+          type: boolean
+        memo:
+          type: string
+        partner_id:
+          example: 2
+          type: integer
+        reference_info:
+          description: Transaction reference info
+          type: string
+        source_account_name:
+          description: Originating account name
+          example: Thomas Anderson
+          type: string
+        source_account_no:
+          description: Originating account number
+          example: '123638791329'
+          type: string
+        status:
+          enum:
+          - INIT
+          - PENDING
+          - CANCELED
+          - COMPLETE
+          - DECLINED
+          type: string
+        trace_no:
+          description: Trace number of the transaction
+          example: '123456780000069'
+          type: string
+      required:
+      - id
+      - bank_id
+      - partner_id
+      - external_id
+      - account_no
+      - amount
+      - source_account_no
+      - is_same_day
+      - effective_date
+      - trace_no
+      - status
+      - memo
+      type: object
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    transaction_id:
+      description: Transaction ID in the ledger
+      in: path
+      name: transaction_id
+      required: true
+      schema:
+        example: 0cf88729-42fe-482d-904f-2f0508252858
+        format: uuid
+        type: string
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

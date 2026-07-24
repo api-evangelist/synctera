@@ -1,0 +1,2057 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Cards API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to issue and manage cards
+  name: Cards
+paths:
+  /cards:
+    description: 'The Card object represents your customer''s spending card.
+
+      '
+    summary: Cards
+    get:
+      description: 'List of cards matching query parameters
+
+        '
+      operationId: listCards
+      parameters:
+      - $ref: '#/components/parameters/customer_id_query'
+      - $ref: '#/components/parameters/account_id_query_array'
+      - $ref: '#/components/parameters/emboss_name_query'
+      - $ref: '#/components/parameters/last_four_query'
+      - $ref: '#/components/parameters/expiration_date_query'
+      - $ref: '#/components/parameters/card_type_query'
+      - $ref: '#/components/parameters/card_brand_query'
+      - $ref: '#/components/parameters/form_query'
+      - $ref: '#/components/parameters/card_product_id_query'
+      - $ref: '#/components/parameters/card_status_query'
+      - $ref: '#/components/parameters/postal_code_query'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/card_sort_by_query'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_list_response'
+          description: Cards
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Cards
+      tags:
+      - Cards
+      x-external: true
+    post:
+      description: 'Issue or reissue a new card for a customer
+
+        '
+      operationId: issueCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/card_issuance_request'
+        description: Card to issue
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_response'
+          description: Card issued
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Issue a Card
+      tags:
+      - Cards
+      x-external: true
+  /cards/{card_id}:
+    description: 'The Card object represents your customer''s spending card.
+
+      '
+    summary: Cards
+    get:
+      description: 'Get the details about a card that has been issued
+
+        '
+      operationId: getCard
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_response'
+          description: Card details
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Card
+      tags:
+      - Cards
+      x-external: true
+    patch:
+      description: 'Integrators can update the card resource to change status, update shipping (if the card hasn''t been shipped) or edit metadata.
+
+        '
+      operationId: updateCard
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/card_edit_request'
+        description: Card edits
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_response'
+          description: Card issued
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update Card
+      tags:
+      - Cards
+      x-external: true
+  /cards/{card_id}/barcodes:
+    summary: Cards
+    get:
+      description: 'This endpoint is for testing environment only to provide access to barcode of a test card
+
+        '
+      operationId: getCardBarcode
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  barcode:
+                    description: Barcode of the card
+                    type: string
+                type: object
+          description: Barcode
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Card Barcode
+      tags:
+      - Cards
+      x-external: true
+  /cards/{card_id}/changes:
+    get:
+      description: 'List card change history
+
+        '
+      operationId: listChanges
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_changes_list'
+          description: List of card changes
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Card Changes
+      tags:
+      - Cards
+      x-external: true
+  /cards/{card_id}/client_token:
+    description: 'Client access token for accessing privileged details about a card
+
+      '
+    summary: Get Client Access Token
+    post:
+      description: 'Create a client access token for interacting with a card.  This token will be used on the client to identify the card for flows like viewing Full PAN or setting the PIN in a PCI compliant manner.
+
+        '
+      operationId: getClientAccessToken
+      parameters:
+      - $ref: '#/components/parameters/card_id'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/client_token'
+          description: Client token
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a client token
+      tags:
+      - Cards
+      x-external: true
+  /cards/activate:
+    description: 'Activate a card
+
+      '
+    summary: Card Activation
+    post:
+      description: 'Activate a card
+
+        '
+      operationId: activateCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/card_activation_request'
+        description: Card activation code
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_response'
+          description: Card activated successfully
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Activate a card
+      tags:
+      - Cards
+      x-external: true
+  /cards/card_widget_url:
+    summary: Get Card Widget URL
+    get:
+      description: 'This endpoint returns a URL address of the specified widget for a given card
+
+        '
+      operationId: getCardWidgetURL
+      parameters:
+      - description: The type of widget for which to construct the URL
+        in: query
+        name: widget_type
+        required: true
+        schema:
+          $ref: '#/components/schemas/widget_type'
+        x-external: true
+      - in: query
+        name: customer_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/customer_id1'
+        x-external: true
+      - in: query
+        name: account_id
+        required: true
+        schema:
+          $ref: '#/components/schemas/account_id'
+        x-external: true
+      - description: The ID of the card (required for set PIN widget)
+        in: query
+        name: card_id
+        schema:
+          $ref: '#/components/schemas/card_id'
+        x-external: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_widget_url_response'
+          description: Card issued
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/error'
+          description: Error
+      summary: Get card widget URL
+      tags:
+      - Cards
+      x-external: true
+  /cards/gateways:
+    description: 'The Gateway object represents the Authorization gateway configuration.
+
+      '
+    summary: Authorization Gateway Configuration
+    get:
+      description: 'List of gateways matching query parameters
+
+        '
+      operationId: listGateways
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gateway_list_response'
+          description: Gateways
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Gateways
+      tags:
+      - Cards
+      x-external: true
+    post:
+      description: 'Create a new Authorization Gateway Configuration
+
+        '
+      operationId: createGateway
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_gateway_request'
+        description: Create a new Authorization Gateway Configuration
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gateway_response'
+          description: New Authorization Gateway Configuration created
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create Gateway
+      tags:
+      - Cards
+      x-external: true
+  /cards/gateways/{gateway_id}:
+    description: 'The Gateway object represents the Authorization gateway configuration.
+
+      '
+    summary: Authorization Gateway
+    get:
+      description: 'Get the details of an Authorization Gateway that has been configured
+
+        '
+      operationId: getGateway
+      parameters:
+      - $ref: '#/components/parameters/gateway_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gateway_response'
+          description: Gateway details
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Gateway
+      tags:
+      - Cards
+      x-external: true
+    patch:
+      description: 'Update Authorization Gateway configuration
+
+        '
+      operationId: updateGateway
+      parameters:
+      - $ref: '#/components/parameters/gateway_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_gateway_request'
+        description: Gateway edits
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/gateway_response'
+          description: Gateway Updated
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update Gateway
+      tags:
+      - Cards
+      x-external: true
+  /cards/images:
+    get:
+      description: 'List all card image details
+
+        '
+      operationId: listCardImageDetails
+      parameters:
+      - $ref: '#/components/parameters/customer_id_query_required'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_image_details_list'
+          description: List of details for images uploaded by the given customer
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Card Image Details
+      tags:
+      - Cards
+      x-external: true
+    post:
+      description: 'Create a card image entity. Note that this does not include the image data itself. You can upload the image data via a subsequent uploadCardImageData request using the ID created here.
+
+        '
+      operationId: createCardImage
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/create_card_image_request'
+        description: Details of the image to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_image_details'
+          description: Card image entity created
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create Card Image
+      tags:
+      - Cards
+      x-external: true
+  /cards/images/{card_image_id}:
+    get:
+      description: Get card image details
+      operationId: getCardImageDetails
+      parameters:
+      - $ref: '#/components/parameters/card_image_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_image_details'
+          description: Details of the card image
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Card Image Details
+      tags:
+      - Cards
+      x-external: true
+    patch:
+      description: Update card image details. The only detail that can be updated is the card status as APPROVED or REJECTED.
+      operationId: updateCardImageDetails
+      parameters:
+      - $ref: '#/components/parameters/card_image_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_card_image_request'
+        description: Details of the image to create
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_image_details'
+          description: Details of the card image
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update Card Image Details
+      tags:
+      - Cards
+      x-external: true
+  /cards/images/{card_image_id}/data:
+    get:
+      description: Get card image data
+      operationId: getCardImageData
+      parameters:
+      - $ref: '#/components/parameters/card_image_id'
+      responses:
+        '200':
+          content:
+            image/jpeg:
+              schema:
+                format: binary
+                type: string
+          description: Image data
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get Card Image Data
+      tags:
+      - Cards
+      x-external: true
+    post:
+      description: Upload card image data
+      operationId: uploadCardImageData
+      parameters:
+      - $ref: '#/components/parameters/card_image_id'
+      requestBody:
+        content:
+          image/jpeg:
+            schema:
+              format: binary
+              type: string
+        description: Binary image data
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_image_details'
+          description: Card image data was successfully uploaded
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Upload Card Image
+      tags:
+      - Cards
+      x-external: true
+  /cards/products:
+    get:
+      operationId: listCardProducts
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/card_product_list_response'
+          description: List of available Card Products
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Card Products
+      tags:
+      - Cards
+      x-external: true
+  /cards/single_use_token:
+    summary: Get Single-Use Token
+    post:
+      description: 'This endpoint returns a single-use access token. This type of token authorizes a single request to access API endpoints and data associated with a particular user
+
+        '
+      operationId: getClientSingleUseToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/single_use_token_request'
+        description: User token details
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/single_use_token_response'
+          description: Token Created
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get single-use token
+      tags:
+      - Cards
+      x-external: true
+components:
+  schemas:
+    card_activation_request:
+      properties:
+        activation_code:
+          description: An activation code provided with the card required to prove possession of the card
+          type: string
+        customer_id:
+          description: The ID of the customer for which card is being activated
+          example: 1acf447c-544b-41b4-94f9-bd96b03cc48e
+          format: uuid
+          type: string
+      required:
+      - activation_code
+      - customer_id
+      type: object
+    physical_card_issuance_request:
+      allOf:
+      - $ref: '#/components/schemas/physical_card'
+      - required:
+        - form
+        - customer_id
+        - account_id
+        - type
+        - card_product_id
+        type: object
+      example:
+        account_id: 1471cad8-077a-4382-9e64-e28ea526fbaf
+        card_product_id: aae9828b-c584-4971-86f9-c8ccc3ec3ad5
+        customer_id: d947fe22-f70c-4797-90fa-6cceb1245db0
+        form: PHYSICAL
+        type: DEBIT
+    single_use_token_request:
+      properties:
+        account_id:
+          description: The ID of the account to which the token will be linked
+          example: 9aea04bb-b7c7-46b5-817d-1af05e6b22f2
+          format: uuid
+          type: string
+        customer_id:
+          description: The ID of the customer to whom the token will be issued
+          example: e167fa0d-ee40-4a6e-b1ba-f61593fd254e
+          format: uuid
+          type: string
+      required:
+      - customer_id
+      - account_id
+      type: object
+    card_response:
+      discriminator:
+        mapping:
+          PHYSICAL: '#/components/schemas/physical_card_response'
+          VIRTUAL: '#/components/schemas/virtual_card_response'
+        propertyName: form
+      oneOf:
+      - $ref: '#/components/schemas/physical_card_response'
+      - $ref: '#/components/schemas/virtual_card_response'
+    virtual_card_plus_status:
+      allOf:
+      - $ref: '#/components/schemas/virtual_card'
+      - $ref: '#/components/schemas/virtual_card_response_status'
+    virtual_card_response_status:
+      allOf:
+      - $ref: '#/components/schemas/card_status_object'
+      - required:
+        - card_status
+        - status_reason
+        type: object
+    physical_card_format:
+      description: The format of a physical card product
+      enum:
+      - MAGNETIC_STRIPE
+      - CHIP
+      - CONTACT
+      - CONTACTLESS
+      - PHYSICAL_COMBO
+      type: string
+    update_card_image_request:
+      properties:
+        rejection_memo:
+          type: string
+        rejection_reason:
+          $ref: '#/components/schemas/card_image_rejection_reason'
+        status:
+          $ref: '#/components/schemas/card_image_status'
+      required:
+      - status
+      type: object
+    virtual_card_issuance_request:
+      allOf:
+      - $ref: '#/components/schemas/virtual_card'
+      - required:
+        - form
+        - customer_id
+        - account_id
+        - type
+        - card_product_id
+        type: object
+      example:
+        account_id: 378b3add-0045-4b07-8907-b5fff54f1858
+        card_product_id: 83ba2733-3fdd-49f2-bf79-c73b1ffa7437
+        customer_id: 122c0a4e-f955-4281-a5d9-bdd309776851
+        form: VIRTUAL
+        type: DEBIT
+    emboss_name:
+      description: The customer details to emboss on the card - Defaults to customer first and last name. Is limited to 21 characters. Valid characters are A-Z, a-z, 0-9, space ( ), period (.), comma (,), forward slash (/), hyphen (-), ampersand (&), single quote (').
+      properties:
+        line_1:
+          description: line 1
+          example: Krystal Bosco DVM
+          type: string
+        line_2:
+          description: line 2
+          example: Lesch, Schimmel and Green
+          type: string
+      required:
+      - line_1
+      type: object
+    physical_card_response_status:
+      allOf:
+      - $ref: '#/components/schemas/card_status_object'
+      - properties:
+          card_fulfillment_status:
+            $ref: '#/components/schemas/card_fulfillment_status'
+          fulfillment_details:
+            $ref: '#/components/schemas/fulfillment_details'
+          tracking_number:
+            deprecated: true
+            description: 'This contains all shipping details as provided by the card fulfillment provider, including the tracking
+
+              number. This field is deprecated. Instead, please use the fulfillment_details object, which includes a
+
+              field for just the tracking number.
+
+              '
+            example: Ship Date [2022-07-19], Shipping Method [UPS Next Day Air Saver]; Tracking Number [1ZW3268W1319325382]
+            readOnly: true
+            type: string
+        required:
+        - card_status
+        - status_reason
+        - card_fulfillment_status
+        type: object
+    single_use_token_response:
+      example:
+        customer_account_mapping_id: user_token
+        expires: '2000-01-23T04:56:07.000+00:00'
+        token: token
+      properties:
+        customer_account_mapping_id:
+          type: string
+        expires:
+          description: yyyy-MM-ddTHH:mm:ssZ
+          format: date-time
+          type: string
+        token:
+          type: string
+      required:
+      - expires
+      type: object
+    base_card:
+      allOf:
+      - $ref: '#/components/schemas/card_format'
+      - properties:
+          account_id:
+            description: The ID of the account to which the card will be linked
+            example: 98d3a7dd-8b7e-4b93-94b0-f5c9bcf88b39
+            format: uuid
+            type: string
+          bin:
+            description: The bin number
+            type: string
+          card_brand:
+            $ref: '#/components/schemas/card_brand'
+          card_product_id:
+            description: The card product to which the card is attached
+            example: f453e97a-83f8-4810-bdbc-8df324fc4241
+            format: uuid
+            type: string
+          creation_time:
+            description: The timestamp representing when the card issuance request was made
+            example: Tue Feb 08 2022 13:13:56 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            readOnly: true
+            type: string
+          customer_id:
+            description: The ID of the customer to whom the card will be issued
+            example: a33e874c-4fa5-4c6f-850f-0778ffa097e9
+            format: uuid
+            type: string
+          emboss_name:
+            $ref: '#/components/schemas/emboss_name'
+          expiration_month:
+            example: '06'
+            readOnly: true
+            type: string
+          expiration_time:
+            description: The timestamp representing when the card would expire at
+            example: Sat Mar 05 2022 01:33:52 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            readOnly: true
+            type: string
+          expiration_year:
+            example: '25'
+            readOnly: true
+            type: string
+          id:
+            description: Card ID
+            example: 57f266f7-5661-4e83-8a9a-ac19c76fb82f
+            format: uuid
+            readOnly: true
+            type: string
+          is_pin_set:
+            default: false
+            description: indicates whether a pin has been set on the card
+            example: true
+            readOnly: true
+            type: boolean
+          last_four:
+            description: The last 4 digits of the card PAN
+            example: '1234'
+            readOnly: true
+            type: string
+          last_modified_time:
+            description: The timestamp representing when the card was last modified at
+            example: Sun Nov 21 2021 04:23:47 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            readOnly: true
+            type: string
+          metadata:
+            $ref: '#/components/schemas/card_metadata'
+          reissue_reason:
+            description: "This is the reason the card needs to be reissued, if any. The reason determines several behaviours:\n  - whether or not the new card will use the same PAN as the original card\n  - the old card will be terminated and if so, when it will be terminated\n\nReason                 | Same PAN | Terminate Old Card\n---------------------- | -------- | ------------------\nEXPIRATION             | yes      | on activation\nLOST                   | no       | immediately\nSTOLEN                 | no       | immediately\nDAMAGED                | yes      | on activation\nVIRTUAL_TO_PHYSICAL(*) | yes      | on activation\nPRODUCT_CHANGE         | yes      | on activation\nNAME_CHANGE(**)        | yes      | on activation\nAPPEARANCE             | yes      | on activation\n\n(*) VIRTUAL_TO_PHYSICAL is deprecated. Please use PRODUCT_CHANGE whenever reissuing from one\ncard product to another, including from a virtual product to a physical product.\n\n(**) NAME_CHANGE is deprecated. Please use APPEARANCE whenever reissuing in order to change the\nappearance of a card, such as the printed name or custom image.\n\nFor all reasons, the new card will use the same PIN as the original card and digital wallet tokens will\nreassigned to the new card\n"
+            enum:
+            - EXPIRATION
+            - LOST
+            - STOLEN
+            - DAMAGED
+            - NAME_CHANGE
+            - VIRTUAL_TO_PHYSICAL
+            - PRODUCT_CHANGE
+            - APPEARANCE
+            type: string
+          reissued_from_id:
+            description: 'When reissuing a card, specify the card to be replaced here. When getting a card''s details, if this card was issued as a reissuance of another card, this ID refers to the card was replaced. If this field is set, then reissue_reason must also be set.
+
+              '
+            example: 6d346154-0b81-493f-87b2-2996bf9a1c0a
+            format: uuid
+            type: string
+          reissued_to_id:
+            description: If this card was reissued, this ID refers to the card that replaced it.
+            example: abfc62db-8ea8-4218-a3fe-d534c34acc09
+            format: uuid
+            readOnly: true
+            type: string
+          type:
+            description: Indicates the type of card to be issued
+            enum:
+            - DEBIT
+            type: string
+        required:
+        - form
+        type: object
+    card_pin_status:
+      description: The status of the card PIN
+      enum:
+      - SET
+      - CHANGED
+      readOnly: true
+      type: string
+    card_brand:
+      description: The brand of a card product
+      enum:
+      - MASTERCARD
+      - VISA
+      type: string
+    card_status_reason_code:
+      description: 'The reason for the card status
+
+
+        Code | Description
+
+        --- | ---
+
+        NEW | Card activated
+
+        REQ | Requested by you
+
+        INA | Dormant
+
+        UNK | Invalid shipping address
+
+        NEG | Negative account balance
+
+        REV | Account under review
+
+        SUS | Suspicious activity
+
+        OUT | Activity outside program parameters
+
+        FRD | Confirmed fraud
+
+        MAT | Matched with an OFAC list
+
+        LOS | Card reported lost
+
+        CLO | Card was cloned
+
+        COM | Account or card was compromised
+
+        TMP | Awaiting customer confirmation
+
+        PRC | Initiated by Processor
+
+        ISS | Initiated by Issuer
+
+        EXP | Card expired
+
+        KYC | Failed KYC
+
+        INF | Information was validated
+
+        ACT | Account activity was validated
+
+        AUX | Initiated by a third party
+
+        PIN | PIN try limit reached
+
+        STO | Card reported stolen
+
+        ADD | Address issue
+
+        NAM | Name issue
+
+        SSN | SSN issue
+
+        DOB | DOB issue
+
+        EML | Email issue
+
+        PHO | Phone issue
+
+        FUL | Account/fulfillment mismatch
+
+        OTH | Other
+
+        '
+      enum:
+      - NEW
+      - REQ
+      - INA
+      - UNK
+      - NEG
+      - REV
+      - SUS
+      - OUT
+      - FRD
+      - MAT
+      - LOS
+      - CLO
+      - COM
+      - TMP
+      - PRC
+      - ISS
+      - EXP
+      - KYC
+      - INF
+      - ACT
+      - AUX
+      - PIN
+      - STO
+      - ADD
+      - NAM
+      - SSN
+      - DOB
+      - EML
+      - PHO
+      - FUL
+      - OTH
+      type: string
+    card_status:
+      description: The status indicating the card lifecycle state
+      enum:
+      - ACTIVE
+      - UNACTIVATED
+      - SUSPENDED
+      - TERMINATED
+      - IMAGE_PENDING
+      - IMAGE_REJECTED
+      type: string
+    gateway_response:
+      properties:
+        active:
+          description: Current status of the Authorization gateway
+          type: boolean
+        card_products:
+          description: List of Card Product unique identifiers that will utilize the Gateway
+          items:
+            example: a9bb2628-8d5c-476a-a78e-d32ebcabbd6f
+            format: uuid
+            type: string
+          type: array
+        creation_time:
+          description: The timestamp representing when the gateway config request was made
+          example: Fri Dec 17 2021 13:15:51 GMT+0000 (Coordinated Universal Time)
+          format: date-time
+          readOnly: true
+          type: string
+        custom_headers:
+          $ref: '#/components/schemas/gateway_custom_headers'
+        id:
+          description: Gateway ID
+          example: 05da0ba1-0532-4805-9afd-bc09e0291bab
+          format: uuid
+          type: string
+        last_modified_time:
+          description: The timestamp representing when the gateway config was last modified at
+          example: Sun Oct 17 2021 01:02:09 GMT+0000 (Coordinated Universal Time)
+          format: date-time
+          readOnly: true
+          type: string
+        url:
+          description: URL of the Authorization gateway
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - id
+      - active
+      - url
+      - card_products
+      - creation_time
+      - last_modified_time
+      type: object
+    card_status_reason_memo:
+      description: Additional details about the reason for the status change
+      maxLength: 255
+      type: string
+    card_status_request:
+      description: The status indicating the card lifecycle state
+      enum:
+      - ACTIVE
+      - SUSPENDED
+      - TERMINATED
+      type: string
+    physical_card:
+      allOf:
+      - $ref: '#/components/schemas/base_card'
+      - properties:
+          card_image_id:
+            description: The ID of the custom card image used for this card
+            example: 48c31767-938f-452e-a5d5-be07293c4407
+            format: uuid
+            type: string
+          shipping:
+            $ref: '#/components/schemas/shipping'
+        type: object
+      description: Details pertaining to issuing a new physical card
+      title: Physical Card
+    create_card_image_request:
+      properties:
+        card_product_id:
+          $ref: '#/components/schemas/card_product_id'
+        customer_id:
+          $ref: '#/components/schemas/customer_id1'
+      required:
+      - customer_id
+      - card_product_id
+      type: object
+    card_image_details:
+      properties:
+        card_product_id:
+          $ref: '#/components/schemas/card_product_id'
+        customer_id:
+          $ref: '#/components/schemas/customer_id1'
+        id:
+          $ref: '#/components/schemas/card_image_id'
+        rejection_memo:
+          type: string
+        rejection_reason:
+          $ref: '#/components/schemas/card_image_rejection_reason'
+        status:
+          $ref: '#/components/schemas/card_image_status'
+      required:
+      - id
+      - status
+      - customer_id
+      - card_product_id
+    card_product:
+      allOf:
+      - $ref: '#/components/schemas/card_format'
+      - properties:
+          active:
+            description: Indicates whether the Card Product is active
+            type: boolean
+          card_program_id:
+            description: Card Program ID
+            example: 38801923-080c-42b2-912b-db04ed7f466b
+            format: uuid
+            type: string
+          color:
+            description: Color code for dynamic card elements such as PAN and card holder name
+            pattern: ^[0-9A-F]{6}$
+            type: string
+          creation_time:
+            description: The timestamp representing when the Card Product was created
+            example: Tue Jun 28 2022 15:59:07 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            readOnly: true
+            type: string
+          digital_wallet_tokenization:
+            $ref: '#/components/schemas/digital_wallet_tokenization'
+          end_date:
+            description: The time when the Card Product is decommissioned
+            example: Fri Dec 30 2022 09:48:40 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            type: string
+          id:
+            description: Card Product ID
+            example: 1a7c4037-dd90-4fab-841b-fbd37f0045ed
+            format: uuid
+            readOnly: true
+            type: string
+          image:
+            description: Indicates whether or not there is an overlay image of the card product available
+            type: boolean
+          image_mode:
+            $ref: '#/components/schemas/card_image_mode'
+          last_modified_time:
+            description: The timestamp representing when the Card Product was last modified
+            example: Thu Oct 07 2021 14:55:56 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            readOnly: true
+            type: string
+          name:
+            description: The name of the Card Product
+            maxLength: 40
+            minLength: 1
+            type: string
+          orientation:
+            description: Card orientation
+            enum:
+            - HORIZONTAL
+            - VERTICAL
+            type: string
+          package_id:
+            description: Card fulfillment provider’s package ID
+            maxLength: 50
+            minLength: 1
+            type: string
+          physical_card_format:
+            $ref: '#/components/schemas/physical_card_format'
+          return_address:
+            $ref: '#/components/schemas/shipping'
+          start_date:
+            description: The time when the Card Product goes live
+            example: Mon Apr 25 2022 17:32:31 GMT+0000 (Coordinated Universal Time)
+            format: date-time
+            type: string
+          txn_enhancer:
+            $ref: '#/components/schemas/txn_enhancer'
+        required:
+        - name
+        - card_program_id
+        - active
+        - start_date
+        type: object
+      description: Card Product
+    account_id:
+      description: The unique identifier of an account
+      example: 4403f645-c2e3-4f8d-9027-127dca09f353
+      format: uuid
+      type: string
+    digital_wallet_token_address_verification:
+      properties:
+        validate:
+          example: false
+          type: boolean
+      type: object
+    card_product_list_response:
+      allOf:
+      - properties:
+          card_products:
+            description: Array of Card Products
+            items:
+              $ref: '#/components/schemas/card_product_response'
+            type: array
+        required:
+        - card_products
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    gateway_list_response:
+      allOf:
+      - properties:
+          gateways:
+            description: Array of Authorization gateway configuration
+            items:
+              $ref: '#/components/schemas/gateway_response'
+            type: array
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    manual_entry:
+      properties:
+        address_verification:
+          $ref: '#/components/schemas/digital_wallet_token_address_verification'
+        enabled:
+          default: false
+          example: false
+          type: boolean
+      type: object
+    form:
+      description: PHYSICAL or VIRTUAL.
+      enum:
+      - PHYSICAL
+      - VIRTUAL
+      type: string
+    digital_wallet_tokenization:
+      properties:
+        provisioning_controls:
+          $ref: '#/components/schemas/provisioning_controls'
+      type: object
+    client_token:
+      description: A short-lived, one-time token used for accessing client PINs/PANs
+      properties:
+        client_token:
+          example: 4899e49c-206e-40c8-ab01-c28a8ca7ccc8
+          type: string
+      title: Client Token
+      type: object
+    card_product_id:
+      description: The unique identifier of a cards product
+      example: d6180286-ae04-4bdb-ac62-bce0b4b06f91
+      format: uuid
+      type: string
+    fulfillment_details:
+      properties:
+        ship_date:
+          description: The date that the card was shipped as reported by the card fulfillment provider
+          example: '2022-07-19'
+          format: date
+          readOnly: true
+          type: string
+        shipping_method:
+          description: The specific shipping method as reported by the card fulfillment provider
+          example: UPS Next Day Air Saver
+          readOnly: true
+          type: string
+        tracking_number:
+          description: The shipment tracking number
+          example: 1ZW3268W1319325382
+          readOnly: true
+          type: string
+      type: object
+    card_change:
+      description: Card change details
+      properties:
+        change_type:
+          $ref: '#/components/schemas/change_type'
+        channel:
+          $ref: '#/components/schemas/change_channel'
+        id:
+          description: Unique token
+          example: 19d19b55-c8fa-4a78-ae1c-98d37798bec3
+          format: uuid
+          readOnly: true
+          type: string
+        memo:
+          $ref: '#/components/schemas/card_status_reason_memo'
+        reason:
+          $ref: '#/components/schemas/card_status_reason_code'
+        state:
+          $ref: '#/components/schemas/card_change_state'
+          description: Updated card state
+        updated_at:
+          description: Date of change
+          example: Fri Jul 22 2022 03:09:02 GMT+0000 (Coordinated Universal Time)
+          format: date-time
+          readOnly: true
+          type: string
+        updated_by:
+          description: ID of user who initiated the change, if done via Synctera Admin System
+          type: string
+      required:
+      - id
+      - change_type
+      - state
+      - channel
+      - updated_at
+      - updated_by
+      type: object
+    wallet_provider_card_on_file:
+      properties:
+        address_verification:
+          $ref: '#/components/schemas/digital_wallet_token_address_verification'
+        enabled:
+          default: false
+          example: false
+          type: boolean
+      type: object
+    card_metadata:
+      additionalProperties:
+        type: string
+      description: Additional data to include in the request structured as key-value pairs
+      type: object
+    create_gateway_request:
+      properties:
+        active:
+          default: true
+          description: Current status of the Authorization gateway
+          type: boolean
+        card_products:
+          description: List of Card Product unique identifiers that will utilize the Gateway
+          items:
+            example: 9faacdc6-bd75-4c79-b39f-898a95a21cac
+            format: uuid
+            type: string
+          type: array
+        custom_headers:
+          $ref: '#/components/schemas/gateway_custom_headers'
+        url:
+          description: URL of the Authorization gateway
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - url
+      - card_products
+      type: object
+    card_image_mode:
+      description: 'The image mode of a card product. If the card product supports custom card images, this value determines how the images will be handled during card issuance. REQUIRED means that cards issued with this card product must have the ID of an image that has been uploaded. Note that the image does not necessarily have to have been approved prior to the issuance request. This mode is currently disabled. REQUIRED_APPROVED_FIRST means that cards issued with this card product must have the ID of an image that has been uploaded and approved.
+
+        '
+      enum:
+      - REQUIRED
+      - REQUIRED_APPROVED_FIRST
+      type: string
+    txn_enhancer:
+      default: NONE
+      description: whether to use a transaction enhancer and/or which vendor to use
+      enum:
+      - NONE
+      - MX
+      example: NONE
+      type: string
+    card_change_state:
+      oneOf:
+      - $ref: '#/components/schemas/card_fulfillment_status'
+      - $ref: '#/components/schemas/card_status'
+      - $ref: '#/components/schemas/card_pin_status'
+    card_changes_list:
+      allOf:
+      - properties:
+          changes:
+            description: List of changes in descending chronological order
+            items:
+              $ref: '#/components/schemas/card_change'
+            type: array
+        required:
+        - changes
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    card_image_id:
+      description: The unique identifier of a card image
+      example: 7b12abf1-bc0a-4837-886d-c37c86ac8950
+      format: uuid
+      type: string
+    shipping:
+      description: Details about the shipping method. If supplied this will override the default shipping address of the customer or account.
+      properties:
+        address:
+          $ref: '#/components/schemas/address1'
+          description: The address to which the card will be shipped - Defaults to account shipping address if none supplied
+        care_of_line:
+          description: The name of the person to send in care of
+          type: string
+        is_expedited_fulfillment:
+          default: false
+          description: Is the shipment expedited
+          example: false
+          type: boolean
+        method:
+          default: LOCAL_MAIL
+          description: The shipping method
+          enum:
+          - LOCAL_MAIL
+          - TWO_DAY
+          - OVERNIGHT
+          - INTERNATIONAL
+          example: LOCAL_MAIL
+          type: string
+        phone_number:
+          description: The phone number of the recipient
+          example: 2007473385
+          pattern: ^\+[1-9]\d{1,14}$
+          type: string
+        recipient_name:
+          $ref: '#/components/schemas/recipient_name'
+          description: The name of the recipient to whom the card will be shipped
+      type: object
+    physical_card_plus_status:
+      allOf:
+      - $ref: '#/components/schemas/physical_card'
+      - $ref: '#/components/schemas/physical_card_response_status'
+    card_issuance_request:
+      discriminator:
+        mapping:
+          PHYSICAL: '#/components/schemas/physical_card_issuance_request'
+          VIRTUAL: '#/components/schemas/virtual_card_issuance_request'
+        propertyName: form
+      oneOf:
+      - $ref: '#/components/schemas/physical_card_issuance_request'
+      - $ref: '#/components/schemas/virtual_card_issuance_request'
+      type: object
+    customer_id1:
+      description: The unique identifier of a customer
+      example: 8da2b02b-81f2-41f3-a32e-041eb8ccd825
+      format: uuid
+      type: string
+    recipient_name:
+      description: The name of the recipient to whom the card will be shipped
+      properties:
+        first_name:
+          example: Thea
+          type: string
+        last_name:
+          example: Ritchie
+          type: string
+        middle_name:
+          example: a
+          type: string
+      required:
+      - first_name
+      - last_name
+      type: object
+    address1:
+      properties:
+        address_line_1:
+          description: Street address line 1
+          example: 0624 Kulas Turnpike
+          type: string
+        address_line_2:
+          description: String address line 2
+          example: Apt. 024
+          type: string
+        city:
+          description: City
+          example: Jastfort
+          type: string
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: CG
+          type: string
+        postal_code:
+          description: Postal code
+          example: '49633'
+          type: string
+        state:
+          description: State, region, province, or prefecture
+          example: ID
+          type: string
+      required:
+      - address_line_1
+      - city
+      - state
+      - country_code
+      - postal_code
+      type: object
+    virtual_card_response:
+      allOf:
+      - $ref: '#/components/schemas/virtual_card_plus_status'
+      - required:
+        - form
+        - id
+        - customer_id
+        - account_id
+        - type
+        - emboss_name
+        - last_four
+        - card_product_id
+        - card_brand
+        - expiration_year
+        - expiration_month
+        - creation_time
+        type: object
+    gateway_custom_headers:
+      additionalProperties:
+        type: string
+      description: Custom Headers of the Authorization gateway
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    in_app_provisioning:
+      properties:
+        address_verification:
+          $ref: '#/components/schemas/digital_wallet_token_address_verification'
+        enabled:
+          default: false
+          example: false
+          type: boolean
+      type: object
+    card_status_object:
+      description: The status of the card
+      properties:
+        card_status:
+          $ref: '#/components/schemas/card_status'
+        memo:
+          $ref: '#/components/schemas/card_status_reason_memo'
+        status_reason:
+          $ref: '#/components/schemas/card_status_reason_code'
+      required:
+      - card_status
+      title: Status
+      type: object
+    card_image_status:
+      description: The status of a custom card image
+      enum:
+      - NOT_UPLOADED
+      - UNREVIEWED
+      - APPROVED
+      - REJECTED
+      type: string
+    card_id:
+      description: The unique identifier of a card
+      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
+      format: uuid
+      type: string
+    card_list_response:
+      allOf:
+      - properties:
+          cards:
+            description: Array of Cards
+            items:
+              $ref: '#/components/schemas/card_response'
+            type: array
+        required:
+        - cards
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    change_channel:
+      description: How the change was submitted
+      enum:
+      - API
+      - ADMIN
+      - SYSTEM
+      - FRAUD
+      type: string
+    card_image_rejection_reason:
+      description: The category of reason that a card image was rejected
+      enum:
+      - COPYRIGHT
+      - TRADEMARK
+      - BRANDED
+      - PROMOTIONAL
+      - INAPPROPRIATE
+      - OTHER
+      type: string
+    card_edit_request:
+      properties:
+        card_status:
+          $ref: '#/components/schemas/card_status_request'
+        customer_id:
+          description: The ID of the customer to whom the card will be issued
+          example: d76464e0-d13c-4bf9-910f-f7992dc86c88
+          format: uuid
+          type: string
+        emboss_name:
+          $ref: '#/components/schemas/emboss_name'
+        memo:
+          $ref: '#/components/schemas/card_status_reason_memo'
+        metadata:
+          $ref: '#/components/schemas/card_metadata'
+        reason:
+          $ref: '#/components/schemas/card_status_reason_code'
+      type: object
+    gateway_id:
+      description: The unique identifier of an Authorization gateway config
+      format: string
+      type: string
+    card_format:
+      properties:
+        form:
+          description: PHYSICAL or VIRTUAL.
+          enum:
+          - PHYSICAL
+          - VIRTUAL
+          type: string
+      required:
+      - form
+      type: object
+    update_gateway_request:
+      properties:
+        active:
+          description: Current status of the Authorization gateway
+          type: boolean
+        card_products:
+          description: List of Card Product unique identifiers that will utilize the Gateway
+          items:
+            example: 0698ffec-3839-4ea2-8dc4-4bf4b514e4e7
+            format: uuid
+            type: string
+          type: array
+        custom_headers:
+          $ref: '#/components/schemas/gateway_custom_headers'
+        url:
+          description: URL of the Authorization gateway
+          format: uri
+          maxLength: 1000
+          type: string
+      type: object
+    virtual_card:
+      allOf:
+      - $ref: '#/components/schemas/base_card'
+      description: A virtual card
+      title: Virtual Card
+    card_image_details_list:
+      allOf:
+      - properties:
+          images:
+            description: Array of image details
+            items:
+              $ref: '#/components/schemas/card_image_details'
+            type: array
+        required:
+        - images
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    change_type:
+      description: The category of card change
+      enum:
+      - STATUS
+      - FULFILLMENT
+      - PIN
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    card_product_response:
+      allOf:
+      - $ref: '#/components/schemas/card_product'
+      required:
+      - id
+      - name
+      - card_program_id
+      - active
+      - form
+      - start_date
+      - digital_wallet_tokenization
+      - end_date
+      - creation_time
+      - last_modified_time
+    physical_card_response:
+      allOf:
+      - $ref: '#/components/schemas/physical_card_plus_status'
+      - properties:
+          physical_card_format:
+            $ref: '#/components/schemas/physical_card_format'
+        required:
+        - form
+        - id
+        - customer_id
+        - account_id
+        - type
+        - emboss_name
+        - card_product_id
+        - card_brand
+        - creation_time
+        - shipping
+        - physical_card_format
+        type: object
+    card_widget_url_response:
+      description: A URL for activate card and set pin widgets
+      properties:
+        url:
+          format: uri
+          type: string
+      type: object
+    card_fulfillment_status:
+      description: The status indicating the state of the card issuance
+      enum:
+      - ISSUED
+      - REISSUED
+      - ORDERED
+      - REJECTED
+      - REORDERED
+      - SHIPPED
+      - DIGITALLY_PRESENTED
+      type: string
+    widget_type:
+      description: The widget type
+      enum:
+      - set_pin
+      - activate_card
+      type: string
+    provisioning_controls:
+      properties:
+        in_app_provisioning:
+          $ref: '#/components/schemas/in_app_provisioning'
+        manual_entry:
+          $ref: '#/components/schemas/manual_entry'
+        wallet_provider_card_on_file:
+          $ref: '#/components/schemas/wallet_provider_card_on_file'
+      type: object
+  parameters:
+    card_id:
+      in: path
+      name: card_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/card_id'
+    expiration_date_query:
+      description: The date representing when the card would expire at
+      in: query
+      name: expiration_date
+      required: false
+      schema:
+        example: '2006-01-02'
+        format: date
+        type: string
+      x-external: true
+    emboss_name_query:
+      description: emboss name
+      in: query
+      name: emboss_name
+      required: false
+      schema:
+        type: string
+      x-external: true
+    card_sort_by_query:
+      description: 'Specifies the sort order for the returned cards.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - account_id:asc
+          - account_id:desc
+          - customer_id:asc
+          - customer_id:desc
+          - card_product_id:asc
+          - card_product_id:desc
+          - last_four:asc
+          - last_four:desc
+          - card_type:asc
+          - card_type:desc
+          - card_brand:asc
+          - card_brand:desc
+          - expiration_date:asc
+          - expiration_date:desc
+          - form:asc
+          - form:desc
+          - card_status:asc
+          - card_status:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    customer_id_query:
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/customer_id1'
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    card_image_id:
+      in: path
+      name: card_image_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/card_image_id'
+    card_product_id_query:
+      in: query
+      name: card_product_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/card_product_id'
+      x-external: true
+    postal_code_query:
+      description: The postal code of a card user
+      in: query
+      name: postal_code
+      required: false
+      schema:
+        example: '49633'
+        type: string
+      x-external: true
+    card_brand_query:
+      description: The brand of a card product
+      in: query
+      name: card_brand
+      required: false
+      schema:
+        $ref: '#/components/schemas/card_brand'
+      x-external: true
+    gateway_id:
+      in: path
+      name: gateway_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/gateway_id'
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    card_type_query:
+      description: Indicates the type of card
+      in: query
+      name: card_type
+      required: false
+      schema:
+        enum:
+        - DEBIT
+        type: string
+      x-external: true
+    last_four_query:
+      description: The last 4 digits of the card PAN
+      in: query
+      name: last_four
+      required: false
+      schema:
+        example: '1234'
+        pattern: ^\d{4}$
+        type: string
+      x-external: true
+    account_id_query_array:
+      description: Account ID(s). Multiple IDs can be provided as a comma-separated list.
+      explode: false
+      in: query
+      name: account_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/account_id'
+        type: array
+      style: form
+      x-external: true
+    customer_id_query_required:
+      in: query
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id1'
+      x-external: true
+    card_status_query:
+      description: The status of a card
+      in: query
+      name: card_status
+      required: false
+      schema:
+        $ref: '#/components/schemas/card_status'
+      x-external: true
+    form_query:
+      description: The format of the card
+      in: query
+      name: form
+      required: false
+      schema:
+        $ref: '#/components/schemas/form'
+      x-external: true
+  responses:
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

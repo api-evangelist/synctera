@@ -1,0 +1,520 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Disclosures API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'The disclosures resource is used to track the status of disclosures and
+
+    ensure that all parties have been shown the necessary disclosures to meet
+
+    regulatory obligations.
+
+    '
+  name: Disclosures
+paths:
+  /customers/{customer_id}/disclosures:
+    description: 'Disclosures to be made to customers
+
+      '
+    summary: Disclosures
+    get:
+      deprecated: true
+      description: Retrieves paginated list of disclosures associated with the authorized requester
+      operationId: listDisclosures1
+      parameters:
+      - $ref: '#/components/parameters/customer_id_path'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/disclosure_response'
+          description: List of disclosures
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List Disclosures
+      tags:
+      - Disclosures
+      x-external: true
+      x-status: deprecated
+    post:
+      deprecated: true
+      description: 'Disclosures to be made to customers
+
+        '
+      operationId: createDisclosure1
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/customer_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/disclosure1'
+        description: Disclosure to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/disclosure1'
+          description: Created disclosure
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a Disclosure
+      tags:
+      - Disclosures
+      x-external: true
+      x-status: deprecated
+  /disclosures:
+    get:
+      description: Retrieves paginated list of disclosures associated with the authorized requester.
+      operationId: listDisclosures
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/person_id_query'
+      - $ref: '#/components/parameters/business_id_query'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/disclosure_list'
+          description: List of disclosures.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List disclosures
+      tags:
+      - Disclosures
+      x-external: true
+      x-status: alpha
+    post:
+      description: Record the fact that a regulatory document was disclosed to a customer.
+      operationId: createDisclosure
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/disclosure'
+        description: Disclosure to create.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/disclosure'
+          description: Created disclosure.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create disclosure record
+      tags:
+      - Disclosures
+      x-external: true
+      x-status: alpha
+  /disclosures/{disclosure_id}:
+    get:
+      description: Get disclosure by ID.
+      operationId: getDisclosure
+      parameters:
+      - $ref: '#/components/parameters/disclosure_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/disclosure'
+          description: Disclosure representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get disclosure
+      tags:
+      - Disclosures
+      x-external: true
+      x-status: alpha
+components:
+  parameters:
+    person_id_query:
+      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: person_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    disclosure_id:
+      description: The unique identifier for the disclosure.
+      in: path
+      name: disclosure_id
+      required: true
+      schema:
+        example: 3fa12d3f-6436-482c-a8a1-d65e9761dc2d
+        format: uuid
+        type: string
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    business_id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: business_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+  schemas:
+    disclosure_list:
+      allOf:
+      - properties:
+          disclosures:
+            description: Array of disclosures.
+            items:
+              $ref: '#/components/schemas/disclosure'
+            type: array
+        required:
+        - disclosures
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    id:
+      description: The unique identifier for this resource.
+      example: b0888080-7759-40ae-b82b-5864ced6ad36
+      format: uuid
+      readOnly: true
+      type: string
+    business_id1:
+      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
+
+        '
+      example: 082018a9-6517-440c-9c01-a01e27457d1b
+      format: uuid
+      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    disclosure:
+      allOf:
+      - required:
+        - type
+        - version
+        - event_type
+        - disclosure_date
+      - $ref: '#/components/schemas/base_disclosure'
+      description: Represents a disclosure.
+      type: object
+    disclosure1:
+      description: Represents a disclosure
+      properties:
+        creation_time:
+          example: '2021-05-01T23:59:59Z'
+          format: date-time
+          readOnly: true
+          type: string
+        event_type:
+          enum:
+          - DISPLAYED
+          - VIEWED
+          - ACKNOWLEDGED
+          example: VIEWED
+          type: string
+        id:
+          description: Disclosure ID
+          example: 48c2a7f2-5edc-41e6-9f2a-fefac8e94659
+          format: uuid
+          type: string
+        last_updated_time:
+          example: '2021-05-01T23:59:59Z'
+          format: date-time
+          readOnly: true
+          type: string
+        timestamp:
+          description: Date of disclosure
+          example: '2021-05-01T23:59:59Z'
+          format: date-time
+          type: string
+        type:
+          description: Disclosure Type
+          enum:
+          - ACH_AUTHORIZATION
+          - CARDHOLDER_AGREEMENT
+          - E_SIGN
+          - KYC_DATA_COLLECTION
+          - PRIVACY_NOTICE
+          - REG_CC
+          - REG_DD
+          - REG_E
+          - TERMS_AND_CONDITIONS
+          example: REG_DD
+          type: string
+        version:
+          description: Disclosure Version
+          example: v1.1
+          type: string
+      required:
+      - type
+      - version
+      - timestamp
+      - event_type
+      title: Disclosure
+      type: object
+    disclosure_type:
+      description: "Describes the regulatory requirement that triggered the disclosure.\nOne of the following:\n* `ACH_AUTHORIZATION` –\n    The ACH Authorization & Agreement Disclosure serves as a method of disclosing\n    and obtaining consent from a consumer to conduct ACH and pre-authorized\n    electronic transactions to and from their account. Record of obtaining this\n    consent should be retained, in accordance with Reg E, for no less than 2 years\n    from the date the disclosure was made to the consumer.\n* `CARDHOLDER_AGREEMENT` –\n    The Cardholder Agreement is a legal document that details the terms of a card\n    agreement between either a consumer or a business, and the financial\n    institution that issues the card. The Agreement governs the use of the\n    account.\n* `E_SIGN` –\n    US law with rules around electronic agreements/documents/disclosures:\n    used to obtain consent from consumers to receive electronic communications\n    (agreements, disclosures, statements, etc) about their accounts.\n* `KYC_DATA_COLLECTION` –\n    Document advising the customer that you will collect their personal information\n    (name, date of birth, tax ID, etc.)\n    and will be validating their information against external data/documentation.\n* `PRIVACY_NOTICE` –\n    Document that tells customers what is done with their non-public information,\n    who it is shared with, how is is secured,\n    and how they can opt out of it being shared beyond Synctera.\n* `REG_CC` –\n    US regulation that implements the Expedited Funds Availability Act:\n    describes standards for when a financial institution\n    makes funds available in a deposit account.\n* `REG_DD` –\n    US regulation that implements the Truth in Savings Act,\n    to inform customers about the terms and rules for a deposit account.\n* `REG_E` –\n    US regulation that implements the Electronic Funds Transfer Act:\n    covers liability for electronic transactions,\n    disputes for fraudulent or unrecognized electronic transactions,\n    and consent for electronic debits from a consumer's account.\n* `TERMS_AND_CONDITIONS` –\n    A detailed agreement between you and the consumer for the\n    structure, terms, fees, charges, rates of the product or service,\n    and the rules for the relationship between you and the consumer.\n"
+      enum:
+      - ACH_AUTHORIZATION
+      - CARDHOLDER_AGREEMENT
+      - E_SIGN
+      - KYC_DATA_COLLECTION
+      - PRIVACY_NOTICE
+      - REG_CC
+      - REG_DD
+      - REG_E
+      - TERMS_AND_CONDITIONS
+      type: string
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    base_disclosure:
+      properties:
+        business_id:
+          $ref: '#/components/schemas/business_id1'
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        disclosure_date:
+          description: Date and time the disclosure was made.
+          example: '2021-06-14T11:21:17Z'
+          format: date-time
+          type: string
+        event_type:
+          description: "Describes how the disclosure was shown and what the user did as a result.\nOne of the following:\n* `DISPLAYED` —\n    The document was made visible to the user,\n    but they did not interact with it.\n* `VIEWED` —\n    The document was made visible to the user,\n    and they interacted enough to see the whole document (e.g. scrolled to the bottom).\n* `ACKNOWLEDGED` —\n    The document was made visible to the user,\n    and they took positive action to confirm that they have read and accepted the document.\n"
+          enum:
+          - DISPLAYED
+          - VIEWED
+          - ACKNOWLEDGED
+          example: ACKNOWLEDGED
+          type: string
+        id:
+          $ref: '#/components/schemas/id'
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        person_id:
+          $ref: '#/components/schemas/person_id'
+        type:
+          $ref: '#/components/schemas/disclosure_type'
+        version:
+          $ref: '#/components/schemas/version'
+      type: object
+    person_id:
+      description: 'Unique ID for the person. Exactly one of `person_id` or `business_id` must be set.
+
+        '
+      example: 2c0bf949-9f59-4a04-82d4-9a86e0ccec2c
+      format: uuid
+      type: string
+    version:
+      description: Version of the disclosure document.
+      example: '1.0'
+      pattern: ^[0-9]+\.[0-9]+$
+      type: string
+    disclosure_response:
+      description: Represents all customer disclosures
+      properties:
+        disclosures:
+          description: List of the customer's disclosures
+          items:
+            $ref: '#/components/schemas/disclosure1'
+          type: array
+      title: List of Customer Disclosures
+      type: object
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

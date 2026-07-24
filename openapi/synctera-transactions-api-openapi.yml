@@ -1,0 +1,1104 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Transactions API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Create and manage transactions
+  name: Transactions
+paths:
+  /transactions/internal_transfer:
+    description: An internal transfer is an immediate payment between two accounts within the same Fintech.
+    summary: Initiate an internal account-to-account transfer
+    post:
+      description: Create an internal transfer
+      operationId: createInternalTransfer
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/internal_transfer'
+        description: Transfer request body
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal_transfer_response'
+          description: Transaction Response
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create an internal transfer
+      tags:
+      - Transactions
+      x-external: true
+  /transactions/pending:
+    description: 'Pending transactions represent a "hold" of a paricular amount on an account balance.
+
+      '
+    summary: List pending transactions
+    get:
+      description: 'Get paginated list of pending transactions matching the provided filters
+
+        '
+      operationId: listPendingTransactions
+      parameters:
+      - $ref: '#/components/parameters/account_no'
+      - $ref: '#/components/parameters/account_id2'
+      - $ref: '#/components/parameters/from_date'
+      - $ref: '#/components/parameters/to_date'
+      - $ref: '#/components/parameters/status4'
+      - $ref: '#/components/parameters/transaction_id1'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/subtype'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pending_transactions'
+          description: Paginated list of pending transactions
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List pending transactions
+      tags:
+      - Transactions
+      x-external: true
+  /transactions/pending/{id}:
+    description: 'A pending transaction represent a "hold" of a paricular amount on an account balance.
+
+      '
+    summary: Get pending transaction
+    get:
+      description: 'Get a pending transaction by its uuid
+
+        '
+      operationId: getPendingTransactionByID
+      parameters:
+      - $ref: '#/components/parameters/id1'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/pending_transaction'
+          description: Pending Transaction
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a pending transaction
+      tags:
+      - Transactions
+      x-external: true
+  /transactions/posted:
+    description: 'Posted transactions represent a completed money movement.
+
+      '
+    summary: List posted transactions
+    get:
+      description: 'Get paginated list of posted transactions matching the provided filters
+
+        '
+      operationId: listPostedTransactions
+      parameters:
+      - $ref: '#/components/parameters/account_no'
+      - $ref: '#/components/parameters/account_id2'
+      - $ref: '#/components/parameters/from_date'
+      - $ref: '#/components/parameters/to_date'
+      - $ref: '#/components/parameters/type'
+      - $ref: '#/components/parameters/subtype'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/posted_transactions'
+          description: Paginated list of posted transactions
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List posted transactions
+      tags:
+      - Transactions
+      x-external: true
+  /transactions/posted/{id}:
+    description: 'A posted transaction represents a completed money movement.
+
+      '
+    summary: Get posted transaction
+    get:
+      description: 'Get a posted transaction by its uuid
+
+        '
+      operationId: getPostedTransactionByID
+      parameters:
+      - $ref: '#/components/parameters/id1'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/posted_transaction'
+          description: Posted Transaction
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a posted transaction
+      tags:
+      - Transactions
+      x-external: true
+components:
+  schemas:
+    risk_info:
+      description: Information received by the transaction risk/fraud service related to this transaction
+      nullable: true
+      type: object
+    internal_transfer:
+      example:
+        amount: 1025
+        currency: USD
+        originating_account_id: 1cde7350-f511-4a07-b314-06bf48a96a43
+        receiving_account_id: 921e1160-6227-4069-bd24-becf90390289
+        type: ACCOUNT_TO_ACCOUNT
+      properties:
+        amount:
+          description: The amount (in cents) to transfer from originating account to receiving account.
+          format: int64
+          minimum: 1
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          example: USD
+          type: string
+        memo:
+          description: A short note to the recipient
+          type: string
+        metadata:
+          description: Arbitrary key-value metadata to associate with the transaction
+          type: object
+        originating_account_alias:
+          description: An alias representing a GL account to debit. This is alternative to specifying by account id
+          example: ach_suspense
+          type: string
+        originating_account_customer_id:
+          description: The customer id of the owner of the originating account.
+          format: uuid
+          type: string
+        originating_account_id:
+          description: The UUID of the account being debited
+          format: uuid
+          type: string
+        receiving_account_alias:
+          description: An alias representing a GL account to credit. This is an alternative to specifying by account id
+          example: ach_suspense
+          type: string
+        receiving_account_customer_id:
+          description: The customer id of the owner of the receiving account. Only required when type is "outgoing_remittance"
+          format: uuid
+          type: string
+        receiving_account_id:
+          description: The UUID of the account being credited
+          format: uuid
+          type: string
+        type:
+          description: The desired transaction type to use for this transfer
+          enum:
+          - ACCOUNT_TO_ACCOUNT
+          - ACH_CREDIT_SWEEP
+          - ACH_DEBIT_SWEEP
+          - ACH_FLOAT_TRANSFER
+          - CASHBACK
+          - FEE
+          - INCOMING_WIRE
+          - INTEREST_PAYOUT
+          - MANUAL_ADJUSTMENT
+          - MANUAL_ADJUSTMENT_REVERSAL
+          - OUTGOING_INTERNATIONAL_REMITTANCE
+          - OUTGOING_INTERNATIONAL_REMITTANCE_REVERSAL
+          - PROMOTIONAL_CREDIT
+          - SIGN_UP_BONUS
+          - SUBSCRIPTION_FEE
+          - TRANSFER_FEE
+          - TRANSFER_FEE_REVERSAL
+          type: string
+      required:
+      - amount
+      - currency
+      - type
+      type: object
+    internal_transfer_response:
+      allOf:
+      - $ref: '#/components/schemas/internal_transfer'
+      - properties:
+          id:
+            description: The transaction id associated with the transfer
+            format: uuid
+            type: string
+        required:
+        - id
+        type: object
+    pending_transaction:
+      properties:
+        account_id:
+          description: The account id associated with the hold
+          example: 81f8799f-8888-496f-ad70-1f9ce6cf763b
+          type: string
+        account_no:
+          description: The account number associated with the hold
+          type: string
+        created:
+          description: The creation date of the hold
+          format: date-time
+          type: string
+        data:
+          $ref: '#/components/schemas/pending_transaction_data'
+        id:
+          format: int64
+          type: integer
+        idemkey:
+          description: The idempotency key used when initially creating this hold.
+          type: string
+        offset_account_id:
+          description: The offset account id associated with the hold
+          example: 8ade5876-e302-4cdc-b478-0c789e04e58f
+          type: string
+        offset_account_no:
+          description: The offset account number associated with the hold
+          type: string
+        reference_id:
+          description: An external ID provided by the payment network to represent this transaction.
+          nullable: true
+          type: string
+        tenant:
+          description: The tenant associated with this hold, in the form "<bankid>_<partnerid>"
+          type: string
+        updated:
+          description: The date the hold was last update
+          format: date-time
+          type: string
+        uuid:
+          description: The unique identifier of the hold transaction.
+          format: uuid
+          type: string
+      required:
+      - id
+      - uuid
+      - tenant
+      - idemkey
+      - account_no
+      - account_id
+      - created
+      - updated
+      - data
+      - reference_id
+      - offset_account_no
+      - offset_account_id
+      title: A pending transaction
+      type: object
+    transaction_line1:
+      properties:
+        account_id:
+          description: The account uuid associated with this transaction line
+          example: 7f346df6-18b9-4b2f-9857-5f714ddd565e
+          type: string
+        account_no:
+          description: The account number associated with this transaction line
+          type: string
+        amount:
+          description: The amount (in cents) of the transaction
+          format: int64
+          type: integer
+        available_balance:
+          description: The account "available balance" at the point in time this transaction was posted
+          format: int64
+          type: integer
+        balance:
+          description: The account balance at the point in time this transaction was posted
+          format: int64
+          type: integer
+        created:
+          description: The creation date of the transaction
+          format: date-time
+          type: string
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          type: string
+        dc_sign:
+          $ref: '#/components/schemas/dc_sign'
+        is_fee:
+          description: Whether or not this line is considered a fee
+          type: boolean
+        is_gl_acc:
+          description: Whether or not this line represents a GL account
+          type: boolean
+        is_offset:
+          description: Whether or not this line is considered the "offset" line
+          type: boolean
+        is_primary:
+          description: Whether or not this line is considered the "primary" line
+          type: boolean
+        meta:
+          nullable: true
+          type: object
+        network:
+          description: The network this transaction is associated with
+          type: string
+        related_line:
+          format: int64
+          type: integer
+        seq:
+          format: int64
+          type: integer
+        tenant:
+          description: The tenant associated with this transaction, in the form "<bankid>_<partnerid>"
+          type: string
+        updated:
+          description: The date the transaction was last updated
+          format: date-time
+          type: string
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - account_no
+      - account_id
+      - tenant
+      - amount
+      - dc_sign
+      - seq
+      - is_primary
+      - is_offset
+      - is_fee
+      - is_gl_acc
+      - related_line
+      - currency
+      - network
+      - meta
+      - balance
+      - available_balance
+      - created
+      - updated
+      type: object
+    pending_transaction_history:
+      properties:
+        account_id:
+          description: The account id associated with the hold
+          example: 88564692-a977-4932-9b8d-6e2742d4b1a4
+          type: string
+        account_no:
+          description: The account number associated with the hold
+          type: string
+        created:
+          description: The creation date of the hold
+          format: date-time
+          type: string
+        data:
+          $ref: '#/components/schemas/pending_transaction_history_data'
+        id:
+          format: int64
+          type: integer
+        idemkey:
+          description: The idempotency key used when initially creating this transaction.
+          type: string
+        offset_account_id:
+          description: The offset account id associated with the hold
+          example: f7a653cc-328e-49a8-83cc-1c1735ef5161
+          type: string
+        offset_account_no:
+          description: The offset account number associated with the hold
+          type: string
+        reference_id:
+          description: An external ID provided by the payment network to represent this transaction.
+          nullable: true
+          type: string
+        tenant:
+          description: The tenant associated with this transaction, in the form "<bankid>_<partnerid>"
+          type: string
+        updated:
+          description: The date the hold was last update
+          format: date-time
+          type: string
+        uuid:
+          description: The unique identifier of the hold transaction.
+          format: uuid
+          type: string
+      required:
+      - id
+      - uuid
+      - tenant
+      - idemkey
+      - account_no
+      - account_id
+      - created
+      - updated
+      - data
+      - reference_id
+      - offset_account_no
+      - offset_account_id
+      title: A pending transaction history
+      type: object
+    pending_transaction_history_data:
+      properties:
+        amount:
+          description: The amount of the hold.
+          format: int64
+          minimum: 0
+          type: integer
+        auto_post_at:
+          description: The time the transaction will be automatically posted.
+          format: date-time
+          type: string
+        avail_balance:
+          description: The account "available balance" at the time this hold was created (to be deprecated)
+          format: int64
+          type: integer
+        available_balance:
+          description: The account "available balance" at the time this hold was created
+          format: int64
+          type: integer
+        balance:
+          description: The account balance at the time this hold was created
+          format: int64
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          type: string
+        dc_sign:
+          $ref: '#/components/schemas/dc_sign'
+        effective_date:
+          description: The effective date of the transaction once it gets posted
+          format: date-time
+          type: string
+        expires_at:
+          description: The date that at which this hold is no longer valid.
+          format: date-time
+          type: string
+        external_data:
+          $ref: '#/components/schemas/external_data'
+        force_post:
+          description: Whether or not the hold was forced (spending controls ignored)
+          type: boolean
+        idemkey:
+          description: The idempotency key used when initially creating this hold.
+          type: string
+        memo:
+          description: A short note to the recipient
+          type: string
+        network:
+          description: The network this transaction is associated with
+          type: string
+        operation:
+          enum:
+          - hold_new
+          - hold_increase
+          - hold_decrease
+          - hold_replace
+          - hold_decline
+          - hold_cancel
+          - hold_post
+          type: string
+        reason:
+          description: If a hold has been declined or modified, this will include the reason.
+          type: string
+        req_amount:
+          description: The requested amount, in the case of hold modifications.
+          format: int64
+          minimum: 0
+          type: integer
+        risk_info:
+          $ref: '#/components/schemas/risk_info'
+        status:
+          description: The status of the hold.
+          enum:
+          - PENDING
+          - REPLACED
+          - DECLINED
+          - RELEASED
+          - PARTCLEARD
+          - EXPIRED
+          - CLEARED
+          - INTERNAL_ERROR
+          type: string
+        subtype:
+          description: The specific transaction type. For example, for `ach`, this may be "outgoing_debit".
+          type: string
+        total_amount:
+          description: The total amount of the hold. This may be different than `amount` in the case where a hold increase or decrease was requested.
+          format: int64
+          minimum: 0
+          type: integer
+        transaction_id:
+          description: The uuid of the transaction that this pending transaction originated from, if any. This is primary used when a transaction "posts", but a subset of the amount reserved until a future settlement date.
+          format: uuid
+          type: string
+        transaction_time:
+          description: The time the transaction occurred.
+          format: date-time
+          type: string
+        type:
+          description: The general type of transaction. For example, "card" or "ach".
+          type: string
+        user_data:
+          $ref: '#/components/schemas/user_data'
+        was_partial:
+          description: Does this hold represent a partial debit (or credit)?
+          type: boolean
+      required:
+      - memo
+      - type
+      - subtype
+      - operation
+      - idemkey
+      - expires_at
+      - effective_date
+      - total_amount
+      - amount
+      - req_amount
+      - dc_sign
+      - currency
+      - network
+      - was_partial
+      - force_post
+      - status
+      - reason
+      - balance
+      - avail_balance
+      - available_balance
+      - transaction_time
+      - risk_info
+      - user_data
+      - external_data
+      - auto_post_at
+      title: A pending transaction history data
+      type: object
+    posted_transactions:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          nullable: true
+          type: string
+        result:
+          description: List of posted transactions
+          items:
+            $ref: '#/components/schemas/posted_transaction'
+          type: array
+      required:
+      - next_page_token
+      - result
+      title: Posted Transactions Response
+      type: object
+    posted_transaction_data:
+      properties:
+        external_data:
+          $ref: '#/components/schemas/external_data'
+        force_post:
+          description: Whether or not the hold was forced (spending controls ignored)
+          type: boolean
+        hold_id:
+          description: The uuid of the hold (pending transaction) that this transaction originated from, if any.
+          format: uuid
+          type: string
+        lines:
+          description: The set of accounting entries associated with this transaction. For example, a debit to a customer account will have a corresponding credit in a general ledger account.
+          items:
+            $ref: '#/components/schemas/transaction_line1'
+          type: array
+        memo:
+          description: A short note to the recipient
+          type: string
+        metadata:
+          nullable: true
+          type: object
+        original_trx:
+          description: The "original" transaction that this transaction is related to. This is only populated in the case of reversed transactions.
+          format: uuid
+          type: string
+        risk_info:
+          $ref: '#/components/schemas/risk_info'
+        user_data:
+          description: An unstructured JSON blob representing additional transaction information specific to each payment rail.
+          nullable: true
+          type: object
+      required:
+      - memo
+      - user_data
+      - external_data
+      - risk_info
+      - metadata
+      - lines
+      - force_post
+      type: object
+    pending_transactions:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          nullable: true
+          type: string
+        result:
+          description: List of pending transactions
+          items:
+            $ref: '#/components/schemas/pending_transaction'
+          type: array
+      required:
+      - next_page_token
+      - result
+      title: Pending Transactions Response
+      type: object
+    posted_transaction:
+      properties:
+        created:
+          description: The creation date of the transaction
+          format: date-time
+          type: string
+        data:
+          $ref: '#/components/schemas/posted_transaction_data'
+        effective_date:
+          description: The "effective date" of a transaction. This may be earlier than posted_date in some cases (for example, a transaction that occurs on a Saturday may not be posted until the following Monday, but would have an effective date of Saturday)
+          format: date-time
+          type: string
+        id:
+          format: int64
+          type: integer
+        idemkey:
+          description: The idempotency key used when initially creating this transaction.
+          example: 80e9e648-c016-421a-bab5-7f311c5a9fdd
+          type: string
+        info_only:
+          description: Whether or not this transaction represents a purely informational operation or an actual money movement
+          type: boolean
+        lead_mode:
+          description: Whether or not this transaction was created operating in "lead ledger" mode
+          type: boolean
+        posted_date:
+          description: The date the transaction was posted. This is the date any money is considered to be added or removed from an account.
+          format: date-time
+          type: string
+        reference_id:
+          description: An external ID provided by the payment network to represent this transaction. This will always be null for internal transfers.
+          nullable: true
+          type: string
+        status:
+          type: string
+        subtype:
+          description: The specific transaction type. For example, for `ach`, this may be "outgoing_debit".
+          type: string
+        tenant:
+          description: The tenant associated with this transaction, in the form "<bankid>_<partnerid>"
+          type: string
+        transaction_time:
+          description: The time the transaction occurred.
+          format: date-time
+          type: string
+        type:
+          description: The general type of transaction. For example, "card" or "ach".
+          type: string
+        updated:
+          description: The date the transaction was last updated
+          format: date-time
+          type: string
+        uuid:
+          description: The unique identifier of the transaction.
+          format: uuid
+          type: string
+      required:
+      - id
+      - uuid
+      - tenant
+      - idemkey
+      - type
+      - subtype
+      - status
+      - info_only
+      - lead_mode
+      - data
+      - posted_date
+      - effective_date
+      - transaction_time
+      - created
+      - updated
+      - reference_id
+      title: A posted transaction
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    user_data:
+      description: An unstructured JSON blob representing additional transaction information specific to each payment rail.
+      nullable: true
+      type: object
+    pending_transaction_data:
+      properties:
+        amount:
+          description: The amount of the hold.
+          format: int64
+          minimum: 0
+          type: integer
+        auto_post_at:
+          description: The account "available balance" at the time this hold was created
+          format: date-time
+          type: string
+        avail_balance:
+          description: The account "available balance" at the time this hold was created (to be deprecated)
+          format: int64
+          type: integer
+        available_balance:
+          description: The account "available balance" at the time this hold was created
+          format: int64
+          type: integer
+        balance:
+          description: The account balance at the time this hold was created
+          format: int64
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          type: string
+        dc_sign:
+          $ref: '#/components/schemas/dc_sign'
+        effective_date:
+          description: The effective date of the transaction once it gets posted
+          format: date-time
+          type: string
+        expires_at:
+          description: The date that at which this hold is no longer valid.
+          format: date-time
+          type: string
+        external_data:
+          $ref: '#/components/schemas/external_data'
+        force_post:
+          description: Whether or not the hold was forced (spending controls ignored)
+          type: boolean
+        history:
+          description: An array representing any previous states of the hold, if it has been modified (For example, increasing or decreasing the hold amount).
+          items:
+            $ref: '#/components/schemas/pending_transaction_history'
+          type: array
+        idemkey:
+          description: The idempotency key used when initially creating this hold.
+          type: string
+        memo:
+          description: A short note to the recipient
+          type: string
+        network:
+          description: The network this transaction is associated with
+          type: string
+        operation:
+          enum:
+          - hold_new
+          - hold_increase
+          - hold_decrease
+          - hold_replace
+          - hold_decline
+          - hold_cancel
+          - hold_post
+          type: string
+        reason:
+          description: If a hold has been declined or modified, this will include the reason.
+          type: string
+        req_amount:
+          description: The requested amount, in the case of hold modifications.
+          format: int64
+          minimum: 0
+          type: integer
+        risk_info:
+          $ref: '#/components/schemas/risk_info'
+        status:
+          description: The status of the hold.
+          enum:
+          - PENDING
+          - REPLACED
+          - DECLINED
+          - RELEASED
+          - PARTCLEARD
+          - EXPIRED
+          - CLEARED
+          - INTERNAL_ERROR
+          type: string
+        subtype:
+          description: The specific transaction type. For example, for `ach`, this may be "outgoing_debit".
+          type: string
+        total_amount:
+          description: The total amount of the hold. This may be different than `amount` in the case where a hold increase or decrease was requested.
+          format: int64
+          minimum: 0
+          type: integer
+        transaction_id:
+          description: The uuid of the transaction that this pending transaction originated from, if any. This is primary used when a transaction "posts", but a subset of the amount reserved until a future settlement date.
+          format: uuid
+          type: string
+        transaction_time:
+          description: The time that the transaction was created
+          format: date-time
+          type: string
+        type:
+          description: The general type of transaction. For example, "card" or "ach".
+          type: string
+        user_data:
+          $ref: '#/components/schemas/user_data'
+        was_partial:
+          description: Does this hold represent a partial debit (or credit)?
+          type: boolean
+      required:
+      - memo
+      - type
+      - subtype
+      - operation
+      - idemkey
+      - expires_at
+      - effective_date
+      - total_amount
+      - amount
+      - req_amount
+      - dc_sign
+      - currency
+      - network
+      - was_partial
+      - force_post
+      - status
+      - reason
+      - balance
+      - avail_balance
+      - available_balance
+      - auto_post_at
+      - risk_info
+      - user_data
+      - external_data
+      - history
+      - transaction_time
+      title: Pending transaction data
+      type: object
+    external_data:
+      description: an unstructured json blob representing additional transaction information supplied by the integrator.
+      nullable: true
+      type: object
+    dc_sign:
+      description: The `dc_sign` represents the direction money was moved.
+      enum:
+      - debit
+      - credit
+      type: string
+  parameters:
+    type:
+      description: Only display transactions matching the given type
+      in: query
+      name: type
+      required: false
+      schema:
+        type: string
+      x-external: true
+    subtype:
+      description: Only display transactions matching the given subtype
+      in: query
+      name: subtype
+      required: false
+      schema:
+        type: string
+      x-external: true
+    id1:
+      description: Transaction ID
+      in: path
+      name: id
+      required: true
+      schema:
+        example: 69c8bfb7-a0ab-4b55-9f2b-6d8065d71220
+        format: uuid
+        type: string
+    account_id2:
+      description: Account ID
+      in: query
+      name: account_id
+      required: false
+      schema:
+        example: d6201244-02d1-493e-87f6-a3391527abfc
+        format: uuid
+        type: string
+      x-external: true
+    account_no:
+      description: Account number
+      in: query
+      name: account_no
+      required: false
+      schema:
+        type: string
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    to_date:
+      description: Only display transactions with a posting date less than or equal to to_date
+      in: query
+      name: to_date
+      required: false
+      schema:
+        format: date
+        type: string
+      x-external: true
+    transaction_id1:
+      description: Only display holds linked to the provided transaction id
+      in: query
+      name: transaction_id
+      required: false
+      schema:
+        example: cc89a467-e868-4281-b015-d95830a312eb
+        format: uuid
+        type: string
+      x-external: true
+    status4:
+      description: The status of the transaction
+      in: query
+      name: status
+      required: false
+      schema:
+        default: PENDING
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    from_date:
+      description: Only display transactions with a posting date greater than from_date
+      in: query
+      name: from_date
+      required: false
+      schema:
+        format: date
+        type: string
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+  responses:
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

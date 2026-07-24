@@ -1,0 +1,684 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Relationships API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'Represents the relationships between parties. A relationship can exist between personal customers, business customers, or non-customer persons/organizations.
+
+    '
+  name: Relationships
+paths:
+  /relationships:
+    summary: Relationships
+    get:
+      description: Retrieves paginated list of relationships viewable by the authorized requester.
+      operationId: listRelationships
+      parameters:
+      - $ref: '#/components/parameters/id'
+      - $ref: '#/components/parameters/from_person_id_query'
+      - $ref: '#/components/parameters/from_business_id_query'
+      - $ref: '#/components/parameters/to_business_id_query'
+      - $ref: '#/components/parameters/relationship_type'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationships_list'
+          description: Relationship representation.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List relationships
+      tags:
+      - Relationships
+      x-external: true
+      x-status: alpha
+    post:
+      description: Create a party relationship.
+      operationId: createRelationship
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/relationship_in'
+        description: Party relationship to create.
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship_in'
+          description: Created relationship representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a relationship
+      tags:
+      - Relationships
+      x-external: true
+      x-status: alpha
+  /relationships/{relationship_id}:
+    summary: Relationship
+    delete:
+      description: Delete party relationship by ID.
+      operationId: deleteRelationship
+      parameters:
+      - $ref: '#/components/parameters/relationship_id1'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Delete relationship
+      tags:
+      - Relationships
+      x-external: true
+      x-status: alpha
+    get:
+      description: Get relationship by ID.
+      operationId: getRelationship
+      parameters:
+      - $ref: '#/components/parameters/relationship_id1'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/relationship_in'
+          description: Relationship representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get relationship
+      tags:
+      - Relationships
+      x-external: true
+      x-status: alpha
+    patch:
+      description: Update relationship by ID.
+      operationId: updateRelationship
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/relationship_id1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_relationship_in'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/patch_relationship_in'
+          description: Updated relationship representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update relationship
+      tags:
+      - Relationships
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    patch_relationship_in:
+      discriminator:
+        mapping:
+          BENEFICIAL_OWNER_OF: '#/components/schemas/patch_person_business_owner_relationship'
+          MANAGING_PERSON_OF: '#/components/schemas/patch_person_business_relationship'
+          OWNER_OF: '#/components/schemas/patch_business_business_owner_relationship'
+        propertyName: relationship_type
+      oneOf:
+      - $ref: '#/components/schemas/patch_person_business_relationship'
+      - $ref: '#/components/schemas/patch_person_business_owner_relationship'
+      - $ref: '#/components/schemas/patch_business_business_owner_relationship'
+      type: object
+    patch_person_business_owner_relationship:
+      allOf:
+      - properties:
+          additional_data:
+            $ref: '#/components/schemas/additional_owner_data'
+          creation_time:
+            description: The date and time the resource was created.
+            example: '2021-06-14T11:23:41Z'
+            format: date-time
+            readOnly: true
+            type: string
+          from_person_id:
+            description: 'Unique ID for the subject person.
+
+              '
+            example: 9e9673de-ad2d-44e9-9cb2-04cf1496b399
+            format: uuid
+            type: string
+          id:
+            description: Relationship unique identifier.
+            example: 04c2e531-d883-429e-8732-850d9d60a724
+            format: uuid
+            readOnly: true
+            type: string
+          last_updated_time:
+            description: The date and time the resource was last updated.
+            example: '2022-01-18T17:54:12Z'
+            format: date-time
+            readOnly: true
+            type: string
+          metadata:
+            $ref: '#/components/schemas/metadata'
+          relationship_type:
+            description: 'The relationship type. One of the following:
+
+              * `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.
+
+              * `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.
+
+              * `OWNER_OF` – a business with ownership of another business.
+
+              '
+            enum:
+            - BENEFICIAL_OWNER_OF
+            - MANAGING_PERSON_OF
+            - OWNER_OF
+            example: BENEFICIAL_OWNER_OF
+            format: enum
+            type: string
+          to_business_id:
+            description: 'Unique ID for the related business.
+
+              '
+            example: 634a88c9-d282-4e69-9b12-62b9a6dec954
+            format: uuid
+            type: string
+        required:
+        - relationship_type
+      description: Denotes the relationship between specified business and person.
+      type: object
+    person_business_owner_relationship:
+      allOf:
+      - required:
+        - from_person_id
+        - to_business_id
+        - additional_data
+      - $ref: '#/components/schemas/patch_person_business_owner_relationship'
+      description: Denotes the relationship between specified person and business.
+      type: object
+    additional_data:
+      description: Contains additional information about the relationship.
+      properties:
+        title:
+          description: The professional role or position the person holds at the related organization.
+          enum:
+          - OFFICER
+          - DIRECTOR
+          format: enum
+          type: string
+      required:
+      - title
+      type: object
+    person_business_relationship:
+      allOf:
+      - required:
+        - from_person_id
+        - to_business_id
+        - additional_data
+      - $ref: '#/components/schemas/patch_person_business_relationship'
+      description: Denotes the relationship between specified person and business.
+      type: object
+    patch_person_business_relationship:
+      allOf:
+      - properties:
+          additional_data:
+            $ref: '#/components/schemas/additional_data'
+          creation_time:
+            description: The date and time the resource was created.
+            example: '2021-06-14T11:23:41Z'
+            format: date-time
+            readOnly: true
+            type: string
+          from_person_id:
+            description: 'Unique ID for the subject person.
+
+              '
+            example: df0737e9-efc9-42a8-b26f-6efa4cac88c0
+            format: uuid
+            type: string
+          id:
+            description: Relationship unique identifier.
+            example: c0e64981-dc1f-42d3-a7be-f7dfd369c019
+            format: uuid
+            readOnly: true
+            type: string
+          last_updated_time:
+            description: The date and time the resource was last updated.
+            example: '2022-01-18T17:54:12Z'
+            format: date-time
+            readOnly: true
+            type: string
+          metadata:
+            $ref: '#/components/schemas/metadata'
+          relationship_type:
+            description: 'The relationship type. One of the following:
+
+              * `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.
+
+              * `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.
+
+              * `OWNER_OF` – a business with ownership of another business.
+
+              '
+            enum:
+            - BENEFICIAL_OWNER_OF
+            - MANAGING_PERSON_OF
+            - OWNER_OF
+            example: BENEFICIAL_OWNER_OF
+            format: enum
+            type: string
+          to_business_id:
+            description: 'Unique ID for the related business.
+
+              '
+            example: 5a5a9d68-bd44-4953-a5c8-35059c00e14d
+            format: uuid
+            type: string
+        required:
+        - relationship_type
+      description: Denotes the relationship between specified person and business.
+      type: object
+    additional_owner_data:
+      description: Contains additional information about the relationship.
+      properties:
+        percent_ownership:
+          description: Percentage ownership of the related business.
+          example: 35.75
+          exclusiveMinimum: true
+          format: double
+          maximum: 100
+          minimum: 0
+          type: number
+      required:
+      - percent_ownership
+      type: object
+    relationships_list:
+      allOf:
+      - properties:
+          relationships:
+            description: Array of business/person relationships.
+            items:
+              $ref: '#/components/schemas/relationship_in'
+            type: array
+        required:
+        - relationships
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    relationship_in:
+      discriminator:
+        mapping:
+          BENEFICIAL_OWNER_OF: '#/components/schemas/person_business_owner_relationship'
+          MANAGING_PERSON_OF: '#/components/schemas/person_business_relationship'
+          OWNER_OF: '#/components/schemas/business_business_owner_relationship'
+        propertyName: relationship_type
+      oneOf:
+      - $ref: '#/components/schemas/person_business_relationship'
+      - $ref: '#/components/schemas/person_business_owner_relationship'
+      - $ref: '#/components/schemas/business_business_owner_relationship'
+      type: object
+    patch_business_business_owner_relationship:
+      allOf:
+      - properties:
+          additional_data:
+            $ref: '#/components/schemas/additional_owner_data'
+          creation_time:
+            description: The date and time the resource was created.
+            example: '2021-06-14T11:23:41Z'
+            format: date-time
+            readOnly: true
+            type: string
+          from_business_id:
+            description: 'Unique ID for the subject business.
+
+              '
+            example: 0ffea3a5-1f5a-4b01-9135-bb41a9aad982
+            format: uuid
+            type: string
+          id:
+            description: Relationship unique identifier.
+            example: 9c762274-0043-4244-ac8f-24370e9af022
+            format: uuid
+            readOnly: true
+            type: string
+          last_updated_time:
+            description: The date and time the resource was last updated.
+            example: '2022-01-18T17:54:12Z'
+            format: date-time
+            readOnly: true
+            type: string
+          metadata:
+            $ref: '#/components/schemas/metadata'
+          relationship_type:
+            description: 'The relationship type. One of the following:
+
+              * `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.
+
+              * `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.
+
+              * `OWNER_OF` – a business with ownership of another business.
+
+              '
+            enum:
+            - BENEFICIAL_OWNER_OF
+            - MANAGING_PERSON_OF
+            - OWNER_OF
+            example: BENEFICIAL_OWNER_OF
+            format: enum
+            type: string
+          to_business_id:
+            description: 'Unique ID for the related business.
+
+              '
+            example: bc77f630-7d86-46b9-90e8-a9fced7eb240
+            format: uuid
+            type: string
+        required:
+        - relationship_type
+      description: Denotes the relationship between specified businesses.
+      type: object
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    business_business_owner_relationship:
+      allOf:
+      - required:
+        - from_business_id
+        - to_business_id
+        - additional_data
+      - $ref: '#/components/schemas/patch_business_business_owner_relationship'
+      description: Denotes the relationship between specified businesses.
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+  parameters:
+    from_business_id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: from_business_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    relationship_id1:
+      description: Relationship ID.
+      in: path
+      name: relationship_id
+      required: true
+      schema:
+        example: 858f5a31-2723-452d-9cdc-b2c01d40d9dd
+        format: uuid
+        type: string
+    to_business_id_query:
+      description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: to_business_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    relationship_type:
+      description: 'The relationship type. Any of the following:
+
+        * `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.
+
+        * `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.
+
+        * `OWNER_OF` – a business with ownership of another business.
+
+        '
+      explode: false
+      in: query
+      name: relationship_type
+      required: false
+      schema:
+        items:
+          enum:
+          - BENEFICIAL_OWNER_OF
+          - MANAGING_PERSON_OF
+          - OWNER_OF
+          example: BENEFICIAL_OWNER_OF
+          format: enum
+          type: string
+        type: array
+      style: form
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    from_person_id_query:
+      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: from_person_id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,1406 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts External Accounts API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'The External Account resource is used for managing links to accounts
+
+    that operate outside of the Synctera ecosystem.
+
+    '
+  name: External Accounts
+paths:
+  /external_accounts:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    get:
+      description: 'Returns a list of all external accounts assigned to customers.
+
+        '
+      operationId: listExternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/customer_id_query_array'
+      - $ref: '#/components/parameters/business_id_query_array'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_accounts_list'
+          description: List of external accounts
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List external accounts
+      tags:
+      - External Accounts
+      x-external: true
+    post:
+      description: 'Add an external account for a customer. The account will be created in an unverified state.
+
+        '
+      operationId: addExternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add_accounts_request'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account'
+          description: The external account added.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Add an external account
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/{external_account_id}:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    delete:
+      description: 'Deletes an external account, given an external account ID. If no accounts left, the access token to the financial institution will be removed
+
+        '
+      operationId: deleteExternalAccount
+      parameters:
+      - $ref: '#/components/parameters/external_account_id'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Delete an external account
+      tags:
+      - External Accounts
+      x-external: true
+    get:
+      description: 'Returns an external account, given an external account ID.
+
+        '
+      operationId: getExternalAccount
+      parameters:
+      - $ref: '#/components/parameters/external_account_id'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account'
+          description: The external account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get an external account
+      tags:
+      - External Accounts
+      x-external: true
+    patch:
+      description: 'Edits an unverified external account, given an external account ID.
+
+        '
+      operationId: updateExternalAccount
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/external_account_id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_external_account'
+        description: External account to be updated
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account'
+          description: Updated external account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Patch an external account
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/{external_account_id}/balance:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    get:
+      description: 'Returns an external account balance, given an external account ID.
+
+        '
+      operationId: getExternalAccountBalance
+      parameters:
+      - $ref: '#/components/parameters/external_account_id'
+      - $ref: '#/components/parameters/max_age'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account_balance'
+          description: The external account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get an external account balance
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/{external_account_id}/transactions:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    get:
+      description: 'Returns a list of transactions on from the external account, given an external account ID. Maximum 500 transctions will be returned.
+
+        '
+      operationId: getExternalAccountTransactions
+      parameters:
+      - $ref: '#/components/parameters/external_account_id'
+      - description: Date range filtering for transactions. Date is inclusive. Date must be in UTC.
+        in: query
+        name: start_date
+        required: true
+        schema:
+          format: date
+          type: string
+        x-external: true
+      - description: Date range filtering for transactions. Date is exclusive. Date must be in UTC.
+        in: query
+        name: end_date
+        required: true
+        schema:
+          format: date
+          type: string
+        x-external: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_accounts_transaction_list'
+          description: The external account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '422':
+          $ref: '#/components/responses/unprocessable_entity'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List transactions of a given external account
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/access_tokens:
+    description: 'Create a permanent access token for an external account
+
+      '
+    summary: External account access token
+    post:
+      operationId: createAccessToken
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/external_account_access_token'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account_access_token'
+          description: New verification link token
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a permanent access token for an external account
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/add_vendor_accounts:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    post:
+      description: 'Add external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added, so it''s important that the caller checks the response body.
+
+        '
+      operationId: addVendorExternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add_vendor_accounts_request'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/add_vendor_accounts_response'
+          description: 'Result of adding accounts through the vendor.
+
+            '
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Add external accounts through a vendor, such as Plaid.
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/link_tokens:
+    description: 'Create a link token to verify an external account
+
+      '
+    summary: External account verification link token
+    post:
+      operationId: createVerificationLinkToken
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/external_account_link_token'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/external_account_link_token'
+          description: New verification link token
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a link token to verify an external account
+      tags:
+      - External Accounts
+      x-external: true
+  /external_accounts/sync_vendor_accounts:
+    description: 'The External Account resource is used for managing links to accounts that operate outside of the Synctera ecosystem.
+
+      '
+    summary: External Accounts
+    post:
+      description: 'Sync external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added and deletions if the account is removed by the end user, so it''s important that the caller checks the response body.
+
+        '
+      operationId: syncVendorExternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/add_vendor_accounts_request'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/add_vendor_accounts_response'
+          description: 'Result of syncing accounts through the vendor.
+
+            '
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Sync external accounts through a vendor, such as Plaid.
+      tags:
+      - External Accounts
+      x-external: true
+components:
+  schemas:
+    patch_accounts_request_routing_identifiers:
+      properties:
+        ach_routing_number:
+          description: 'The routing number used for US ACH payments. On write, Synctera will store the entire routing number; on read, we only return the last 4 characters.
+
+            '
+          example: '756392185'
+          minLength: 1
+          type: string
+        bank_name:
+          description: The name of the bank managing the account
+          example: Chase
+          minLength: 1
+          type: string
+      title: Identifiers for the bank
+      type: object
+    external_account:
+      properties:
+        account_identifiers:
+          $ref: '#/components/schemas/account_identifiers'
+        account_owner_names:
+          description: 'The names of the account owners. Values may be masked, in which case the array will be empty.
+
+            '
+          items:
+            example: Dr. Winston Zieme
+            type: string
+          type: array
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` will be returned.
+
+            '
+          example: 98f62347-33d0-4421-bfc0-91729390eff1
+          format: uuid
+          type: string
+        creation_time:
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` will be returned.
+
+            '
+          example: e2197030-7aaf-472d-a454-5c1703d46417
+          format: uuid
+          type: string
+        id:
+          description: External account unique identifier
+          example: 90928aae-f478-443a-bdcc-00cf888df49b
+          format: uuid
+          readOnly: true
+          type: string
+        last_updated_time:
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        metadata:
+          description: User-supplied JSON format metadata.
+          type: object
+        name:
+          description: The official name of the account
+          example: Plaid Checking
+          type: string
+        nickname:
+          description: A user-meaningful name for the account
+          example: Credit Card Account
+          nullable: true
+          type: string
+        routing_identifiers:
+          $ref: '#/components/schemas/account_routing'
+        status:
+          description: The current state of the account
+          enum:
+          - ACTIVE
+          - CLOSED
+          type: string
+        type:
+          description: The type of the account
+          enum:
+          - CHECKING
+          - SAVINGS
+          - CREDIT_CARD
+          - MONEY_MARKET
+          - INVESTMENT_529
+          - OTHER
+          type: string
+        vendor_data:
+          $ref: '#/components/schemas/external_account_vendor_data'
+        vendor_info:
+          $ref: '#/components/schemas/vendor_info'
+        verification:
+          $ref: '#/components/schemas/account_verification'
+      required:
+      - id
+      - account_owner_names
+      - status
+      - type
+      - routing_identifiers
+      - account_identifiers
+      - verification
+      - creation_time
+      - last_updated_time
+      title: External account
+      type: object
+    vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/vendor_json'
+          text/xml: '#/components/schemas/vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/vendor_json'
+      - $ref: '#/components/schemas/vendor_xml'
+      title: Vendor Info
+      type: object
+    add_vendor_account_failure:
+      properties:
+        reason:
+          $ref: '#/components/schemas/add_vendor_accounts_error_reason'
+        reason_description:
+          description: A human-readable message describing the reason for the failure.
+          type: string
+        vendor_account_id:
+          description: 'The vendor account ID for the account that failed. For Plaid, this is an `account_id`.
+
+            '
+          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+          type: string
+        vendor_error_message:
+          description: 'The display_message returned by the vendor. Only returned if reason is set to `PROVIDER_ERROR`. For Plaid, this is the `display_message`.
+
+            '
+          type: string
+        vendor_request_id:
+          description: 'A unique identifier for the request from the vendor, which can be used for troubleshooting. Only returned if reason is set to `PROVIDER_ERROR`.
+
+            '
+          type: string
+      required:
+      - vendor_account_id
+      - reason
+      - reason_description
+      type: object
+    add_accounts_request_routing_identifiers:
+      properties:
+        ach_routing_number:
+          description: 'The routing number used for US ACH payments.
+
+            '
+          example: '756392185'
+          minLength: 1
+          type: string
+        bank_countries:
+          description: The countries that this bank operates the account in
+          items:
+            enum:
+            - US
+            type: string
+          minItems: 1
+          type: array
+        bank_name:
+          description: The name of the bank managing the account
+          example: Chase
+          minLength: 1
+          type: string
+        wire_routing_number:
+          description: 'The routing number used for US wire payments.
+
+            '
+          example: '915075033'
+          minLength: 1
+          type: string
+      required:
+      - bank_name
+      - bank_countries
+      - ach_routing_number
+      title: Identifiers for the bank
+      type: object
+    business_id2:
+      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
+
+        '
+      example: d4f6d078-ccf9-42c1-a001-df2c96783294
+      format: uuid
+      type: string
+    external_account_link_token:
+      properties:
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: d3087ca5-aaf9-4f7c-9241-58ab458e15ac
+          format: uuid
+          type: string
+        client_name:
+          description: The name of your application, as it should be displayed in Link. Maximum length of 30 characters.
+          type: string
+        country_codes:
+          description: Country codes in the ISO-3166-1 alpha-2 country code standard.
+          items:
+            enum:
+            - US
+            type: string
+          minItems: 1
+          type: array
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          example: 3d92aac9-bdf5-498f-96b0-e67da46be85e
+          format: uuid
+          type: string
+        expiration:
+          description: The expiration date for the link_token. Expires in 4 hours.
+          format: date-time
+          readOnly: true
+          type: string
+        language:
+          description: 'The language that corresponds to the link token. For Plaid, see their [documentation](https://plaid.com/docs/api/tokens/#link-token-create-request-language) for a list of allowed values.
+
+            '
+          enum:
+          - EN
+          - FR
+          - ES
+          - NL
+          - DE
+          type: string
+        link_customization_name:
+          description: 'The name of the Link customization from the Plaid Dashboard to be applied to Link. If not specified, the default customization will be used. When using a Link customization, the language in the customization must match the language selected via the language parameter, and the countries in the customization should match the country codes selected via country_codes.
+
+            '
+          type: string
+        link_token:
+          description: 'A link_token, which can be supplied to Link in order to initialize it and receive a public_token, which can be exchanged for an access_token.
+
+            '
+          readOnly: true
+          type: string
+        redirect_uri:
+          description: 'A URI indicating the destination where a user should be forwarded after completing the Link flow; used to support OAuth authentication flows when launching Link in the browser or via a webview.
+
+            '
+          type: string
+        request_id:
+          description: A unique identifier for the request, which can be used for troubleshooting.
+          readOnly: true
+          type: string
+        sdk_type:
+          default: WEB
+          description: Describes the environment of the client code running a vendor-supplied SDK
+          enum:
+          - WEB
+          - IOS
+          - ANDROID
+          type: string
+        type:
+          description: The type of the link token. DEPOSITORY for checking and savings accounts, CREDIT for credit card type accounts, INVESTMENT for investment accounts, and MICRO_DEPOSIT for depository accounts with support for micro-deposits verification.
+          enum:
+          - DEPOSITORY
+          - CREDIT
+          - INVESTMENT
+          - MICRO_DEPOSIT
+          type: string
+        vendor_access_token:
+          description: The access token associated with the Item data is being requested for.
+          type: string
+        vendor_institution_id:
+          description: 'The ID of the institution the access token is requested for. If present the link token will be created in an update mode.
+
+            '
+          minLength: 1
+          type: string
+        verify_owner:
+          default: false
+          description: 'If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.
+
+            '
+          type: boolean
+      required:
+      - client_name
+      - language
+      - country_codes
+      - type
+      type: object
+    add_accounts_request:
+      properties:
+        account_identifiers:
+          $ref: '#/components/schemas/add_accounts_request_account_identifiers'
+        account_owner_names:
+          description: The names of the account owners.
+          items:
+            example: Miss Clark Maggio
+            minLength: 1
+            type: string
+          minItems: 1
+          type: array
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: fc8d475c-0d6d-4139-8010-93c57ce5eed1
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          example: 91a0ced5-2403-4a98-9b9f-c4577834eac1
+          format: uuid
+          type: string
+        customer_type:
+          $ref: '#/components/schemas/ext_account_customer_type'
+        metadata:
+          description: User-supplied metadata
+          type: object
+        nickname:
+          description: A user-meaningful name for the account
+          example: Money Market Account
+          minLength: 1
+          type: string
+        routing_identifiers:
+          $ref: '#/components/schemas/add_accounts_request_routing_identifiers'
+        type:
+          description: The type of the account
+          enum:
+          - CHECKING
+          - SAVINGS
+          type: string
+        vendor_account_id:
+          description: The ID of the vendor account, will be empty for MANUAL vendor
+          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+          minLength: 1
+          type: string
+        verification:
+          $ref: '#/components/schemas/account_verification'
+      required:
+      - type
+      - customer_type
+      - account_owner_names
+      - routing_identifiers
+      - account_identifiers
+      type: object
+    external_accounts_list:
+      allOf:
+      - properties:
+          external_accounts:
+            description: Array of external accounts
+            items:
+              $ref: '#/components/schemas/external_account'
+            type: array
+        required:
+        - external_accounts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    ext_account_customer_type:
+      description: 'The type of customer in the external financial institution. _Not_ necessarily the customer type on Synctera''s platform: a business customer might link to the owner''s personal account at an external financial institution.
+
+        '
+      enum:
+      - PERSONAL
+      - BUSINESS
+      type: string
+    account_identifiers:
+      properties:
+        iban:
+          description: 'The IBAN of the account. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: CY06470650023917R423TV710402
+          type: string
+        number:
+          description: 'The account number. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: '78277121'
+          type: string
+      required:
+      - number
+      title: Identifiers for the account
+      type: object
+    plaid_account_verification:
+      allOf:
+      - $ref: '#/components/schemas/base_account_verification'
+      title: Information specific to Plaid verification
+    manual_account_verification:
+      allOf:
+      - $ref: '#/components/schemas/base_account_verification'
+      title: Information specific to Manual verification
+    vendor_xml:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - text/xml
+          type: string
+        vendor:
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    external_account_transaction:
+      properties:
+        amount:
+          description: Transaction amount. Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          type: integer
+        authorized_date:
+          description: Date that the transaction is authorized. ISO 8601 format ( YYYY-MM-DD ).
+          format: date
+          nullable: true
+          type: string
+        category:
+          description: Category of the transaction
+          items:
+            type: string
+          type: array
+        check_number:
+          description: Check number of the transaction. This field will be null if not a check transaction.
+          type: string
+        currency:
+          description: ISO 4217 alphabetic currency code
+          example: USD
+          type: string
+        date:
+          description: 'For pending transactions, this represents the date of the transaction occurred; for posted transactions, this represents the date of the transaction posted. ISO 8601 format ( YYYY-MM-DD ).
+
+            '
+          format: date
+          type: string
+        is_pending:
+          description: Indicates the transaction is pending or unsettled if true.
+          type: boolean
+        merchant_name:
+          description: Merchant name of the transaction
+          example: Fancy store
+          type: string
+        payment_channel:
+          description: channel used to make a payment
+          enum:
+          - IN_STORE
+          - ONLINE
+          - OTHER
+          type: string
+          x-enumDescriptions:
+          - IN_STORE: In store transaction.
+          - ONLINE: Online transaction.
+          - OTHER: Transactions that relate to banks, e.g. fees or deposits.
+        payment_method:
+          description: Transfer type of the transaction, e.g. ACH
+          type: string
+        transaction_id:
+          description: case-sensitive transaction ID
+          type: string
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    add_accounts_request_account_identifiers:
+      properties:
+        number:
+          description: 'The account number. On write, Synctera will store the entire account number; on read, we only return the last 4 characters.
+
+            '
+          example: '78277121'
+          minLength: 1
+          type: string
+      required:
+      - number
+      title: Identifiers for the account
+      type: object
+    vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - application/json
+          type: string
+        json:
+          description: Data representation in JSON
+          type: object
+        vendor:
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    add_vendor_accounts_response:
+      properties:
+        added_accounts:
+          items:
+            $ref: '#/components/schemas/external_account'
+            description: Information about a successfully added external account.
+          type: array
+        deleted_accounts:
+          items:
+            $ref: '#/components/schemas/external_account'
+            description: Information about a successfully deleted external account.
+          type: array
+        failed_accounts:
+          items:
+            $ref: '#/components/schemas/add_vendor_account_failure'
+            description: Information about an external account that could not be added.
+          type: array
+      required:
+      - added_accounts
+      - failed_accounts
+      type: object
+    finicity_account_verification:
+      allOf:
+      - $ref: '#/components/schemas/base_account_verification'
+      title: Information specific to Finicity verification
+    external_account_access_token:
+      properties:
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: 492c842f-7239-45cd-bc28-edf1a13c7de2
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          format: uuid
+          type: string
+        request_id:
+          description: A unique identifier for the request, which can be used for troubleshooting
+          readOnly: true
+          type: string
+        vendor_access_token:
+          description: The access token associated with the Item data is being requested for.
+          readOnly: true
+          type: string
+        vendor_customer_id:
+          description: An alias for `customer_id` (deprecated).
+          format: uuid
+          type: string
+          x-status: deprecated
+        vendor_institution_id:
+          description: 'The ID of the institution the access token is requested for
+
+            '
+          minLength: 1
+          type: string
+        vendor_public_token:
+          description: 'The user''s public token obtained from successful link login.
+
+            '
+          type: string
+      required:
+      - vendor_public_token
+      - vendor_institution_id
+      type: object
+    external_account_vendor_values:
+      description: 'The vendor selected for the operation.
+
+        '
+      enum:
+      - PLAID
+      - FINICITY
+      type: string
+    external_account_vendor_data:
+      properties:
+        account_number_mask:
+          description: 'The last alphanumeric characters of an account''s official account number. Note that the mask may be non-unique between accounts, and it may also not match the mask that the bank displays to the user.
+
+            '
+          type: string
+        institution_id:
+          description: The ID of the institution external account belongs
+          type: string
+      type: object
+    account_routing:
+      properties:
+        ach_routing_number:
+          description: 'The routing number used for US ACH payments. Only appears if `bank_countries` contains `US`. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: '756392185'
+          type: string
+        bank_countries:
+          description: The countries that this bank operates the account in
+          items:
+            enum:
+            - US
+            - CA
+            type: string
+          type: array
+        bank_name:
+          description: The name of the bank managing the account
+          example: Chase
+          type: string
+        eft_routing_number:
+          description: 'The routing number used for EFT payments, identifying a Canadian bank, consisting of the institution number and the branch number. Only appears if `bank_countries` contains `CA`. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: '02101140'
+          type: string
+        swift_code:
+          description: 'The SWIFT code for the bank. Value may be masked, in which case only the last four characters are returned.
+
+            '
+          example: CHASUS3AXXX
+          type: string
+        wire_routing_number:
+          description: 'The routing number used for domestic wire payments. Only appears if `bank_countries` contains `US`. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: '756392185'
+          type: string
+      required:
+      - bank_name
+      - bank_countries
+      title: Routing information for the account
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    patch_external_account:
+      properties:
+        account_identifiers:
+          $ref: '#/components/schemas/patch_accounts_request_account_identifiers'
+        account_owner_names:
+          description: The names of the account owners.
+          items:
+            example: Monica Keebler
+            type: string
+          type: array
+        nickname:
+          description: A user-meaningful name for the account
+          example: Money Market Account
+          minLength: 1
+          type: string
+        routing_identifiers:
+          $ref: '#/components/schemas/patch_accounts_request_routing_identifiers'
+        type:
+          description: The type of the account
+          enum:
+          - CHECKING
+          - SAVINGS
+          type: string
+        verification:
+          $ref: '#/components/schemas/account_verification'
+      type: object
+    external_accounts_transaction_list:
+      properties:
+        transactions:
+          description: Array of transactions of a given external account
+          items:
+            $ref: '#/components/schemas/external_account_transaction'
+          type: array
+      required:
+      - transactions
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    add_vendor_accounts_error_reason:
+      description: A machine-readable code describing the reason for the failure.
+      enum:
+      - FAILED_VERIFICATION
+      - UNSUPPORTED_ACCOUNT_TYPE
+      - DUPLICATE_ACCOUNT
+      - ACCOUNT_NOT_FOUND
+      - PROVIDER_ERROR
+      type: string
+    patch_accounts_request_account_identifiers:
+      properties:
+        number:
+          description: 'The account number.
+
+            '
+          example: 91981460
+          minLength: 1
+          type: string
+      title: Identifiers for the account
+      type: object
+    account_verification:
+      description: 'Information about the account verification process. If the account has not been verified, this will be null.
+
+        '
+      discriminator:
+        mapping:
+          FINICITY: '#/components/schemas/finicity_account_verification'
+          MANUAL: '#/components/schemas/manual_account_verification'
+          PLAID: '#/components/schemas/plaid_account_verification'
+        propertyName: vendor
+      nullable: true
+      oneOf:
+      - $ref: '#/components/schemas/plaid_account_verification'
+      - $ref: '#/components/schemas/manual_account_verification'
+      - $ref: '#/components/schemas/finicity_account_verification'
+      title: Information about the account verification process
+      type: object
+    external_account_balance:
+      properties:
+        available:
+          description: The available balance of the account
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          nullable: true
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code
+          example: FJD
+          type: string
+        current:
+          description: The current balance of the account
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          nullable: true
+          type: integer
+        limit:
+          description: The limit on the balance amount
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          nullable: true
+          type: integer
+      required:
+      - currency
+      title: External Account Balance
+      type: object
+    add_vendor_accounts_request:
+      properties:
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: 144405a0-1cac-455e-89c9-fd06b97fdbe3
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          example: 6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e
+          format: uuid
+          type: string
+        customer_type:
+          $ref: '#/components/schemas/ext_account_customer_type'
+        vendor:
+          $ref: '#/components/schemas/external_account_vendor_values'
+        vendor_access_token:
+          description: 'The token provided to link external accounts. For Plaid, this is their `access_token`.
+
+            '
+          example: access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6
+          minLength: 1
+          type: string
+        vendor_account_ids:
+          description: 'The list of vendor account IDs that the customer chose to link. For Plaid, these are `account_id`s.
+
+            '
+          items:
+            description: The Plaid account_id.
+            example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+            minLength: 1
+            type: string
+          minItems: 1
+          type: array
+        vendor_customer_id:
+          description: 'The identifier provided by the vendor for the customer associated with this external account.
+
+            '
+          example: 380
+          type: string
+        verify_owner:
+          default: false
+          description: 'If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.
+
+            '
+          type: boolean
+      required:
+      - customer_type
+      - vendor
+      type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    base_account_verification:
+      properties:
+        creation_time:
+          description: The time at which verification was first completed.
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        last_updated_time:
+          description: The time at which verification was last updated.
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        status:
+          description: The status of verification
+          enum:
+          - VERIFIED
+          - UNVERIFIED
+          type: string
+        vendor:
+          description: The vendor used for verifying the account
+          enum:
+          - PLAID
+          - MANUAL
+          - FINICITY
+          type: string
+      required:
+      - status
+      - vendor
+      title: Information about account verification
+      type: object
+  parameters:
+    external_account_id:
+      description: External Account ID
+      in: path
+      name: external_account_id
+      required: true
+      schema:
+        example: 63ea71cb-7f86-44c1-956b-77f6cbd6ecf7
+        format: uuid
+        type: string
+    customer_id_query_array:
+      description: A list of customer unique identifiers, with a comma separating any values.
+      explode: false
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/customer_id'
+        type: array
+      style: form
+      x-external: true
+    business_id_query_array:
+      description: A list of business unique identifiers, with a comma separating any values.
+      explode: false
+      in: query
+      name: business_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/business_id2'
+        type: array
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    max_age:
+      description: 'Optional relative age of a balance in seconds. If the balance is older than the requested seconds it will fail. This field is optional for most financial institutions, but required for some, so you should probably send it.
+
+        '
+      in: query
+      name: max_age
+      required: false
+      schema:
+        example: 437
+        format: int64
+        minimum: 1
+        type: integer
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

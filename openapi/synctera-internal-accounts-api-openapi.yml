@@ -1,0 +1,377 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Internal Accounts API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'The internal account resource is used for managing links to internal
+
+    accounts where the funds are managed by integrators.
+
+    '
+  name: Internal Accounts
+paths:
+  /internal_accounts:
+    description: 'The internal account resource is used for managing links to internal accounts where the funds are managed by integrators.
+
+      '
+    summary: Internal Accounts
+    get:
+      description: 'Returns a list of all internal accounts.
+
+        '
+      operationId: listInternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/internal_account_id_query'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal_accounts_list'
+          description: List of internal accounts
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List internal accounts
+      tags:
+      - Internal Accounts
+      x-external: true
+    post:
+      description: 'Add an internal account
+
+        '
+      operationId: addInternalAccounts
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/internal_account'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal_account'
+          description: The internal account added.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Add internal accounts
+      tags:
+      - Internal Accounts
+      x-external: true
+  /internal_accounts/{internal_account_id}:
+    summary: Internal Accounts
+    patch:
+      description: 'Patch internal account.
+
+        '
+      operationId: patchInternalAccount
+      parameters:
+      - $ref: '#/components/parameters/internal_account_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/internal_account_patch'
+        description: Internal Account fields to be patched
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/internal_account'
+          description: Updated internal account
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '461':
+          $ref: '#/components/responses/account_closed'
+      summary: Patch internal account
+      tags:
+      - Internal Accounts
+      x-external: true
+components:
+  schemas:
+    balance_type:
+      description: 'For `SAVING` and `CHECKING` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of money in the account. Equal to the sum of credits minus debits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the account balance minus any pending debits.
+
+
+        For `LINE_OF_CREDIT` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of credit currently in use. Equal to the sum of debits minus credits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the amount of credit available. Equal to the credit limit minus `account_balance` minus any pending debits.
+
+        '
+      enum:
+      - ACCOUNT_BALANCE
+      - AVAILABLE_BALANCE
+      type: string
+    balance:
+      properties:
+        balance:
+          description: balance in ISO 4217 minor currency units. Unit in cents.
+          example: 43
+          format: int64
+          readOnly: true
+          type: integer
+        type:
+          $ref: '#/components/schemas/balance_type'
+      required:
+      - type
+      - balance
+      type: object
+    internal_accounts_list:
+      allOf:
+      - properties:
+          internal_accounts:
+            description: Array of internal accounts
+            items:
+              $ref: '#/components/schemas/internal_account'
+            type: array
+        required:
+        - internal_accounts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    account_id_query_schema:
+      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+      items:
+        format: uuid
+        type: string
+      type: array
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    internal_account_patch:
+      properties:
+        description:
+          description: A user provided description for the current account
+          type: string
+      type: object
+    internal_account:
+      properties:
+        account_number:
+          description: Generated internal account number
+          maxLength: 17
+          minLength: 14
+          readOnly: true
+          type: string
+        balances:
+          description: A list of balances for internal account based on different type
+          items:
+            $ref: '#/components/schemas/balance'
+          readOnly: true
+          type: array
+        bank_routing:
+          description: Bank routing number
+          maxLength: 9
+          readOnly: true
+          type: string
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        currency:
+          description: Account currency or account settlement currency. ISO 4217 alphabetic currency code.
+          example: VEF
+          pattern: ^[A-Z]{3}$
+          type: string
+        description:
+          description: A user provided description for the current account
+          type: string
+        gl_type:
+          description: Whether the account will represent assets or liabilities
+          enum:
+          - ASSET
+          - LIABILITY
+          type: string
+        id:
+          description: Generated ID for internal account
+          format: uuid
+          readOnly: true
+          type: string
+        is_system_acc:
+          default: false
+          description: Is a system-controlled internal account
+          type: boolean
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          type: string
+      required:
+      - status
+      - currency
+      type: object
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    account_closed:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Account has been closed
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    internal_account_id_query:
+      description: 'Internal account ID(s). Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    internal_account_id_path:
+      description: Unique identifier for the internal account.
+      in: path
+      name: internal_account_id
+      required: true
+      schema:
+        example: 1eec6d0a-94b3-422d-bfc5-938ebff87fb0
+        format: uuid
+        type: string
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

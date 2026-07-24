@@ -1,0 +1,635 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Webhooks API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: Requests to create and manage webhooks
+  name: Webhooks
+paths:
+  /webhooks:
+    get:
+      description: List all webhooks
+      operationId: listWebhooks1
+      parameters:
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - in: query
+        name: is_enabled_only
+        schema:
+          type: boolean
+        x-external: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook_list'
+          description: List of webhooks
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List webhooks
+      tags:
+      - Webhooks
+      x-external: true
+    post:
+      description: Create a webhook
+      operationId: createWebhook1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook'
+        description: Webhook to create
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook'
+          description: Created webhook
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a webhook
+      tags:
+      - Webhooks
+      x-external: true
+  /webhooks/{webhook_id}:
+    delete:
+      description: Delete a webhook
+      operationId: deleteWebhook
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      responses:
+        '200':
+          $ref: '#/components/responses/delete_response'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Delete a webhook
+      tags:
+      - Webhooks
+      x-external: true
+    get:
+      description: Get a webhook
+      operationId: getWebhook1
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook'
+          description: Webhook
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get a webhook
+      tags:
+      - Webhooks
+      x-external: true
+    put:
+      description: Update a webhook
+      operationId: updateWebhook
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/webhook'
+        description: Webhook to update
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/webhook'
+          description: Created webhook
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update a webhook
+      tags:
+      - Webhooks
+      x-external: true
+  /webhooks/{webhook_id}/events:
+    get:
+      description: List webhook events. This response will not associate with the event response history.
+      operationId: listEvents
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      - deprecated: true
+        description: Start date of date range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.. start_date is alias of start_time and is deprecated. Please use start_time instead.
+        in: query
+        name: start_date
+        schema:
+          format: date
+          type: string
+        x-external: true
+      - deprecated: true
+        description: End date of date range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.. end_date is alias of end_time and is deprecated. Please use end_time instead.
+        in: query
+        name: end_date
+        schema:
+          format: date
+          type: string
+        x-external: true
+      - description: Start time of date-time range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.
+        in: query
+        name: start_time
+        schema:
+          format: date-time
+          type: string
+        x-external: true
+      - description: End time of date-time range filtering for events. Date is inclusive and should be in UTC timezone 00:00:00.
+        in: query
+        name: end_time
+        schema:
+          format: date-time
+          type: string
+        x-external: true
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event_list'
+          description: List of webhook events
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List webhook events
+      tags:
+      - Webhooks
+      x-external: true
+  /webhooks/{webhook_id}/events/{event_id}:
+    get:
+      description: Get webhook event by ID
+      operationId: getEvent
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      - description: Webhook event ID
+        in: path
+        name: event_id
+        required: true
+        schema:
+          example: 30b341b8-8445-459a-8349-b3548b2aff53
+          format: uuid
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
+          description: Webhook event
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get webhook event
+      tags:
+      - Webhooks
+      x-external: true
+  /webhooks/{webhook_id}/events/{event_id}/resend:
+    post:
+      description: Resend a webhook event
+      operationId: resendEvent
+      parameters:
+      - $ref: '#/components/parameters/webhook_id1'
+      - description: Webhook event ID
+        in: path
+        name: event_id
+        required: true
+        schema:
+          example: 9e57eb8e-1795-4496-b3c5-06fcfdc7329f
+          format: uuid
+          type: string
+      - description: Delay the event triggering in seconds
+        in: query
+        name: delay
+        schema:
+          maximum: 3600
+          minimum: 0
+          type: integer
+        x-external: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event'
+          description: Resent webhook event
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Resend an event
+      tags:
+      - Webhooks
+      x-external: true
+  /webhooks/trigger:
+    post:
+      description: Trigger an specific event for webhook testing purpose
+      operationId: triggerEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                event:
+                  $ref: '#/components/schemas/event_type1'
+              type: object
+        description: Provide an event type to trigger
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/event_trigger'
+          description: Triggered webhook event
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Trigger an event
+      tags:
+      - Webhooks
+      x-external: true
+components:
+  schemas:
+    event_trigger:
+      description: Webhook event object that will be returned after triggering the given event. Only id, type and event_time will have value.
+      properties:
+        event_resource:
+          deprecated: true
+          description: 'Json string of object associated with the event. For example, if your event is ACCOUNT.CREATED, You can refer to Acccount to parse the account event to obtain the ID, status etc.
+
+            '
+          type: string
+        event_resource_changed_fields:
+          deprecated: true
+          description: 'Json string of object associated with the event related to a resource change. This only contains those fields that have value changed on the event, and the field values are prior to the resource change event.
+
+            '
+          type: string
+        event_time:
+          description: Timestamp of the current event raised
+          format: date-time
+          type: string
+        id:
+          description: Unique event ID of the webhook request. Use event endpoints to get more event summary data
+          format: uuid
+          readOnly: true
+          type: string
+        metadata:
+          deprecated: true
+          description: Metadata that stored in the webhook subscription
+          maxLength: 1024
+          type: string
+        response_history:
+          deprecated: true
+          description: Response history of the webhook request
+          items:
+            $ref: '#/components/schemas/response_history_item'
+          type: array
+        status:
+          deprecated: true
+          description: Current event status. Failing event will keep retry until it is purged.
+          enum:
+          - RUNNING
+          - SUCCESS
+          - RETRYING
+          type: string
+        type:
+          $ref: '#/components/schemas/event_type_explicit'
+        url:
+          deprecated: true
+          description: URL that the current event will be sent to
+          maxLength: 1024
+          type: string
+        webhook_id:
+          deprecated: true
+          description: Webhook the current event belongs to
+          format: uuid
+          type: string
+      title: Webhook event trigger
+      type: object
+    event_list:
+      allOf:
+      - properties:
+          event_list:
+            description: Array of events
+            items:
+              $ref: '#/components/schemas/event'
+            type: array
+        required:
+        - event_list
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    event:
+      description: Webhook event object
+      properties:
+        event_resource:
+          description: 'Json string of object associated with the event. For example, if your event is ACCOUNT.CREATED, You can refer to Acccount to parse the account event to obtain the ID, status etc.
+
+            '
+          type: string
+        event_resource_changed_fields:
+          description: 'Json string of object associated with the event related to a resource change. This only contains those fields that have value changed on the event, and the field values are prior to the resource change event.
+
+            '
+          type: string
+        event_time:
+          description: Timestamp of the current event raised
+          format: date-time
+          type: string
+        id:
+          description: Unique event ID of the webhook request. Use event endpoints to get more event summary data
+          format: uuid
+          readOnly: true
+          type: string
+        metadata:
+          description: Metadata that stored in the webhook subscription
+          maxLength: 1024
+          type: string
+        response_history:
+          description: Response history of the webhook request
+          items:
+            $ref: '#/components/schemas/response_history_item'
+          type: array
+        status:
+          description: Current event status. Failing event will keep retry until it is purged.
+          enum:
+          - RUNNING
+          - SUCCESS
+          - RETRYING
+          type: string
+        type:
+          $ref: '#/components/schemas/event_type_explicit'
+        url:
+          description: URL that the current event will be sent to
+          maxLength: 1024
+          type: string
+        webhook_id:
+          description: Webhook the current event belongs to
+          format: uuid
+          type: string
+      title: Webhook event
+      type: object
+    webhook:
+      description: Webhook object
+      properties:
+        description:
+          description: A description of what the webhook is used for
+          type: string
+        enabled_events:
+          description: A list of the events that will trigger the webhook
+          items:
+            $ref: '#/components/schemas/event_type1'
+          type: array
+        id:
+          description: The unique ID of the webhook
+          format: uuid
+          readOnly: true
+          type: string
+        is_enabled:
+          description: Set the webhook to be enabled or disabled
+          type: boolean
+        last_updated:
+          description: Timestamp that this webhook was created or the last time any field was changed
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: Additional information stored to the webhook
+          maxLength: 1024
+          type: string
+        url:
+          description: URL that the webhook will send request to
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - url
+      - enabled_events
+      - is_enabled
+      title: Webhook
+      type: object
+    webhook_list:
+      allOf:
+      - properties:
+          webhooks:
+            description: Array of webhooks
+            items:
+              $ref: '#/components/schemas/webhook'
+            type: array
+        required:
+        - webhooks
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    event_type1:
+      oneOf:
+      - $ref: '#/components/schemas/event_type_explicit'
+      - $ref: '#/components/schemas/event_type_wildcard'
+    event_type_explicit:
+      description: All the webhook event types
+      enum:
+      - ACCOUNT.CREATED
+      - ACCOUNT.UPDATED
+      - CARD.UPDATED
+      - CARD.IMAGE.UPDATED
+      - CUSTOMER.UPDATED
+      - CUSTOMER.KYC_OUTCOME.UPDATED
+      - BUSINESS.VERIFICATION_OUTCOME.UPDATED
+      - PERSON.VERIFICATION_OUTCOME.UPDATED
+      - INTEREST.MONTHLY_PAYOUT
+      - INTERNAL_TRANSFER.SUCCEEDED
+      - TRANSACTION.POSTED.CREATED
+      - TRANSACTION.POSTED.UPDATED
+      - TRANSACTION.PENDING.CREATED
+      - TRANSACTION.PENDING.UPDATED
+      - CARD.DIGITALWALLETTOKEN.CREATED
+      - CARD.DIGITALWALLETTOKEN.UPDATED
+      - PAYMENT_SCHEDULE.CREATED
+      - PAYMENT_SCHEDULE.UPDATED
+      - PAYMENT_SCHEDULE.PAYMENT.CREATED
+      - STATEMENT.CREATED
+      - EXTERNAL_CARD.CREATED
+      type: string
+    response_history_item:
+      description: Response history object of the webhook request
+      properties:
+        code:
+          description: Response code from the request
+          type: integer
+        response_body:
+          description: Response body from the request(Length more than 1024 will be trimmed)
+          type: string
+        response_time:
+          description: Timestamp that the response is received
+          format: date-time
+          type: string
+        sent_time:
+          description: Timestamp that the request is sent
+          format: date-time
+          type: string
+      title: Response history
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    event_type_wildcard:
+      enum:
+      - ACCOUNT.*
+      - CARD.*
+      - CUSTOMER.*
+      - BUSINESS.*
+      - PERSON.*
+      - INTEREST.*
+      - INTERNAL_TRANSFER.*
+      - TRANSACTION.*
+      - PAYMENT_SCHEDULE.*
+      - STATEMENT.*
+      - EXTERNAL_CARD.*
+      type: string
+  parameters:
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    webhook_id1:
+      description: Webhook ID
+      in: path
+      name: webhook_id
+      required: true
+      schema:
+        example: 97e074c8-188e-4cfb-8e34-16099909c595
+        format: uuid
+        type: string
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

@@ -1,0 +1,643 @@
+openapi: 3.0.3
+info:
+  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+
+    '
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  title: Synctera Accounts Persons API
+  version: 0.20.0
+servers:
+- description: Production
+  url: https://api.synctera.com/v0
+- description: Sandbox (no real world financial impact)
+  url: https://api-sandbox.synctera.com/v0
+security:
+- bearerAuth: []
+tags:
+- description: 'A natural person (individual human) that is relevant to the Synctera platform in some way: e.g. a personal customer or a director/officer/owner of a business.
+
+    '
+  name: Persons
+paths:
+  /persons:
+    summary: Persons
+    get:
+      description: Retrieves paginated list of persons associated with the authorized requester.
+      operationId: listPersons
+      parameters:
+      - $ref: '#/components/parameters/id_query3'
+      - $ref: '#/components/parameters/first_name'
+      - $ref: '#/components/parameters/last_name'
+      - $ref: '#/components/parameters/phone_number'
+      - $ref: '#/components/parameters/email'
+      - $ref: '#/components/parameters/ban_status'
+      - $ref: '#/components/parameters/status3'
+      - $ref: '#/components/parameters/is_customer'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/page_token'
+      - $ref: '#/components/parameters/person_sort_by_query'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person_list'
+          description: List of persons.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: List persons
+      tags:
+      - Persons
+      x-external: true
+      x-status: alpha
+    post:
+      description: 'Create a person who may act as a personal customer or a director/officer/owner of a business. You can then verify the identity of this customer and associate them with other people and accounts.
+
+        '
+      operationId: createPerson
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/person'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: Created person representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/already_exists'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Create a person
+      tags:
+      - Persons
+      x-external: true
+      x-status: alpha
+  /persons/{person_id}:
+    summary: Persons
+    get:
+      description: Get person by ID.
+      operationId: getPerson
+      parameters:
+      - $ref: '#/components/parameters/person_id_path'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: Person representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Get person
+      tags:
+      - Persons
+      x-external: true
+      x-status: alpha
+    patch:
+      description: Update person by ID.
+      operationId: updatePerson
+      parameters:
+      - $ref: '#/components/parameters/idempotency_key'
+      - $ref: '#/components/parameters/person_id_path'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_person'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/person'
+          description: Updated person representation.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/not_found'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Update person
+      tags:
+      - Persons
+      x-external: true
+      x-status: alpha
+  /persons/{person_id}/prefill:
+    post:
+      description: 'Prefill takes a subset of a person''s information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.
+
+        '
+      operationId: prefillPerson
+      parameters:
+      - $ref: '#/components/parameters/person_id_path'
+      - $ref: '#/components/parameters/idempotency_key'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/prefill_request'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/prefill_request'
+          description: Prefill response.
+        '400':
+          $ref: '#/components/responses/bad_request'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '500':
+          $ref: '#/components/responses/internal_server_error'
+      summary: Prefill person
+      tags:
+      - Persons
+      x-external: true
+      x-status: alpha
+components:
+  schemas:
+    verification_status:
+      description: 'The result of a KYC/KYB verification. One of the following:
+
+        * `UNVERIFIED` – verification has not been completed for this customer.
+
+        * `PENDING` – verification is in progress for this customer.
+
+        * `PROVISIONAL` – partially verified or verified with restrictions.
+
+        * `ACCEPTED` – the customer has been verified.
+
+        * `REVIEW` – verification has run and issues have been identified and require review.
+
+        * `REJECTED` – the customer was rejected and should not be allowed to take certain actions e.g., open an account.
+
+        '
+      enum:
+      - UNVERIFIED
+      - PENDING
+      - PROVISIONAL
+      - ACCEPTED
+      - REVIEW
+      - REJECTED
+      example: ACCEPTED
+      readOnly: true
+      type: string
+    person:
+      allOf:
+      - required:
+        - status
+        - is_customer
+      - $ref: '#/components/schemas/base_person1'
+      description: Person object used in requests.
+      type: object
+    patch_person:
+      allOf:
+      - $ref: '#/components/schemas/base_person1'
+      description: Person object for patch purpose.
+      type: object
+    base_person1:
+      properties:
+        ban_status:
+          $ref: '#/components/schemas/ban_status'
+          readOnly: true
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        dob:
+          description: Person's date of birth in RFC 3339 full-date format (YYYY-MM-DD).
+          example: '2000-01-01'
+          format: date
+          type: string
+        email:
+          description: Person's email.
+          example: Ethelyn_Bauch@hotmail.com
+          type: string
+        first_name:
+          description: Person's first name.
+          example: Jedediah
+          type: string
+        id:
+          description: Person's unique identifier.
+          example: 169d1e96-24be-4d56-a3b6-4667da1cd221
+          format: uuid
+          readOnly: true
+          type: string
+        is_customer:
+          $ref: '#/components/schemas/is_customer'
+        last_name:
+          description: Person's last name.
+          example: Purdy
+          type: string
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        legal_address:
+          $ref: '#/components/schemas/address'
+          description: Person's legal address.
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        middle_name:
+          description: Person's middle name.
+          example: a
+          type: string
+        phone_number:
+          description: Person's mobile phone number with country code in E.164 format. Must have a valid country code. Area code and local phone number are not validated
+          example: '+14374570680'
+          pattern: ^\+[1-9]\d{1,14}$
+          type: string
+        shipping_address:
+          $ref: '#/components/schemas/address'
+          description: Person's shipping address.
+        ssn:
+          description: Person's full tax ID eg SSN formatted with hyphens. This optional parameter is required when running KYC. The response contains the last 4 digits only (e.g. 6789).
+          example: 083-98-3418
+          type: string
+        ssn_source:
+          $ref: '#/components/schemas/ssn_source'
+        status:
+          $ref: '#/components/schemas/status1'
+        verification_last_run:
+          description: Date and time KYC verification was last run on the person.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        verification_status:
+          $ref: '#/components/schemas/verification_status'
+      type: object
+    status1:
+      description: 'Status of the person. One of the following:
+
+        * `ACTIVE` – is an integrator defined status.  Integrators should set a person to active if they believe the person to be qualified for conducting business.  Synctera will combine this status with other statuses such a verification to determine if the person is eligible for specific actions such as initiating transactions or issuing a card.
+
+        * `DECEASED` – person is deceased.
+
+        * `DENIED` – customer was turned down.
+
+        * `DORMANT` – person is no longer active.
+
+        * `ESCHEAT` – person''s assets are abandoned and are property of the state.
+
+        * `FROZEN` – person''s actions are blocked for security, legal, or other reasons.
+
+        * `INACTIVE` – an inactive status indicating that the person is no longer active.
+
+        * `PROSPECT` – a potential customer, used for information-gathering and disclosures.
+
+        * `SANCTION` – person is on a sanctions list and should be carefully monitored.
+
+        '
+      enum:
+      - ACTIVE
+      - DECEASED
+      - DENIED
+      - DORMANT
+      - ESCHEAT
+      - FROZEN
+      - INACTIVE
+      - PROSPECT
+      - SANCTION
+      example: ACTIVE
+      type: string
+    is_customer:
+      description: True for personal and business customers with a direct relationship with the fintech or bank.
+      example: true
+      type: boolean
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    ban_status:
+      description: '(alpha) Ban status of the person. One of the following:
+
+        * `ALLOWED` – person is not banned
+
+        * `BANNED` – person is banned
+
+        '
+      enum:
+      - ALLOWED
+      - BANNED
+      example: ALLOWED
+      type: string
+    ssn_source:
+      description: 'Describes the collection method for the customer''s SSN:
+
+        * `MANUAL` – the full 9 digits of the customer''s SSN was collected.
+
+        * `PREFILL` – the customer''s SSN was collected using SSN Prefill.
+
+        '
+      enum:
+      - MANUAL
+      - PREFILL
+      readOnly: true
+      type: string
+    address:
+      properties:
+        address_line_1:
+          description: Street address line 1
+          example: 4992 Curtis Ports
+          type: string
+        address_line_2:
+          description: String address line 2
+          example: Apt. 877
+          type: string
+        city:
+          description: City
+          example: East Winstonview
+          type: string
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: US
+          pattern: ^[A-Z]{2}$
+          type: string
+        postal_code:
+          description: Postal code
+          example: '28620'
+          type: string
+        state:
+          description: State, region, province, or prefecture
+          example: NJ
+          type: string
+      required:
+      - address_line_1
+      - country_code
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    prefill_request:
+      properties:
+        ssn_filled:
+          description: If true, the person's SSN was successfully populated.
+          example: true
+          readOnly: true
+          type: boolean
+        ssn_last4:
+          description: Last four digits of person's Social Security number (SSN).
+          example: 4271
+          type: string
+    person_list:
+      allOf:
+      - properties:
+          persons:
+            description: Array of persons.
+            items:
+              $ref: '#/components/schemas/person'
+            type: array
+        required:
+        - persons
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+  parameters:
+    is_customer:
+      description: If true, show only customers. If false, show non-customer parties.
+      in: query
+      name: is_customer
+      required: false
+      schema:
+        type: boolean
+      x-external: true
+    ban_status:
+      in: query
+      name: ban_status
+      required: false
+      schema:
+        $ref: '#/components/schemas/ban_status'
+      x-external: true
+    last_name:
+      in: query
+      name: last_name
+      required: false
+      schema:
+        description: Only return resources where the last_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Smith
+        type: string
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    id_query3:
+      description: 'Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    first_name:
+      in: query
+      name: first_name
+      required: false
+      schema:
+        description: Only return resources where the first_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Alice
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    person_id_path:
+      description: Person's unique identifier.
+      in: path
+      name: person_id
+      required: true
+      schema:
+        example: 491b33fd-182c-4f0b-90d4-f2f929bbb6d9
+        format: uuid
+        type: string
+    phone_number:
+      in: query
+      name: phone_number
+      required: false
+      schema:
+        description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
+        example: '+12065550100'
+        type: string
+      x-external: true
+    person_sort_by_query:
+      description: 'Specifies the sort order for the returned persons.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - first_name:asc
+          - first_name:desc
+          - last_name:asc
+          - last_name:desc
+          - creation_time:asc
+          - creation_time:desc
+          - last_updated_time:asc
+          - last_updated_time:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    email:
+      in: query
+      name: email
+      required: false
+      schema:
+        description: Only return resources where the email field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: john.doe@example.com
+        type: string
+      x-external: true
+    status3:
+      in: query
+      name: status
+      required: false
+      schema:
+        $ref: '#/components/schemas/status1'
+      x-external: true
+  securitySchemes:
+    bearerAuth:
+      bearerFormat: api_key
+      scheme: bearer
+      type: http
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
+  samples-enabled: true

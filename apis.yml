@@ -6,7 +6,20 @@ description: Synctera is a Banking-as-a-Service platform connecting fintechs to 
   network of sponsor banks. Provides REST APIs for personal/business customers, accounts,
   cards, internal transfers, payment schedules, ACH payments, mRDC, KYC/KYB verification,
   document verification, and disclosures.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/synctera.png
 tags:
   - FinTech
   - BaaS
@@ -18,35 +31,372 @@ created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.19'
 apis:
-  - aid: synctera:rest-api
-    name: Synctera Platform API
-    description: REST API covering Customers (Personal & Business), Accounts, Cards,
-      Internal Transfers, Payment Schedules, ACH Payments, mRDC, KYC/KYB Verification,
-      Document Verification, and Disclosures. Authenticated via API keys issued from
-      the Synctera Console.
-    humanURL: https://docs.synctera.com/api-reference
-    baseURL: https://api.synctera.com
-    tags:
-    - REST
-    - Banking
-    - Payments
-    - KYC
-    properties:
-    - type: Documentation
-      url: https://docs.synctera.com/api-reference
-    - type: OpenAPI
-      url: openapi/synctera-openapi.json
-  - aid: synctera:webhooks
-    name: Synctera Webhooks
-    description: Outbound HTTP webhook delivery for customer, account, card, transaction,
-      and payment events.
-    humanURL: https://docs.synctera.com/api-reference
-    baseURL: https://api.synctera.com
-    tags:
-    - Webhooks
-    properties:
-    - type: Documentation
-      url: https://docs.synctera.com/api-reference
+- aid: synctera:webhooks
+  name: Synctera Webhooks
+  description: >-
+    Outbound HTTP webhook delivery for customer, account, card, transaction, and payment events.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Webhooks
+  properties:
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-accounts-api
+  name: Synctera Accounts API
+  description: Request to create and manage accounts
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-ach-api
+  name: Synctera ACH API
+  description: Create and manage payments
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - ACH
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-ach-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-applications-api
+  name: Synctera Applications API
+  description: Create a credit application.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-applications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-businesses-api
+  name: Synctera Businesses API
+  description: >-
+    A legal entity (corporation, partnership, etc.) that is relevant to the Synctera platform in some
+    way: a business customer or some other organization that has an ownership share in such a business
+    customer.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Businesses
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-businesses-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-card-transaction-simulations-api
+  name: Synctera Card Transaction Simulations API
+  description: Requests to generate simulated transactions
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Card Transaction Simulations
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-card-transaction-simulations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-card-webhook-simulations-api
+  name: Synctera Card Webhook Simulations API
+  description: Requests to generate simulated webhooks
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Card Webhook Simulations
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-card-webhook-simulations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-cards-api
+  name: Synctera Cards API
+  description: Requests to issue and manage cards
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Cards
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-cards-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-customers-api
+  name: Synctera Customers API
+  description: Requests to create and manage customers
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-digital-wallet-tokens-api
+  name: Synctera Digital Wallet Tokens API
+  description: The Digital Wallet Tokens API from Synctera — 4 operation(s) for digital wallet tokens.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Digital Wallet Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-digital-wallet-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-disclosures-api
+  name: Synctera Disclosures API
+  description: >-
+    The disclosures resource is used to track the status of disclosures and
+
+    ensure that all parties have been shown the necessary disclosures to meet
+
+    regulatory obligations.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Disclosures
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-disclosures-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-documents-alpha-api
+  name: Synctera Documents (alpha) API
+  description: The Documents (alpha) API from Synctera — 3 operation(s) for documents (alpha).
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Documents (alpha)
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-documents-alpha-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-external-accounts-api
+  name: Synctera External Accounts API
+  description: >-
+    The External Account resource is used for managing links to accounts
+
+    that operate outside of the Synctera ecosystem.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - External Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-external-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-external-cards-alpha-api
+  name: Synctera External Cards (alpha) API
+  description: Push and pull from cards
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - External Cards (alpha)
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-external-cards-alpha-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-internal-accounts-api
+  name: Synctera Internal Accounts API
+  description: >-
+    The internal account resource is used for managing links to internal
+
+    accounts where the funds are managed by integrators.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Internal Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-internal-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-kyc-kyb-verifications-api
+  name: Synctera KYC/KYB Verifications API
+  description: Requests to initiate customer verification.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - KYC/KYB Verifications
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-kyc-kyb-verifications-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-kyc-verification-api
+  name: Synctera KYC Verification API
+  description: Requests to initiate customer verification.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - KYC Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-kyc-verification-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-monitoring-api
+  name: Synctera Monitoring API
+  description: Requests to manage monitoring subscriptions and alerts for customers.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-monitoring-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-paymentschedules-api
+  name: Synctera PaymentSchedules API
+  description: The PaymentSchedules API from Synctera — 3 operation(s) for paymentschedules.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - PaymentSchedules
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-paymentschedules-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-persons-api
+  name: Synctera Persons API
+  description: >-
+    A natural person (individual human) that is relevant to the Synctera platform in some way: e.g. a
+    personal customer or a director/officer/owner of a business.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Persons
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-persons-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-reconciliations-api
+  name: Synctera Reconciliations API
+  description: Requests to create and manage reconciliation
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Reconciliations
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-reconciliations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-relationships-api
+  name: Synctera Relationships API
+  description: >-
+    Represents the relationships between parties. A relationship can exist between personal customers,
+    business customers, or non-customer persons/organizations.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-relationships-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-remote-check-deposit-beta-api
+  name: Synctera Remote Check Deposit (beta) API
+  description: >-
+    The Remote Check Deposit (beta) API from Synctera — 2 operation(s) for remote check deposit (beta).
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Remote Check Deposit (beta)
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-remote-check-deposit-beta-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-sandbox-wipe-alpha-api
+  name: Synctera Sandbox Wipe (alpha) API
+  description: The Sandbox Wipe (alpha) API from Synctera — 1 operation(s) for sandbox wipe (alpha).
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Sandbox Wipe (alpha)
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-sandbox-wipe-alpha-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-statements-api
+  name: Synctera Statements API
+  description: The Statements API from Synctera — 2 operation(s) for statements.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Statements
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-statements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-transactions-api
+  name: Synctera Transactions API
+  description: Create and manage transactions
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-watchlist-api
+  name: Synctera Watchlist API
+  description: Request to enroll, renew, or cancel watchlist monitors
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Watchlist
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-watchlist-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-webhooks-api
+  name: Synctera Webhooks API
+  description: Requests to create and manage webhooks
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-wires-alpha-api
+  name: Synctera Wires (alpha) API
+  description: Create and manage wire transfers
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Wires (alpha)
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-wires-alpha-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
 common:
   - type: AgenticAccess
     url: agentic-access/synctera-agentic-access.yml

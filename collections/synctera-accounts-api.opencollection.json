@@ -1,0 +1,553 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID(s). Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "linked_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Return only resources that are linked to the specified backing account in balance_floor or balance_ceiling. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "overdraft_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Overdraft account ID(s). Multiple IDs can be provided as a comma-separated list.\nThis parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.\n"
+              },
+              {
+                "name": "overflow_account_id",
+                "value": "",
+                "type": "query",
+                "description": "Overflow account ID(s). Multiple IDs can be provided as a comma-separated list.\nThis parameter is deprecated and will be removed in a future API version. Use linked_account_id instead.\n"
+              },
+              {
+                "name": "account_number",
+                "value": "",
+                "type": "query",
+                "description": "Account number(s). Multiple account numbers can be provided as a comma-separated list.\nWhen only a single account number is provided, any * characters in the string are wildcards, and match any characters.\n"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "interest_product_id",
+                "value": "",
+                "type": "query",
+                "description": "Interest product ID that accounts associate with. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_type",
+                "value": "",
+                "type": "query",
+                "description": "Customer type of the account, BUSINESS or PERSONAL\n"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned accounts.\n"
+              }
+            ]
+          },
+          "docs": "Get paginated list of Accounts associated"
+        },
+        {
+          "info": {
+            "name": "Create an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a shadow mode or lead mode account. You need to determine the mode according to integrator configuration, and specify the required fields accordingly.\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - account_template_id\n  - relationships\n"
+        },
+        {
+          "info": {
+            "name": "Get account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ]
+          },
+          "docs": "Get an account"
+        },
+        {
+          "info": {
+            "name": "Update account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account\n\nShadow mode required fields:\n  - account_number\n  - status\n\nLead mode required fields:\n  - All fields are required.\n\nPlease note:\n  - access_status needs to be in ACTIVE.\n  - PUT request cannot change access_status.\n"
+        },
+        {
+          "info": {
+            "name": "Patch account",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/accounts/:account_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch account.\n\nImmutable fields:\n  - account_number\n  - account_type\n  - account_template_id\n  - customer_type\n\nPlease note:\n  - Other fields cannot be modified when access_status is FROZEN.\n  - access_status has to be patched individually without other fields.\n"
+        },
+        {
+          "info": {
+            "name": "List account relationships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all customers of an account"
+        },
+        {
+          "info": {
+            "name": "Create account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a customer to an account"
+        },
+        {
+          "info": {
+            "name": "Get account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ]
+          },
+          "docs": "Get account relationship by ID"
+        },
+        {
+          "info": {
+            "name": "Update account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account relationship. Only relationship_type can be updated. customer_id should not be modified."
+        },
+        {
+          "info": {
+            "name": "Delete account relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/accounts/:account_id/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account."
+              },
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID of the account associate with the account entity"
+              }
+            ]
+          },
+          "docs": "Delete account relationship"
+        },
+        {
+          "info": {
+            "name": "List account products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for type INTEREST. All rates in interest resource have to have valid_from later or equal to start_date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Date range filtering for type INTEREST. All rates in interest resource have to have valid_to earlier or equal to end_date."
+              },
+              {
+                "name": "product_type",
+                "value": "",
+                "type": "query",
+                "description": "Type of account product"
+              }
+            ]
+          },
+          "docs": "List account Products\n"
+        },
+        {
+          "info": {
+            "name": "Create an account product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/products",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an account product. Rates cannot be nil or empty.\n"
+        },
+        {
+          "info": {
+            "name": "Patch account product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/accounts/products/:product_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "product_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Product ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch account product. Rates requires at minimum 1 entry if specified.\n"
+        },
+        {
+          "info": {
+            "name": "List account templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/templates",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List account templates\n"
+        },
+        {
+          "info": {
+            "name": "Create an account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/accounts/templates",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an account template. An account template is need when create an account in a lead mode\n"
+        },
+        {
+          "info": {
+            "name": "Get account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ]
+          },
+          "docs": "Get an account template"
+        },
+        {
+          "info": {
+            "name": "Update account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update account template\n"
+        },
+        {
+          "info": {
+            "name": "Delete account template",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/accounts/templates/:template_id",
+            "params": [
+              {
+                "name": "template_id",
+                "value": "",
+                "type": "path",
+                "description": "Account Template ID"
+              }
+            ]
+          },
+          "docs": "Delete account template"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

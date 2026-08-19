@@ -1,0 +1,2097 @@
+{
+  "item": [
+    {
+      "id": "ba1b3854-fb72-4450-a29a-86dcdd85f5d4",
+      "name": "Persons",
+      "description": {
+        "content": "A natural person (individual human) that is relevant to the Synctera platform in some way: e.g. a personal customer or a director/officer/owner of a business.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da2c13a1-66d3-4e29-b79b-2f0297e32c60",
+          "name": "List persons",
+          "request": {
+            "name": "List persons",
+            "description": {
+              "content": "Retrieves paginated list of persons associated with the authorized requester.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "first_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "last_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ban_status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_customer",
+                  "value": "<boolean>",
+                  "description": "If true, show only customers. If false, show non-customer parties."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>,<string>",
+                  "description": "Specifies the sort order for the returned persons.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eabb3c08-dcc8-4872-808d-0c54488923e9",
+              "name": "List of persons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "Alice"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "Smith"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "email",
+                      "value": "john.doe@example.com"
+                    },
+                    {
+                      "key": "ban_status",
+                      "value": "ALLOWED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"persons\": [\n    {\n      \"status\": \"ACTIVE\",\n      \"is_customer\": true,\n      \"ban_status\": \"ALLOWED\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"dob\": \"2000-01-01\",\n      \"email\": \"Ethelyn_Bauch@hotmail.com\",\n      \"first_name\": \"Jedediah\",\n      \"id\": \"169d1e96-24be-4d56-a3b6-4667da1cd221\",\n      \"last_name\": \"Purdy\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"legal_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"metadata\": {},\n      \"middle_name\": \"a\",\n      \"phone_number\": \"+14374570680\",\n      \"shipping_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"ssn\": \"083-98-3418\",\n      \"ssn_source\": \"MANUAL\",\n      \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n      \"verification_status\": \"ACCEPTED\"\n    },\n    {\n      \"status\": \"ACTIVE\",\n      \"is_customer\": true,\n      \"ban_status\": \"ALLOWED\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"dob\": \"2000-01-01\",\n      \"email\": \"Ethelyn_Bauch@hotmail.com\",\n      \"first_name\": \"Jedediah\",\n      \"id\": \"169d1e96-24be-4d56-a3b6-4667da1cd221\",\n      \"last_name\": \"Purdy\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"legal_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"metadata\": {},\n      \"middle_name\": \"a\",\n      \"phone_number\": \"+14374570680\",\n      \"shipping_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"ssn\": \"083-98-3418\",\n      \"ssn_source\": \"PREFILL\",\n      \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n      \"verification_status\": \"ACCEPTED\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "24e65527-1943-402f-a3cd-7b8c3156cd15",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "Alice"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "Smith"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "email",
+                      "value": "john.doe@example.com"
+                    },
+                    {
+                      "key": "ban_status",
+                      "value": "ALLOWED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebde9507-d031-4b9b-9cf2-8cfea5dc1fd8",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "Alice"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "Smith"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "email",
+                      "value": "john.doe@example.com"
+                    },
+                    {
+                      "key": "ban_status",
+                      "value": "ALLOWED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3543225-b737-46af-8147-1285c8e69f80",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "first_name",
+                      "value": "Alice"
+                    },
+                    {
+                      "key": "last_name",
+                      "value": "Smith"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "email",
+                      "value": "john.doe@example.com"
+                    },
+                    {
+                      "key": "ban_status",
+                      "value": "ALLOWED"
+                    },
+                    {
+                      "key": "status",
+                      "value": "ACTIVE"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4c566835-ecae-4670-b74a-a4be7183cd8c",
+          "name": "Create a person",
+          "request": {
+            "name": "Create a person",
+            "description": {
+              "content": "Create a person who may act as a personal customer or a director/officer/owner of a business. You can then verify the identity of this customer and associate them with other people and accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "55e5b73b-19b1-46fd-b3c1-50795fa1f262",
+              "name": "Created person representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"ban_status\": \"ALLOWED\",\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"id\": \"169d1e96-24be-4d56-a3b6-4667da1cd221\",\n  \"last_name\": \"Purdy\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b851fc5-d820-4d27-9b81-4bbbd2d3e9e7",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86b69c8e-57f2-41e2-a9a7-cd51e94ec707",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04b869b3-1b50-4913-affb-8e5c7877b30b",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f6fb6b2-f5e0-4457-85c5-18b28722ae92",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "725695fa-1ac9-464d-8e21-052de23ed310",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "464c8fac-7f89-44ee-a689-bf0e25cf2d6c",
+          "name": "Get person",
+          "request": {
+            "name": "Get person",
+            "description": {
+              "content": "Get person by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "person_id",
+                  "description": "(Required) Person's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c5802a5-42e0-41a5-97d5-0f9a87d698e2",
+              "name": "Person representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"ban_status\": \"ALLOWED\",\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"id\": \"169d1e96-24be-4d56-a3b6-4667da1cd221\",\n  \"last_name\": \"Purdy\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56c7cade-fc7c-41de-b1ab-b5a823b1a8c2",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da83c64f-68d3-496a-bc98-fb982829eb01",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2132aa9f-00c8-4652-a6c8-a945cf06fbd8",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da74b85b-1b58-4028-9d26-1a419ad0933a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "429c119f-569e-4f53-9e11-cd962caf7ada",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19f0ad4e-8f5e-45a8-ac15-07d5c5563fb4",
+          "name": "Update person",
+          "request": {
+            "name": "Update person",
+            "description": {
+              "content": "Update person by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "person_id",
+                  "description": "(Required) Person's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "341d664f-fbb4-4708-835f-2db01e7e1b6a",
+              "name": "Updated person representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ACTIVE\",\n  \"is_customer\": true,\n  \"ban_status\": \"ALLOWED\",\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"id\": \"169d1e96-24be-4d56-a3b6-4667da1cd221\",\n  \"last_name\": \"Purdy\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff0d779d-394d-4dcd-af8f-a0661a5cd104",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3deab3ce-0e56-4d88-8e97-510ac8f7f43b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2feebc75-fa1a-445e-91f9-be65fd977500",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01afa648-c581-4cfe-8274-0c0d96f9ed6d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20bc7c07-c9cd-4abb-9726-805507ed3099",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dob\": \"2000-01-01\",\n  \"email\": \"Ethelyn_Bauch@hotmail.com\",\n  \"first_name\": \"Jedediah\",\n  \"is_customer\": true,\n  \"last_name\": \"Purdy\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"middle_name\": \"a\",\n  \"phone_number\": \"+14374570680\",\n  \"shipping_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"ssn\": \"083-98-3418\",\n  \"ssn_source\": \"<string>\",\n  \"status\": \"ACTIVE\",\n  \"verification_status\": \"ACCEPTED\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05fb1fa1-37b2-4637-b575-725376079d5b",
+          "name": "Prefill person",
+          "request": {
+            "name": "Prefill person",
+            "description": {
+              "content": "Prefill takes a subset of a person's information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "persons",
+                ":person_id",
+                "prefill"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "person_id",
+                  "description": "(Required) Person's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "edd01963-ecfa-41d3-98c6-85b881e27eee",
+              "name": "Prefill response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "prefill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ssn_filled\": true,\n  \"ssn_last4\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7babf754-8bdb-442d-af21-8a806d5186d5",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "prefill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25063e13-4188-4c24-a688-42f6c7883108",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "prefill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1141ad0a-4bc0-4bd6-ad39-a79f87a2cea6",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "prefill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ae5c477-2e89-4e7a-b757-15604299bbd9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "persons",
+                    ":person_id",
+                    "prefill"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "person_id",
+                      "description": "(Required) Person's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ssn_last4\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "140c653e-cd23-4fae-b668-c8ceab33016f",
+    "name": "Synctera Accounts Persons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

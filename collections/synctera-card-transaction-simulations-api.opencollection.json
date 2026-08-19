@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Card Transaction Simulations API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Card Transaction Simulations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Simulate authorization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/authorization",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate an `authorization` type transaction by including the `card_token` and other authorization details in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate authorization advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/authorization/advice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "An authorization advice allows an amount to be decreased after the authorization. This endpoint allows you to simulate post-swipe adjustments.\n\nSimulate an `authorization.advice` type transaction by including the `original_transaction_token` and other authorization details in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate clearing or refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/clearing",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate an `authorization.clearing` type transaction by including the `original_transaction_token` and `amount` in your request. To simulate a refund type transaction, set the `is_refund` field to true.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate financial",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A \"financial\" is a transaction message class that includes ATM transactions, PIN-debit transactions, and balance inquiries.\n\nSimulate a `pindebit` type transaction by including the `card_token` and `amount` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate financial advice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/advice",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a financial advice by including the `original_transaction_token` and other authorization details in JSON format in the body of the request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate balance inquiry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/balance_inquiry",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a `pindebit.balanceinquiry` type transaction by sending a POST request to the `/simulate/financial/balanceinquiry` endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate OCT",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/original_credit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This Original Credit Transaction (OCT) enables the cardholder to receive funds on the specified card from an external source via the card network. Use this endpoint to simulate a transaction that is similar to a wire transfer and not linked to any purchase.\n\nSimulate an OCT by including the `card_token`, `amount`, `mid`, and `type` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate ATM withdrawal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/financial/withdrawal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Simulate a `pindebit.atm.withdrawal` type transaction by including the `card_token` and `amount` in your request.\n"
+        },
+        {
+          "info": {
+            "name": "Simulate reversal",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/transaction_simulations/reversal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A reversal releases the hold that was placed on account funds by an authorization, thus returning the funds to the account.\n\nSimulate an `authorization.reversal` type transaction by including the `original_transaction_token` and `amount` in your request.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

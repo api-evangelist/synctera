@@ -1,0 +1,2076 @@
+{
+  "item": [
+    {
+      "id": "5c8b295b-7212-4eb1-831f-23f75a0739d1",
+      "name": "KYC/KYB Verifications",
+      "description": {
+        "content": "Requests to initiate customer verification.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eebdf0d0-2121-4306-8ae6-e8fa99f219b9",
+          "name": "List verifications",
+          "request": {
+            "name": "List verifications",
+            "description": {
+              "content": "List customer verification results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "person_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "business_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "verification_type",
+                  "value": "<string>,<string>",
+                  "description": "The type of verification run. Multiple values can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "result",
+                  "value": "<string>,<string>",
+                  "description": "The result of the verification that was run on the party. Multiple values can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "include_history",
+                  "value": "false",
+                  "description": "If true, include old (inactive) records as well."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf5fd925-fd9f-43e9-859d-4c16485498b4",
+              "name": "List verifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verifications\": [\n    {\n      \"verification_type\": \"IDENTITY\",\n      \"verification_time\": \"1988-11-16T04:21:47.431Z\",\n      \"result\": \"ACCEPTED\",\n      \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"details\": [\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": {},\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n      \"vendor_info\": {\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"json\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"verification_type\": \"IDENTITY\",\n      \"verification_time\": \"2012-09-02T14:51:53.371Z\",\n      \"result\": \"ACCEPTED\",\n      \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"details\": [\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": {},\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n      \"vendor_info\": {\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"json\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc7772f1-09b9-4d8b-a082-cfba0768c895",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5bbfe3d1-19fa-477e-b327-c5c5aa016bec",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6290bd8f-2eae-4e96-a336-255a01cd206f",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf14f617-9d95-44c7-847f-f78d730679fa",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3fa028e-dd5a-48a5-993a-a099bf6ee509",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "person_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "verification_type",
+                      "value": "IDENTITY,IDENTITY"
+                    },
+                    {
+                      "key": "result",
+                      "value": "ACCEPTED,ACCEPTED"
+                    },
+                    {
+                      "key": "include_history",
+                      "value": "false"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faa13806-b9b1-446a-9f69-6f9a2931f052",
+          "name": "Create a verification",
+          "request": {
+            "name": "Create a verification",
+            "description": {
+              "content": "Upload evidence of an externally performed KYC/KYB.  You may use your own KYC/KYB provider and upload evidence of that result to Synctera instead of using Synctera's providers.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verifications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "21bdfea9-42ff-4c4f-a279-4212eda47adb",
+              "name": "Created verification.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3425bded-dea1-42c6-9506-bdbcf08bbb92",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42ffc75a-b4f6-4921-a13e-33b99807eca8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93a187ec-d897-4cb3-8ea9-562682b8692f",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94883a1a-a91b-48df-9a1c-2cd79e14f709",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c5fd943-69ec-467f-a1b2-4bec866db487",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23ac0382-f80a-4230-a48a-8329d19a41de",
+          "name": "Get verification",
+          "request": {
+            "name": "Get verification",
+            "description": {
+              "content": "Get customer verification result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verifications",
+                ":verification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "verification_id",
+                  "description": "(Required) Verification's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d7fe59c8-0b58-4b1d-8724-2337e7c78abf",
+              "name": "Verification representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verification_type\": \"IDENTITY\",\n  \"verification_time\": \"<dateTime>\",\n  \"result\": \"ACCEPTED\",\n  \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"details\": [\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    },\n    {\n      \"description\": \"Email address is correlated with the individual's name\",\n      \"label\": \"Email\",\n      \"result\": \"PASS\",\n      \"vendor_code\": \"R940\"\n    }\n  ],\n  \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e9a1834-38bf-4542-991d-4d979a08b47d",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3b9add1-ceed-4191-bbe1-d2ee1e00799b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de3c890d-9c42-42fa-bf3d-9f7154c56d78",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f94accfb-3e04-40f9-b9e7-bc615830cecf",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "552a4598-8ecc-42d2-81c5-aad1bbc05b9c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    ":verification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "verification_id",
+                      "description": "(Required) Verification's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afc9b18f-4ef7-4526-98e6-ff79ebe7c1fe",
+          "name": "Check if an individual is on any watchlists",
+          "request": {
+            "name": "Check if an individual is on any watchlists",
+            "description": {},
+            "url": {
+              "path": [
+                "verifications",
+                "adhoc"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "347db137-aefe-4cb4-9600-e3eff2782122",
+              "name": "successful check",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "adhoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e1f96150-4715-424b-8f8c-ec3188628073\",\n  \"matching_watchlists\": [\n    \"US_OFAC\",\n    \"US_OFAC\"\n  ],\n  \"result\": \"ACCEPTED\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df579655-c744-47df-8165-d934624b77b3",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "adhoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "30c26f4f-d8b2-41d4-838f-66d72c9f8de8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "adhoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21214942-cb9c-4ce6-b38f-a70f05d991a4",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "adhoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af350eec-5fdf-4b84-977b-b0bbefd7f517",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "adhoc"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payer_id\": \"<uuid>\",\n  \"payee_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39e34a94-d6a2-4982-ab8f-ac19c3b19509",
+          "name": "Verify a customer's identity",
+          "request": {
+            "name": "Verify a customer's identity",
+            "description": {
+              "content": "Initiate identity verification and run the specified identity checks.\n\nVerifying a personal customer requires that the following fields already be set:\n* `first_name`\n* `last_name`\n* `dob`\n* `email`\n* `phone_number`\n* `legal_address`\n* `ssn`\n\nVerifying a business customer requires that the following fields already be set:\n* `entity_name`\n* `legal_address`\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "verifications",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e758bce-25a6-48cc-b647-8ee52b5bc5c8",
+              "name": "Created identity request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verification_status\": \"ACCEPTED\",\n  \"verifications\": [\n    {\n      \"verification_type\": \"IDENTITY\",\n      \"verification_time\": \"<dateTime>\",\n      \"result\": \"ACCEPTED\",\n      \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"details\": [\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": \"<object>\",\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n      \"vendor_info\": {\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"json\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"verification_type\": \"IDENTITY\",\n      \"verification_time\": \"<dateTime>\",\n      \"result\": \"ACCEPTED\",\n      \"business_id\": \"d6bca903-7768-436b-af68-6b46f59d6569\",\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"details\": [\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"label\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"vendor_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"id\": \"379b0b05-bb49-4812-a9c9-3efe72df042f\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": \"<object>\",\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n      \"vendor_info\": {\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"content_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"json\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "260108bd-c20d-4e83-a4b2-f2864b9e879a",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71c07638-c80f-4576-ba9a-e864f9aa0bdd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b582f2f3-e704-4881-9951-9e1540243896",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bdcfb1a-c049-4be6-b35d-ce8059ecf239",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c5a7059-af15-4bb5-906b-2e3bc1345a16",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "verifications",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_consent\": true,\n  \"customer_ip_address\": \"235.2.7.2\",\n  \"person_id\": \"1bb26bcb-0e1b-4060-972d-80891332aae2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "af7cb037-29d4-404a-8c56-2c2da03a74fd",
+    "name": "Synctera Accounts KYC/KYB Verifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

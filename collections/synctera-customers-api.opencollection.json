@@ -1,0 +1,397 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Customers API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "first_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "last_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "phone_number",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ssn_last_4",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned customers.\n"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of Customers associated with the authorized requester"
+        },
+        {
+          "info": {
+            "name": "Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The customer object represents your customer's identity. You can then verify the identity of this customer and associate them with other people and accounts.\nNote that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "Get Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "Get Customer based on ID"
+        },
+        {
+          "info": {
+            "name": "Update Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update customer based on ID\nNote that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "Patch Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/customers/:customer_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch fields of customer based on ID\nNote that if:\n  * legal address is provided in the request, AND\n  * shipping_address is not provided in the request, AND\n  * the customer resource does not have shipping_address\n  then shipping_address will be set to a copy of the legal_address.\n"
+        },
+        {
+          "info": {
+            "name": "List customer employment records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              }
+            ]
+          },
+          "docs": "Get a list of customer's current employment records. To see historic employment pass the `include_history` flag.\n"
+        },
+        {
+          "info": {
+            "name": "Create employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a customer employment record."
+        },
+        {
+          "info": {
+            "name": "Get customer employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment/:employment_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "employment_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the employment record."
+              }
+            ]
+          },
+          "docs": "Get a single record of customer employment"
+        },
+        {
+          "info": {
+            "name": "Update customer employment record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/employment/:employment_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "employment_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the employment record."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a single record of customer employment."
+        },
+        {
+          "info": {
+            "name": "Prefill customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/prefill",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prefill takes a subset of a person's information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.\n"
+        },
+        {
+          "info": {
+            "name": "List customer risk ratings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              }
+            ]
+          },
+          "docs": "Get list of customer risk ratings"
+        },
+        {
+          "info": {
+            "name": "Create customer risk rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create customer risk rating"
+        },
+        {
+          "info": {
+            "name": "Get customer risk rating",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/risk_ratings/:risk_rating_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "risk_rating_id",
+                "value": "",
+                "type": "path",
+                "description": "Risk Rating ID"
+              }
+            ]
+          },
+          "docs": "Get a customer risk rating"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

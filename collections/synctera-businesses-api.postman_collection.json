@@ -1,0 +1,1635 @@
+{
+  "item": [
+    {
+      "id": "d22c003a-2c89-4728-8e64-03aa4df2bdd7",
+      "name": "Businesses",
+      "description": {
+        "content": "A legal entity (corporation, partnership, etc.) that is relevant to the Synctera platform in some way: a business customer or some other organization that has an ownership share in such a business customer.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de28e929-8d52-4a37-918d-07952959e065",
+          "name": "List business",
+          "request": {
+            "name": "List business",
+            "description": {
+              "content": "Retrieves paginated list of businesses associated with the authorized requester.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "businesses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "entity_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "phone_number",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "is_customer",
+                  "value": "<boolean>",
+                  "description": "If true, show only customers. If false, show non-customer parties."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort_by",
+                  "value": "<string>,<string>",
+                  "description": "Specifies the sort order for the returned businesses.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "309dcdae-35be-4c00-ad8f-51e468399d97",
+              "name": "List of businesses.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "entity_name",
+                      "value": "Apex Corporation"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"businesses\": [\n    {\n      \"status\": \"PROSPECT\",\n      \"is_customer\": true,\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"ein\": \"12-3456789\",\n      \"email\": \"Coty_Nolan@gmail.com\",\n      \"entity_name\": \"Apex Corporation\",\n      \"formation_date\": \"2000-01-01\",\n      \"formation_state\": \"OK\",\n      \"id\": \"7605b35b-e6dd-48bc-b16c-fc26c3961338\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"legal_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"metadata\": {},\n      \"phone_number\": \"+14374570680\",\n      \"structure\": \"CORPORATION\",\n      \"trade_names\": [\n        \"Apex\",\n        \"Apex LLC\",\n        \"CorporationID#77231\"\n      ],\n      \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n      \"verification_status\": \"ACCEPTED\",\n      \"website\": \"https://example.com\"\n    },\n    {\n      \"status\": \"INACTIVE\",\n      \"is_customer\": true,\n      \"creation_time\": \"2021-06-14T11:23:41Z\",\n      \"ein\": \"12-3456789\",\n      \"email\": \"Coty_Nolan@gmail.com\",\n      \"entity_name\": \"Apex Corporation\",\n      \"formation_date\": \"2000-01-01\",\n      \"formation_state\": \"OK\",\n      \"id\": \"7605b35b-e6dd-48bc-b16c-fc26c3961338\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"legal_address\": {\n        \"address_line_1\": \"4992 Curtis Ports\",\n        \"country_code\": \"US\",\n        \"address_line_2\": \"Apt. 877\",\n        \"city\": \"East Winstonview\",\n        \"postal_code\": \"28620\",\n        \"state\": \"NJ\"\n      },\n      \"metadata\": {},\n      \"phone_number\": \"+14374570680\",\n      \"structure\": \"CORPORATION\",\n      \"trade_names\": [\n        \"Apex\",\n        \"Apex LLC\",\n        \"CorporationID#77231\"\n      ],\n      \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n      \"verification_status\": \"ACCEPTED\",\n      \"website\": \"https://example.com\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f26d20a-793d-421e-8e0b-36bc58f81991",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "entity_name",
+                      "value": "Apex Corporation"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70b327bd-1ed3-4b0f-afed-03695971ba7b",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "entity_name",
+                      "value": "Apex Corporation"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "231dfca2-95aa-49b9-b808-322424f28b0e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "entity_name",
+                      "value": "Apex Corporation"
+                    },
+                    {
+                      "key": "phone_number",
+                      "value": "+12065550100"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_customer",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort_by",
+                      "value": "<string>,<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1abffee6-9f84-4dda-bd04-c06ffe07e0c9",
+          "name": "Create a business",
+          "request": {
+            "name": "Create a business",
+            "description": {
+              "content": "Create a business who may act as a customer or a related business. You can then verify the identity of this customer and associate them with other people and accounts.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "businesses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cc326110-4bab-41f2-a1a5-bdbc44da0c36",
+              "name": "The created business.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"id\": \"7605b35b-e6dd-48bc-b16c-fc26c3961338\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52f9c23c-246c-4437-bccd-b69f8d7e99ec",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9132eb01-320a-4e99-9422-3d0508f45dca",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e9afdd6-9c47-4fb7-8cbb-0507c29e0c5a",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e50cc1bc-b18d-444e-802c-7aabb7bcc6bb",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b2b0c16-173b-499e-a820-910d35c6ddf9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a6e92b4-e687-4b90-aa87-d4603bf61e5b",
+          "name": "Get business",
+          "request": {
+            "name": "Get business",
+            "description": {
+              "content": "Get business by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "businesses",
+                ":business_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "business_id",
+                  "description": "(Required) Business's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e44843c8-8e59-40e8-91a3-3090ea687786",
+              "name": "Business representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"id\": \"7605b35b-e6dd-48bc-b16c-fc26c3961338\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6050c6b9-2bb3-4943-a20d-8ecbd56d7a52",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bae54e83-4b8c-4e3e-b5cb-f83a8ce24f4e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af0b3f00-a555-4abc-8595-be402f52d5f1",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89bfe4e7-b5c5-4ca2-ba5c-04df8864e772",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "320907ee-dd49-4e33-976b-ce975bab4fd1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65e1f4de-0562-4c82-8d67-f28720ac2cd3",
+          "name": "Patch business",
+          "request": {
+            "name": "Patch business",
+            "description": {
+              "content": "Update business by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "businesses",
+                ":business_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "business_id",
+                  "description": "(Required) Business's unique identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9624aeec-de5b-4820-b458-e39aa1fe70a8",
+              "name": "Updated business representation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"<string>\",\n  \"is_customer\": true,\n  \"creation_time\": \"2021-06-14T11:23:41Z\",\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"id\": \"7605b35b-e6dd-48bc-b16c-fc26c3961338\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_last_run\": \"2022-01-18T17:54:12Z\",\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fc0faaa-217d-4a70-b01d-04192c562384",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50d643d0-2095-4fad-a72a-d4de633c11f2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5469ff76-1a26-41ff-ae6d-8aa1533e35cb",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77e32876-2b09-4988-b516-6b6cdcaf6ac6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ab70508-4bf6-47a6-be7e-66cc45641ea1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "businesses",
+                    ":business_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "business_id",
+                      "description": "(Required) Business's unique identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ein\": \"12-3456789\",\n  \"email\": \"Coty_Nolan@gmail.com\",\n  \"entity_name\": \"Apex Corporation\",\n  \"formation_date\": \"2000-01-01\",\n  \"formation_state\": \"OK\",\n  \"is_customer\": true,\n  \"legal_address\": {\n    \"address_line_1\": \"4992 Curtis Ports\",\n    \"country_code\": \"US\",\n    \"address_line_2\": \"Apt. 877\",\n    \"city\": \"East Winstonview\",\n    \"postal_code\": \"28620\",\n    \"state\": \"NJ\"\n  },\n  \"metadata\": \"<object>\",\n  \"phone_number\": \"+14374570680\",\n  \"status\": \"<string>\",\n  \"structure\": \"CORPORATION\",\n  \"trade_names\": [\n    \"Apex\",\n    \"Apex LLC\",\n    \"CorporationID#77231\"\n  ],\n  \"verification_status\": \"ACCEPTED\",\n  \"website\": \"https://example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "990fa2ff-a7b6-4637-96a0-bdf19b715d24",
+    "name": "Synctera Accounts Businesses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Digital Wallet Tokens API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Digital Wallet Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create digital wallet token provision request for Apple Pay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/digital_wallet_tokens/applepay",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create digital wallet token provision request for Apple Pay"
+        },
+        {
+          "info": {
+            "name": "Create digital wallet token provision request for Google Pay",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/digital_wallet_tokens/googlepay",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create digital wallet token provision request for Google Pay"
+        },
+        {
+          "info": {
+            "name": "List Digital Wallet Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "token_state",
+                "value": "",
+                "type": "query",
+                "description": "The status of the Digital Wallet Token"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Digital Wallet Tokens\n"
+        },
+        {
+          "info": {
+            "name": "Get Digital Wallet Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens/:digital_wallet_token_id",
+            "params": [
+              {
+                "name": "digital_wallet_token_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details about the digital wallet token of a card\n"
+        },
+        {
+          "info": {
+            "name": "Update Digital Wallet Token's life cycle status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/digital_wallet_tokens/:digital_wallet_token_id",
+            "params": [
+              {
+                "name": "digital_wallet_token_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The status of a digital wallet token can be updated as, ACTIVE to SUSPENDED, SUSPENDED to ACTIVE, ACTIVE to TERMINATED or SUSPENDED to TERMINATED.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

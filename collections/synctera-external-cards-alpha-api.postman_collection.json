@@ -1,0 +1,2380 @@
+{
+  "item": [
+    {
+      "id": "7e8d4a57-bf76-4b07-922b-5f09b829e912",
+      "name": "External Cards (alpha)",
+      "description": {
+        "content": "Push and pull from cards",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a1b3468-eef3-4d23-92b7-db598a312962",
+          "name": "List external cards",
+          "request": {
+            "name": "List external cards",
+            "description": {
+              "content": "List external cards\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "business_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "304a942e-48a7-4dca-acb0-fe9127f7eabc",
+              "name": "External cards list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_cards\": [\n    {\n      \"id\": \"string\",\n      \"currency\": \"USD\",\n      \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n      \"expiration_month\": \"06\",\n      \"expiration_year\": \"25\",\n      \"last_four\": \"1234\",\n      \"name\": \"Jean Valjean\",\n      \"created_time\": \"2020-01-01T00:00:00.000Z\",\n      \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n      \"verifications\": {\n        \"address_verification_results\": \"VERIFIED\",\n        \"card_type\": \"CREDIT\",\n        \"cvv2_result\": \"VERIFIED\",\n        \"fast_funds_indicator\": true,\n        \"online_gambling_block_indicator\": true,\n        \"processor\": \"MASTERCARD_V1\",\n        \"push_funds_block_indicator\": true,\n        \"state\": \"SUCCEEDED\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"currency\": \"USD\",\n      \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n      \"expiration_month\": \"06\",\n      \"expiration_year\": \"25\",\n      \"last_four\": \"1234\",\n      \"name\": \"Jean Valjean\",\n      \"created_time\": \"2020-01-01T00:00:00.000Z\",\n      \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n      \"verifications\": {\n        \"address_verification_results\": \"VERIFIED\",\n        \"card_type\": \"CREDIT\",\n        \"cvv2_result\": \"VERIFIED\",\n        \"fast_funds_indicator\": true,\n        \"online_gambling_block_indicator\": false,\n        \"processor\": \"MASTERCARD_V1\",\n        \"push_funds_block_indicator\": true,\n        \"state\": \"SUCCEEDED\"\n      }\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "668d3775-6f36-446d-99c9-62cf1fae5c70",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a3faac0-ed0c-4497-afc0-3545de34ee5e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41fc83fd-20d9-431a-8848-823373eedb5e",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96503f4b-de9a-46da-9e23-a46d5075a2ba",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e4db6ff-9032-43db-9adc-b96bdffdf7cf",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "4d742b70-9176-4f4b-bcbb-b42fe29b106d"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7b79498d-ae08-466c-8b1c-e0d8400e82d9",
+          "name": "Get a external card",
+          "request": {
+            "name": "Get a external card",
+            "description": {
+              "content": "Get an external card\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards",
+                ":external_card_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_card_id",
+                  "description": "(Required) The unique identifier of an external card"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c275c796-4aa7-45d2-9c0a-dfb8f7dd59e1",
+              "name": "External card details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency\": \"USD\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"expiration_month\": \"06\",\n  \"expiration_year\": \"25\",\n  \"last_four\": \"1234\",\n  \"name\": \"Jean Valjean\",\n  \"created_time\": \"2020-01-01T00:00:00.000Z\",\n  \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n  \"verifications\": {\n    \"address_verification_results\": \"VERIFIED\",\n    \"card_type\": \"PREPAID\",\n    \"cvv2_result\": \"NOT_SUPPORTED\",\n    \"fast_funds_indicator\": true,\n    \"online_gambling_block_indicator\": true,\n    \"processor\": \"MASTERCARD_V1\",\n    \"push_funds_block_indicator\": true,\n    \"state\": \"FAILED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "031bf6c9-68b5-4de2-8b6b-fa00d363dd6e",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3728eb59-7ee3-4540-aee2-f8576b364fb1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04329567-9599-4c84-a614-a4ee26599929",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "597856b5-50d4-4e40-b00f-0f42b1b979b5",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55214134-ab31-4f36-ae81-86f68f51bf18",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    ":external_card_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_card_id",
+                      "description": "(Required) The unique identifier of an external card"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d4571be-fbf9-4b35-aad6-a2e3b588680b",
+          "name": "Create external card from token",
+          "request": {
+            "name": "Create external card from token",
+            "description": {
+              "content": "Create an external card from token - You must first tokenize the external card using the external card iframe. You will receive a token for the external card upon successful completion. This endpoint will persist the external card and associate it to a customer. The customer's name and address should match that of the external card as entered in the iframe. <br>NB: Tokens should be associated right away. Tokens not associated within 30 mins of creation will be invalidated.</br> NB: If a valid business_id is provided, the address verification for the external card will be done against the address of the business. Otherwise, the address of the customer will be used. In either case, the name of the customer will be used to match the name of the cardholder.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"<uuid>\",\n  \"business_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8731091-9be1-4949-aa98-3f96ea782f8d",
+              "name": "External card created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"currency\": \"USD\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"expiration_month\": \"06\",\n  \"expiration_year\": \"25\",\n  \"last_four\": \"1234\",\n  \"name\": \"Jean Valjean\",\n  \"created_time\": \"2020-01-01T00:00:00.000Z\",\n  \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n  \"verifications\": {\n    \"address_verification_results\": \"VERIFIED\",\n    \"card_type\": \"PREPAID\",\n    \"cvv2_result\": \"NOT_SUPPORTED\",\n    \"fast_funds_indicator\": true,\n    \"online_gambling_block_indicator\": true,\n    \"processor\": \"MASTERCARD_V1\",\n    \"push_funds_block_indicator\": true,\n    \"state\": \"FAILED\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ff8deb6-b224-4c76-bea7-e38b4b3c1083",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b99d2df7-1637-4b25-bdb6-be396ec1d9f6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa942408-4938-4aab-b286-bbffaddde798",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4421720-6298-48ae-8dcd-7a11bd68853c",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34279c59-9bc7-4c34-8eaa-be7c120694b1",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\",\n  \"customer_id\": \"8da2b02b-81f2-41f3-a32e-041eb8ccd825\",\n  \"business_id\": \"4d742b70-9176-4f4b-bcbb-b42fe29b106d\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb4aff42-3db7-49d1-ba2c-7bf4f9cd58cc",
+          "name": "List external transfers",
+          "request": {
+            "name": "List external transfers",
+            "description": {
+              "content": "List external card transfer\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards",
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>,<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "external_card_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "originating_account_id",
+                  "value": "<uuid>,<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "The type of an external transfer"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8de7498-1bff-49dd-8cda-e81989f30c81",
+              "name": "External transfer list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_transfers\": [\n    {\n      \"account_id\": \"a4037077-95cc-4746-806e-e19f32a2a5ab\",\n      \"id\": \"string\",\n      \"amount\": 3749,\n      \"currency\": \"USD\",\n      \"status\": \"FAILED\",\n      \"customer_id\": \"a2d8305b-38bc-4f9e-a860-66b4ccbc52bc\",\n      \"country_code\": \"US\",\n      \"created_time\": \"2020-01-01T00:00:00.000Z\",\n      \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n      \"type\": \"PULL\",\n      \"transaction_id\": \"f9e41612-fecd-95cd-4680-1d1dfb83a0ef\"\n    },\n    {\n      \"account_id\": \"a4037077-95cc-4746-806e-e19f32a2a5ab\",\n      \"id\": \"string\",\n      \"amount\": 5451,\n      \"currency\": \"USD\",\n      \"status\": \"SUCCEEDED\",\n      \"customer_id\": \"a2d8305b-38bc-4f9e-a860-66b4ccbc52bc\",\n      \"country_code\": \"US\",\n      \"created_time\": \"2020-01-01T00:00:00.000Z\",\n      \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n      \"type\": \"PULL\",\n      \"transaction_id\": \"26947668-231a-031d-043e-730283f08b4c\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e60f31f3-7df0-4dbb-9872-b716edf7fed3",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46a99650-a326-4313-9e37-a12e75efeaf6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "522c816e-d2ba-4f00-820f-3382edda4091",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b623b147-6035-457a-8c25-f3b609484d33",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a558b494-db48-4f32-b981-077c3ae44fe7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "8da2b02b-81f2-41f3-a32e-041eb8ccd825,8da2b02b-81f2-41f3-a32e-041eb8ccd825"
+                    },
+                    {
+                      "key": "external_card_id",
+                      "value": "7aeb712d-e9c7-42eb-965f-ce19507b17f8"
+                    },
+                    {
+                      "key": "originating_account_id",
+                      "value": "a6f8870c-1e7e-45ba-833d-cbc1eead9d2d,a6f8870c-1e7e-45ba-833d-cbc1eead9d2d"
+                    },
+                    {
+                      "key": "type",
+                      "value": "PULL"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7093361d-abaf-4e15-8855-d4302d32451f",
+          "name": "Create external card transfer",
+          "request": {
+            "name": "Create external card transfer",
+            "description": {
+              "content": "Create a external card transfer\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards",
+                "transfers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"originating_account_id\": \"<uuid>\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"<string>\",\n  \"type\": \"<string>\",\n  \"external_card_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0271b93a-369f-4e69-8f99-c0e73966164e",
+              "name": "External card transfer created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"a4037077-95cc-4746-806e-e19f32a2a5ab\",\n  \"id\": \"string\",\n  \"amount\": 4856,\n  \"currency\": \"USD\",\n  \"status\": \"FAILED\",\n  \"customer_id\": \"a2d8305b-38bc-4f9e-a860-66b4ccbc52bc\",\n  \"country_code\": \"US\",\n  \"created_time\": \"2020-01-01T00:00:00.000Z\",\n  \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n  \"type\": \"PULL\",\n  \"transaction_id\": \"3c73ace2-f3f7-8930-c39b-8d15f920352e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c2c78fe0-1e7b-4a25-ba1b-b9ffe67b670b",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "074b57a0-d2b7-4975-aed7-87f2aa3a065f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9817e169-e5de-4d0c-b425-d99f2d49d9c2",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a31f07f-aba2-48fe-86c1-2b08bd510c02",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0bf61570-7a0d-4516-a125-058317499d5a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"originating_account_id\": \"3e2a2f28-4910-4934-be22-ded51f926b76\",\n  \"amount\": \"<integer>\",\n  \"currency\": \"USD\",\n  \"type\": \"PULL\",\n  \"external_card_id\": \"b2710751-b575-47d0-a09b-da0994553d93\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f6b50ca-64f4-4f0d-ad72-fb468749079e",
+          "name": "Get an external card transfer",
+          "request": {
+            "name": "Get an external card transfer",
+            "description": {
+              "content": "Get an external transfer\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_cards",
+                "transfers",
+                ":transfer_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "transfer_id",
+                  "description": "(Required) The unique identifier of a transfer"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c75b5104-dd21-44fc-a6ee-5137739d19d7",
+              "name": "External card transfer details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"a4037077-95cc-4746-806e-e19f32a2a5ab\",\n  \"id\": \"string\",\n  \"amount\": 4856,\n  \"currency\": \"USD\",\n  \"status\": \"FAILED\",\n  \"customer_id\": \"a2d8305b-38bc-4f9e-a860-66b4ccbc52bc\",\n  \"country_code\": \"US\",\n  \"created_time\": \"2020-01-01T00:00:00.000Z\",\n  \"last_modified_time\": \"2020-01-01T00:00:00.000Z\",\n  \"type\": \"PULL\",\n  \"transaction_id\": \"3c73ace2-f3f7-8930-c39b-8d15f920352e\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd8a007b-929b-4da7-9585-3786136c61ba",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77904f44-d247-475f-a16b-81d7408db793",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3430ab5-dd7c-449a-a368-2a73e483784d",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75a9c293-907d-4097-9612-b5aafd8a0555",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20166107-3938-4042-8aaf-bb02bb19082e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_cards",
+                    "transfers",
+                    ":transfer_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "transfer_id",
+                      "description": "(Required) The unique identifier of a transfer"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42c3f504-0522-400a-92f6-bcf85afdbbf7",
+    "name": "Synctera Accounts External Cards (alpha) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts PaymentSchedules API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "PaymentSchedules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List payment schedules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/payment_schedules",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Get paginated list of payment schedules"
+        },
+        {
+          "info": {
+            "name": "Create a payment schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/payment_schedules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a payment schedule"
+        },
+        {
+          "info": {
+            "name": "Update a payment schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/payment_schedules/:payment_schedule_id",
+            "params": [
+              {
+                "name": "payment_schedule_id",
+                "value": "",
+                "type": "path",
+                "description": "Payment schedule ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a payment schedule"
+        },
+        {
+          "info": {
+            "name": "List payments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/payment_schedules/payments",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "schedule_id",
+                "value": "",
+                "type": "query",
+                "description": "Payment schedule IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+              }
+            ]
+          },
+          "docs": "Get paginated list of payments"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

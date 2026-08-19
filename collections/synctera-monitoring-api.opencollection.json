@@ -1,0 +1,201 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Monitoring API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Monitoring",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List monitoring alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/alerts",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List monitoring alerts"
+        },
+        {
+          "info": {
+            "name": "Retrieve a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/alerts/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this monitoring alert."
+              }
+            ]
+          },
+          "docs": "Retrieve a monitoring alert"
+        },
+        {
+          "info": {
+            "name": "Update a monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/monitoring/alerts/:alert_id",
+            "params": [
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this monitoring alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a monitoring alert"
+        },
+        {
+          "info": {
+            "name": "List monitoring subscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List monitoring subscriptions"
+        },
+        {
+          "info": {
+            "name": "Subscribe a customer or business to monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint is rarely needed. Since August 2022, watchlist monitoring is automatically enabled for all businesses and customers who are verified (KYC/KYB) through Synctera's platform.\n"
+        },
+        {
+          "info": {
+            "name": "Retrieve monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for monitoring subscription."
+              }
+            ]
+          },
+          "docs": "Retrieve monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Delete monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/monitoring/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for monitoring subscription."
+              }
+            ]
+          },
+          "docs": "Delete monitoring subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

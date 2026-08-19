@@ -1,0 +1,2906 @@
+{
+  "item": [
+    {
+      "id": "9748e57e-6e0d-4e2d-af1a-9de4e1406e8d",
+      "name": "Card Transaction Simulations",
+      "description": {
+        "content": "Requests to generate simulated transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f367f67a-290c-4807-b2a4-607ab6e8517b",
+          "name": "Simulate authorization",
+          "request": {
+            "name": "Simulate authorization",
+            "description": {
+              "content": "Simulate an `authorization` type transaction by including the `card_token` and other authorization details in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "authorization"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f88e9314-34e8-433d-990e-60adac67a85d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ad97b8b-398a-4569-8f81-8dbe97299c1e",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00cccbb3-a16e-42e1-98d7-c4f0664c24d0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b7da58d-5ebd-4ba2-8e8b-2ba47f1565d4",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d126f99-8c75-4618-9ba4-998710ade8d5",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_options\": {\n    \"billing_address\": {\n      \"address\": \"<string>\",\n      \"compressed_zip\": \"<string>\",\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"zip\": \"<string>\"\n    },\n    \"card_present\": false,\n    \"cvv\": \"<string>\",\n    \"expiration\": \"<string>\"\n  },\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f1815035-6ef0-48a8-a891-8c7f1dc8d87a",
+          "name": "Simulate authorization advice",
+          "request": {
+            "name": "Simulate authorization advice",
+            "description": {
+              "content": "An authorization advice allows an amount to be decreased after the authorization. This endpoint allows you to simulate post-swipe adjustments.\n\nSimulate an `authorization.advice` type transaction by including the `original_transaction_token` and other authorization details in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "authorization",
+                "advice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c580cef6-8305-4baf-b5f1-1ed43e7c086f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "592b764a-0b58-4d5f-81c6-fdee6cf1de14",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c00fff99-35a4-473f-b3bd-f3e88a0af53b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5ea53af-9d6d-4808-98e1-9929346c2323",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a3f043a-57f8-4af3-9cb9-2725c6b7e4aa",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "authorization",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a9086d5-4c1d-4966-97a8-231d60c93910",
+          "name": "Simulate clearing or refund",
+          "request": {
+            "name": "Simulate clearing or refund",
+            "description": {
+              "content": "Simulate an `authorization.clearing` type transaction by including the `original_transaction_token` and `amount` in your request. To simulate a refund type transaction, set the `is_refund` field to true.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "clearing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fab0ad65-eb05-4fb3-86a0-06e1fd0a640a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "clearing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ee961ca-d408-489c-8123-31efcf3c816b",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "clearing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5abb78b-9ad4-43c7-9ba4-2fda05c2b486",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "clearing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22d0be14-9a31-4b65-92b6-c059a74827a4",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "clearing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17de5de4-ed51-4d49-81e1-4b4758b504dd",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "clearing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"force_post\": false,\n  \"is_refund\": false,\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17cac57c-1d24-41f6-92b1-8dd9e96792f1",
+          "name": "Simulate financial",
+          "request": {
+            "name": "Simulate financial",
+            "description": {
+              "content": "A \"financial\" is a transaction message class that includes ATM transactions, PIN-debit transactions, and balance inquiries.\n\nSimulate a `pindebit` type transaction by including the `card_token` and `amount` in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "financial"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b3dbb07a-1d9c-453f-b5a1-d92ef5c8fa07",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c59558c9-07d0-4d8c-885d-5f65302baf4f",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05cd6de5-b2d5-433b-8f74-e9e71a5cf9d5",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e18be6c5-cc12-41b8-a76e-972c2e3982ee",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dde8ccbc-6d25-4b77-a220-1c19b15d0fba",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"cash_back_amount\": \"<integer>\",\n  \"is_pre_auth\": false,\n  \"pin\": \"<string>\",\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64415609-e8db-4ac0-95d2-b453e6f16a13",
+          "name": "Simulate financial advice",
+          "request": {
+            "name": "Simulate financial advice",
+            "description": {
+              "content": "Simulate a financial advice by including the `original_transaction_token` and other authorization details in JSON format in the body of the request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "financial",
+                "advice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80069e45-3c8f-4031-a3a2-0b7c470c8f5c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5e76924-48b0-4a72-bc92-f4e9142a85ae",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95d7a2ab-4ade-41a0-9aee-832c82ac50bd",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54af0ab2-0307-4705-9b96-7bd70fa84baa",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ab0a3c9-b2fd-4a03-9f44-fca80919d269",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "advice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"transaction_options\": {\n    \"additional_data\": \"<string>\",\n    \"card_expiration_date_yymm\": \"<string>\",\n    \"database_transaction_timeout\": \"<integer>\",\n    \"encryption_key_id\": \"<string>\",\n    \"is_async\": false,\n    \"pre_auth_time_limit\": \"<string>\",\n    \"send_expiration_date\": false,\n    \"send_track_data\": false,\n    \"transaction_id\": \"<string>\",\n    \"transaction_timeout_threshold_seconds\": \"<long>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dc57959-e5fc-4fbe-b947-daa3fb6d5491",
+          "name": "Simulate balance inquiry",
+          "request": {
+            "name": "Simulate balance inquiry",
+            "description": {
+              "content": "Simulate a `pindebit.balanceinquiry` type transaction by sending a POST request to the `/simulate/financial/balanceinquiry` endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "financial",
+                "balance_inquiry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ad50ffb6-81c9-41bf-9fda-757bc604d607",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "balance_inquiry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8d3a2c4-12a1-43db-9e71-adf798b3521b",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "balance_inquiry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38f06744-2b75-4e4f-9b5d-9d6c1c40309c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "balance_inquiry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0c6a83fd-79bf-4dcb-95db-409e7646946e",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "balance_inquiry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b652804-34c3-45fd-a273-12d20403c3b6",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "balance_inquiry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ],\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "400a5b12-229c-4dcb-936e-a30befcdfbcc",
+          "name": "Simulate OCT",
+          "request": {
+            "name": "Simulate OCT",
+            "description": {
+              "content": "This Original Credit Transaction (OCT) enables the cardholder to receive funds on the specified card from an external source via the card network. Use this endpoint to simulate a transaction that is similar to a wire transfer and not linked to any purchase.\n\nSimulate an OCT by including the `card_token`, `amount`, `mid`, and `type` in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "financial",
+                "original_credit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3c702bf-cb1a-42ba-bd1e-7988783b5381",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "original_credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be3d6073-4440-4446-8ecf-6e69874f7acf",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "original_credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0745e085-8f6f-4e3d-bf4a-aa6b944a3846",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "original_credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a57f93e9-7d81-4acc-93bb-6b9bcbdcf251",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "original_credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bd7dc93-3a19-40cf-b2c0-07e0339d9075",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "original_credit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"screening_score\": \"<string>\",\n  \"sender_data\": {\n    \"funding_source\": \"<string>\",\n    \"sender_account_number\": \"<string>\",\n    \"sender_account_type\": \"<string>\",\n    \"sender_address\": \"<string>\",\n    \"sender_city\": \"<string>\",\n    \"sender_country\": \"<string>\",\n    \"sender_name\": \"<string>\",\n    \"sender_reference_number\": \"<string>\",\n    \"sender_state\": \"<string>\",\n    \"transaction_purpose\": \"<string>\",\n    \"unique_transaction_reference_number\": \"<string>\"\n  },\n  \"transactionPurpose\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef2660e1-9349-41be-b532-a586ecc737ed",
+          "name": "Simulate ATM withdrawal",
+          "request": {
+            "name": "Simulate ATM withdrawal",
+            "description": {
+              "content": "Simulate a `pindebit.atm.withdrawal` type transaction by including the `card_token` and `amount` in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "financial",
+                "withdrawal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"ecommerce_security_level_indicator\": \"<string>\",\n    \"mcc\": \"<string>\",\n    \"name\": \"<string>\",\n    \"partial_approval_capable\": false,\n    \"state\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"pin\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "01acac06-252f-417d-80e6-7e23efd2552d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9de7c2c7-5807-465f-9097-9f8466ec361f",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec87c4ce-0161-4f14-92b4-7a4c0f7ba510",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3878541-f263-4268-b646-0920e6a1bad5",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e3840e0-ccca-4e45-8118-fc11f1891da4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "financial",
+                    "withdrawal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"card_id\": \"<uuid>\",\n  \"mid\": \"<string>\",\n  \"account_type\": \"<string>\",\n  \"card_acceptor\": {\n    \"address\": \"address\",\n    \"city\": \"city\",\n    \"country\": \"country\",\n    \"ecommerce_security_level_indicator\": \"ecommerce_security_level_indicator\",\n    \"mcc\": \"mcc\",\n    \"name\": \"name\",\n    \"partial_approval_capable\": false,\n    \"state\": \"state\",\n    \"zip\": \"zip\"\n  },\n  \"pin\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "210a63bc-24fd-493f-813d-05f5b343fce0",
+          "name": "Simulate reversal",
+          "request": {
+            "name": "Simulate reversal",
+            "description": {
+              "content": "A reversal releases the hold that was placed on account funds by an authorization, thus returning the funds to the account.\n\nSimulate an `authorization.reversal` type transaction by including the `original_transaction_token` and `amount` in your request.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cards",
+                "transaction_simulations",
+                "reversal"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    },\n    {\n      \"type\": \"<string>\",\n      \"amount\": \"<integer>\",\n      \"credit_debit\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "600a9210-2a8f-4efa-9112-ff844f4440c4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c3f363a-6a6e-4656-8b30-2cd80339d441",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06ef8411-1db8-4327-a791-ddce7b032da0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0af8e2e9-af9d-4bcb-b491-d08a784c65fa",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21402b06-f05e-4392-8738-3ec82057883c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cards",
+                    "transaction_simulations",
+                    "reversal"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": \"<integer>\",\n  \"original_transaction_id\": \"<uuid>\",\n  \"find_original_window_days\": \"<integer>\",\n  \"is_advice\": false,\n  \"network_fees\": [\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    },\n    {\n      \"amount\": 123,\n      \"credit_debit\": \"C\",\n      \"type\": \"ISSUER_FEE\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "94a8aa95-6d2a-4fb8-8212-46bba5c2c1e4",
+    "name": "Synctera Accounts Card Transaction Simulations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

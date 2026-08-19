@@ -1,0 +1,1539 @@
+{
+  "item": [
+    {
+      "id": "6ec7bfd5-038c-44ef-9e58-2ee9d628d846",
+      "name": "PaymentSchedules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5be2bc65-9433-48ed-9c24-f931b82c76a2",
+          "name": "List payment schedules",
+          "request": {
+            "name": "List payment schedules",
+            "description": {
+              "content": "Get paginated list of payment schedules",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e13c989c-9fc6-4e51-95b5-15c1f1a373f9",
+              "name": "List of payment schedules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payment_schedules\": [\n    {\n      \"description\": \"string\",\n      \"schedule\": {\n        \"start_date\": \"2014-05-05\",\n        \"frequency\": \"DAILY\",\n        \"interval\": 170,\n        \"count\": 9764,\n        \"end_date\": \"1949-03-04\"\n      },\n      \"payment_instruction\": {\n        \"type\": \"ACH\",\n        \"request\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"e875df36-0acd-a3f4-7aa8-f4773581a1d2\",\n      \"metadata\": {},\n      \"next_payment_date\": {\n        \"scheduled_date\": \"2014-07-28\",\n        \"execution_date\": \"1970-06-05\"\n      },\n      \"status\": \"CANCELLED\"\n    },\n    {\n      \"description\": \"string\",\n      \"schedule\": {\n        \"start_date\": \"1957-08-02\",\n        \"frequency\": \"DAILY\",\n        \"interval\": 151,\n        \"count\": 8960,\n        \"end_date\": \"1993-07-18\"\n      },\n      \"payment_instruction\": {\n        \"type\": \"ACH\",\n        \"request\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"id\": \"9f619533-c349-bf76-39e7-a5e397fc35ba\",\n      \"metadata\": {},\n      \"next_payment_date\": {\n        \"scheduled_date\": \"2002-07-02\",\n        \"execution_date\": \"1994-01-24\"\n      },\n      \"status\": \"ACTIVE\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aac6f9a1-f427-4006-af20-1308f114da1b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66ce3ff5-45c3-45b8-81b4-4b6d6407a73e",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fdb8152-e62b-4c3a-b687-1924e422849f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e80f4139-f6ce-4811-9870-b45851e2a2a5",
+          "name": "Create a payment schedule",
+          "request": {
+            "name": "Create a payment schedule",
+            "description": {
+              "content": "Create a payment schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_schedules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"<uuid>\",\n      \"amount\": \"<integer>\",\n      \"currency\": \"<string>\",\n      \"receiving_account_id\": \"<uuid>\",\n      \"dc_sign\": \"<string>\",\n      \"originating_account_id\": \"<uuid>\",\n      \"company_entry_description\": \"<string>\",\n      \"effective_date\": \"<date>\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": \"<integer>\"\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"<string>\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "495a50f7-2e78-4b04-b4f2-9060f7d111df",
+              "name": "Created payment schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"id\": \"1f453c98-9c30-42b7-9835-cfc1e33f5e70\",\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"id\": \"bfb3dbbe-1699-c8ae-aa54-fd48ef61b61c\",\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7666fcaa-61e6-49bf-9052-825bf2dc7e7b",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce6ef830-a2d3-4250-b220-cf0cabdad279",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1de2142-39d9-4aae-9ec9-add90f909b44",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81815895-55f9-4d5b-95fd-50887982782e",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "756c7604-99c8-4842-a5ab-5d850cf6cb2e",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "250cb4b3-2ed2-488e-bedb-8c9f0adf5148",
+          "name": "Update a payment schedule",
+          "request": {
+            "name": "Update a payment schedule",
+            "description": {
+              "content": "Update a payment schedule",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_schedules",
+                ":payment_schedule_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "payment_schedule_id",
+                  "description": "(Required) Payment schedule ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8871c64d-6fc5-4798-8087-203793cf1d77",
+              "name": "Updated payment schedule",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"<string>\",\n  \"schedule\": {\n    \"start_date\": \"<date>\",\n    \"frequency\": \"<string>\",\n    \"interval\": \"<integer>\",\n    \"count\": \"<integer>\",\n    \"end_date\": \"<date>\"\n  },\n  \"payment_instruction\": {\n    \"type\": \"<string>\",\n    \"request\": {\n      \"customer_id\": \"2071f55a-0aeb-4f62-85a9-68f72856d463\",\n      \"amount\": 607,\n      \"currency\": \"USD\",\n      \"receiving_account_id\": \"18b1f30b-227f-4720-9956-4c6805e5cdfa\",\n      \"dc_sign\": \"debit\",\n      \"originating_account_id\": \"4394f57f-3396-4661-bd03-27684791611f\",\n      \"company_entry_description\": \"PAYROLL\",\n      \"effective_date\": \"2022-03-18\",\n      \"external_data\": \"<object>\",\n      \"final_customer_id\": \"<uuid>\",\n      \"hold\": {\n        \"amount\": \"<integer>\",\n        \"duration\": 2\n      },\n      \"id\": \"1f453c98-9c30-42b7-9835-cfc1e33f5e70\",\n      \"is_same_day\": \"<boolean>\",\n      \"memo\": \"<string>\",\n      \"reference_info\": \"Tempore atque et cum.\",\n      \"risk\": {\n        \"client_ip\": \"<string>\"\n      }\n    }\n  },\n  \"id\": \"bfb3dbbe-1699-c8ae-aa54-fd48ef61b61c\",\n  \"metadata\": \"<object>\",\n  \"next_payment_date\": {\n    \"scheduled_date\": \"<date>\",\n    \"execution_date\": \"<date>\"\n  },\n  \"status\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35d3eff1-d4d9-4b19-9af9-b37a6925a1c4",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f35f8265-d045-4e82-aa54-9fae41f71a70",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9087cc77-7b76-4fca-a1f3-215e8f535251",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3aa6c9e5-aba2-4a6d-9175-fa96381c4f72",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a80552f-372b-4815-b183-075a0ac45db3",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bc9101c-7ea0-48e3-8b26-d61fb316685d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    ":payment_schedule_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "payment_schedule_id",
+                      "description": "(Required) Payment schedule ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "51142a4f-6be8-4471-8bff-917d31adac5a",
+          "name": "List payments",
+          "request": {
+            "name": "List payments",
+            "description": {
+              "content": "Get paginated list of payments",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "payment_schedules",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "IDs. Multiple IDs can be provided as a comma-separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "schedule_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Payment schedule IDs. Multiple IDs can be provided as a comma-separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "Originating account IDs. Multiple IDs can be provided as a comma-separated list."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0efe8c4-1571-48a4-b494-4e64610fb55a",
+              "name": "List of payment schedules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "schedule_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"payments\": [\n    {\n      \"description\": \"string\",\n      \"error_details\": {\n        \"code\": \"string\",\n        \"details\": \"string\"\n      },\n      \"id\": \"c1ef7a00-7cbe-4c3a-c232-55b569d11597\",\n      \"metadata\": {},\n      \"payment_date\": {\n        \"scheduled_date\": \"<date>\",\n        \"execution_date\": \"<date>\"\n      },\n      \"payment_instruction\": {\n        \"type\": \"<string>\",\n        \"request\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"payment_schedule_id\": \"5f279a86-6bda-e45b-a602-b516ce72d606\",\n      \"status\": \"ERROR\",\n      \"transaction_id\": \"07636375-c85e-3a22-661a-5e2bf55468ac\"\n    },\n    {\n      \"description\": \"string\",\n      \"error_details\": {\n        \"code\": \"string\",\n        \"details\": \"string\"\n      },\n      \"id\": \"0cc382d0-1681-2997-bc6c-eb7393fad3b4\",\n      \"metadata\": {},\n      \"payment_date\": {\n        \"scheduled_date\": \"<date>\",\n        \"execution_date\": \"<date>\"\n      },\n      \"payment_instruction\": {\n        \"type\": \"<string>\",\n        \"request\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"payment_schedule_id\": \"e924535a-471b-c267-49a1-3bbbc75d2178\",\n      \"status\": \"ERROR\",\n      \"transaction_id\": \"21a63e5a-6436-b740-4cf8-5563a94df4d9\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a23bd00-6814-403f-93a4-8b5635015f21",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "schedule_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cdf55180-f963-43d8-9ccb-d486bea1ab0e",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "schedule_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7a3e69e-9a51-4eb9-ab7b-ecb34c27dd7a",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "payment_schedules",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "schedule_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "account_id",
+                      "value": "<uuid>,<uuid>"
+                    },
+                    {
+                      "key": "customer_id",
+                      "value": "<uuid>,<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e55e928d-d27f-4954-83c2-dd6a2802a439",
+    "name": "Synctera Accounts PaymentSchedules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

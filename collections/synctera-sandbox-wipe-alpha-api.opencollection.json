@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Sandbox Wipe (alpha) API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sandbox Wipe (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Delete data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/wipe"
+          },
+          "docs": "Delete the customer and account related data, leaving other configuration data intact. This enables use cases such as bulk data deletion between tests.\nData associated with below resources will be deleted:\n  - Accounts\n  - Account applications\n  - ACH\n  - Businesses\n  - Cards\n  - Card images\n  - Cases\n  - Customers\n  - Disclosures\n  - External Accounts\n  - Internal Accounts\n  - Payment schedules and history\n  - Persons\n  - RDC\n  - Relationships\n  - Transactions (including for Internal Accounts)\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

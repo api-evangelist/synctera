@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts KYC/KYB Verifications API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KYC/KYB Verifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List verifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/verifications",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the resource. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "verification_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of verification run. Multiple values can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "result",
+                "value": "",
+                "type": "query",
+                "description": "The result of the verification that was run on the party. Multiple values can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List customer verification results."
+        },
+        {
+          "info": {
+            "name": "Create a verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upload evidence of an externally performed KYC/KYB.  You may use your own KYC/KYB provider and upload evidence of that result to Synctera instead of using Synctera's providers.\n"
+        },
+        {
+          "info": {
+            "name": "Get verification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/verifications/:verification_id",
+            "params": [
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path",
+                "description": "Verification's unique identifier."
+              }
+            ]
+          },
+          "docs": "Get customer verification result."
+        },
+        {
+          "info": {
+            "name": "Check if an individual is on any watchlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications/adhoc",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check if an individual is on any watchlists"
+        },
+        {
+          "info": {
+            "name": "Verify a customer's identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/verifications/verify",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate identity verification and run the specified identity checks.\n\nVerifying a personal customer requires that the following fields already be set:\n* `first_name`\n* `last_name`\n* `dob`\n* `email`\n* `phone_number`\n* `legal_address`\n* `ssn`\n\nVerifying a business customer requires that the following fields already be set:\n* `entity_name`\n* `legal_address`\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

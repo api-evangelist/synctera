@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Wires (alpha) API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Wires (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List wires",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/wires",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originating_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "receiving_account_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of wires"
+        },
+        {
+          "info": {
+            "name": "Send a wire",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/wires",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an outgoing wire transfer"
+        },
+        {
+          "info": {
+            "name": "Get a wire by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/wires/:wire_id",
+            "params": [
+              {
+                "name": "wire_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a wire"
+              }
+            ]
+          },
+          "docs": "Get a wire by id"
+        },
+        {
+          "info": {
+            "name": "Cancel an outgoing wire",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/wires/:wire_id",
+            "params": [
+              {
+                "name": "wire_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a wire"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel an outgoing tranfer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Relationships API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Relationships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List relationships",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/relationships",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Unique resource identifier"
+              },
+              {
+                "name": "from_person_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "from_business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "to_business_id",
+                "value": "",
+                "type": "query",
+                "description": "Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.\n"
+              },
+              {
+                "name": "relationship_type",
+                "value": "",
+                "type": "query",
+                "description": "The relationship type. Any of the following:\n* `BENEFICIAL_OWNER_OF` – a person who directly or indirectly owns a portion of the business.\n* `MANAGING_PERSON_OF` – a person who is an officer, director, or other notable person of an organization.\n* `OWNER_OF` – a business with ownership of another business.\n"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of relationships viewable by the authorized requester."
+        },
+        {
+          "info": {
+            "name": "Create a relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/relationships",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a party relationship."
+        },
+        {
+          "info": {
+            "name": "Get relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ]
+          },
+          "docs": "Get relationship by ID."
+        },
+        {
+          "info": {
+            "name": "Update relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update relationship by ID."
+        },
+        {
+          "info": {
+            "name": "Delete relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.synctera.com/v0/relationships/:relationship_id",
+            "params": [
+              {
+                "name": "relationship_id",
+                "value": "",
+                "type": "path",
+                "description": "Relationship ID."
+              }
+            ]
+          },
+          "docs": "Delete party relationship by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

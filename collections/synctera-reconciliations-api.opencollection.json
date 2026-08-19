@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Reconciliations API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reconciliations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List reconciliations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/reconciliations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves paginated list of reconciliations"
+        },
+        {
+          "info": {
+            "name": "Create a reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/reconciliations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new reconciliation job\n"
+        },
+        {
+          "info": {
+            "name": "Get reconciliation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/reconciliations/:reconciliation_id",
+            "params": [
+              {
+                "name": "reconciliation_id",
+                "value": "",
+                "type": "path",
+                "description": "Reconciliation id"
+              }
+            ]
+          },
+          "docs": "Retrieves one reconciliation by id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,228 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Watchlist API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Watchlist",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List watchlist monitoring alerts for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "List watchlist monitoring alerts for a customer"
+        },
+        {
+          "info": {
+            "name": "Retrieve watchlist monitoring alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts/:alert_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this watchlist alert."
+              }
+            ]
+          },
+          "docs": "Retrieve watchlist monitoring alert"
+        },
+        {
+          "info": {
+            "name": "Update watchlist alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/alerts/:alert_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "alert_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for this watchlist alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update watchlist alert"
+        },
+        {
+          "info": {
+            "name": "List watchlist monitoring subscriptions for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ]
+          },
+          "docs": "List watchlist monitoring subscriptions for a customer"
+        },
+        {
+          "info": {
+            "name": "Subscribe a customer to watchlist monitoring",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe a customer to watchlist monitoring"
+        },
+        {
+          "info": {
+            "name": "Retrieve watchlist monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Watchlist monitoring subscription ID"
+              }
+            ]
+          },
+          "docs": "Retrieve watchlist monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Update watchlist monitoring subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/subscriptions/:subscription_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "subscription_id",
+                "value": "",
+                "type": "path",
+                "description": "Watchlist monitoring subscription ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update watchlist monitoring subscription"
+        },
+        {
+          "info": {
+            "name": "Suppress entity alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/watchlists/suppressions",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Suppress entity alert"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

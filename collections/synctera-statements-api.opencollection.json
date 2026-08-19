@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Statements API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Statements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List statements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/statements",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "The account's unique identifier provided by Synctera"
+              }
+            ]
+          },
+          "docs": "Get list of statements"
+        },
+        {
+          "info": {
+            "name": "Get a statement",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/statements/:statement_id",
+            "params": [
+              {
+                "name": "statement_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a statement"
+              }
+            ]
+          },
+          "docs": "Get a statement"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts KYC Verification API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "KYC Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List verification results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "include_history",
+                "value": "",
+                "type": "query",
+                "description": "If true, include old (inactive) records as well."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List verification results.\n\nThis endpoint will be removed in API v1. Use `GET /v0/verifications?customer_id={customer_id}` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Create a customer verification result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a verification result for a customer.\nThis endpoint will be removed in API v1. Use `POST /v0/verifications` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Get verification result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verifications/:verification_id",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              },
+              {
+                "name": "verification_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the verification."
+              }
+            ]
+          },
+          "docs": "Get verification result by ID.\n\nThis endpoint will be removed in API v1. Use `GET /v0/verifications/{verification_id}` instead.\n"
+        },
+        {
+          "info": {
+            "name": "Verify a customer's identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/customers/:customer_id/verify",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "path",
+                "description": "The customer's unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiate identity verification for a customer and run the specified identity checks.\n\nVerifying a personal customer requires that the following fields already be set:\n* `first_name`\n* `last_name`\n* `dob`\n* `email`\n* `phone_number`\n* `legal_address`\n* `ssn`\n\nThis endpoint will be removed in API v1. Use `POST /v0/verifications/verify` instead.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Transactions API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an internal transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/transactions/internal_transfer",
+            "headers": [
+              {
+                "name": "Idempotency-Key",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an internal transfer"
+        },
+        {
+          "info": {
+            "name": "List pending transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/pending",
+            "params": [
+              {
+                "name": "account_no",
+                "value": "",
+                "type": "query",
+                "description": "Account number"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date greater than from_date"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date less than or equal to to_date"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "The status of the transaction"
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "query",
+                "description": "Only display holds linked to the provided transaction id"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given type"
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given subtype"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of pending transactions matching the provided filters\n"
+        },
+        {
+          "info": {
+            "name": "Get a pending transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/pending/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID"
+              }
+            ]
+          },
+          "docs": "Get a pending transaction by its uuid\n"
+        },
+        {
+          "info": {
+            "name": "List posted transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/posted",
+            "params": [
+              {
+                "name": "account_no",
+                "value": "",
+                "type": "query",
+                "description": "Account number"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID"
+              },
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date greater than from_date"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions with a posting date less than or equal to to_date"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given type"
+              },
+              {
+                "name": "subtype",
+                "value": "",
+                "type": "query",
+                "description": "Only display transactions matching the given subtype"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get paginated list of posted transactions matching the provided filters\n"
+        },
+        {
+          "info": {
+            "name": "Get a posted transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/transactions/posted/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Transaction ID"
+              }
+            ]
+          },
+          "docs": "Get a posted transaction by its uuid\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

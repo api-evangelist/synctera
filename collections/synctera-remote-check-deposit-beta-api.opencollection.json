@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Remote Check Deposit (beta) API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Remote Check Deposit (beta)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Remote Check Deposits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/rdc/deposits",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a paginated list of the deposits made using remote deposit capture associated with an account"
+        },
+        {
+          "info": {
+            "name": "Create a Remote Check Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/rdc/deposits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deposit using remote deposit capture to an account\n"
+        },
+        {
+          "info": {
+            "name": "Get Remote Check Deposit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/rdc/deposits/:deposit_id",
+            "params": [
+              {
+                "name": "deposit_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of a deposit for a remote deposit capture"
+              }
+            ]
+          },
+          "docs": "Retrieves one deposit made using remote deposit capture associated with an account"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

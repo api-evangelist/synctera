@@ -1,0 +1,501 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts Cards API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query",
+                "description": "Account ID(s). Multiple IDs can be provided as a comma-separated list."
+              },
+              {
+                "name": "emboss_name",
+                "value": "",
+                "type": "query",
+                "description": "emboss name"
+              },
+              {
+                "name": "last_four",
+                "value": "",
+                "type": "query",
+                "description": "The last 4 digits of the card PAN"
+              },
+              {
+                "name": "expiration_date",
+                "value": "",
+                "type": "query",
+                "description": "The date representing when the card would expire at"
+              },
+              {
+                "name": "card_type",
+                "value": "",
+                "type": "query",
+                "description": "Indicates the type of card"
+              },
+              {
+                "name": "card_brand",
+                "value": "",
+                "type": "query",
+                "description": "The brand of a card product"
+              },
+              {
+                "name": "form",
+                "value": "",
+                "type": "query",
+                "description": "The format of the card"
+              },
+              {
+                "name": "card_product_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "card_status",
+                "value": "",
+                "type": "query",
+                "description": "The status of a card"
+              },
+              {
+                "name": "postal_code",
+                "value": "",
+                "type": "query",
+                "description": "The postal code of a card user"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Specifies the sort order for the returned cards.\n"
+              }
+            ]
+          },
+          "docs": "List of cards matching query parameters\n"
+        },
+        {
+          "info": {
+            "name": "Issue a Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issue or reissue a new card for a customer\n"
+        },
+        {
+          "info": {
+            "name": "Get Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details about a card that has been issued\n"
+        },
+        {
+          "info": {
+            "name": "Update Card",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/:card_id",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Integrators can update the card resource to change status, update shipping (if the card hasn't been shipped) or edit metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Get Card Barcode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id/barcodes",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This endpoint is for testing environment only to provide access to barcode of a test card\n"
+        },
+        {
+          "info": {
+            "name": "List Card Changes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/:card_id/changes",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List card change history\n"
+        },
+        {
+          "info": {
+            "name": "Get a client token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/:card_id/client_token",
+            "params": [
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Create a client access token for interacting with a card.  This token will be used on the client to identify the card for flows like viewing Full PAN or setting the PIN in a PCI compliant manner.\n"
+        },
+        {
+          "info": {
+            "name": "Activate a card",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/activate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Activate a card\n"
+        },
+        {
+          "info": {
+            "name": "Get card widget URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/card_widget_url",
+            "params": [
+              {
+                "name": "widget_type",
+                "value": "",
+                "type": "query",
+                "description": "The type of widget for which to construct the URL"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "card_id",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the card (required for set PIN widget)"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a URL address of the specified widget for a given card\n"
+        },
+        {
+          "info": {
+            "name": "List Gateways",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/gateways",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List of gateways matching query parameters\n"
+        },
+        {
+          "info": {
+            "name": "Create Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/gateways",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Authorization Gateway Configuration\n"
+        },
+        {
+          "info": {
+            "name": "Get Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/gateways/:gateway_id",
+            "params": [
+              {
+                "name": "gateway_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the details of an Authorization Gateway that has been configured\n"
+        },
+        {
+          "info": {
+            "name": "Update Gateway",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/gateways/:gateway_id",
+            "params": [
+              {
+                "name": "gateway_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Authorization Gateway configuration\n"
+        },
+        {
+          "info": {
+            "name": "List Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all card image details\n"
+        },
+        {
+          "info": {
+            "name": "Create Card Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/images",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a card image entity. Note that this does not include the image data itself. You can upload the image data via a subsequent uploadCardImageData request using the ID created here.\n"
+        },
+        {
+          "info": {
+            "name": "Get Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get card image details"
+        },
+        {
+          "info": {
+            "name": "Update Card Image Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update card image details. The only detail that can be updated is the card status as APPROVED or REJECTED."
+        },
+        {
+          "info": {
+            "name": "Get Card Image Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id/data",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get card image data"
+        },
+        {
+          "info": {
+            "name": "Upload Card Image",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/images/:card_image_id/data",
+            "params": [
+              {
+                "name": "card_image_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Upload card image data"
+        },
+        {
+          "info": {
+            "name": "List Card Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/cards/products",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Card Products"
+        },
+        {
+          "info": {
+            "name": "Get single-use token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/cards/single_use_token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint returns a single-use access token. This type of token authorizes a single request to access API endpoints and data associated with a particular user\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,4118 @@
+{
+  "item": [
+    {
+      "id": "2466705e-2c07-4807-9d42-ec812c5bcb0d",
+      "name": "External Accounts",
+      "description": {
+        "content": "The External Account resource is used for managing links to accounts\nthat operate outside of the Synctera ecosystem.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a5c0511-a835-4601-b777-6670f78bccc8",
+          "name": "List external accounts",
+          "request": {
+            "name": "List external accounts",
+            "description": {
+              "content": "Returns a list of all external accounts assigned to customers.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "A list of customer unique identifiers, with a comma separating any values."
+                },
+                {
+                  "disabled": false,
+                  "key": "business_id",
+                  "value": "<uuid>,<uuid>",
+                  "description": "A list of business unique identifiers, with a comma separating any values."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da733454-85a3-4c93-aca3-94f6fc9a5a33",
+              "name": "List of external accounts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "4605deb4-3f8d-4566-9bf1-0dc558b63258,4605deb4-3f8d-4566-9bf1-0dc558b63258"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "d4f6d078-ccf9-42c1-a001-df2c96783294,d4f6d078-ccf9-42c1-a001-df2c96783294"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"external_accounts\": [\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"CLOSED\",\n      \"type\": \"CREDIT_CARD\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"title\": \"Information specific to Plaid verification\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    },\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"CREDIT_CARD\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"title\": \"Information specific to Plaid verification\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3637dd21-c99b-41c7-a5b9-6ec690f62761",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "4605deb4-3f8d-4566-9bf1-0dc558b63258,4605deb4-3f8d-4566-9bf1-0dc558b63258"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "d4f6d078-ccf9-42c1-a001-df2c96783294,d4f6d078-ccf9-42c1-a001-df2c96783294"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ad59372-9fa7-4d42-a8e0-15f48ba71a7f",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "4605deb4-3f8d-4566-9bf1-0dc558b63258,4605deb4-3f8d-4566-9bf1-0dc558b63258"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "d4f6d078-ccf9-42c1-a001-df2c96783294,d4f6d078-ccf9-42c1-a001-df2c96783294"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a258e64c-12da-44be-8379-4c791079d4b4",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "4605deb4-3f8d-4566-9bf1-0dc558b63258,4605deb4-3f8d-4566-9bf1-0dc558b63258"
+                    },
+                    {
+                      "key": "business_id",
+                      "value": "d4f6d078-ccf9-42c1-a001-df2c96783294,d4f6d078-ccf9-42c1-a001-df2c96783294"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a15797bf-1aac-4131-9398-d8543b91b374",
+          "name": "Add an external account",
+          "request": {
+            "name": "Add an external account",
+            "description": {
+              "content": "Add an external account for a customer. The account will be created in an unverified state.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"<string>\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"<string>\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"<string>\",\n    \"wire_routing_number\": \"<string>\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"business_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"<string>\",\n  \"vendor_account_id\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"<dateTime>\",\n    \"last_updated_time\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "417b22bf-3a57-41cf-aede-87085a3f27e8",
+              "name": "The external account added.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n  \"account_owner_names\": [\n    \"Dr. Winston Zieme\",\n    \"Dr. Winston Zieme\"\n  ],\n  \"status\": \"CLOSED\",\n  \"type\": \"MONEY_MARKET\",\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"CA\",\n      \"US\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"eft_routing_number\": \"02101140\",\n    \"swift_code\": \"CHASUS3AXXX\",\n    \"wire_routing_number\": \"756392185\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\",\n    \"iban\": \"CY06470650023917R423TV710402\"\n  },\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  },\n  \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n  \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n  \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n  \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n  \"metadata\": {},\n  \"name\": \"Plaid Checking\",\n  \"nickname\": \"Credit Card Account\",\n  \"vendor_data\": {\n    \"account_number_mask\": \"string\",\n    \"institution_id\": \"string\"\n  },\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"application/json\",\n    \"json\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ddb9fee7-0c9a-4c23-a98e-2d3f4f451198",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d390f84e-b41f-4e3a-8609-69aef585a358",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "571d5287-22cf-496e-8b7c-e82ba51fa136",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c17ae37c-f7af-4fe3-9a89-dc62288928be",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b14ec965-deee-43c1-8558-ea9d0c14d80f",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"<string>\",\n  \"customer_type\": \"<string>\",\n  \"account_owner_names\": [\n    \"Miss Clark Maggio\"\n  ],\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"<string>\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"wire_routing_number\": \"915075033\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\"\n  },\n  \"business_id\": \"fc8d475c-0d6d-4139-8010-93c57ce5eed1\",\n  \"customer_id\": \"91a0ced5-2403-4a98-9b9f-c4577834eac1\",\n  \"metadata\": \"<object>\",\n  \"nickname\": \"Money Market Account\",\n  \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3245d784-0330-44f3-b3ac-379c265744d3",
+          "name": "Delete an external account",
+          "request": {
+            "name": "Delete an external account",
+            "description": {
+              "content": "Deletes an external account, given an external account ID. If no accounts left, the access token to the financial institution will be removed\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                ":external_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_account_id",
+                  "description": "(Required) External Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5928deb-709b-41c4-94e1-53fb61b6e0e6",
+              "name": "Resource has been deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5ab71c7d-3c4f-e00a-7af1-e233a0d8e0bf\",\n  \"resource\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5551aa2f-3bff-4d5e-aa99-e5ae52668f62",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ce0a72d-be97-4d32-a6b5-6fcadd0bdb94",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9164d3a-00a7-4bad-8e2d-6a9397210fff",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2fcb4cf-cd90-41e7-b612-72b7172596d6",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77ec6da9-0d5f-48e1-beda-afcffaf36dda",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3b959b7-6f46-472f-855a-7088279bdadb",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcadef04-ea57-4b59-a448-794286ed2d6d",
+          "name": "Get an external account",
+          "request": {
+            "name": "Get an external account",
+            "description": {
+              "content": "Returns an external account, given an external account ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                ":external_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_account_id",
+                  "description": "(Required) External Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37d58eb1-9517-4a0d-af29-374029df25af",
+              "name": "The external account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n  \"account_owner_names\": [\n    \"Dr. Winston Zieme\",\n    \"Dr. Winston Zieme\"\n  ],\n  \"status\": \"CLOSED\",\n  \"type\": \"MONEY_MARKET\",\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"CA\",\n      \"US\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"eft_routing_number\": \"02101140\",\n    \"swift_code\": \"CHASUS3AXXX\",\n    \"wire_routing_number\": \"756392185\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\",\n    \"iban\": \"CY06470650023917R423TV710402\"\n  },\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  },\n  \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n  \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n  \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n  \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n  \"metadata\": {},\n  \"name\": \"Plaid Checking\",\n  \"nickname\": \"Credit Card Account\",\n  \"vendor_data\": {\n    \"account_number_mask\": \"string\",\n    \"institution_id\": \"string\"\n  },\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"application/json\",\n    \"json\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8f4f663-0569-43b1-a7d5-1640f01b5eb3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2afa768b-588c-4038-9728-95be02fdbaa5",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f3d5f156-88df-4777-b1ba-5acee66a48e8",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a682a49-5d89-48ed-a8cd-62fc997636ca",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b08c4e84-ce8e-42cc-8aae-4a9c0a443e9a",
+          "name": "Patch an external account",
+          "request": {
+            "name": "Patch an external account",
+            "description": {
+              "content": "Edits an unverified external account, given an external account ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                ":external_account_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_account_id",
+                  "description": "(Required) External Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"nickname\": \"<string>\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"<string>\",\n    \"bank_name\": \"<string>\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"<dateTime>\",\n    \"last_updated_time\": \"<dateTime>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d71e5d4-8d1f-4bf4-a78e-b4d38f1afcac",
+              "name": "Updated external account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n  \"account_owner_names\": [\n    \"Dr. Winston Zieme\",\n    \"Dr. Winston Zieme\"\n  ],\n  \"status\": \"CLOSED\",\n  \"type\": \"MONEY_MARKET\",\n  \"routing_identifiers\": {\n    \"bank_name\": \"Chase\",\n    \"bank_countries\": [\n      \"CA\",\n      \"US\"\n    ],\n    \"ach_routing_number\": \"756392185\",\n    \"eft_routing_number\": \"02101140\",\n    \"swift_code\": \"CHASUS3AXXX\",\n    \"wire_routing_number\": \"756392185\"\n  },\n  \"account_identifiers\": {\n    \"number\": \"78277121\",\n    \"iban\": \"CY06470650023917R423TV710402\"\n  },\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  },\n  \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n  \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n  \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n  \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n  \"metadata\": {},\n  \"name\": \"Plaid Checking\",\n  \"nickname\": \"Credit Card Account\",\n  \"vendor_data\": {\n    \"account_number_mask\": \"string\",\n    \"institution_id\": \"string\"\n  },\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"application/json\",\n    \"json\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c9141a6-3799-4962-b1fa-d076030b84f2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34b228ca-768d-4287-935f-350bff304647",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e4e2b36-9c4e-4de1-8580-8f5803e0c3f4",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe1437d-b987-45e8-a288-2e135615603a",
+              "name": "Resource already exists error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b247c82-a150-45d3-8f25-ac49edff8406",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c64938b-9373-42cf-ab10-ba04be267070",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_identifiers\": {\n    \"number\": \"<string>\"\n  },\n  \"account_owner_names\": [\n    \"Monica Keebler\",\n    \"Monica Keebler\"\n  ],\n  \"nickname\": \"Money Market Account\",\n  \"routing_identifiers\": {\n    \"ach_routing_number\": \"756392185\",\n    \"bank_name\": \"Chase\"\n  },\n  \"type\": \"<string>\",\n  \"verification\": {\n    \"status\": \"<string>\",\n    \"vendor\": \"<string>\",\n    \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n    \"last_updated_time\": \"2022-01-01T00:00:00.000Z\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "725030c6-002e-4eb6-9e24-264f2b19488a",
+          "name": "Get an external account balance",
+          "request": {
+            "name": "Get an external account balance",
+            "description": {
+              "content": "Returns an external account balance, given an external account ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                ":external_account_id",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "max_age",
+                  "value": "<long>",
+                  "description": "Optional relative age of a balance in seconds. If the balance is older than the requested seconds it will fail. This field is optional for most financial institutions, but required for some, so you should probably send it.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_account_id",
+                  "description": "(Required) External Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e86a6161-18f1-4318-a807-8b9e647360a5",
+              "name": "The external account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_age",
+                      "value": "437"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"currency\": \"FJD\",\n  \"available\": 8757,\n  \"current\": 2352,\n  \"limit\": 9461\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "284ebcfa-a4e2-4faf-bb6a-c4a32224944a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_age",
+                      "value": "437"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "02f98dd9-d691-475f-873f-5f10816770ca",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_age",
+                      "value": "437"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a33a6bd0-879c-4492-8b51-f43da54fe9e7",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_age",
+                      "value": "437"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2fa0213-03c4-40d5-9d85-e10bc3dda028",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "balance"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "max_age",
+                      "value": "437"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fd8f0583-bb11-4153-bf92-ff8399cfd8c0",
+          "name": "List transactions of a given external account",
+          "request": {
+            "name": "List transactions of a given external account",
+            "description": {
+              "content": "Returns a list of transactions on from the external account, given an external account ID. Maximum 500 transctions will be returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                ":external_account_id",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<date>",
+                  "description": "(Required) Date range filtering for transactions. Date is inclusive. Date must be in UTC."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<date>",
+                  "description": "(Required) Date range filtering for transactions. Date is exclusive. Date must be in UTC."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "external_account_id",
+                  "description": "(Required) External Account ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2c0e852-e099-49fc-9b3a-88a5caab90e1",
+              "name": "The external account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"transactions\": [\n    {\n      \"amount\": 7721,\n      \"authorized_date\": \"2022-09-16\",\n      \"category\": [\n        \"string\",\n        \"string\"\n      ],\n      \"check_number\": \"string\",\n      \"currency\": \"USD\",\n      \"date\": \"2016-06-19\",\n      \"is_pending\": false,\n      \"merchant_name\": \"Fancy store\",\n      \"payment_channel\": \"ONLINE\",\n      \"payment_method\": \"string\",\n      \"transaction_id\": \"string\"\n    },\n    {\n      \"amount\": 5609,\n      \"authorized_date\": \"2006-11-03\",\n      \"category\": [\n        \"string\",\n        \"string\"\n      ],\n      \"check_number\": \"string\",\n      \"currency\": \"USD\",\n      \"date\": \"1957-01-27\",\n      \"is_pending\": false,\n      \"merchant_name\": \"Fancy store\",\n      \"payment_channel\": \"OTHER\",\n      \"payment_method\": \"string\",\n      \"transaction_id\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cea1899-3ba7-4c41-9de3-8f8c85efadc9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b67c0671-27b3-4af4-8b42-fcaf53ca3ce8",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0163ea67-0fce-4a69-a506-c0beee269604",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "458448e7-e520-4fd0-911a-d7f86a118f91",
+              "name": "Unprocessable entity request response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dceb4a45-c5ed-4642-b49b-00367f0cbcbf",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    ":external_account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<date>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "external_account_id",
+                      "description": "(Required) External Account ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a88c69aa-d99d-4c50-b03e-87291f5a6b73",
+          "name": "Create a permanent access token for an external account",
+          "request": {
+            "name": "Create a permanent access token for an external account",
+            "description": {},
+            "url": {
+              "path": [
+                "external_accounts",
+                "access_tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f9509ce6-13b6-4bf4-b446-39fe4a3bf550",
+              "name": "New verification link token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "access_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"request_id\": \"string\",\n  \"vendor_access_token\": \"string\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bdd77c0-5f74-4271-8604-5190591019cd",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "access_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3e99cd75-b0a3-4d9a-8fec-f0c935fdfcb1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "access_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b631e6b4-bc2e-4773-8bd8-24766baa511d",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "access_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b9082229-d5d4-47c2-b951-e8e90fe38839",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "access_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vendor_public_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"business_id\": \"492c842f-7239-45cd-bc28-edf1a13c7de2\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_customer_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9da8e892-eb6f-472d-8ce9-d5220f2e86c6",
+          "name": "Add external accounts through a vendor, such as Plaid.",
+          "request": {
+            "name": "Add external accounts through a vendor, such as Plaid.",
+            "description": {
+              "content": "Add external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added, so it's important that the caller checks the response body.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                "add_vendor_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_account_ids\": [\n    \"<string>\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4d8d96db-0db8-4b2b-91a4-5a1b28294d82",
+              "name": "Result of adding accounts through the vendor.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "add_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"added_accounts\": [\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"CLOSED\",\n      \"type\": \"SAVINGS\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"CA\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    },\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"SAVINGS\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"CA\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    }\n  ],\n  \"failed_accounts\": [\n    {\n      \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n      \"reason\": \"UNSUPPORTED_ACCOUNT_TYPE\",\n      \"reason_description\": \"string\",\n      \"vendor_error_message\": \"string\",\n      \"vendor_request_id\": \"string\"\n    },\n    {\n      \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n      \"reason\": \"PROVIDER_ERROR\",\n      \"reason_description\": \"string\",\n      \"vendor_error_message\": \"string\",\n      \"vendor_request_id\": \"string\"\n    }\n  ],\n  \"deleted_accounts\": [\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"CLOSED\",\n      \"type\": \"OTHER\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"CA\",\n          \"US\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    },\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"CLOSED\",\n      \"type\": \"INVESTMENT_529\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"CA\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "710c6a05-2481-4be4-a4ea-647c0f0e00ca",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "add_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e58c5d-a6bd-4037-b6fc-936037d282fc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "add_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb06bc9e-bb68-4644-847a-2936f52dba06",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "add_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8df64371-fdf6-495a-b3a0-93c0ea9ad071",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "add_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09f7faab-8339-42e8-a87e-ea4e377bdfcc",
+          "name": "Create a link token to verify an external account",
+          "request": {
+            "name": "Create a link token to verify an external account",
+            "description": {},
+            "url": {
+              "path": [
+                "external_accounts",
+                "link_tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "07baaa9c-9603-431d-ab83-6efe842aa238",
+              "name": "New verification link token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "link_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"expiration\": \"1970-01-23T07:25:58.544Z\",\n  \"link_customization_name\": \"<string>\",\n  \"link_token\": \"string\",\n  \"redirect_uri\": \"<string>\",\n  \"request_id\": \"string\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cecb04d3-e48d-4ffe-8c5e-b016272544f7",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "link_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbe80de3-535c-4a57-9a06-6bf721b948ad",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "link_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d03ce689-4987-4bc4-b4e5-cd5982d8b892",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "link_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc59df69-88a1-4954-9a10-e3a74b2c0024",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "link_tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_name\": \"<string>\",\n  \"language\": \"<string>\",\n  \"country_codes\": [\n    \"<string>\"\n  ],\n  \"type\": \"<string>\",\n  \"business_id\": \"d3087ca5-aaf9-4f7c-9241-58ab458e15ac\",\n  \"customer_id\": \"3d92aac9-bdf5-498f-96b0-e67da46be85e\",\n  \"link_customization_name\": \"<string>\",\n  \"redirect_uri\": \"<string>\",\n  \"sdk_type\": \"WEB\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_institution_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "022dd35a-4ab5-4c90-81a8-cf24cf88ba3c",
+          "name": "Sync external accounts through a vendor, such as Plaid.",
+          "request": {
+            "name": "Sync external accounts through a vendor, such as Plaid.",
+            "description": {
+              "content": "Sync external accounts for a customer through an existing access token. The token must be valid, and the information on the accounts returned by the vendor must correspond to the customer. A success response for this route may include failures if an account could not be added and deletions if the account is removed by the end user, so it's important that the caller checks the response body.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "external_accounts",
+                "sync_vendor_accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                "key": "Idempotency-Key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"<uuid>\",\n  \"customer_id\": \"<uuid>\",\n  \"vendor_access_token\": \"<string>\",\n  \"vendor_account_ids\": [\n    \"<string>\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "af321238-b22b-4175-97b3-7b6d63993e43",
+              "name": "Result of syncing accounts through the vendor.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "sync_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"added_accounts\": [\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"SAVINGS\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"US\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    },\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"INVESTMENT_529\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"US\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    }\n  ],\n  \"failed_accounts\": [\n    {\n      \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n      \"reason\": \"DUPLICATE_ACCOUNT\",\n      \"reason_description\": \"string\",\n      \"vendor_error_message\": \"string\",\n      \"vendor_request_id\": \"string\"\n    },\n    {\n      \"vendor_account_id\": \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\",\n      \"reason\": \"PROVIDER_ERROR\",\n      \"reason_description\": \"string\",\n      \"vendor_error_message\": \"string\",\n      \"vendor_request_id\": \"string\"\n    }\n  ],\n  \"deleted_accounts\": [\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"OTHER\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    },\n    {\n      \"id\": \"90928aae-f478-443a-bdcc-00cf888df49b\",\n      \"account_owner_names\": [\n        \"Dr. Winston Zieme\",\n        \"Dr. Winston Zieme\"\n      ],\n      \"status\": \"ACTIVE\",\n      \"type\": \"INVESTMENT_529\",\n      \"routing_identifiers\": {\n        \"bank_name\": \"Chase\",\n        \"bank_countries\": [\n          \"US\",\n          \"CA\"\n        ],\n        \"ach_routing_number\": \"756392185\",\n        \"eft_routing_number\": \"02101140\",\n        \"swift_code\": \"CHASUS3AXXX\",\n        \"wire_routing_number\": \"756392185\"\n      },\n      \"account_identifiers\": {\n        \"number\": \"78277121\",\n        \"iban\": \"CY06470650023917R423TV710402\"\n      },\n      \"verification\": {\n        \"status\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"vendor\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"creation_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"last_updated_time\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"creation_time\": \"2022-01-01T00:00:00.000Z\",\n      \"last_updated_time\": \"2022-01-01T00:00:00.000Z\",\n      \"business_id\": \"98f62347-33d0-4421-bfc0-91729390eff1\",\n      \"customer_id\": \"e2197030-7aaf-472d-a454-5c1703d46417\",\n      \"metadata\": {},\n      \"name\": \"Plaid Checking\",\n      \"nickname\": \"Credit Card Account\",\n      \"vendor_data\": {\n        \"account_number_mask\": \"string\",\n        \"institution_id\": \"string\"\n      },\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8150ee1c-e304-473d-a3bf-3ecb2784e6d6",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "sync_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c22c4bf-2ef7-4e0c-8565-8ad901258d63",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "sync_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93c189ea-9a94-4cee-97a1-274d96cd9877",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "sync_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c39c2c9c-b166-4a30-837d-ce798696eb01",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "external_accounts",
+                    "sync_vendor_accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key",
+                    "key": "Idempotency-Key",
+                    "value": "df122e6f-2ba8-48a5-9508-4350bba5f27e"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customer_type\": \"<string>\",\n  \"vendor\": \"<string>\",\n  \"business_id\": \"144405a0-1cac-455e-89c9-fd06b97fdbe3\",\n  \"customer_id\": \"6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e\",\n  \"vendor_access_token\": \"access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6\",\n  \"vendor_account_ids\": [\n    \"blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo\"\n  ],\n  \"vendor_customer_id\": \"<string>\",\n  \"verify_owner\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d6c0ec00-a410-4f98-8160-e1097e5d34c5",
+    "name": "Synctera Accounts External Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

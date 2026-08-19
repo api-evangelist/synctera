@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Synctera Accounts External Cards (alpha) API",
+    "version": "0.20.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "External Cards (alpha)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List external cards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "business_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List external cards\n"
+        },
+        {
+          "info": {
+            "name": "Get a external card",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/:external_card_id",
+            "params": [
+              {
+                "name": "external_card_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of an external card"
+              }
+            ]
+          },
+          "docs": "Get an external card\n"
+        },
+        {
+          "info": {
+            "name": "Create external card from token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_cards/tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an external card from token - You must first tokenize the external card using the external card iframe. You will receive a token for the external card upon successful completion. This endpoint will persist the external card and associate it to a customer. The customer's name and address should match that of the external card as entered in the iframe. <br>NB: Tokens should be associated right away. Tokens not associated within 30 mins of creation will be invalidated.</br> NB: If a valid bu"
+        },
+        {
+          "info": {
+            "name": "List external transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/transfers",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page_token",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "external_card_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "originating_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of an external transfer"
+              }
+            ]
+          },
+          "docs": "List external card transfer\n"
+        },
+        {
+          "info": {
+            "name": "Create external card transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.synctera.com/v0/external_cards/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a external card transfer\n"
+        },
+        {
+          "info": {
+            "name": "Get an external card transfer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.synctera.com/v0/external_cards/transfers/:transfer_id",
+            "params": [
+              {
+                "name": "transfer_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of a transfer"
+              }
+            ]
+          },
+          "docs": "Get an external transfer\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

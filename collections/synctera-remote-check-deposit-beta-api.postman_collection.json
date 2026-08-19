@@ -1,0 +1,761 @@
+{
+  "item": [
+    {
+      "id": "35e6db10-c526-4b48-83b8-a4438ccc11f7",
+      "name": "Remote Check Deposit (beta)",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98a04ed3-dabc-42a3-9052-d2bb05dc3c3a",
+          "name": "List Remote Check Deposits",
+          "request": {
+            "name": "List Remote Check Deposits",
+            "description": {
+              "content": "Retrieves a paginated list of the deposits made using remote deposit capture associated with an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rdc",
+                "deposits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "page_token",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26ab0f60-f3fa-483e-b33c-54cc651ad5a2",
+              "name": "List of deposits made with remote deposit capture",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deposits\": [\n    {\n      \"id\": \"69170eba-daa5-4c06-9a6d-abc1d4733f67\",\n      \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n      \"transaction_id\": \"261343ed-2752-4e07-b14f-5cafcd38361c\",\n      \"check_amount\": 8032,\n      \"deposit_currency\": \"USD\",\n      \"status\": \"FAILED\",\n      \"deposit_amount\": 6207,\n      \"date_processed\": \"2022-01-02T03:04:05.678Z\",\n      \"date_captured\": \"2022-01-02T03:04:05.678Z\",\n      \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n      \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      },\n      \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n      \"creation_time\": \"2022-01-18T17:54:12Z\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": {},\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n    },\n    {\n      \"id\": \"69170eba-daa5-4c06-9a6d-abc1d4733f67\",\n      \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n      \"transaction_id\": \"261343ed-2752-4e07-b14f-5cafcd38361c\",\n      \"check_amount\": 8032,\n      \"deposit_currency\": \"USD\",\n      \"status\": \"FAILED\",\n      \"deposit_amount\": 6207,\n      \"date_processed\": \"2022-01-02T03:04:05.678Z\",\n      \"date_captured\": \"2022-01-02T03:04:05.678Z\",\n      \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n      \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n      \"vendor_info\": {\n        \"vendor\": \"SOCURE\",\n        \"content_type\": \"application/json\",\n        \"json\": {}\n      },\n      \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n      \"creation_time\": \"2022-01-18T17:54:12Z\",\n      \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n      \"metadata\": {},\n      \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d24870a8-54fa-4c8c-b6a8-69bb48bb2016",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4189017a-a1b8-4107-a9cd-60a05ae97d9b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page_token",
+                      "value": "h50ffqz9q5"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4010c10d-08fb-4005-b681-1f9b6441f922",
+          "name": "Create a Remote Check Deposit",
+          "request": {
+            "name": "Create a Remote Check Deposit",
+            "description": {
+              "content": "Create a new deposit using remote deposit capture to an account\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rdc",
+                "deposits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": \"<uuid>\",\n  \"check_amount\": \"<integer>\",\n  \"deposit_currency\": \"<string>\",\n  \"front_image_id\": \"<uuid>\",\n  \"back_image_id\": \"<uuid>\",\n  \"vendor_info\": {\n    \"vendor\": \"<string>\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"<uuid>\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1786d005-2769-46af-b98f-af323bb27fae",
+              "name": "Successful creation of a deposit using remote deposit capture",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"creation_time\": \"2022-01-18T17:54:12Z\",\n  \"date_captured\": \"2022-01-02T03:04:05.678Z\",\n  \"date_processed\": \"2022-01-02T03:04:05.678Z\",\n  \"deposit_amount\": 6207,\n  \"id\": \"69170eba-daa5-4c06-9a6d-abc1d4733f67\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"status\": \"PENDING\",\n  \"transaction_id\": \"261343ed-2752-4e07-b14f-5cafcd38361c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72b44ec0-745c-4ac4-9b48-5121943d8591",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b36a21e-cb44-4694-8fc2-ec8e6aa4d7bf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "593173fb-e86e-498b-a09c-8c7c2eea801b",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad7c6f0e-1c01-4a17-bc2c-e18c6e0c5805",
+          "name": "Get Remote Check Deposit",
+          "request": {
+            "name": "Get Remote Check Deposit",
+            "description": {
+              "content": "Retrieves one deposit made using remote deposit capture associated with an account",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rdc",
+                "deposits",
+                ":deposit_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "deposit_id",
+                  "description": "(Required) ID of a deposit for a remote deposit capture"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "90a099bf-eee6-4b44-aa92-155bea2dd28c",
+              "name": "Successful retrieval of a Remote Check Deposit",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits",
+                    ":deposit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "deposit_id",
+                      "description": "(Required) ID of a deposit for a remote deposit capture"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"ab144f71-3708-4625-8df3-d9307804475e\",\n  \"check_amount\": 8032,\n  \"deposit_currency\": \"USD\",\n  \"front_image_id\": \"a6be36a2-1211-4c7f-b38e-14923e009262\",\n  \"back_image_id\": \"a745e775-9d35-46a5-812d-4a7663178a3b\",\n  \"vendor_info\": {\n    \"vendor\": \"SOCURE\",\n    \"content_type\": \"<string>\",\n    \"json\": \"<object>\"\n  },\n  \"business_id\": \"2c334624-265b-4ac9-9a30-0a1d45ea4bd0\",\n  \"creation_time\": \"2022-01-18T17:54:12Z\",\n  \"date_captured\": \"2022-01-02T03:04:05.678Z\",\n  \"date_processed\": \"2022-01-02T03:04:05.678Z\",\n  \"deposit_amount\": 6207,\n  \"id\": \"69170eba-daa5-4c06-9a6d-abc1d4733f67\",\n  \"last_updated_time\": \"2022-01-18T17:54:12Z\",\n  \"metadata\": \"<object>\",\n  \"person_id\": \"2c0bf949-9f59-4a04-82d4-9a86e0ccec2c\",\n  \"status\": \"PENDING\",\n  \"transaction_id\": \"261343ed-2752-4e07-b14f-5cafcd38361c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3102e25-5414-4e51-bb73-5ec660dca36d",
+              "name": "BadRequest",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits",
+                    ":deposit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "deposit_id",
+                      "description": "(Required) ID of a deposit for a remote deposit capture"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32f60866-2134-4498-8a74-32e9e09c0d58",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits",
+                    ":deposit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "deposit_id",
+                      "description": "(Required) ID of a deposit for a remote deposit capture"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6a024c7f-958c-4fde-abc5-0fbfbdcae3c4",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rdc",
+                    "deposits",
+                    ":deposit_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "deposit_id",
+                      "description": "(Required) ID of a deposit for a remote deposit capture"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "61ea8442-3054-4da9-a5fb-1f5233873b33",
+    "name": "Synctera Accounts Remote Check Deposit (beta) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

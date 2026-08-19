@@ -1,0 +1,579 @@
+{
+  "item": [
+    {
+      "id": "96272ac8-37ae-4d0d-9f2a-0c7ceceeea68",
+      "name": "Statements",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9883ee3c-cec6-4c6c-9fd4-b8eda3150ac7",
+          "name": "List statements",
+          "request": {
+            "name": "List statements",
+            "description": {
+              "content": "Get list of statements",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "account_id",
+                  "value": "<uuid>",
+                  "description": "(Required) The account's unique identifier provided by Synctera"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ddc934e7-1d1e-4033-917d-f7d36ba7135c",
+              "name": "List of statements for a given account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "e4b92656-ef1e-41f5-a85f-af09346611c0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statements\": [\n    {\n      \"account_id\": \"93fa5f34-35be-0993-e3d0-9877e0b327b9\",\n      \"due_date\": \"1960-11-30\",\n      \"end_date\": \"2024-12-18\",\n      \"id\": \"49eb56b9-de2d-8774-55ac-f550c63d9cef\",\n      \"issue_date\": \"1952-05-26\",\n      \"start_date\": \"1993-10-31\"\n    },\n    {\n      \"account_id\": \"304bc284-6fd1-a230-bf93-25d8acdf5a0c\",\n      \"due_date\": \"2007-03-20\",\n      \"end_date\": \"1956-06-30\",\n      \"id\": \"8e00a980-fbe0-ac91-08bb-4f9be6116319\",\n      \"issue_date\": \"2004-08-04\",\n      \"start_date\": \"2007-05-19\"\n    }\n  ],\n  \"next_page_token\": \"d61grelm5f\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f77f1ec-6263-4207-b1ae-7b78dd3d16c6",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "e4b92656-ef1e-41f5-a85f-af09346611c0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b491b4f1-a02b-4bcb-ad72-fe31ca281ec1",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "e4b92656-ef1e-41f5-a85f-af09346611c0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33d39c7f-f40e-4639-b209-6cf6dd60965d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "account_id",
+                      "value": "e4b92656-ef1e-41f5-a85f-af09346611c0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d57f47ad-c0fc-43cb-89aa-1c824b7dc8e5",
+          "name": "Get a statement",
+          "request": {
+            "name": "Get a statement",
+            "description": {
+              "content": "Get a statement",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "statements",
+                ":statement_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "statement_id",
+                  "description": "(Required) The unique identifier of a statement"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8b35710-4fd2-4ac4-9ec4-f6d73a17599b",
+              "name": "statement",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements",
+                    ":statement_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statement_id",
+                      "description": "(Required) The unique identifier of a statement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"account_id\": \"e22c131e-38d6-02ee-5e63-e8654d692725\",\n  \"due_date\": \"2026-04-26\",\n  \"end_date\": \"2014-06-06\",\n  \"id\": \"9c684e3b-2adf-4484-4912-a3e6e47b9dc1\",\n  \"issue_date\": \"2017-10-31\",\n  \"start_date\": \"1977-01-27\",\n  \"account_summary\": {\n    \"account_number\": \"string\",\n    \"account_status\": \"string\",\n    \"account_type\": \"string\",\n    \"balance_ceiling\": {\n      \"balance\": 9882\n    },\n    \"balance_floor\": {\n      \"balance\": 9937\n    },\n    \"creation_time\": \"2006-12-17T19:47:48.014Z\",\n    \"currency\": \"YER\",\n    \"customer_type\": \"string\",\n    \"financial_institution\": {\n      \"legal_address\": {\n        \"address_line_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_line_2\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"city\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"country_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postal_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"name\": \"string\",\n      \"phone_number\": \"string\"\n    },\n    \"id\": \"13aa3d04-616a-8039-fe56-418fbd64cf25\",\n    \"last_updated_time\": \"1958-10-26T14:30:06.311Z\",\n    \"nickname\": \"string\"\n  },\n  \"authorized_signer\": [\n    {\n      \"creation_time\": \"1947-03-22T08:16:01.032Z\",\n      \"first_name\": \"string\",\n      \"id\": \"ab3e86f3-07bd-388a-b692-51405a702365\",\n      \"last_name\": \"string\",\n      \"last_updated_time\": \"1977-01-28T11:46:59.237Z\",\n      \"middle_name\": \"string\",\n      \"relationship_type\": \"string\"\n    },\n    {\n      \"creation_time\": \"2024-11-30T05:56:10.680Z\",\n      \"first_name\": \"string\",\n      \"id\": \"eeda2e57-c018-a20e-1d62-295df48698ac\",\n      \"last_name\": \"string\",\n      \"last_updated_time\": \"1999-08-06T08:28:38.781Z\",\n      \"middle_name\": \"string\",\n      \"relationship_type\": \"string\"\n    }\n  ],\n  \"disclosure\": \"string\",\n  \"joint_account_holders\": [\n    {\n      \"creation_time\": \"2016-04-09T01:00:27.532Z\",\n      \"first_name\": \"string\",\n      \"id\": \"105ee4db-b7c3-d9b4-b6c4-e79dde94d76f\",\n      \"last_name\": \"string\",\n      \"last_updated_time\": \"2012-10-04T23:41:29.460Z\",\n      \"middle_name\": \"string\",\n      \"relationship_type\": \"string\"\n    },\n    {\n      \"creation_time\": \"1956-01-23T05:07:29.249Z\",\n      \"first_name\": \"string\",\n      \"id\": \"28e3ef0f-88fb-c44a-2e22-dbadbb66ad98\",\n      \"last_name\": \"string\",\n      \"last_updated_time\": \"2018-08-20T15:44:46.749Z\",\n      \"middle_name\": \"string\",\n      \"relationship_type\": \"string\"\n    }\n  ],\n  \"primary_account_holder_business\": {\n    \"creation_time\": \"1962-11-21T23:57:23.180Z\",\n    \"ein\": \"string\",\n    \"email\": \"string\",\n    \"entity_name\": \"string\",\n    \"formation_date\": \"2018-08-13\",\n    \"formation_state\": \"string\",\n    \"id\": \"511d8792-009a-859a-8ffc-0388b06c697f\",\n    \"last_updated_time\": \"2023-03-09T11:53:32.784Z\",\n    \"phone_number\": \"string\",\n    \"status\": \"string\",\n    \"structure\": \"string\",\n    \"trade_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"verification_last_run\": \"1985-09-24T16:20:25.539Z\",\n    \"verification_status\": \"string\"\n  },\n  \"primary_account_holder_personal\": {\n    \"creation_time\": \"2001-12-10T01:17:57.304Z\",\n    \"first_name\": \"string\",\n    \"id\": \"7dffc81c-df07-afad-85ea-546c215b5f09\",\n    \"last_name\": \"string\",\n    \"last_updated_time\": \"2010-07-24T05:43:20.732Z\",\n    \"middle_name\": \"string\",\n    \"relationship_type\": \"string\"\n  },\n  \"transactions\": [\n    {\n      \"id\": 286,\n      \"uuid\": \"7c7612ce-55b5-6155-f16b-9b0e10265cbc\",\n      \"type\": \"string\",\n      \"subtype\": \"string\",\n      \"status\": \"string\",\n      \"data\": {\n        \"memo\": \"string\",\n        \"lines\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"external_data\": {},\n        \"metadata\": {}\n      },\n      \"posted_date\": \"1951-03-26T12:26:08.730Z\",\n      \"effective_date\": \"2015-07-14T01:38:48.245Z\"\n    },\n    {\n      \"id\": 2647,\n      \"uuid\": \"55d036bd-e834-419e-fc72-9f9bbd756f9c\",\n      \"type\": \"string\",\n      \"subtype\": \"string\",\n      \"status\": \"string\",\n      \"data\": {\n        \"memo\": \"string\",\n        \"lines\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"external_data\": {},\n        \"metadata\": {}\n      },\n      \"posted_date\": \"1958-08-27T21:55:03.311Z\",\n      \"effective_date\": \"1948-11-03T08:52:05.992Z\"\n    }\n  ],\n  \"savings_summary\": {\n    \"apy\": 9602.216961988084\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43b7999e-f83f-482d-952b-b58b07d6ae25",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements",
+                    ":statement_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statement_id",
+                      "description": "(Required) The unique identifier of a statement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70b3b582-2269-4e97-9aab-d16dfdb4719e",
+              "name": "Forbidden error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements",
+                    ":statement_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statement_id",
+                      "description": "(Required) The unique identifier of a statement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29c06946-bb91-4cbf-afcb-c86a475dd52c",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements",
+                    ":statement_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statement_id",
+                      "description": "(Required) The unique identifier of a statement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cad3a54f-4799-46fd-bcf6-62e869d4619b",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "statements",
+                    ":statement_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "statement_id",
+                      "description": "(Required) The unique identifier of a statement"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"detail\": \"missing required fields: first_name, dob\",\n  \"status\": 400,\n  \"title\": \"Bad Request Body\",\n  \"type\": \"https://dev.synctera.com/errors/bad-request-body\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.synctera.com/v0",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "45762386-c57f-44f7-ac8f-dc3af5f11ad5",
+    "name": "Synctera Accounts Statements API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "<h2>Let's build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company's banking needs and are designed to be easy to understand and implement.</p><p>We're continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class='text-blue-600' href='https://synctera.com/contact' target='_blank' rel='noreferrer'>contact us</a>.</p>\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -21,6 +21,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/synctera.png
 tags:
+  - Fintech
+  - Backend-as-a-Service
+  - Banking
+  - Payments
+  - Card Issuing
+  - KYC
+tags_raw:
   - FinTech
   - BaaS
   - Banking
@@ -38,6 +45,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: Documentation
@@ -48,6 +57,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Account
+  tags_raw:
   - Accounts
   properties:
   - type: OpenAPI
@@ -72,6 +83,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
@@ -266,6 +279,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Payment Schedules
+  tags_raw:
   - PaymentSchedules
   properties:
   - type: OpenAPI
@@ -355,6 +370,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -379,6 +396,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI

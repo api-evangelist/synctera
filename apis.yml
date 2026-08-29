@@ -429,6 +429,9 @@ apis:
   - type: Documentation
     url: https://docs.synctera.com/api-reference
 common:
+  - type: CapabilityMap
+    url: capabilities/synctera-capability-edges.yml
+    name: Synctera Business Capability Map
   - type: AgenticAccess
     url: agentic-access/synctera-agentic-access.yml
   - type: DomainSecurity

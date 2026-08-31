@@ -34,7 +34,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/synctera.png
 tags:
   - Fintech
-  - Backend-as-a-Service
+  - BaaS
   - Banking
   - Payments
   - Card Issuing
@@ -291,7 +291,7 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
-  - Payment Schedules
+  - PaymentSchedules
   tags_raw:
   - PaymentSchedules
   properties:

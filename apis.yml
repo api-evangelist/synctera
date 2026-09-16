@@ -286,20 +286,6 @@ apis:
     url: openapi/synctera-monitoring-api-openapi.yml
   - type: Documentation
     url: https://docs.synctera.com/api-reference
-- aid: synctera:synctera-paymentschedules-api
-  name: Synctera PaymentSchedules API
-  description: The PaymentSchedules API from Synctera — 3 operation(s) for paymentschedules.
-  humanURL: https://docs.synctera.com/api-reference
-  baseURL: https://api.synctera.com
-  tags:
-  - Payment Schedules
-  tags_raw:
-  - PaymentSchedules
-  properties:
-  - type: OpenAPI
-    url: openapi/synctera-paymentschedules-api-openapi.yml
-  - type: Documentation
-    url: https://docs.synctera.com/api-reference
 - aid: synctera:synctera-persons-api
   name: Synctera Persons API
   description: >-
@@ -427,6 +413,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/synctera-wires-alpha-api-openapi.yml
+  - type: Documentation
+    url: https://docs.synctera.com/api-reference
+- aid: synctera:synctera-payment-schedules-api
+  name: Synctera Payment Schedules API
+  description: The Payment Schedules API from Synctera — 3 operation(s) for payment schedules.
+  humanURL: https://docs.synctera.com/api-reference
+  baseURL: https://api.synctera.com
+  tags:
+  - Payment Schedules
+  properties:
+  - type: OpenAPI
+    url: openapi/synctera-payment-schedules-api-openapi.yml
   - type: Documentation
     url: https://docs.synctera.com/api-reference
 common:

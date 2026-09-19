@@ -113,6 +113,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Business
+  tags_raw:
   - Businesses
   properties:
   - type: OpenAPI
@@ -306,6 +308,8 @@ apis:
   humanURL: https://docs.synctera.com/api-reference
   baseURL: https://api.synctera.com
   tags:
+  - Reconciliation
+  tags_raw:
   - Reconciliations
   properties:
   - type: OpenAPI

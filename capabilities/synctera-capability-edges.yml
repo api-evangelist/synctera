@@ -71,7 +71,8 @@ edges:
   reason: Bank deposit/credit account creation, maintenance, relationships and account products on a BaaS
     platform — deposit account management.
 - tag: PaymentSchedules
-  spec_file: synctera-paymentschedules-api-openapi.yml
+  spec_file: synctera-payment-schedules-api-openapi.yml
+  reanchored_from: synctera-paymentschedules-api-openapi.yml
   capability_id: BC-1340.10
   capability_id_l1: BC-1340
   capability_name: Payment Initiation Management

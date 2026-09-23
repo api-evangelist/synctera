@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Card Webhook Simulations API
+  title: Synctera Card Webhook Simulations API
   version: 0.20.0
 servers:
 - description: Production
@@ -25,9 +29,7 @@ paths:
       '
     summary: Card Webhook Simulations
     post:
-      description: 'This endpoint is for testing environment only to trigger a simulated change in card fulfillment status event
-
-        '
+      description: This endpoint is for testing environment only to trigger a simulated change in card fulfillment status event
       operationId: simulateCardFulfillmentEvent
       parameters:
       - $ref: '#/components/parameters/card_id'
@@ -60,45 +62,7 @@ paths:
       - Card Webhook Simulations
       x-external: true
 components:
-  responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   schemas:
-    simulate_card_fulfillment:
-      properties:
-        card_fulfillment_status:
-          $ref: '#/components/schemas/card_fulfillment_status'
-      required:
-      - card_fulfillment_status
-      type: object
     card_fulfillment_status:
       description: The status indicating the state of the card issuance
       enum:
@@ -115,6 +79,13 @@ components:
       example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
       format: uuid
       type: string
+    simulate_card_fulfillment:
+      properties:
+        card_fulfillment_status:
+          $ref: '#/components/schemas/card_fulfillment_status'
+      required:
+      - card_fulfillment_status
+      type: object
     error:
       properties:
         detail:
@@ -142,6 +113,37 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/card_id'
+  responses:
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

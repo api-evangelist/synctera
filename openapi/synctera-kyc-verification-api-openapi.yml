@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts KYC Verification API
+  title: Synctera KYC Verification API
   version: 0.20.0
 servers:
 - description: Production
@@ -25,9 +29,7 @@ paths:
       description: 'List verification results.
 
 
-        This endpoint will be removed in API v1. Use `GET /v0/verifications?customer_id={customer_id}` instead.
-
-        '
+        This endpoint will be removed in API v1. Use `GET /v0/verifications?customer_id={customer_id}` instead.'
       operationId: listVerifications
       parameters:
       - $ref: '#/components/parameters/customer_id_path'
@@ -60,9 +62,7 @@ paths:
       deprecated: true
       description: 'Create a verification result for a customer.
 
-        This endpoint will be removed in API v1. Use `POST /v0/verifications` instead.
-
-        '
+        This endpoint will be removed in API v1. Use `POST /v0/verifications` instead.'
       operationId: createCustomerVerificationResult
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -102,9 +102,7 @@ paths:
       description: 'Get verification result by ID.
 
 
-        This endpoint will be removed in API v1. Use `GET /v0/verifications/{verification_id}` instead.
-
-        '
+        This endpoint will be removed in API v1. Use `GET /v0/verifications/{verification_id}` instead.'
       operationId: getVerification
       parameters:
       - $ref: '#/components/parameters/customer_id_path'
@@ -154,9 +152,7 @@ paths:
         * `ssn`
 
 
-        This endpoint will be removed in API v1. Use `POST /v0/verifications/verify` instead.
-
-        '
+        This endpoint will be removed in API v1. Use `POST /v0/verifications/verify` instead.'
       operationId: verifyCustomer
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -192,63 +188,42 @@ paths:
       x-status: deprecated
 components:
   schemas:
-    raw_response:
-      deprecated: true
+    verification_vendor_xml:
       properties:
-        provider:
-          $ref: '#/components/schemas/provider_type'
-        raw_data:
-          description: Raw data from an external provider, as a JSON string.
-          example: '{}'
+        content_type:
+          description: Describes the content-type encoding received from the vendor.
+          enum:
+          - text/xml
           type: string
-      title: Raw response from providers.
-      type: object
-    verification_vendor_info:
-      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
-
-        '
-      discriminator:
-        mapping:
-          application/json: '#/components/schemas/verification_vendor_json'
-          text/xml: '#/components/schemas/verification_vendor_xml'
-        propertyName: content_type
-      oneOf:
-      - $ref: '#/components/schemas/verification_vendor_json'
-      - $ref: '#/components/schemas/verification_vendor_xml'
-      type: object
-    customer_verify_response:
+        details:
+          description: Array of vendor specific information.
+          items:
+            $ref: '#/components/schemas/verification_vendor_info_detail'
+          readOnly: true
+          type: array
+        vendor:
+          description: Name of the vendor used.
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML.
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    customer_verification_result_list:
       allOf:
       - properties:
-          kyc_status:
-            $ref: '#/components/schemas/customer_kyc_status'
           verifications:
             description: Array of verification results.
             items:
               $ref: '#/components/schemas/customer_verification_result'
             type: array
         required:
-        - kyc_status
         - verifications
         type: object
       - $ref: '#/components/schemas/paginated_response'
-    verification_type:
-      description: The type of check run on the customer.
-      enum:
-      - fraud
-      - synthetic
-      - emailrisk
-      - phonerisk
-      - addressrisk
-      - kyc
-      - social
-      - watchliststandard
-      - watchlistpremier
-      - watchlistplus
-      - documentverification
-      - alertlist
-      - decision
-      example: kyc
-      type: string
     customer_verification:
       example:
         customer_consent: true
@@ -281,18 +256,28 @@ components:
       - customer_consent
       title: PersonVerification
       type: object
-    customer_verification_result_list:
-      allOf:
-      - properties:
-          verifications:
-            description: Array of verification results.
-            items:
-              $ref: '#/components/schemas/customer_verification_result'
-            type: array
-        required:
-        - verifications
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
+    raw_response:
+      deprecated: true
+      properties:
+        provider:
+          $ref: '#/components/schemas/provider_type'
+        raw_data:
+          description: Raw data from an external provider, as a JSON string.
+          example: '{}'
+          type: string
+      title: Raw response from providers.
+      type: object
+    verification_vendor_info_detail:
+      properties:
+        code:
+          description: Vendor specific code.
+          example: R186
+          type: string
+        description:
+          description: Description of vendor specific code.
+          example: Global Watchlist sources selected are correlated with the input identifiers
+          type: string
+      type: object
     provider_type:
       description: Name of the organization that provided this data.
       enum:
@@ -300,6 +285,63 @@ components:
       - SOCURE
       example: SOCURE
       type: string
+    customer_kyc_status:
+      description: Customer's KYC status
+      enum:
+      - UNVERIFIED
+      - REVIEW
+      - PROVIDER_FAILURE
+      - ACCEPTED
+      - REJECTED
+      - PROVISIONAL
+      type: string
+    customer_verify_response:
+      allOf:
+      - properties:
+          kyc_status:
+            $ref: '#/components/schemas/customer_kyc_status'
+          verifications:
+            description: Array of verification results.
+            items:
+              $ref: '#/components/schemas/customer_verification_result'
+            type: array
+        required:
+        - kyc_status
+        - verifications
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    verification_vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor.
+          enum:
+          - application/json
+          type: string
+        details:
+          description: Array of vendor specific information.
+          items:
+            $ref: '#/components/schemas/verification_vendor_info_detail'
+          readOnly: true
+          type: array
+        json:
+          description: Data representation in JSON.
+          type: object
+        vendor:
+          description: Name of the vendor used.
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     customer_verification_result:
       description: Verification result
       properties:
@@ -345,40 +387,41 @@ components:
       - verification_time
       title: CustomerVerificationResult
       type: object
-    customer_kyc_status:
-      description: Customer's KYC status
-      enum:
-      - UNVERIFIED
-      - REVIEW
-      - PROVIDER_FAILURE
-      - ACCEPTED
-      - REJECTED
-      - PROVISIONAL
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
       type: string
-    verification_vendor_json:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor.
-          enum:
-          - application/json
-          type: string
-        details:
-          description: Array of vendor specific information.
-          items:
-            $ref: '#/components/schemas/verification_vendor_info_detail'
-          readOnly: true
-          type: array
-        json:
-          description: Data representation in JSON.
-          type: object
-        vendor:
-          description: Name of the vendor used.
-          example: SOCURE
-          type: string
-      required:
-      - vendor
-      - content_type
-      - json
+    verification_type:
+      description: The type of check run on the customer.
+      enum:
+      - fraud
+      - synthetic
+      - emailrisk
+      - phonerisk
+      - addressrisk
+      - kyc
+      - social
+      - watchliststandard
+      - watchlistpremier
+      - watchlistplus
+      - documentverification
+      - alertlist
+      - decision
+      example: kyc
+      type: string
+    verification_vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/verification_vendor_json'
+          text/xml: '#/components/schemas/verification_vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/verification_vendor_json'
+      - $ref: '#/components/schemas/verification_vendor_xml'
+      type: object
     error:
       properties:
         detail:
@@ -399,79 +442,7 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    verification_vendor_info_detail:
-      properties:
-        code:
-          description: Vendor specific code.
-          example: R186
-          type: string
-        description:
-          description: Description of vendor specific code.
-          example: Global Watchlist sources selected are correlated with the input identifiers
-          type: string
-      type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
-    verification_vendor_xml:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor.
-          enum:
-          - text/xml
-          type: string
-        details:
-          description: Array of vendor specific information.
-          items:
-            $ref: '#/components/schemas/verification_vendor_info_detail'
-          readOnly: true
-          type: array
-        vendor:
-          description: Name of the vendor used.
-          example: IDOLOGY
-          type: string
-        xml:
-          description: Data representaion in XML.
-          type: string
-      required:
-      - vendor
-      - content_type
-      - xml
   parameters:
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-    verification_id:
-      description: Unique identifier for the verification.
-      in: path
-      name: verification_id
-      required: true
-      schema:
-        example: 50653b5a-fba5-4e95-aef3-819414206d61
-        format: uuid
-        type: string
-    customer_id_path:
-      description: The customer's unique identifier
-      in: path
-      name: customer_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/customer_id'
     limit:
       in: query
       name: limit
@@ -485,15 +456,6 @@ components:
         minimum: 1
         type: integer
       x-external: true
-    include_history:
-      description: If true, include old (inactive) records as well.
-      in: query
-      name: include_history
-      required: false
-      schema:
-        default: false
-        type: boolean
-      x-external: true
     idempotency_key:
       description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
       in: header
@@ -503,7 +465,47 @@ components:
         example: df122e6f-2ba8-48a5-9508-4350bba5f27e
         type: string
       x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    verification_id:
+      description: Unique identifier for the verification.
+      in: path
+      name: verification_id
+      required: true
+      schema:
+        example: 50653b5a-fba5-4e95-aef3-819414206d61
+        format: uuid
+        type: string
+    include_history:
+      description: If true, include old (inactive) records as well.
+      in: query
+      name: include_history
+      required: false
+      schema:
+        default: false
+        type: boolean
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
   responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
     not_found:
       content:
         application/problem+json:
@@ -516,24 +518,18 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    unauthorized:
+    forbidden:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Unauthorized
+      description: Forbidden error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

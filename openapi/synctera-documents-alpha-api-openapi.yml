@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Documents (alpha) API
+  title: Synctera Documents (alpha) API
   version: 0.20.0
 servers:
 - description: Production
@@ -50,9 +54,7 @@ paths:
       x-external: true
       x-status: alpha
     post:
-      description: 'Docs
-
-        '
+      description: Docs
       operationId: createDocument
       requestBody:
         content:
@@ -173,26 +175,12 @@ paths:
       x-status: alpha
 components:
   schemas:
-    document_list:
-      allOf:
-      - properties:
-          documents:
-            description: Array of documents.
-            items:
-              $ref: '#/components/schemas/document'
-            type: array
-        required:
-        - documents
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
+    related_resource_type:
+      description: Related resource type
+      enum:
+      - CUSTOMER
+      - BUSINESS
+      type: string
     encryption:
       default: NOT_REQUIRED
       enum:
@@ -243,12 +231,51 @@ components:
         related_resource_type:
           $ref: '#/components/schemas/related_resource_type'
       type: object
-    related_resource_type:
-      description: Related resource type
-      enum:
-      - CUSTOMER
-      - BUSINESS
-      type: string
+    document_creation:
+      properties:
+        description:
+          type: string
+        encryption:
+          $ref: '#/components/schemas/encryption'
+        file:
+          format: binary
+          type: string
+        metadata:
+          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
+
+            '
+          type: object
+        name:
+          type: string
+        related_resource_id:
+          description: Related resource ID
+          format: uuid
+          type: string
+        related_resource_type:
+          $ref: '#/components/schemas/related_resource_type'
+      required:
+      - file
+      type: object
+    document_list:
+      allOf:
+      - properties:
+          documents:
+            description: Array of documents.
+            items:
+              $ref: '#/components/schemas/document'
+            type: array
+        required:
+        - documents
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     patch_document:
       properties:
         description:
@@ -276,69 +303,20 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    document_creation:
-      properties:
-        description:
-          type: string
-        encryption:
-          $ref: '#/components/schemas/encryption'
-        file:
-          format: binary
-          type: string
-        metadata:
-          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
-
-            '
-          type: object
-        name:
-          type: string
-        related_resource_id:
-          description: Related resource ID
-          format: uuid
-          type: string
-        related_resource_type:
-          $ref: '#/components/schemas/related_resource_type'
-      required:
-      - file
-      type: object
-  responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   parameters:
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
     id:
       description: Unique resource identifier
       explode: false
@@ -371,19 +349,43 @@ components:
         example: dd8cd509-ce52-4990-8f84-316558e68e9a
         format: uuid
         type: string
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

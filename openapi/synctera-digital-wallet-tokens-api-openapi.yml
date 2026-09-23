@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Digital Wallet Tokens API
+  title: Synctera Digital Wallet Tokens API
   version: 0.20.0
 servers:
 - description: Production
@@ -86,9 +90,6 @@ paths:
       x-external: true
   /cards/digital_wallet_tokens:
     get:
-      description: 'List Digital Wallet Tokens
-
-        '
       operationId: listDigitalWalletTokens
       parameters:
       - $ref: '#/components/parameters/card_id_query'
@@ -122,9 +123,7 @@ paths:
       '
     summary: Digital Wallet Token
     get:
-      description: 'Get the details about the digital wallet token of a card
-
-        '
+      description: Get the details about the digital wallet token of a card
       operationId: getDigitalWalletToken
       parameters:
       - $ref: '#/components/parameters/digital_wallet_token_id'
@@ -150,9 +149,7 @@ paths:
       - Digital Wallet Tokens
       x-external: true
     patch:
-      description: 'The status of a digital wallet token can be updated as, ACTIVE to SUSPENDED, SUSPENDED to ACTIVE, ACTIVE to TERMINATED or SUSPENDED to TERMINATED.
-
-        '
+      description: The status of a digital wallet token can be updated as, ACTIVE to SUSPENDED, SUSPENDED to ACTIVE, ACTIVE to TERMINATED or SUSPENDED to TERMINATED.
       operationId: updateDigitalWalletTokenStatus
       parameters:
       - $ref: '#/components/parameters/digital_wallet_token_id'
@@ -185,80 +182,110 @@ paths:
       - Digital Wallet Tokens
       x-external: true
 components:
+  parameters:
+    digital_wallet_token_id:
+      in: path
+      name: digital_wallet_token_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/digital_wallet_token_id'
+    card_id:
+      in: path
+      name: card_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/card_id'
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    card_id_query:
+      in: query
+      name: card_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/card_id'
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    digital_wallet_token_state_query:
+      description: The status of the Digital Wallet Token
+      in: query
+      name: token_state
+      required: false
+      schema:
+        $ref: '#/components/schemas/digital_wallet_token_state'
+      x-external: true
+  responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   schemas:
-    token_list_response:
-      allOf:
-      - $ref: '#/components/schemas/token_list'
-      - $ref: '#/components/schemas/paginated_response'
-      required:
-      - digital_wallet_tokens
     digital_wallet_token_id:
       description: The unique identifier of a digital wallet token
       format: string
       type: string
-    apple_digital_wallet_provision_request:
+    apple_digital_wallet_provision_response:
       properties:
-        certificates:
-          description: Leaf and sub-CA certificates provided by Apple
-          items:
-            description: Array of Base64 encoded certificates from Apple.
-            type: string
-          type: array
-        device_type:
-          $ref: '#/components/schemas/device_type'
-        nonce:
-          description: One-time-use nonce provided by Apple for security purposes.
+        activation_data:
           type: string
-        nonce_signature:
-          description: Apple-provided signature to the nonce.
-          type: string
-        provisioning_app_version:
-          $ref: '#/components/schemas/provisioning_app_version'
-      required:
-      - device_type
-      - provisioning_app_version
-      - certificates
-      - nonce
-      - nonce_signature
-      type: object
-    google_digital_wallet_provision_response:
-      properties:
         card_id:
           $ref: '#/components/schemas/card_id'
         created_time:
-          example: Sat Feb 26 2022 07:31:38 GMT+0000 (Coordinated Universal Time)
+          example: Wed May 11 2022 11:26:56 GMT+0000 (Coordinated Universal Time)
           format: date-time
+          type: string
+        encrypted_pass_data:
+          type: string
+        ephemeral_public_key:
           type: string
         last_modified_time:
-          example: Tue Nov 23 2021 12:04:53 GMT+0000 (Coordinated Universal Time)
+          example: Sat Jul 09 2022 10:39:01 GMT+0000 (Coordinated Universal Time)
           format: date-time
           type: string
-        push_tokenize_request_data:
-          $ref: '#/components/schemas/push_tokenize_request_data'
-      type: object
-    push_tokenize_request_data:
-      properties:
-        display_name:
-          type: string
-        last_digits:
-          type: string
-        network:
-          example: mastercard
-          type: string
-        opaque_payment_card:
-          type: string
-        token_service_provider:
-          type: string
-        user_address:
-          $ref: '#/components/schemas/address1'
-      type: object
-    token_list:
-      properties:
-        digital_wallet_tokens:
-          description: Array of Digital Wallet Token information of a Card
-          items:
-            $ref: '#/components/schemas/digital_wallet_token_response'
-          type: array
       type: object
     digital_wallet_token_edit_request:
       properties:
@@ -292,6 +319,78 @@ components:
       - wallet_account_id
       - device_id
       type: object
+    provisioning_app_version:
+      description: Version of the application making the provisioning request.
+      maxLength: 50
+      type: string
+    device_type:
+      description: The type of device into which the digital wallet token will be provisioned.
+      enum:
+      - MOBILE_PHONE
+      - WATCH
+      - TABLET
+      type: string
+    push_tokenize_request_data:
+      properties:
+        display_name:
+          type: string
+        last_digits:
+          type: string
+        network:
+          example: mastercard
+          type: string
+        opaque_payment_card:
+          type: string
+        token_service_provider:
+          type: string
+        user_address:
+          $ref: '#/components/schemas/address1'
+      type: object
+    apple_digital_wallet_provision_request:
+      properties:
+        certificates:
+          description: Leaf and sub-CA certificates provided by Apple
+          items:
+            description: Array of Base64 encoded certificates from Apple.
+            type: string
+          type: array
+        device_type:
+          $ref: '#/components/schemas/device_type'
+        nonce:
+          description: One-time-use nonce provided by Apple for security purposes.
+          type: string
+        nonce_signature:
+          description: Apple-provided signature to the nonce.
+          type: string
+        provisioning_app_version:
+          $ref: '#/components/schemas/provisioning_app_version'
+      required:
+      - device_type
+      - provisioning_app_version
+      - certificates
+      - nonce
+      - nonce_signature
+      type: object
+    digital_wallet_token_state:
+      description: Current status of the Digital Wallet Token
+      enum:
+      - REQUESTED
+      - REQUEST_DECLINED
+      - ACTIVE
+      - SUSPENDED
+      - TERMINATED
+      type: string
+    token_list_response:
+      allOf:
+      - $ref: '#/components/schemas/token_list'
+      - $ref: '#/components/schemas/paginated_response'
+      required:
+      - digital_wallet_tokens
+    card_id:
+      description: The unique identifier of a card
+      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
+      format: uuid
+      type: string
     digital_wallet_token_response:
       properties:
         approved_time:
@@ -343,10 +442,22 @@ components:
           - SAMSUNG_PAY
           type: string
       type: object
-    provisioning_app_version:
-      description: Version of the application making the provisioning request.
-      maxLength: 50
-      type: string
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    token_list:
+      properties:
+        digital_wallet_tokens:
+          description: Array of Digital Wallet Token information of a Card
+          items:
+            $ref: '#/components/schemas/digital_wallet_token_response'
+          type: array
+      type: object
     address1:
       properties:
         address_line_1:
@@ -380,6 +491,21 @@ components:
       - country_code
       - postal_code
       type: object
+    google_digital_wallet_provision_response:
+      properties:
+        card_id:
+          $ref: '#/components/schemas/card_id'
+        created_time:
+          example: Sat Feb 26 2022 07:31:38 GMT+0000 (Coordinated Universal Time)
+          format: date-time
+          type: string
+        last_modified_time:
+          example: Tue Nov 23 2021 12:04:53 GMT+0000 (Coordinated Universal Time)
+          format: date-time
+          type: string
+        push_tokenize_request_data:
+          $ref: '#/components/schemas/push_tokenize_request_data'
+      type: object
     error:
       properties:
         detail:
@@ -400,135 +526,6 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    apple_digital_wallet_provision_response:
-      properties:
-        activation_data:
-          type: string
-        card_id:
-          $ref: '#/components/schemas/card_id'
-        created_time:
-          example: Wed May 11 2022 11:26:56 GMT+0000 (Coordinated Universal Time)
-          format: date-time
-          type: string
-        encrypted_pass_data:
-          type: string
-        ephemeral_public_key:
-          type: string
-        last_modified_time:
-          example: Sat Jul 09 2022 10:39:01 GMT+0000 (Coordinated Universal Time)
-          format: date-time
-          type: string
-      type: object
-    digital_wallet_token_state:
-      description: Current status of the Digital Wallet Token
-      enum:
-      - REQUESTED
-      - REQUEST_DECLINED
-      - ACTIVE
-      - SUSPENDED
-      - TERMINATED
-      type: string
-    device_type:
-      description: The type of device into which the digital wallet token will be provisioned.
-      enum:
-      - MOBILE_PHONE
-      - WATCH
-      - TABLET
-      type: string
-    card_id:
-      description: The unique identifier of a card
-      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
-      format: uuid
-      type: string
-  parameters:
-    card_id:
-      in: path
-      name: card_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/card_id'
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-    digital_wallet_token_state_query:
-      description: The status of the Digital Wallet Token
-      in: query
-      name: token_state
-      required: false
-      schema:
-        $ref: '#/components/schemas/digital_wallet_token_state'
-      x-external: true
-    card_id_query:
-      in: query
-      name: card_id
-      required: false
-      schema:
-        $ref: '#/components/schemas/card_id'
-      x-external: true
-    digital_wallet_token_id:
-      in: path
-      name: digital_wallet_token_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/digital_wallet_token_id'
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
-  responses:
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

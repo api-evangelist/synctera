@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts ACH API
+  title: Synctera ACH API
   version: 0.20.0
 servers:
 - description: Production
@@ -25,7 +29,6 @@ paths:
       '
     summary: Sent ACH
     get:
-      description: List sent ACH transactions
       operationId: listTransactionsOut
       parameters:
       - $ref: '#/components/parameters/limit'
@@ -48,9 +51,6 @@ paths:
       - ACH
       x-external: true
     post:
-      description: 'Send an ACH
-
-        '
       operationId: addTransactionOut
       requestBody:
         content:
@@ -142,15 +142,44 @@ paths:
       - ACH
       x-external: true
 components:
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   schemas:
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
     ach_request_hold_data:
       properties:
         amount:
@@ -162,6 +191,12 @@ components:
       required:
       - amount
       - duration
+      type: object
+    risk_data:
+      properties:
+        client_ip:
+          description: Client IP
+          type: string
       type: object
     outgoing_ach_list:
       allOf:
@@ -175,17 +210,13 @@ components:
         - transactions
         type: object
       - $ref: '#/components/schemas/paginated_response'
-    outgoing_ach_patch:
-      description: Update sent ach transaction
+    paginated_response:
       properties:
-        funds_availability_time:
-          example: 2022-03-18TT17:54:12Z
-          format: date-time
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
           type: string
-        status:
-          enum:
-          - CANCELED
-          type: string
+      title: Paginated List response
       type: object
     hold_data:
       properties:
@@ -199,11 +230,37 @@ components:
       - amount
       - availability_time
       type: object
-    risk_data:
+    outgoing_ach_patch:
+      description: Update sent ach transaction
       properties:
-        client_ip:
-          description: Client IP
+        funds_availability_time:
+          example: 2022-03-18TT17:54:12Z
+          format: date-time
           type: string
+        status:
+          enum:
+          - CANCELED
+          type: string
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
       type: object
     outgoing_ach_request:
       description: Send an ACH
@@ -284,26 +341,6 @@ components:
       - originating_account_id
       title: Send ACH requests
       type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
     outgoing_ach:
       description: Represents a sent ACH transaction.
       properties:
@@ -383,62 +420,7 @@ components:
       - status
       - memo
       type: object
-  responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   parameters:
-    transaction_id:
-      description: Transaction ID in the ledger
-      in: path
-      name: transaction_id
-      required: true
-      schema:
-        example: 0cf88729-42fe-482d-904f-2f0508252858
-        format: uuid
-        type: string
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
     limit:
       in: query
       name: limit
@@ -452,6 +434,24 @@ components:
         minimum: 1
         type: integer
       x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    transaction_id:
+      description: Transaction ID in the ledger
+      in: path
+      name: transaction_id
+      required: true
+      schema:
+        example: 0cf88729-42fe-482d-904f-2f0508252858
+        format: uuid
+        type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

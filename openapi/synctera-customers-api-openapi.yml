@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Customers API
+  title: Synctera Customers API
   version: 0.20.0
 servers:
 - description: Production
@@ -58,9 +62,7 @@ paths:
     post:
       description: 'The customer object represents your customer''s identity. You can then verify the identity of this customer and associate them with other people and accounts.
 
-        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.
-
-        '
+        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.'
       operationId: createCustomer
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -124,7 +126,17 @@ paths:
       - Customers
       x-external: true
     patch:
-      description: "Patch fields of customer based on ID\nNote that if:\n  * legal address is provided in the request, AND\n  * shipping_address is not provided in the request, AND\n  * the customer resource does not have shipping_address\n  then shipping_address will be set to a copy of the legal_address.\n"
+      description: 'Patch fields of customer based on ID
+
+        Note that if:
+
+        * legal address is provided in the request, AND
+
+        * shipping_address is not provided in the request, AND
+
+        * the customer resource does not have shipping_address
+
+        then shipping_address will be set to a copy of the legal_address.'
       operationId: patchCustomer
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -160,9 +172,7 @@ paths:
     put:
       description: 'Update customer based on ID
 
-        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.
-
-        '
+        Note that if no shipping_address attribute is provided in the request, the shipping_address will be set to a copy of the legal_address.'
       operationId: updateCustomer
       parameters:
       - $ref: '#/components/parameters/customer_id_path'
@@ -197,9 +207,7 @@ paths:
   /customers/{customer_id}/employment:
     summary: Customer employment group operations
     get:
-      description: 'Get a list of customer''s current employment records. To see historic employment pass the `include_history` flag.
-
-        '
+      description: Get a list of customer's current employment records. To see historic employment pass the `include_history` flag.
       operationId: getAllCustomerEmployment
       parameters:
       - $ref: '#/components/parameters/customer_id_path'
@@ -306,9 +314,7 @@ paths:
       x-external: true
   /customers/{customer_id}/prefill:
     post:
-      description: 'Prefill takes a subset of a person''s information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.
-
-        '
+      description: Prefill takes a subset of a person's information and automatically fills personally identifiable information (PII) required for know your customer (KYC) verification.
       operationId: prefillCustomer
       parameters:
       - $ref: '#/components/parameters/customer_id_path'
@@ -369,7 +375,6 @@ paths:
       - Customers
       x-external: true
     post:
-      description: Create customer risk rating
       operationId: createCustomerRiskRating
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -438,13 +443,182 @@ paths:
       - Customers
       x-external: true
 components:
+  parameters:
+    ssn_last_4:
+      in: query
+      name: ssn_last_4
+      required: false
+      schema:
+        description: Only return resources where the last 4 characters of the SSN match the specified value.
+        example: '6789'
+        maxLength: 4
+        minLength: 4
+        type: string
+      x-external: true
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    customer_sort_by_query:
+      description: 'Specifies the sort order for the returned customers.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - creation_time:asc
+          - creation_time:desc
+          - last_updated_time:asc
+          - last_updated_time:desc
+          - first_name:asc
+          - first_name:desc
+          - last_name:asc
+          - last_name:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    phone_number:
+      in: query
+      name: phone_number
+      required: false
+      schema:
+        description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
+        example: '+12065550100'
+        type: string
+      x-external: true
+    status2:
+      in: query
+      name: status
+      required: false
+      schema:
+        description: Only return resources where with the specified status.
+        enum:
+        - ACTIVE
+        - DECEASED
+        - DENIED
+        - DORMANT
+        - ESCHEAT
+        - FROZEN
+        - INACTIVE
+        - PROSPECT
+        - SANCTION
+        example: ACTIVE
+        type: string
+      x-external: true
+    last_name:
+      in: query
+      name: last_name
+      required: false
+      schema:
+        description: Only return resources where the last_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Smith
+        type: string
+      x-external: true
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
+    risk_rating_id:
+      description: Risk Rating ID
+      in: path
+      name: risk_rating_id
+      required: true
+      schema:
+        example: 25ae35db-92b9-4b74-82d9-140a07eece71
+        format: uuid
+        type: string
+    first_name:
+      in: query
+      name: first_name
+      required: false
+      schema:
+        description: Only return resources where the first_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: Alice
+        type: string
+      x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    email:
+      in: query
+      name: email
+      required: false
+      schema:
+        description: Only return resources where the email field matches the specified string. Any * characters in the string are wildcards, and match any characters.
+        example: john.doe@example.com
+        type: string
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    include_history:
+      description: If true, include old (inactive) records as well.
+      in: query
+      name: include_history
+      required: false
+      schema:
+        default: false
+        type: boolean
+      x-external: true
+    employment_id:
+      description: Unique ID for the employment record.
+      in: path
+      name: employment_id
+      required: true
+      schema:
+        example: 4675ebf0-0691-4a2b-b1db-7ca6f4ff9ec5
+        format: uuid
+        type: string
   responses:
-    already_exists:
+    unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Resource already exists error
+      description: Unauthorized
     not_found:
       content:
         application/problem+json:
@@ -457,25 +631,245 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    unauthorized:
+    forbidden:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Unauthorized
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   schemas:
+    customer_list:
+      allOf:
+      - properties:
+          customers:
+            description: Array of Customers
+            items:
+              $ref: '#/components/schemas/customer_in_body'
+            type: array
+        required:
+        - customers
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    ssn_source:
+      description: 'Describes the collection method for the customer''s SSN:
+
+        * `MANUAL` – the full 9 digits of the customer''s SSN was collected.
+
+        * `PREFILL` – the customer''s SSN was collected using SSN Prefill.
+
+        '
+      enum:
+      - MANUAL
+      - PREFILL
+      readOnly: true
+      type: string
+    risk_rating_list:
+      allOf:
+      - properties:
+          risk_ratings:
+            description: Array of customer risk ratings
+            items:
+              $ref: '#/components/schemas/risk_rating'
+            type: array
+        required:
+        - risk_ratings
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    address:
+      properties:
+        address_line_1:
+          description: Street address line 1
+          example: 4992 Curtis Ports
+          type: string
+        address_line_2:
+          description: String address line 2
+          example: Apt. 877
+          type: string
+        city:
+          description: City
+          example: East Winstonview
+          type: string
+        country_code:
+          description: ISO-3166-1 Alpha-2 country code
+          example: US
+          pattern: ^[A-Z]{2}$
+          type: string
+        postal_code:
+          description: Postal code
+          example: '28620'
+          type: string
+        state:
+          description: State, region, province, or prefecture
+          example: NJ
+          type: string
+      required:
+      - address_line_1
+      - country_code
+      type: object
+    risk_rating:
+      description: Represents a customer's risk profile
+      properties:
+        configuration_id:
+          description: The risk configuration id used in risk score calculation
+          format: uuid
+          readOnly: true
+          type: string
+        id:
+          description: Risk rating ID
+          format: uuid
+          readOnly: true
+          type: string
+        next_review:
+          description: The next review date where customer risk will be calculated
+          format: date-time
+          type: string
+        risk_level:
+          description: A textual representation of the customer risk score
+          enum:
+          - low
+          - medium
+          - high
+          type: string
+        risk_review:
+          description: The date the customer risk rating was calculated
+          format: date-time
+          readOnly: true
+          type: string
+        risk_score:
+          description: The cumulative score of all risk rating fields
+          format: float
+          type: number
+      title: Customer Risk Rating
+      type: object
+    prefill_request:
+      properties:
+        ssn_filled:
+          description: If true, the person's SSN was successfully populated.
+          example: true
+          readOnly: true
+          type: boolean
+        ssn_last4:
+          description: Last four digits of person's Social Security number (SSN).
+          example: 4271
+          type: string
+    relationship1:
+      properties:
+        id:
+          description: ID of related entity
+          example: 821d3254-fed8-4fdc-aa35-7c1c770fd3cf
+          format: uuid
+          type: string
+        relationship_role:
+          $ref: '#/components/schemas/relationship_role'
+      required:
+      - id
+      - relationship_role
+      title: Relationship
+      type: object
+    customer_kyc_status:
+      description: Customer's KYC status
+      enum:
+      - UNVERIFIED
+      - REVIEW
+      - PROVIDER_FAILURE
+      - ACCEPTED
+      - REJECTED
+      - PROVISIONAL
+      type: string
+    customer:
+      allOf:
+      - properties:
+          dob:
+            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
+            example: '2000-01-01'
+            format: date
+            type: string
+          first_name:
+            description: Customer's first name
+            example: Baron
+            type: string
+          last_name:
+            description: Customer's last name
+            example: Rau
+            type: string
+          status:
+            description: Customer's status
+            enum:
+            - ACTIVE
+            - ESCHEAT
+            - DECEASED
+            - DENIED
+            - DORMANT
+            - FROZEN
+            - INACTIVE
+            - PROSPECT
+            - SANCTION
+            type: string
+        required:
+        - status
+      - $ref: '#/components/schemas/base_person'
+      description: Details of a customer
+      title: Customer
+      type: object
+    employment_list:
+      allOf:
+      - properties:
+          employment:
+            description: Array of customer employment records.
+            items:
+              $ref: '#/components/schemas/employment'
+            type: array
+        required:
+        - employment
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    prospect:
+      allOf:
+      - properties:
+          dob:
+            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
+            example: '2000-01-01'
+            format: date
+            type: string
+          first_name:
+            description: Customer's first name
+            example: Chyna
+            type: string
+          last_name:
+            description: Customer's last name
+            example: Daugherty
+            type: string
+          status:
+            description: Customer's status
+            enum:
+            - ACTIVE
+            - ESCHEAT
+            - DECEASED
+            - DENIED
+            - DORMANT
+            - FROZEN
+            - INACTIVE
+            - PROSPECT
+            - SANCTION
+            type: string
+        required:
+        - status
+      - $ref: '#/components/schemas/base_person'
+      description: A prospect has a unique identifier. It can be upgrade to a customer with required information
+      title: Customer
+      type: object
     relationship_role:
       description: CUSTODIAN - Related party is the custodian e.g. the parent, BENEFICIARY - Related party is the beneficiary e.g. the dependent, PARTNER - Related party is the partner
       enum:
@@ -485,59 +879,13 @@ components:
       example: CUSTODIAN
       title: Relationship Role
       type: string
-    employment:
-      description: 'A period of time in which a customer is (was) employed by a particular employer.
-
-        '
+    paginated_response:
       properties:
-        employer_name:
-          description: Name of customer's employer.
-          example: ABC, Inc.
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
           type: string
-        employment_from:
-          description: First day of employment.
-          example: '2016-05-11T00:00:00Z'
-          format: date-time
-          type: string
-        employment_hours:
-          description: Number of hours spent per week working for specified employment.
-          example: 37.5
-          format: float
-          maximum: 80
-          minimum: 0
-          type: number
-        employment_income:
-          description: Annual income in cents.
-          example: 5000000
-          type: integer
-        employment_income_currency:
-          description: 'The 3-letter alphabetic ISO 4217 code for the currency in which the employee was paid.
-
-            '
-          example: USD
-          type: string
-        employment_info:
-          description: 'A collection of arbitrary key-value pairs providing additional information about this employment relationship.
-
-            '
-          type: object
-        employment_occupation:
-          description: Customer's work title, profession, or field.
-          example: clerk
-          type: string
-        employment_to:
-          description: Last day of employment.
-          example: '2018-11-19T00:00:00Z'
-          format: date-time
-          type: string
-        id:
-          description: Unique ID for this employment relationship.
-          format: uuid
-          readOnly: true
-          type: string
-      required:
-      - employer_name
-      title: Customer employment record
+      title: Paginated List response
       type: object
     patch_customer:
       description: Customer object for patch purpose. All fields are optional
@@ -596,88 +944,6 @@ components:
           type: string
       title: Customer
       type: object
-    prospect:
-      allOf:
-      - properties:
-          dob:
-            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
-            example: '2000-01-01'
-            format: date
-            type: string
-          first_name:
-            description: Customer's first name
-            example: Chyna
-            type: string
-          last_name:
-            description: Customer's last name
-            example: Daugherty
-            type: string
-          status:
-            description: Customer's status
-            enum:
-            - ACTIVE
-            - ESCHEAT
-            - DECEASED
-            - DENIED
-            - DORMANT
-            - FROZEN
-            - INACTIVE
-            - PROSPECT
-            - SANCTION
-            type: string
-        required:
-        - status
-      - $ref: '#/components/schemas/base_person'
-      description: A prospect has a unique identifier. It can be upgrade to a customer with required information
-      title: Customer
-      type: object
-    risk_rating:
-      description: Represents a customer's risk profile
-      properties:
-        configuration_id:
-          description: The risk configuration id used in risk score calculation
-          format: uuid
-          readOnly: true
-          type: string
-        id:
-          description: Risk rating ID
-          format: uuid
-          readOnly: true
-          type: string
-        next_review:
-          description: The next review date where customer risk will be calculated
-          format: date-time
-          type: string
-        risk_level:
-          description: A textual representation of the customer risk score
-          enum:
-          - low
-          - medium
-          - high
-          type: string
-        risk_review:
-          description: The date the customer risk rating was calculated
-          format: date-time
-          readOnly: true
-          type: string
-        risk_score:
-          description: The cumulative score of all risk rating fields
-          format: float
-          type: number
-      title: Customer Risk Rating
-      type: object
-    risk_rating_list:
-      allOf:
-      - properties:
-          risk_ratings:
-            description: Array of customer risk ratings
-            items:
-              $ref: '#/components/schemas/risk_rating'
-            type: array
-        required:
-        - risk_ratings
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     ban_status:
       description: '(alpha) Ban status of the person. One of the following:
 
@@ -691,19 +957,64 @@ components:
       - BANNED
       example: ALLOWED
       type: string
-    ssn_source:
-      description: 'Describes the collection method for the customer''s SSN:
-
-        * `MANUAL` – the full 9 digits of the customer''s SSN was collected.
-
-        * `PREFILL` – the customer''s SSN was collected using SSN Prefill.
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    employment:
+      description: 'A period of time in which a customer is (was) employed by a particular employer.
 
         '
-      enum:
-      - MANUAL
-      - PREFILL
-      readOnly: true
-      type: string
+      properties:
+        employer_name:
+          description: Name of customer's employer.
+          example: ABC, Inc.
+          type: string
+        employment_from:
+          description: First day of employment.
+          example: '2016-05-11T00:00:00Z'
+          format: date-time
+          type: string
+        employment_hours:
+          description: Number of hours spent per week working for specified employment.
+          example: 37.5
+          format: float
+          maximum: 80
+          minimum: 0
+          type: number
+        employment_income:
+          description: Annual income in cents.
+          example: 5000000
+          type: integer
+        employment_income_currency:
+          description: 'The 3-letter alphabetic ISO 4217 code for the currency in which the employee was paid.
+
+            '
+          example: USD
+          type: string
+        employment_info:
+          description: 'A collection of arbitrary key-value pairs providing additional information about this employment relationship.
+
+            '
+          type: object
+        employment_occupation:
+          description: Customer's work title, profession, or field.
+          example: clerk
+          type: string
+        employment_to:
+          description: Last day of employment.
+          example: '2018-11-19T00:00:00Z'
+          format: date-time
+          type: string
+        id:
+          description: Unique ID for this employment relationship.
+          format: uuid
+          readOnly: true
+          type: string
+      required:
+      - employer_name
+      title: Customer employment record
+      type: object
     base_person:
       properties:
         ban_status:
@@ -791,47 +1102,6 @@ components:
       - $ref: '#/components/schemas/customer'
       - $ref: '#/components/schemas/prospect'
       type: object
-    customer_kyc_status:
-      description: Customer's KYC status
-      enum:
-      - UNVERIFIED
-      - REVIEW
-      - PROVIDER_FAILURE
-      - ACCEPTED
-      - REJECTED
-      - PROVISIONAL
-      type: string
-    address:
-      properties:
-        address_line_1:
-          description: Street address line 1
-          example: 4992 Curtis Ports
-          type: string
-        address_line_2:
-          description: String address line 2
-          example: Apt. 877
-          type: string
-        city:
-          description: City
-          example: East Winstonview
-          type: string
-        country_code:
-          description: ISO-3166-1 Alpha-2 country code
-          example: US
-          pattern: ^[A-Z]{2}$
-          type: string
-        postal_code:
-          description: Postal code
-          example: '28620'
-          type: string
-        state:
-          description: State, region, province, or prefecture
-          example: NJ
-          type: string
-      required:
-      - address_line_1
-      - country_code
-      type: object
     error:
       properties:
         detail:
@@ -852,271 +1122,6 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    customer_list:
-      allOf:
-      - properties:
-          customers:
-            description: Array of Customers
-            items:
-              $ref: '#/components/schemas/customer_in_body'
-            type: array
-        required:
-        - customers
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    customer:
-      allOf:
-      - properties:
-          dob:
-            description: Customer's date of birth in RFC 3339 full-date format (YYYY-MM-DD)
-            example: '2000-01-01'
-            format: date
-            type: string
-          first_name:
-            description: Customer's first name
-            example: Baron
-            type: string
-          last_name:
-            description: Customer's last name
-            example: Rau
-            type: string
-          status:
-            description: Customer's status
-            enum:
-            - ACTIVE
-            - ESCHEAT
-            - DECEASED
-            - DENIED
-            - DORMANT
-            - FROZEN
-            - INACTIVE
-            - PROSPECT
-            - SANCTION
-            type: string
-        required:
-        - status
-      - $ref: '#/components/schemas/base_person'
-      description: Details of a customer
-      title: Customer
-      type: object
-    employment_list:
-      allOf:
-      - properties:
-          employment:
-            description: Array of customer employment records.
-            items:
-              $ref: '#/components/schemas/employment'
-            type: array
-        required:
-        - employment
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    prefill_request:
-      properties:
-        ssn_filled:
-          description: If true, the person's SSN was successfully populated.
-          example: true
-          readOnly: true
-          type: boolean
-        ssn_last4:
-          description: Last four digits of person's Social Security number (SSN).
-          example: 4271
-          type: string
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
-    relationship1:
-      properties:
-        id:
-          description: ID of related entity
-          example: 821d3254-fed8-4fdc-aa35-7c1c770fd3cf
-          format: uuid
-          type: string
-        relationship_role:
-          $ref: '#/components/schemas/relationship_role'
-      required:
-      - id
-      - relationship_role
-      title: Relationship
-      type: object
-  parameters:
-    customer_sort_by_query:
-      description: 'Specifies the sort order for the returned customers.
-
-        '
-      explode: false
-      in: query
-      name: sort_by
-      required: false
-      schema:
-        items:
-          enum:
-          - creation_time:asc
-          - creation_time:desc
-          - last_updated_time:asc
-          - last_updated_time:desc
-          - first_name:asc
-          - first_name:desc
-          - last_name:asc
-          - last_name:desc
-          type: string
-        type: array
-      style: form
-      x-external: true
-    ssn_last_4:
-      in: query
-      name: ssn_last_4
-      required: false
-      schema:
-        description: Only return resources where the last 4 characters of the SSN match the specified value.
-        example: '6789'
-        maxLength: 4
-        minLength: 4
-        type: string
-      x-external: true
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-    customer_id_path:
-      description: The customer's unique identifier
-      in: path
-      name: customer_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/customer_id'
-    first_name:
-      in: query
-      name: first_name
-      required: false
-      schema:
-        description: Only return resources where the first_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
-        example: Alice
-        type: string
-      x-external: true
-    status2:
-      in: query
-      name: status
-      required: false
-      schema:
-        description: Only return resources where with the specified status.
-        enum:
-        - ACTIVE
-        - DECEASED
-        - DENIED
-        - DORMANT
-        - ESCHEAT
-        - FROZEN
-        - INACTIVE
-        - PROSPECT
-        - SANCTION
-        example: ACTIVE
-        type: string
-      x-external: true
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
-    include_history:
-      description: If true, include old (inactive) records as well.
-      in: query
-      name: include_history
-      required: false
-      schema:
-        default: false
-        type: boolean
-      x-external: true
-    risk_rating_id:
-      description: Risk Rating ID
-      in: path
-      name: risk_rating_id
-      required: true
-      schema:
-        example: 25ae35db-92b9-4b74-82d9-140a07eece71
-        format: uuid
-        type: string
-    id:
-      description: Unique resource identifier
-      explode: false
-      in: query
-      name: id
-      required: false
-      schema:
-        items:
-          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
-          format: uuid
-          type: string
-        type: array
-      style: form
-      x-external: true
-    employment_id:
-      description: Unique ID for the employment record.
-      in: path
-      name: employment_id
-      required: true
-      schema:
-        example: 4675ebf0-0691-4a2b-b1db-7ca6f4ff9ec5
-        format: uuid
-        type: string
-    phone_number:
-      in: query
-      name: phone_number
-      required: false
-      schema:
-        description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
-        example: '+12065550100'
-        type: string
-      x-external: true
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
-      required: false
-      schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
-      x-external: true
-    email:
-      in: query
-      name: email
-      required: false
-      schema:
-        description: Only return resources where the email field matches the specified string. Any * characters in the string are wildcards, and match any characters.
-        example: john.doe@example.com
-        type: string
-      x-external: true
-    last_name:
-      in: query
-      name: last_name
-      required: false
-      schema:
-        description: Only return resources where the last_name field matches the specified string. Any * characters in the string are wildcards, and match any characters.
-        example: Smith
-        type: string
-      x-external: true
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Reconciliations API
+  title: Synctera Reconciliations API
   version: 0.20.0
 servers:
 - description: Production
@@ -49,9 +53,7 @@ paths:
       x-external: true
       x-status: alpha
     post:
-      description: 'Create a new reconciliation job
-
-        '
+      description: Create a new reconciliation job
       operationId: createReconciliation
       requestBody:
         content:
@@ -109,31 +111,6 @@ paths:
       x-status: alpha
 components:
   schemas:
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    reconciliation_input:
-      description: Input data for a reconciliation
-      properties:
-        byte_data:
-          description: Base64url encoded image
-          example: npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y
-          format: byte
-          type: string
-        file_name:
-          description: Filename of the data to be reconciled
-          example: cp2tj9tzpzpckc
-          type: string
-      required:
-      - file_name
-      - byte_data
-      title: Reconciliation Input
-      type: object
     reconciliation:
       description: Reconciliation
       properties:
@@ -176,6 +153,31 @@ components:
       - FAILED
       title: Reconciliation Ingestion Status Values
       type: string
+    reconciliation_input:
+      description: Input data for a reconciliation
+      properties:
+        byte_data:
+          description: Base64url encoded image
+          example: npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y
+          format: byte
+          type: string
+        file_name:
+          description: Filename of the data to be reconciled
+          example: cp2tj9tzpzpckc
+          type: string
+      required:
+      - file_name
+      - byte_data
+      title: Reconciliation Input
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     error:
       properties:
         detail:
@@ -197,37 +199,50 @@ components:
       title: Standard error response (RFC 7807 problem report)
       type: object
   responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
     unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Unauthorized
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   parameters:
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
     reconciliation_id:
       description: Reconciliation id
       in: path
@@ -245,19 +260,6 @@ components:
         description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
         example: h50ffqz9q5
         type: string
-      x-external: true
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
       x-external: true
   securitySchemes:
     bearerAuth:

@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Sandbox Wipe (alpha) API
+  title: Synctera Sandbox Wipe (alpha) API
   version: 0.20.0
 servers:
 - description: Production
@@ -21,7 +25,68 @@ paths:
   /wipe:
     summary: Wipe
     post:
-      description: "Delete the customer and account related data, leaving other configuration data intact. This enables use cases such as bulk data deletion between tests.\nData associated with below resources will be deleted:\n  - Accounts\n  - Account applications\n  - ACH\n  - Businesses\n  - Cards\n  - Card images\n  - Cases\n  - Customers\n  - Disclosures\n  - External Accounts\n  - Internal Accounts\n  - Payment schedules and history\n  - Persons\n  - RDC\n  - Relationships\n  - Transactions (including for Internal Accounts)\n  - Verifications\n\nData associated with below resources will be retained:\n  - Account Templates\n  - API Keys\n  - Bank/Partner data\n  - Card product\n  - Disclosure document records\n  - Egress config\n  - Groups\n  - PII contract with vault\n  - Roles\n  - Users\n  - Webhooks\n"
+      description: 'Delete the customer and account related data, leaving other configuration data intact. This enables use cases such as bulk data deletion between tests.
+
+        Data associated with below resources will be deleted:
+
+        - Accounts
+
+        - Account applications
+
+        - ACH
+
+        - Businesses
+
+        - Cards
+
+        - Card images
+
+        - Cases
+
+        - Customers
+
+        - Disclosures
+
+        - External Accounts
+
+        - Internal Accounts
+
+        - Payment schedules and history
+
+        - Persons
+
+        - RDC
+
+        - Relationships
+
+        - Transactions (including for Internal Accounts)
+
+        - Verifications
+
+
+        Data associated with below resources will be retained:
+
+        - Account Templates
+
+        - API Keys
+
+        - Bank/Partner data
+
+        - Card product
+
+        - Disclosure document records
+
+        - Egress config
+
+        - Groups
+
+        - PII contract with vault
+
+        - Roles
+
+        - Users
+
+        - Webhooks'
       operationId: wipeWorkspace
       responses:
         '204':
@@ -36,19 +101,6 @@ paths:
       x-external: true
       x-status: alpha
 components:
-  responses:
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
   schemas:
     error:
       properties:
@@ -70,6 +122,19 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

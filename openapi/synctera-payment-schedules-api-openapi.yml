@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts PaymentSchedules API
+  title: Synctera Payment Schedules API
   version: 0.20.0
 servers:
 - description: Production
@@ -16,7 +20,7 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- name: PaymentSchedules
+- name: Payment Schedules
 paths:
   /payment_schedules:
     summary: PaymentSchedules
@@ -44,10 +48,9 @@ paths:
           $ref: '#/components/responses/internal_server_error'
       summary: List payment schedules
       tags:
-      - PaymentSchedules
+      - Payment Schedules
       x-external: true
     post:
-      description: Create a payment schedule
       operationId: createPaymentSchedule
       requestBody:
         content:
@@ -75,11 +78,10 @@ paths:
           $ref: '#/components/responses/internal_server_error'
       summary: Create a payment schedule
       tags:
-      - PaymentSchedules
+      - Payment Schedules
       x-external: true
   /payment_schedules/{payment_schedule_id}:
     patch:
-      description: Update a payment schedule
       operationId: patchPaymentSchedule
       parameters:
       - $ref: '#/components/parameters/schedule_id_path'
@@ -111,7 +113,7 @@ paths:
           $ref: '#/components/responses/internal_server_error'
       summary: Update a payment schedule
       tags:
-      - PaymentSchedules
+      - Payment Schedules
       x-external: true
   /payment_schedules/payments:
     summary: PaymentSchedules
@@ -140,140 +142,66 @@ paths:
           $ref: '#/components/responses/internal_server_error'
       summary: List payments
       tags:
-      - PaymentSchedules
+      - Payment Schedules
       x-external: true
 components:
   schemas:
-    ach_request_hold_data:
+    payment_error_details:
+      description: Payment error details. It will be included only when status is ERROR
       properties:
-        amount:
-          type: integer
-        duration:
-          example: 2
-          minimum: 0
-          type: integer
-      required:
-      - amount
-      - duration
+        code:
+          type: string
+        details:
+          type: string
       type: object
-    internal_transfer:
-      example:
-        amount: 1025
-        currency: USD
-        originating_account_id: 1cde7350-f511-4a07-b314-06bf48a96a43
-        receiving_account_id: 921e1160-6227-4069-bd24-becf90390289
-        type: ACCOUNT_TO_ACCOUNT
+    ach_instruction:
       properties:
-        amount:
-          description: The amount (in cents) to transfer from originating account to receiving account.
-          format: int64
+        request:
+          $ref: '#/components/schemas/outgoing_ach_request'
+        type:
+          enum:
+          - ACH
+          type: string
+      required:
+      - type
+      - request
+      type: object
+    schedule_config:
+      description: Payment schedule recurrence configuration
+      properties:
+        count:
+          description: Number of times to recur. Exactly one of end_date or count must be provided
+          format: int32
           minimum: 1
           type: integer
-        currency:
-          description: ISO 4217 alphabetic currency code of the transfer amount
-          example: USD
+        end_date:
+          description: End date of the schedule (exclusive). Exactly one of end_date or count must be provided
+          format: date
           type: string
-        memo:
-          description: A short note to the recipient
-          type: string
-        metadata:
-          description: Arbitrary key-value metadata to associate with the transaction
-          type: object
-        originating_account_alias:
-          description: An alias representing a GL account to debit. This is alternative to specifying by account id
-          example: ach_suspense
-          type: string
-        originating_account_customer_id:
-          description: The customer id of the owner of the originating account.
-          format: uuid
-          type: string
-        originating_account_id:
-          description: The UUID of the account being debited
-          format: uuid
-          type: string
-        receiving_account_alias:
-          description: An alias representing a GL account to credit. This is an alternative to specifying by account id
-          example: ach_suspense
-          type: string
-        receiving_account_customer_id:
-          description: The customer id of the owner of the receiving account. Only required when type is "outgoing_remittance"
-          format: uuid
-          type: string
-        receiving_account_id:
-          description: The UUID of the account being credited
-          format: uuid
-          type: string
-        type:
-          description: The desired transaction type to use for this transfer
+        frequency:
           enum:
-          - ACCOUNT_TO_ACCOUNT
-          - ACH_CREDIT_SWEEP
-          - ACH_DEBIT_SWEEP
-          - ACH_FLOAT_TRANSFER
-          - CASHBACK
-          - FEE
-          - INCOMING_WIRE
-          - INTEREST_PAYOUT
-          - MANUAL_ADJUSTMENT
-          - MANUAL_ADJUSTMENT_REVERSAL
-          - OUTGOING_INTERNATIONAL_REMITTANCE
-          - OUTGOING_INTERNATIONAL_REMITTANCE_REVERSAL
-          - PROMOTIONAL_CREDIT
-          - SIGN_UP_BONUS
-          - SUBSCRIPTION_FEE
-          - TRANSFER_FEE
-          - TRANSFER_FEE_REVERSAL
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          type: string
+        interval:
+          description: Interval between recurrences, e.g. interval = 2 with frequency = WEEKLY means every other week.
+          maximum: 366
+          minimum: 1
+          type: integer
+        start_date:
+          description: Start date of the schedule (inclusive)
+          format: date
           type: string
       required:
-      - amount
-      - currency
-      - type
+      - start_date
+      - frequency
+      - interval
       type: object
-    payment_schedule_status:
-      description: 'Status of the payment schedule.
-
-        '
-      enum:
-      - ACTIVE
-      - EXPIRED
-      - CANCELLED
-      readOnly: true
-      type: string
-      x-enumDescriptions:
-      - ACTIVE: Payment schedule will run the next payment
-      - EXPIRED: Payment schedule has completed all the payments
-      - CANCELLED: Payment schedule has cancelled all the future payments
-    payment_status:
-      description: Payment request status
-      enum:
-      - COMPLETED
-      - ERROR
-      type: string
     risk_data:
       properties:
         client_ip:
           description: Client IP
-          type: string
-      type: object
-    payment_schedule_list:
-      allOf:
-      - properties:
-          payment_schedules:
-            description: Array of payment schedules.
-            items:
-              $ref: '#/components/schemas/payment_schedule'
-            type: array
-        required:
-        - payment_schedules
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    patch_payment_schedule:
-      description: Patch request for payment schedule
-      properties:
-        status:
-          description: Target payment schedule status
-          enum:
-          - CANCELLED
           type: string
       type: object
     payment_date:
@@ -290,6 +218,39 @@ components:
       required:
       - scheduled_date
       - execution_date
+      type: object
+    id_list_query_schema:
+      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+      items:
+        format: uuid
+        type: string
+      type: array
+    payment_schedule:
+      description: Payment schedule
+      properties:
+        description:
+          description: User provided description for the payment schedule
+          type: string
+        id:
+          description: Payment schedule ID
+          format: uuid
+          readOnly: true
+          type: string
+        metadata:
+          description: User provided JSON format data
+          type: object
+        next_payment_date:
+          $ref: '#/components/schemas/payment_date'
+        payment_instruction:
+          $ref: '#/components/schemas/payment_instruction'
+        schedule:
+          $ref: '#/components/schemas/schedule_config'
+        status:
+          $ref: '#/components/schemas/payment_schedule_status'
+      required:
+      - description
+      - schedule
+      - payment_instruction
       type: object
     outgoing_ach_request:
       description: Send an ACH
@@ -370,18 +331,62 @@ components:
       - originating_account_id
       title: Send ACH requests
       type: object
-    payment_list:
+    patch_payment_schedule:
+      description: Patch request for payment schedule
+      properties:
+        status:
+          description: Target payment schedule status
+          enum:
+          - CANCELLED
+          type: string
+      type: object
+    payment_instruction:
+      discriminator:
+        mapping:
+          ACH: '#/components/schemas/ach_instruction'
+          INTERNAL_TRANSFER: '#/components/schemas/internal_transfer_instruction'
+        propertyName: type
+      oneOf:
+      - $ref: '#/components/schemas/ach_instruction'
+      - $ref: '#/components/schemas/internal_transfer_instruction'
+    ach_request_hold_data:
+      properties:
+        amount:
+          type: integer
+        duration:
+          example: 2
+          minimum: 0
+          type: integer
+      required:
+      - amount
+      - duration
+      type: object
+    payment_schedule_list:
       allOf:
       - properties:
-          payments:
-            description: Array of payments
+          payment_schedules:
+            description: Array of payment schedules.
             items:
-              $ref: '#/components/schemas/payment'
+              $ref: '#/components/schemas/payment_schedule'
             type: array
         required:
-        - payments
+        - payment_schedules
         type: object
       - $ref: '#/components/schemas/paginated_response'
+    payment_schedule_status:
+      description: 'Status of the payment schedule.
+
+        '
+      enum:
+      - ACTIVE
+      - EXPIRED
+      - CANCELLED
+      readOnly: true
+      type: string
+      x-enumDescriptions:
+      - ACTIVE: Payment schedule will run the next payment
+      - EXPIRED: Payment schedule has completed all the payments
+      - CANCELLED: Payment schedule has cancelled all the future payments
     internal_transfer_instruction:
       properties:
         request:
@@ -394,70 +399,18 @@ components:
       - type
       - request
       type: object
-    schedule_config:
-      description: Payment schedule recurrence configuration
-      properties:
-        count:
-          description: Number of times to recur. Exactly one of end_date or count must be provided
-          format: int32
-          minimum: 1
-          type: integer
-        end_date:
-          description: End date of the schedule (exclusive). Exactly one of end_date or count must be provided
-          format: date
-          type: string
-        frequency:
-          enum:
-          - DAILY
-          - WEEKLY
-          - MONTHLY
-          type: string
-        interval:
-          description: Interval between recurrences, e.g. interval = 2 with frequency = WEEKLY means every other week.
-          maximum: 366
-          minimum: 1
-          type: integer
-        start_date:
-          description: Start date of the schedule (inclusive)
-          format: date
-          type: string
-      required:
-      - start_date
-      - frequency
-      - interval
-      type: object
-    ach_instruction:
-      properties:
-        request:
-          $ref: '#/components/schemas/outgoing_ach_request'
-        type:
-          enum:
-          - ACH
-          type: string
-      required:
-      - type
-      - request
-      type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
+    payment_list:
+      allOf:
+      - properties:
+          payments:
+            description: Array of payments
+            items:
+              $ref: '#/components/schemas/payment'
+            type: array
+        required:
+        - payments
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
     paginated_response:
       properties:
         next_page_token:
@@ -465,23 +418,6 @@ components:
           example: d61grelm5f
           type: string
       title: Paginated List response
-      type: object
-    payment_instruction:
-      discriminator:
-        mapping:
-          ACH: '#/components/schemas/ach_instruction'
-          INTERNAL_TRANSFER: '#/components/schemas/internal_transfer_instruction'
-        propertyName: type
-      oneOf:
-      - $ref: '#/components/schemas/ach_instruction'
-      - $ref: '#/components/schemas/internal_transfer_instruction'
-    payment_error_details:
-      description: Payment error details. It will be included only when status is ERROR
-      properties:
-        code:
-          type: string
-        details:
-          type: string
       type: object
     payment:
       description: Executed payment
@@ -513,92 +449,162 @@ components:
           format: uuid
           type: string
       type: object
-    payment_schedule:
-      description: Payment schedule
+    internal_transfer:
+      example:
+        amount: 1025
+        currency: USD
+        originating_account_id: 1cde7350-f511-4a07-b314-06bf48a96a43
+        receiving_account_id: 921e1160-6227-4069-bd24-becf90390289
+        type: ACCOUNT_TO_ACCOUNT
       properties:
-        description:
-          description: User provided description for the payment schedule
+        amount:
+          description: The amount (in cents) to transfer from originating account to receiving account.
+          format: int64
+          minimum: 1
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          example: USD
           type: string
-        id:
-          description: Payment schedule ID
-          format: uuid
-          readOnly: true
+        memo:
+          description: A short note to the recipient
           type: string
         metadata:
-          description: User provided JSON format data
+          description: Arbitrary key-value metadata to associate with the transaction
           type: object
-        next_payment_date:
-          $ref: '#/components/schemas/payment_date'
-        payment_instruction:
-          $ref: '#/components/schemas/payment_instruction'
-        schedule:
-          $ref: '#/components/schemas/schedule_config'
-        status:
-          $ref: '#/components/schemas/payment_schedule_status'
+        originating_account_alias:
+          description: An alias representing a GL account to debit. This is alternative to specifying by account id
+          example: ach_suspense
+          type: string
+        originating_account_customer_id:
+          description: The customer id of the owner of the originating account.
+          format: uuid
+          type: string
+        originating_account_id:
+          description: The UUID of the account being debited
+          format: uuid
+          type: string
+        receiving_account_alias:
+          description: An alias representing a GL account to credit. This is an alternative to specifying by account id
+          example: ach_suspense
+          type: string
+        receiving_account_customer_id:
+          description: The customer id of the owner of the receiving account. Only required when type is "outgoing_remittance"
+          format: uuid
+          type: string
+        receiving_account_id:
+          description: The UUID of the account being credited
+          format: uuid
+          type: string
+        type:
+          description: The desired transaction type to use for this transfer
+          enum:
+          - ACCOUNT_TO_ACCOUNT
+          - ACH_CREDIT_SWEEP
+          - ACH_DEBIT_SWEEP
+          - ACH_FLOAT_TRANSFER
+          - CASHBACK
+          - FEE
+          - INCOMING_WIRE
+          - INTEREST_PAYOUT
+          - MANUAL_ADJUSTMENT
+          - MANUAL_ADJUSTMENT_REVERSAL
+          - OUTGOING_INTERNATIONAL_REMITTANCE
+          - OUTGOING_INTERNATIONAL_REMITTANCE_REVERSAL
+          - PROMOTIONAL_CREDIT
+          - SIGN_UP_BONUS
+          - SUBSCRIPTION_FEE
+          - TRANSFER_FEE
+          - TRANSFER_FEE_REVERSAL
+          type: string
       required:
-      - description
-      - schedule
-      - payment_instruction
+      - amount
+      - currency
+      - type
       type: object
-    id_list_query_schema:
-      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
-      items:
-        format: uuid
-        type: string
-      type: array
-  responses:
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    payment_status:
+      description: Payment request status
+      enum:
+      - COMPLETED
+      - ERROR
+      type: string
   parameters:
-    account_id_query1:
-      description: Originating account IDs. Multiple IDs can be provided as a comma-separated list.
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    id_query2:
+      description: IDs. Multiple IDs can be provided as a comma-separated list.
       explode: false
       in: query
-      name: account_id
+      name: id
       required: false
       schema:
         $ref: '#/components/schemas/id_list_query_schema'
       style: form
       x-external: true
+    payment_schedule_id_query:
+      description: Payment schedule IDs. Multiple IDs can be provided as a comma-separated list.
+      explode: false
+      in: query
+      name: schedule_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/id_list_query_schema'
+      style: form
+      x-external: true
+    schedule_id_path:
+      description: Payment schedule ID
+      in: path
+      name: payment_schedule_id
+      required: true
+      schema:
+        format: uuid
+        type: string
     customer_id_query1:
       description: The IDs of customers who created the payment schedules. Multiple IDs can be provided as a comma-separated list.
       explode: false
       in: query
       name: customer_id
+      required: false
+      schema:
+        $ref: '#/components/schemas/id_list_query_schema'
+      style: form
+      x-external: true
+    account_id_query1:
+      description: Originating account IDs. Multiple IDs can be provided as a comma-separated list.
+      explode: false
+      in: query
+      name: account_id
       required: false
       schema:
         $ref: '#/components/schemas/id_list_query_schema'
@@ -613,47 +619,43 @@ components:
         example: h50ffqz9q5
         type: string
       x-external: true
-    payment_schedule_id_query:
-      description: Payment schedule IDs. Multiple IDs can be provided as a comma-separated list.
-      explode: false
-      in: query
-      name: schedule_id
-      required: false
-      schema:
-        $ref: '#/components/schemas/id_list_query_schema'
-      style: form
-      x-external: true
-    id_query2:
-      description: IDs. Multiple IDs can be provided as a comma-separated list.
-      explode: false
-      in: query
-      name: id
-      required: false
-      schema:
-        $ref: '#/components/schemas/id_list_query_schema'
-      style: form
-      x-external: true
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
-    schedule_id_path:
-      description: Payment schedule ID
-      in: path
-      name: payment_schedule_id
-      required: true
-      schema:
-        format: uuid
-        type: string
+  responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

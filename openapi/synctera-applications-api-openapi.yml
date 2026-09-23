@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Applications API
+  title: Synctera Applications API
   version: 0.20.0
 servers:
 - description: Production
@@ -22,9 +26,7 @@ paths:
   /applications:
     summary: Applications
     get:
-      description: 'List credit applications.
-
-        '
+      description: List credit applications.
       operationId: listApplications
       parameters:
       - $ref: '#/components/parameters/customer_id_query_array'
@@ -44,14 +46,12 @@ paths:
           $ref: '#/components/responses/not_found'
         '500':
           $ref: '#/components/responses/internal_server_error'
-      summary: List credit applications.
+      summary: List credit applications
       tags:
       - Applications
       x-external: true
     post:
-      description: 'Create a credit application.
-
-        '
+      description: Create a credit application.
       operationId: createApplication
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -81,16 +81,14 @@ paths:
           $ref: '#/components/responses/already_exists'
         '500':
           $ref: '#/components/responses/internal_server_error'
-      summary: Create a credit application.
+      summary: Create a credit application
       tags:
       - Applications
       x-external: true
   /applications/{application_id}:
     summary: Application
     get:
-      description: 'Get application by ID.
-
-        '
+      description: Get application by ID.
       operationId: getApplication
       parameters:
       - $ref: '#/components/parameters/application_id_path'
@@ -116,9 +114,7 @@ paths:
       - Applications
       x-external: true
     patch:
-      description: 'Patch Application.
-
-        '
+      description: Patch Application.
       operationId: patchApplication
       parameters:
       - $ref: '#/components/parameters/idempotency_key'
@@ -153,6 +149,71 @@ paths:
       x-external: true
 components:
   schemas:
+    application_status:
+      description: 'Status of the credit application
+
+        '
+      enum:
+      - APPLICATION_SUBMITTED
+      - CREDIT_APPROVED
+      - CREDIT_DENIED
+      - CREDIT_NOT_ACCEPTED_BY_CUSTOMER
+      - CREDIT_ACCEPTED_BY_CUSTOMER
+      title: Application Status
+      type: string
+      x-enumDescriptions:
+      - APPLICATION_SUBMITTED: Credit application has been submitted
+      - CREDIT_APPROVED: Credit application has been approved
+      - CREDIT_DENIED: Credit application has been denied
+      - CREDIT_NOT_ACCEPTED_BY_CUSTOMER: Credit application has not been accepted by the customer
+      - CREDIT_ACCEPTED_BY_CUSTOMER: Credit application has been accepted by the customer
+    application_list:
+      allOf:
+      - properties:
+          applications:
+            description: Array of credit applications.
+            items:
+              $ref: '#/components/schemas/application_response'
+            type: array
+        required:
+        - applications
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    application_patch:
+      properties:
+        application_details:
+          description: Details about the applicant. The exact schema is to be determined with your bank.
+          example:
+            annual_salary: 50000
+            fico_score: 700
+          type: object
+        status:
+          $ref: '#/components/schemas/application_status'
+      title: Credit application details
+      type: object
+    application:
+      properties:
+        application_details:
+          description: Details about the applicant. The exact schema is to be determined with your bank.
+          example:
+            annual_salary: 50000
+            fico_score: 700
+          type: object
+        customer_id:
+          description: Customer ID for the application
+          format: uuid
+          type: string
+        status:
+          $ref: '#/components/schemas/application_status'
+          default: APPLICATION_SUBMITTED
+        type:
+          $ref: '#/components/schemas/application_type1'
+      required:
+      - customer_id
+      - application_details
+      - type
+      title: Credit application details
+      type: object
     application_response:
       properties:
         application_details:
@@ -194,6 +255,18 @@ components:
       - last_updated_time
       title: Credit application details
       type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
     application_type1:
       description: Type of Credit Application
       enum:
@@ -203,59 +276,6 @@ components:
       type: string
       x-enumDescriptions:
       - LINE_OF_CREDIT: Line of credit application type
-    application_status:
-      description: 'Status of the credit application
-
-        '
-      enum:
-      - APPLICATION_SUBMITTED
-      - CREDIT_APPROVED
-      - CREDIT_DENIED
-      - CREDIT_NOT_ACCEPTED_BY_CUSTOMER
-      - CREDIT_ACCEPTED_BY_CUSTOMER
-      title: Application Status
-      type: string
-      x-enumDescriptions:
-      - APPLICATION_SUBMITTED: Credit application has been submitted
-      - CREDIT_APPROVED: Credit application has been approved
-      - CREDIT_DENIED: Credit application has been denied
-      - CREDIT_NOT_ACCEPTED_BY_CUSTOMER: Credit application has not been accepted by the customer
-      - CREDIT_ACCEPTED_BY_CUSTOMER: Credit application has been accepted by the customer
-    application_list:
-      allOf:
-      - properties:
-          applications:
-            description: Array of credit applications.
-            items:
-              $ref: '#/components/schemas/application_response'
-            type: array
-        required:
-        - applications
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    application:
-      properties:
-        application_details:
-          description: Details about the applicant. The exact schema is to be determined with your bank.
-          example:
-            annual_salary: 50000
-            fico_score: 700
-          type: object
-        customer_id:
-          description: Customer ID for the application
-          format: uuid
-          type: string
-        status:
-          $ref: '#/components/schemas/application_status'
-          default: APPLICATION_SUBMITTED
-        type:
-          $ref: '#/components/schemas/application_type1'
-      required:
-      - customer_id
-      - application_details
-      - type
-      title: Credit application details
-      type: object
     error:
       properties:
         detail:
@@ -276,37 +296,13 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    application_patch:
-      properties:
-        application_details:
-          description: Details about the applicant. The exact schema is to be determined with your bank.
-          example:
-            annual_salary: 50000
-            fico_score: 700
-          type: object
-        status:
-          $ref: '#/components/schemas/application_status'
-      title: Credit application details
-      type: object
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
   responses:
-    already_exists:
+    unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Resource already exists error
+      description: Unauthorized
     not_found:
       content:
         application/problem+json:
@@ -319,25 +315,34 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    unauthorized:
+    forbidden:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Unauthorized
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   parameters:
+    application_id_path:
+      description: Unique identifier for the application.
+      in: path
+      name: application_id
+      required: true
+      schema:
+        example: 2e3304dc-a1c2-427e-ac5a-a2586a95ce1f
+        format: uuid
+        type: string
     customer_id_query_array:
       description: A list of customer unique identifiers, with a comma separating any values.
       explode: false
@@ -350,6 +355,15 @@ components:
         type: array
       style: form
       x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
     application_status:
       description: 'Status of the credit application
 
@@ -360,24 +374,6 @@ components:
       schema:
         $ref: '#/components/schemas/application_status'
       x-external: true
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
-      required: false
-      schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
-      x-external: true
-    application_id_path:
-      description: Unique identifier for the application.
-      in: path
-      name: application_id
-      required: true
-      schema:
-        example: 2e3304dc-a1c2-427e-ac5a-a2586a95ce1f
-        format: uuid
-        type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Webhooks API
+  title: Synctera Webhooks API
   version: 0.20.0
 servers:
 - description: Production
@@ -47,7 +51,6 @@ paths:
       - Webhooks
       x-external: true
     post:
-      description: Create a webhook
       operationId: createWebhook1
       requestBody:
         content:
@@ -73,7 +76,6 @@ paths:
       x-external: true
   /webhooks/{webhook_id}:
     delete:
-      description: Delete a webhook
       operationId: deleteWebhook
       parameters:
       - $ref: '#/components/parameters/webhook_id1'
@@ -91,7 +93,6 @@ paths:
       - Webhooks
       x-external: true
     get:
-      description: Get a webhook
       operationId: getWebhook1
       parameters:
       - $ref: '#/components/parameters/webhook_id1'
@@ -113,7 +114,6 @@ paths:
       - Webhooks
       x-external: true
     put:
-      description: Update a webhook
       operationId: updateWebhook
       parameters:
       - $ref: '#/components/parameters/webhook_id1'
@@ -295,6 +295,189 @@ paths:
       x-external: true
 components:
   schemas:
+    event_type_explicit:
+      description: All the webhook event types
+      enum:
+      - ACCOUNT.CREATED
+      - ACCOUNT.UPDATED
+      - CARD.UPDATED
+      - CARD.IMAGE.UPDATED
+      - CUSTOMER.UPDATED
+      - CUSTOMER.KYC_OUTCOME.UPDATED
+      - BUSINESS.VERIFICATION_OUTCOME.UPDATED
+      - PERSON.VERIFICATION_OUTCOME.UPDATED
+      - INTEREST.MONTHLY_PAYOUT
+      - INTERNAL_TRANSFER.SUCCEEDED
+      - TRANSACTION.POSTED.CREATED
+      - TRANSACTION.POSTED.UPDATED
+      - TRANSACTION.PENDING.CREATED
+      - TRANSACTION.PENDING.UPDATED
+      - CARD.DIGITALWALLETTOKEN.CREATED
+      - CARD.DIGITALWALLETTOKEN.UPDATED
+      - PAYMENT_SCHEDULE.CREATED
+      - PAYMENT_SCHEDULE.UPDATED
+      - PAYMENT_SCHEDULE.PAYMENT.CREATED
+      - STATEMENT.CREATED
+      - EXTERNAL_CARD.CREATED
+      type: string
+    event_type1:
+      oneOf:
+      - $ref: '#/components/schemas/event_type_explicit'
+      - $ref: '#/components/schemas/event_type_wildcard'
+    event_type_wildcard:
+      enum:
+      - ACCOUNT.*
+      - CARD.*
+      - CUSTOMER.*
+      - BUSINESS.*
+      - PERSON.*
+      - INTEREST.*
+      - INTERNAL_TRANSFER.*
+      - TRANSACTION.*
+      - PAYMENT_SCHEDULE.*
+      - STATEMENT.*
+      - EXTERNAL_CARD.*
+      type: string
+    webhook_list:
+      allOf:
+      - properties:
+          webhooks:
+            description: Array of webhooks
+            items:
+              $ref: '#/components/schemas/webhook'
+            type: array
+        required:
+        - webhooks
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    event:
+      description: Webhook event object
+      properties:
+        event_resource:
+          description: 'Json string of object associated with the event. For example, if your event is ACCOUNT.CREATED, You can refer to Acccount to parse the account event to obtain the ID, status etc.
+
+            '
+          type: string
+        event_resource_changed_fields:
+          description: 'Json string of object associated with the event related to a resource change. This only contains those fields that have value changed on the event, and the field values are prior to the resource change event.
+
+            '
+          type: string
+        event_time:
+          description: Timestamp of the current event raised
+          format: date-time
+          type: string
+        id:
+          description: Unique event ID of the webhook request. Use event endpoints to get more event summary data
+          format: uuid
+          readOnly: true
+          type: string
+        metadata:
+          description: Metadata that stored in the webhook subscription
+          maxLength: 1024
+          type: string
+        response_history:
+          description: Response history of the webhook request
+          items:
+            $ref: '#/components/schemas/response_history_item'
+          type: array
+        status:
+          description: Current event status. Failing event will keep retry until it is purged.
+          enum:
+          - RUNNING
+          - SUCCESS
+          - RETRYING
+          type: string
+        type:
+          $ref: '#/components/schemas/event_type_explicit'
+        url:
+          description: URL that the current event will be sent to
+          maxLength: 1024
+          type: string
+        webhook_id:
+          description: Webhook the current event belongs to
+          format: uuid
+          type: string
+      title: Webhook event
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    webhook:
+      description: Webhook object
+      properties:
+        description:
+          description: A description of what the webhook is used for
+          type: string
+        enabled_events:
+          description: A list of the events that will trigger the webhook
+          items:
+            $ref: '#/components/schemas/event_type1'
+          type: array
+        id:
+          description: The unique ID of the webhook
+          format: uuid
+          readOnly: true
+          type: string
+        is_enabled:
+          description: Set the webhook to be enabled or disabled
+          type: boolean
+        last_updated:
+          description: Timestamp that this webhook was created or the last time any field was changed
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: Additional information stored to the webhook
+          maxLength: 1024
+          type: string
+        url:
+          description: URL that the webhook will send request to
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - url
+      - enabled_events
+      - is_enabled
+      title: Webhook
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    response_history_item:
+      description: Response history object of the webhook request
+      properties:
+        code:
+          description: Response code from the request
+          type: integer
+        response_body:
+          description: Response body from the request(Length more than 1024 will be trimmed)
+          type: string
+        response_time:
+          description: Timestamp that the response is received
+          format: date-time
+          type: string
+        sent_time:
+          description: Timestamp that the request is sent
+          format: date-time
+          type: string
+      title: Response history
+      type: object
     event_trigger:
       description: Webhook event object that will be returned after triggering the given event. Only id, type and event_time will have value.
       properties:
@@ -352,179 +535,6 @@ components:
           type: string
       title: Webhook event trigger
       type: object
-    event_list:
-      allOf:
-      - properties:
-          event_list:
-            description: Array of events
-            items:
-              $ref: '#/components/schemas/event'
-            type: array
-        required:
-        - event_list
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    event:
-      description: Webhook event object
-      properties:
-        event_resource:
-          description: 'Json string of object associated with the event. For example, if your event is ACCOUNT.CREATED, You can refer to Acccount to parse the account event to obtain the ID, status etc.
-
-            '
-          type: string
-        event_resource_changed_fields:
-          description: 'Json string of object associated with the event related to a resource change. This only contains those fields that have value changed on the event, and the field values are prior to the resource change event.
-
-            '
-          type: string
-        event_time:
-          description: Timestamp of the current event raised
-          format: date-time
-          type: string
-        id:
-          description: Unique event ID of the webhook request. Use event endpoints to get more event summary data
-          format: uuid
-          readOnly: true
-          type: string
-        metadata:
-          description: Metadata that stored in the webhook subscription
-          maxLength: 1024
-          type: string
-        response_history:
-          description: Response history of the webhook request
-          items:
-            $ref: '#/components/schemas/response_history_item'
-          type: array
-        status:
-          description: Current event status. Failing event will keep retry until it is purged.
-          enum:
-          - RUNNING
-          - SUCCESS
-          - RETRYING
-          type: string
-        type:
-          $ref: '#/components/schemas/event_type_explicit'
-        url:
-          description: URL that the current event will be sent to
-          maxLength: 1024
-          type: string
-        webhook_id:
-          description: Webhook the current event belongs to
-          format: uuid
-          type: string
-      title: Webhook event
-      type: object
-    webhook:
-      description: Webhook object
-      properties:
-        description:
-          description: A description of what the webhook is used for
-          type: string
-        enabled_events:
-          description: A list of the events that will trigger the webhook
-          items:
-            $ref: '#/components/schemas/event_type1'
-          type: array
-        id:
-          description: The unique ID of the webhook
-          format: uuid
-          readOnly: true
-          type: string
-        is_enabled:
-          description: Set the webhook to be enabled or disabled
-          type: boolean
-        last_updated:
-          description: Timestamp that this webhook was created or the last time any field was changed
-          format: date-time
-          readOnly: true
-          type: string
-        metadata:
-          description: Additional information stored to the webhook
-          maxLength: 1024
-          type: string
-        url:
-          description: URL that the webhook will send request to
-          format: uri
-          maxLength: 1000
-          type: string
-      required:
-      - url
-      - enabled_events
-      - is_enabled
-      title: Webhook
-      type: object
-    webhook_list:
-      allOf:
-      - properties:
-          webhooks:
-            description: Array of webhooks
-            items:
-              $ref: '#/components/schemas/webhook'
-            type: array
-        required:
-        - webhooks
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    event_type1:
-      oneOf:
-      - $ref: '#/components/schemas/event_type_explicit'
-      - $ref: '#/components/schemas/event_type_wildcard'
-    event_type_explicit:
-      description: All the webhook event types
-      enum:
-      - ACCOUNT.CREATED
-      - ACCOUNT.UPDATED
-      - CARD.UPDATED
-      - CARD.IMAGE.UPDATED
-      - CUSTOMER.UPDATED
-      - CUSTOMER.KYC_OUTCOME.UPDATED
-      - BUSINESS.VERIFICATION_OUTCOME.UPDATED
-      - PERSON.VERIFICATION_OUTCOME.UPDATED
-      - INTEREST.MONTHLY_PAYOUT
-      - INTERNAL_TRANSFER.SUCCEEDED
-      - TRANSACTION.POSTED.CREATED
-      - TRANSACTION.POSTED.UPDATED
-      - TRANSACTION.PENDING.CREATED
-      - TRANSACTION.PENDING.UPDATED
-      - CARD.DIGITALWALLETTOKEN.CREATED
-      - CARD.DIGITALWALLETTOKEN.UPDATED
-      - PAYMENT_SCHEDULE.CREATED
-      - PAYMENT_SCHEDULE.UPDATED
-      - PAYMENT_SCHEDULE.PAYMENT.CREATED
-      - STATEMENT.CREATED
-      - EXTERNAL_CARD.CREATED
-      type: string
-    response_history_item:
-      description: Response history object of the webhook request
-      properties:
-        code:
-          description: Response code from the request
-          type: integer
-        response_body:
-          description: Response body from the request(Length more than 1024 will be trimmed)
-          type: string
-        response_time:
-          description: Timestamp that the response is received
-          format: date-time
-          type: string
-        sent_time:
-          description: Timestamp that the request is sent
-          format: date-time
-          type: string
-      title: Response history
-      type: object
-    delete_response:
-      description: Deleted object information
-      properties:
-        id:
-          description: Object ID
-          format: uuid
-          type: string
-        resource:
-          description: The resource name
-          type: string
-      title: Deleted Object
-      type: object
     error:
       properties:
         detail:
@@ -545,47 +555,19 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    event_type_wildcard:
-      enum:
-      - ACCOUNT.*
-      - CARD.*
-      - CUSTOMER.*
-      - BUSINESS.*
-      - PERSON.*
-      - INTEREST.*
-      - INTERNAL_TRANSFER.*
-      - TRANSACTION.*
-      - PAYMENT_SCHEDULE.*
-      - STATEMENT.*
-      - EXTERNAL_CARD.*
-      type: string
+    event_list:
+      allOf:
+      - properties:
+          event_list:
+            description: Array of events
+            items:
+              $ref: '#/components/schemas/event'
+            type: array
+        required:
+        - event_list
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
   parameters:
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-    webhook_id1:
-      description: Webhook ID
-      in: path
-      name: webhook_id
-      required: true
-      schema:
-        example: 97e074c8-188e-4cfb-8e34-16099909c595
-        format: uuid
-        type: string
     limit:
       in: query
       name: limit
@@ -599,7 +581,31 @@ components:
         minimum: 1
         type: integer
       x-external: true
+    webhook_id1:
+      description: Webhook ID
+      in: path
+      name: webhook_id
+      required: true
+      schema:
+        example: 97e074c8-188e-4cfb-8e34-16099909c595
+        format: uuid
+        type: string
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
   responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
     not_found:
       content:
         application/problem+json:
@@ -618,12 +624,6 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

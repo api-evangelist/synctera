@@ -1,12 +1,16 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  description: '<h2>Let''s build something great.</h2><p>Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.</p><p>We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, <a class=''text-blue-600'' href=''https://synctera.com/contact'' target=''_blank'' rel=''noreferrer''>contact us</a>.</p>
+  description: 'Let''s build something great.
 
-    '
+
+    Welcome to the official reference documentation for Synctera APIs. Our APIs are the best way to automate your company''s banking needs and are designed to be easy to understand and implement.
+
+
+    We''re continuously growing this library and what you see here is just the start, but if you need something specific or have a question, contact us.'
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
-  title: Synctera Accounts Statements API
+  title: Synctera Statements API
   version: 0.20.0
 servers:
 - description: Production
@@ -45,7 +49,6 @@ paths:
   /statements/{statement_id}:
     summary: Statements
     get:
-      description: Get a statement
       operationId: getStatement
       parameters:
       - $ref: '#/components/parameters/statement_id'
@@ -69,118 +72,32 @@ paths:
       - Statements
       x-external: true
 components:
+  responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   schemas:
-    statement_summary:
-      properties:
-        account_id:
-          description: The unique identifier of the account the statement belongs to
-          format: uuid
-          readOnly: true
-          type: string
-        due_date:
-          description: The limit date when the due amount indicated on the statement should be paid
-          format: date
-          readOnly: true
-          type: string
-        end_date:
-          description: The date indicating the ending of the time interval covered by the statement
-          format: date
-          readOnly: true
-          type: string
-        id:
-          description: statement ID
-          format: uuid
-          readOnly: true
-          type: string
-        issue_date:
-          description: The date when the statement has been issued
-          format: date
-          readOnly: true
-          type: string
-        start_date:
-          description: The date indicating the beginning of the time interval covered by the statement
-          format: date
-          readOnly: true
-          type: string
-      title: Statement
-      type: object
-    savings_summary:
-      description: A summary of the accrued interest for the saving account in the current period
-      properties:
-        apy:
-          format: float
-          type: number
-      title: Saving Summary
-      type: object
-    person1:
-      properties:
-        creation_time:
-          format: date-time
-          type: string
-        first_name:
-          type: string
-        id:
-          format: uuid
-          type: string
-        last_name:
-          type: string
-        last_updated_time:
-          format: date-time
-          type: string
-        middle_name:
-          type: string
-        relationship_type:
-          type: string
-      title: Person
-      type: object
-    business1:
-      properties:
-        creation_time:
-          format: date-time
-          type: string
-        ein:
-          type: string
-        email:
-          type: string
-        entity_name:
-          type: string
-        formation_date:
-          format: date
-          type: string
-        formation_state:
-          type: string
-        id:
-          format: uuid
-          type: string
-        last_updated_time:
-          format: date-time
-          type: string
-        phone_number:
-          type: string
-        status:
-          type: string
-        structure:
-          type: string
-        trade_names:
-          items:
-            type: string
-          type: array
-        verification_last_run:
-          format: date-time
-          type: string
-        verification_status:
-          type: string
-      title: Business
-      type: object
-    statement:
-      allOf:
-      - $ref: '#/components/schemas/base_statement'
-      - properties:
-          savings_summary:
-            $ref: '#/components/schemas/savings_summary'
-        type: object
-      description: A statement for a depository account
-      title: Depository Statement
     transaction:
       properties:
         data:
@@ -218,49 +135,54 @@ components:
       - effective_date
       title: A posted transaction
       type: object
-    address2:
+    statement:
+      allOf:
+      - $ref: '#/components/schemas/base_statement'
+      - properties:
+          savings_summary:
+            $ref: '#/components/schemas/savings_summary'
+        type: object
+      description: A statement for a depository account
+      title: Depository Statement
+    dc_sign:
+      description: The `dc_sign` represents the direction money was moved.
+      enum:
+      - debit
+      - credit
+      type: string
+    statement_list:
+      allOf:
+      - properties:
+          statements:
+            description: Array of statements
+            items:
+              $ref: '#/components/schemas/statement_summary'
+            type: array
+        required:
+        - statements
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+      title: Statement List
+    person1:
       properties:
-        address_line_1:
+        creation_time:
+          format: date-time
           type: string
-        address_line_2:
+        first_name:
           type: string
-        city:
-          type: string
-        country_code:
-          type: string
-        postal_code:
-          type: string
-        state:
-          type: string
-      title: Address
-      type: object
-    transaction_line:
-      properties:
-        account_id:
-          description: The account uuid associated with this transaction line
-          example: 75c8658d-4ffc-46a2-b33f-50f785026060
-          type: string
-        account_no:
-          description: The account number associated with this transaction line
-          type: string
-        amount:
-          description: The amount (in cents) of the transaction
-          type: integer
-        currency:
-          description: ISO 4217 alphabetic currency code of the transfer amount
-          type: string
-        dc_sign:
-          $ref: '#/components/schemas/dc_sign'
-        uuid:
+        id:
           format: uuid
           type: string
-      required:
-      - uuid
-      - account_no
-      - account_id
-      - amount
-      - currency
-      - dc_sign
+        last_name:
+          type: string
+        last_updated_time:
+          format: date-time
+          type: string
+        middle_name:
+          type: string
+        relationship_type:
+          type: string
+      title: Person
       type: object
     account_summary:
       properties:
@@ -317,44 +239,6 @@ components:
           type: string
       title: Account Summary
       type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    financial_institution:
-      properties:
-        legal_address:
-          $ref: '#/components/schemas/address2'
-        name:
-          type: string
-        phone_number:
-          type: string
-      title: Financial Institution
-      type: object
     transaction_data:
       properties:
         external_data:
@@ -372,6 +256,50 @@ components:
       required:
       - memo
       - lines
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    transaction_line:
+      properties:
+        account_id:
+          description: The account uuid associated with this transaction line
+          example: 75c8658d-4ffc-46a2-b33f-50f785026060
+          type: string
+        account_no:
+          description: The account number associated with this transaction line
+          type: string
+        amount:
+          description: The amount (in cents) of the transaction
+          type: integer
+        currency:
+          description: ISO 4217 alphabetic currency code of the transfer amount
+          type: string
+        dc_sign:
+          $ref: '#/components/schemas/dc_sign'
+        uuid:
+          format: uuid
+          type: string
+      required:
+      - uuid
+      - account_no
+      - account_id
+      - amount
+      - currency
+      - dc_sign
+      type: object
+    savings_summary:
+      description: A summary of the accrued interest for the saving account in the current period
+      properties:
+        apy:
+          format: float
+          type: number
+      title: Saving Summary
       type: object
     base_statement:
       allOf:
@@ -402,25 +330,125 @@ components:
             type: array
         type: object
       type: object
-    dc_sign:
-      description: The `dc_sign` represents the direction money was moved.
-      enum:
-      - debit
-      - credit
-      type: string
-    statement_list:
-      allOf:
-      - properties:
-          statements:
-            description: Array of statements
-            items:
-              $ref: '#/components/schemas/statement_summary'
-            type: array
-        required:
-        - statements
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-      title: Statement List
+    business1:
+      properties:
+        creation_time:
+          format: date-time
+          type: string
+        ein:
+          type: string
+        email:
+          type: string
+        entity_name:
+          type: string
+        formation_date:
+          format: date
+          type: string
+        formation_state:
+          type: string
+        id:
+          format: uuid
+          type: string
+        last_updated_time:
+          format: date-time
+          type: string
+        phone_number:
+          type: string
+        status:
+          type: string
+        structure:
+          type: string
+        trade_names:
+          items:
+            type: string
+          type: array
+        verification_last_run:
+          format: date-time
+          type: string
+        verification_status:
+          type: string
+      title: Business
+      type: object
+    financial_institution:
+      properties:
+        legal_address:
+          $ref: '#/components/schemas/address2'
+        name:
+          type: string
+        phone_number:
+          type: string
+      title: Financial Institution
+      type: object
+    address2:
+      properties:
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        city:
+          type: string
+        country_code:
+          type: string
+        postal_code:
+          type: string
+        state:
+          type: string
+      title: Address
+      type: object
+    statement_summary:
+      properties:
+        account_id:
+          description: The unique identifier of the account the statement belongs to
+          format: uuid
+          readOnly: true
+          type: string
+        due_date:
+          description: The limit date when the due amount indicated on the statement should be paid
+          format: date
+          readOnly: true
+          type: string
+        end_date:
+          description: The date indicating the ending of the time interval covered by the statement
+          format: date
+          readOnly: true
+          type: string
+        id:
+          description: statement ID
+          format: uuid
+          readOnly: true
+          type: string
+        issue_date:
+          description: The date when the statement has been issued
+          format: date
+          readOnly: true
+          type: string
+        start_date:
+          description: The date indicating the beginning of the time interval covered by the statement
+          format: date
+          readOnly: true
+          type: string
+      title: Statement
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
   parameters:
     statement_id:
       description: The unique identifier of a statement
@@ -442,31 +470,6 @@ components:
         format: uuid
         type: string
       x-external: true
-  responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

@@ -123,18 +123,18 @@ components:
       title: Standard error response (RFC 7807 problem report)
       type: object
   responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

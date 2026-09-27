@@ -291,118 +291,26 @@ paths:
       x-external: true
       x-status: deprecated
 components:
-  responses:
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
   schemas:
-    watchlist_subscription:
+    error:
       properties:
-        auto_renew:
-          description: 'Whether this subscription should automatically renew when the subscription period is over (default: vendor-dependent).
-
-            '
-          type: boolean
-        created:
-          description: When this subscription was created
-          format: date-time
-          type: string
-        customer_consent:
-          description: 'Whether this customer has consented to being enrolled for watchlist monitoring
-
-            '
-          type: boolean
-        id:
-          description: Unique identifier for this subscription
-          format: uuid
-          type: string
-        period_end:
-          description: The date when monitoring of this individual should end.
-          format: date
-          type: string
-        period_start:
-          description: 'The date when monitoring of this individual should begin (default: today).'
-          format: date
-          type: string
-        provider_subscription_id:
-          description: External provider subscription id
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
           type: string
         status:
-          enum:
-          - ACTIVE
-          - INACTIVE
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
           type: string
-      required:
-      - customer_consent
-      type: object
-    watchlist_alert_list:
-      allOf:
-      - properties:
-          alerts:
-            items:
-              $ref: '#/components/schemas/watchlist_alert'
-            type: array
-        required:
-        - alerts
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    vendor_xml:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor
-          enum:
-          - text/xml
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
           type: string
-        vendor:
-          example: IDOLOGY
-          type: string
-        xml:
-          description: Data representaion in XML
-          type: string
-      required:
-      - vendor
-      - content_type
-      - xml
-    vendor_info:
-      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
-
-        '
-      discriminator:
-        mapping:
-          application/json: '#/components/schemas/vendor_json'
-          text/xml: '#/components/schemas/vendor_xml'
-        propertyName: content_type
-      oneOf:
-      - $ref: '#/components/schemas/vendor_json'
-      - $ref: '#/components/schemas/vendor_xml'
-      title: Vendor Info
+      title: Standard error response (RFC 7807 problem report)
       type: object
     watchlist_alert:
       properties:
@@ -446,38 +354,6 @@ components:
       required:
       - status
       type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
     vendor_json:
       properties:
         content_type:
@@ -495,6 +371,85 @@ components:
       - vendor
       - content_type
       - json
+    watchlist_alert_list:
+      allOf:
+      - properties:
+          alerts:
+            items:
+              $ref: '#/components/schemas/watchlist_alert'
+            type: array
+        required:
+        - alerts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    watchlist_subscription:
+      properties:
+        auto_renew:
+          description: 'Whether this subscription should automatically renew when the subscription period is over (default: vendor-dependent).
+
+            '
+          type: boolean
+        created:
+          description: When this subscription was created
+          format: date-time
+          type: string
+        customer_consent:
+          description: 'Whether this customer has consented to being enrolled for watchlist monitoring
+
+            '
+          type: boolean
+        id:
+          description: Unique identifier for this subscription
+          format: uuid
+          type: string
+        period_end:
+          description: The date when monitoring of this individual should end.
+          format: date
+          type: string
+        period_start:
+          description: 'The date when monitoring of this individual should begin (default: today).'
+          format: date
+          type: string
+        provider_subscription_id:
+          description: External provider subscription id
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - INACTIVE
+          type: string
+      required:
+      - customer_consent
+      type: object
+    vendor_xml:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - text/xml
+          type: string
+        vendor:
+          example: IDOLOGY
+          type: string
+        xml:
+          description: Data representaion in XML
+          type: string
+      required:
+      - vendor
+      - content_type
+      - xml
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     watchlist_subscription_list:
       allOf:
       - properties:
@@ -506,6 +461,20 @@ components:
         - subscriptions
         type: object
       - $ref: '#/components/schemas/paginated_response'
+    vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/vendor_json'
+          text/xml: '#/components/schemas/vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/vendor_json'
+      - $ref: '#/components/schemas/vendor_xml'
+      title: Vendor Info
+      type: object
     watchlist_suppress:
       properties:
         provider_subject_id:
@@ -564,6 +533,37 @@ components:
       required: true
       schema:
         $ref: '#/components/schemas/customer_id'
+  responses:
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

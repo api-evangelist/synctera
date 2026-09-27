@@ -35,18 +35,20 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/synctera.png
 tags:
   - Fintech
-  - Backend-as-a-Service
+  - Banking as a Service
   - Banking
   - Payments
   - Card Issuing
   - KYC
+  - Embedded Finance
 tags_raw:
   - FinTech
-  - BaaS
+  - Banking as a Service
   - Banking
   - Payments
   - Card Issuing
   - KYC
+  - Embedded Finance
 created: '2026-05-08'
 modified: '2026-05-08'
 specificationVersion: '0.23'

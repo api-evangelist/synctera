@@ -295,6 +295,103 @@ paths:
       x-external: true
 components:
   schemas:
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    delete_response:
+      description: Deleted object information
+      properties:
+        id:
+          description: Object ID
+          format: uuid
+          type: string
+        resource:
+          description: The resource name
+          type: string
+      title: Deleted Object
+      type: object
+    event_type_wildcard:
+      enum:
+      - ACCOUNT.*
+      - CARD.*
+      - CUSTOMER.*
+      - BUSINESS.*
+      - PERSON.*
+      - INTEREST.*
+      - INTERNAL_TRANSFER.*
+      - TRANSACTION.*
+      - PAYMENT_SCHEDULE.*
+      - STATEMENT.*
+      - EXTERNAL_CARD.*
+      type: string
+    webhook:
+      description: Webhook object
+      properties:
+        description:
+          description: A description of what the webhook is used for
+          type: string
+        enabled_events:
+          description: A list of the events that will trigger the webhook
+          items:
+            $ref: '#/components/schemas/event_type1'
+          type: array
+        id:
+          description: The unique ID of the webhook
+          format: uuid
+          readOnly: true
+          type: string
+        is_enabled:
+          description: Set the webhook to be enabled or disabled
+          type: boolean
+        last_updated:
+          description: Timestamp that this webhook was created or the last time any field was changed
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          description: Additional information stored to the webhook
+          maxLength: 1024
+          type: string
+        url:
+          description: URL that the webhook will send request to
+          format: uri
+          maxLength: 1000
+          type: string
+      required:
+      - url
+      - enabled_events
+      - is_enabled
+      title: Webhook
+      type: object
+    event_list:
+      allOf:
+      - properties:
+          event_list:
+            description: Array of events
+            items:
+              $ref: '#/components/schemas/event'
+            type: array
+        required:
+        - event_list
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
     event_type_explicit:
       description: All the webhook event types
       enum:
@@ -320,36 +417,6 @@ components:
       - STATEMENT.CREATED
       - EXTERNAL_CARD.CREATED
       type: string
-    event_type1:
-      oneOf:
-      - $ref: '#/components/schemas/event_type_explicit'
-      - $ref: '#/components/schemas/event_type_wildcard'
-    event_type_wildcard:
-      enum:
-      - ACCOUNT.*
-      - CARD.*
-      - CUSTOMER.*
-      - BUSINESS.*
-      - PERSON.*
-      - INTEREST.*
-      - INTERNAL_TRANSFER.*
-      - TRANSACTION.*
-      - PAYMENT_SCHEDULE.*
-      - STATEMENT.*
-      - EXTERNAL_CARD.*
-      type: string
-    webhook_list:
-      allOf:
-      - properties:
-          webhooks:
-            description: Array of webhooks
-            items:
-              $ref: '#/components/schemas/webhook'
-            type: array
-        required:
-        - webhooks
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     event:
       description: Webhook event object
       properties:
@@ -400,65 +467,6 @@ components:
           type: string
       title: Webhook event
       type: object
-    delete_response:
-      description: Deleted object information
-      properties:
-        id:
-          description: Object ID
-          format: uuid
-          type: string
-        resource:
-          description: The resource name
-          type: string
-      title: Deleted Object
-      type: object
-    webhook:
-      description: Webhook object
-      properties:
-        description:
-          description: A description of what the webhook is used for
-          type: string
-        enabled_events:
-          description: A list of the events that will trigger the webhook
-          items:
-            $ref: '#/components/schemas/event_type1'
-          type: array
-        id:
-          description: The unique ID of the webhook
-          format: uuid
-          readOnly: true
-          type: string
-        is_enabled:
-          description: Set the webhook to be enabled or disabled
-          type: boolean
-        last_updated:
-          description: Timestamp that this webhook was created or the last time any field was changed
-          format: date-time
-          readOnly: true
-          type: string
-        metadata:
-          description: Additional information stored to the webhook
-          maxLength: 1024
-          type: string
-        url:
-          description: URL that the webhook will send request to
-          format: uri
-          maxLength: 1000
-          type: string
-      required:
-      - url
-      - enabled_events
-      - is_enabled
-      title: Webhook
-      type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
     response_history_item:
       description: Response history object of the webhook request
       properties:
@@ -477,6 +485,26 @@ components:
           format: date-time
           type: string
       title: Response history
+      type: object
+    webhook_list:
+      allOf:
+      - properties:
+          webhooks:
+            description: Array of webhooks
+            items:
+              $ref: '#/components/schemas/webhook'
+            type: array
+        required:
+        - webhooks
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
       type: object
     event_trigger:
       description: Webhook event object that will be returned after triggering the given event. Only id, type and event_time will have value.
@@ -535,39 +563,45 @@ components:
           type: string
       title: Webhook event trigger
       type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    event_list:
-      allOf:
-      - properties:
-          event_list:
-            description: Array of events
-            items:
-              $ref: '#/components/schemas/event'
-            type: array
-        required:
-        - event_list
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
+    event_type1:
+      oneOf:
+      - $ref: '#/components/schemas/event_type_explicit'
+      - $ref: '#/components/schemas/event_type_wildcard'
+  responses:
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   parameters:
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
     limit:
       in: query
       name: limit
@@ -590,40 +624,6 @@ components:
         example: 97e074c8-188e-4cfb-8e34-16099909c595
         format: uuid
         type: string
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-  responses:
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    delete_response:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/delete_response'
-      description: Resource has been deleted
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

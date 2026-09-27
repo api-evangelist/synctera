@@ -175,12 +175,78 @@ paths:
       x-status: alpha
 components:
   schemas:
-    related_resource_type:
-      description: Related resource type
-      enum:
-      - CUSTOMER
-      - BUSINESS
-      type: string
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    document_creation:
+      properties:
+        description:
+          type: string
+        encryption:
+          $ref: '#/components/schemas/encryption'
+        file:
+          format: binary
+          type: string
+        metadata:
+          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
+
+            '
+          type: object
+        name:
+          type: string
+        related_resource_id:
+          description: Related resource ID
+          format: uuid
+          type: string
+        related_resource_type:
+          $ref: '#/components/schemas/related_resource_type'
+      required:
+      - file
+      type: object
+    patch_document:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+      type: object
+    document_list:
+      allOf:
+      - properties:
+          documents:
+            description: Array of documents.
+            items:
+              $ref: '#/components/schemas/document'
+            type: array
+        required:
+        - documents
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     encryption:
       default: NOT_REQUIRED
       enum:
@@ -231,78 +297,49 @@ components:
         related_resource_type:
           $ref: '#/components/schemas/related_resource_type'
       type: object
-    document_creation:
-      properties:
-        description:
-          type: string
-        encryption:
-          $ref: '#/components/schemas/encryption'
-        file:
-          format: binary
-          type: string
-        metadata:
-          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
-
-            '
-          type: object
-        name:
-          type: string
-        related_resource_id:
-          description: Related resource ID
-          format: uuid
-          type: string
-        related_resource_type:
-          $ref: '#/components/schemas/related_resource_type'
-      required:
-      - file
-      type: object
-    document_list:
-      allOf:
-      - properties:
-          documents:
-            description: Array of documents.
-            items:
-              $ref: '#/components/schemas/document'
-            type: array
-        required:
-        - documents
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    patch_document:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-      type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
+    related_resource_type:
+      description: Related resource type
+      enum:
+      - CUSTOMER
+      - BUSINESS
+      type: string
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   parameters:
     limit:
       in: query
@@ -331,15 +368,6 @@ components:
         type: array
       style: form
       x-external: true
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
     document_id:
       description: The unique identifier of a document.
       in: path
@@ -349,43 +377,15 @@ components:
         example: dd8cd509-ce52-4990-8f84-316558e68e9a
         format: uuid
         type: string
-  responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

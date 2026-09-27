@@ -111,48 +111,26 @@ paths:
       x-status: alpha
 components:
   schemas:
-    reconciliation:
-      description: Reconciliation
+    error:
       properties:
-        file_name:
-          description: Filename of the data to be reconciled
-          example: vp1m0ynhxsm3nb
-          readOnly: true
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
           type: string
-        id:
-          description: Reconciliation ID
-          example: 6b7f32f8-c469-41a5-86f0-c49fc172f019
-          format: uuid
-          readOnly: true
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
           type: string
-        ingestion_status:
-          $ref: '#/components/schemas/ingestion_status'
-      required:
-      - id
-      - file_name
-      - ingestion_status
-      title: Reconciliation
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
       type: object
-    reconciliation_list:
-      allOf:
-      - properties:
-          reconciliations:
-            description: Array of reconciliations
-            items:
-              $ref: '#/components/schemas/reconciliation'
-            type: array
-        required:
-        - reconciliations
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    ingestion_status:
-      description: Reconciliation ingestion status values
-      enum:
-      - IN_PROCESS
-      - COMPLETED
-      - FAILED
-      title: Reconciliation Ingestion Status Values
-      type: string
     reconciliation_input:
       description: Input data for a reconciliation
       properties:
@@ -178,57 +156,79 @@ components:
           type: string
       title: Paginated List response
       type: object
-    error:
+    reconciliation:
+      description: Reconciliation
       properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
+        file_name:
+          description: Filename of the data to be reconciled
+          example: vp1m0ynhxsm3nb
+          readOnly: true
           type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
+        id:
+          description: Reconciliation ID
+          example: 6b7f32f8-c469-41a5-86f0-c49fc172f019
+          format: uuid
+          readOnly: true
           type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
+        ingestion_status:
+          $ref: '#/components/schemas/ingestion_status'
+      required:
+      - id
+      - file_name
+      - ingestion_status
+      title: Reconciliation
       type: object
+    ingestion_status:
+      description: Reconciliation ingestion status values
+      enum:
+      - IN_PROCESS
+      - COMPLETED
+      - FAILED
+      title: Reconciliation Ingestion Status Values
+      type: string
+    reconciliation_list:
+      allOf:
+      - properties:
+          reconciliations:
+            description: Array of reconciliations
+            items:
+              $ref: '#/components/schemas/reconciliation'
+            type: array
+        required:
+        - reconciliations
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
   responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
     forbidden:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Forbidden error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   parameters:
     limit:
       in: query

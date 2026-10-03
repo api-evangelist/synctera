@@ -62,7 +62,49 @@ paths:
       - Card Webhook Simulations
       x-external: true
 components:
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
   schemas:
+    card_fulfillment_status:
+      description: The status indicating the state of the card issuance
+      enum:
+      - ISSUED
+      - REISSUED
+      - ORDERED
+      - REJECTED
+      - REORDERED
+      - SHIPPED
+      - DIGITALLY_PRESENTED
+      type: string
     error:
       properties:
         detail:
@@ -83,16 +125,10 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    card_fulfillment_status:
-      description: The status indicating the state of the card issuance
-      enum:
-      - ISSUED
-      - REISSUED
-      - ORDERED
-      - REJECTED
-      - REORDERED
-      - SHIPPED
-      - DIGITALLY_PRESENTED
+    card_id:
+      description: The unique identifier of a card
+      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
+      format: uuid
       type: string
     simulate_card_fulfillment:
       properties:
@@ -101,42 +137,6 @@ components:
       required:
       - card_fulfillment_status
       type: object
-    card_id:
-      description: The unique identifier of a card
-      example: a1c5f67b-5ebd-4683-b202-c7ae80c87bb7
-      format: uuid
-      type: string
-  responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
   parameters:
     card_id:
       in: path

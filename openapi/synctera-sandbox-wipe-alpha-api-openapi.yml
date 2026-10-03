@@ -101,6 +101,19 @@ paths:
       x-external: true
       x-status: alpha
 components:
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
   schemas:
     error:
       properties:
@@ -122,19 +135,6 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-  responses:
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

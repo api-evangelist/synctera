@@ -111,6 +111,43 @@ paths:
       x-status: alpha
 components:
   schemas:
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    reconciliation_input:
+      description: Input data for a reconciliation
+      properties:
+        byte_data:
+          description: Base64url encoded image
+          example: npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y
+          format: byte
+          type: string
+        file_name:
+          description: Filename of the data to be reconciled
+          example: cp2tj9tzpzpckc
+          type: string
+      required:
+      - file_name
+      - byte_data
+      title: Reconciliation Input
+      type: object
+    reconciliation_list:
+      allOf:
+      - properties:
+          reconciliations:
+            description: Array of reconciliations
+            items:
+              $ref: '#/components/schemas/reconciliation'
+            type: array
+        required:
+        - reconciliations
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
     error:
       properties:
         detail:
@@ -131,31 +168,14 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    reconciliation_input:
-      description: Input data for a reconciliation
-      properties:
-        byte_data:
-          description: Base64url encoded image
-          example: npk0rpef411cbcc3smf07zsxh4z8e0ts9k95uzost1p5tgen697pw2rbunqr6zweqba4of7hrwakpwf56dtlf6y1b0ljcplt8p8txh1ef3usg67wa98toiudldulelnb9wnvogqscmpos5icmwdo5bknoficjxu1brtiuy0e7t3rss73ve21mb9vuhoeyuqr3pxyxw9y
-          format: byte
-          type: string
-        file_name:
-          description: Filename of the data to be reconciled
-          example: cp2tj9tzpzpckc
-          type: string
-      required:
-      - file_name
-      - byte_data
-      title: Reconciliation Input
-      type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
+    ingestion_status:
+      description: Reconciliation ingestion status values
+      enum:
+      - IN_PROCESS
+      - COMPLETED
+      - FAILED
+      title: Reconciliation Ingestion Status Values
+      type: string
     reconciliation:
       description: Reconciliation
       properties:
@@ -178,39 +198,7 @@ components:
       - ingestion_status
       title: Reconciliation
       type: object
-    ingestion_status:
-      description: Reconciliation ingestion status values
-      enum:
-      - IN_PROCESS
-      - COMPLETED
-      - FAILED
-      title: Reconciliation Ingestion Status Values
-      type: string
-    reconciliation_list:
-      allOf:
-      - properties:
-          reconciliations:
-            description: Array of reconciliations
-            items:
-              $ref: '#/components/schemas/reconciliation'
-            type: array
-        required:
-        - reconciliations
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
   responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
     internal_server_error:
       content:
         application/problem+json:
@@ -223,12 +211,24 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   parameters:
     limit:
       in: query
@@ -243,15 +243,6 @@ components:
         minimum: 1
         type: integer
       x-external: true
-    reconciliation_id:
-      description: Reconciliation id
-      in: path
-      name: reconciliation_id
-      required: true
-      schema:
-        example: 6917767f-50b9-475e-91c0-ed7d1efc8e13
-        format: uuid
-        type: string
     page_token:
       in: query
       name: page_token
@@ -261,6 +252,15 @@ components:
         example: h50ffqz9q5
         type: string
       x-external: true
+    reconciliation_id:
+      description: Reconciliation id
+      in: path
+      name: reconciliation_id
+      required: true
+      schema:
+        example: 6917767f-50b9-475e-91c0-ed7d1efc8e13
+        format: uuid
+        type: string
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

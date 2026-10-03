@@ -149,6 +149,15 @@ paths:
       x-external: true
 components:
   schemas:
+    application_type1:
+      description: Type of Credit Application
+      enum:
+      - LINE_OF_CREDIT
+      example: LINE_OF_CREDIT
+      title: Type of Credit Application
+      type: string
+      x-enumDescriptions:
+      - LINE_OF_CREDIT: Line of credit application type
     error:
       properties:
         detail:
@@ -168,6 +177,41 @@ components:
           example: https://dev.synctera.com/errors/bad-request-body
           type: string
       title: Standard error response (RFC 7807 problem report)
+      type: object
+    application_list:
+      allOf:
+      - properties:
+          applications:
+            description: Array of credit applications.
+            items:
+              $ref: '#/components/schemas/application_response'
+            type: array
+        required:
+        - applications
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    application:
+      properties:
+        application_details:
+          description: Details about the applicant. The exact schema is to be determined with your bank.
+          example:
+            annual_salary: 50000
+            fico_score: 700
+          type: object
+        customer_id:
+          description: Customer ID for the application
+          format: uuid
+          type: string
+        status:
+          $ref: '#/components/schemas/application_status'
+          default: APPLICATION_SUBMITTED
+        type:
+          $ref: '#/components/schemas/application_type1'
+      required:
+      - customer_id
+      - application_details
+      - type
+      title: Credit application details
       type: object
     application_response:
       properties:
@@ -210,18 +254,26 @@ components:
       - last_updated_time
       title: Credit application details
       type: object
-    application_list:
-      allOf:
-      - properties:
-          applications:
-            description: Array of credit applications.
-            items:
-              $ref: '#/components/schemas/application_response'
-            type: array
-        required:
-        - applications
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
+    application_patch:
+      properties:
+        application_details:
+          description: Details about the applicant. The exact schema is to be determined with your bank.
+          example:
+            annual_salary: 50000
+            fico_score: 700
+          type: object
+        status:
+          $ref: '#/components/schemas/application_status'
+      title: Credit application details
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
     application_status:
       description: 'Status of the credit application
 
@@ -240,72 +292,22 @@ components:
       - CREDIT_DENIED: Credit application has been denied
       - CREDIT_NOT_ACCEPTED_BY_CUSTOMER: Credit application has not been accepted by the customer
       - CREDIT_ACCEPTED_BY_CUSTOMER: Credit application has been accepted by the customer
-    application_type1:
-      description: Type of Credit Application
-      enum:
-      - LINE_OF_CREDIT
-      example: LINE_OF_CREDIT
-      title: Type of Credit Application
-      type: string
-      x-enumDescriptions:
-      - LINE_OF_CREDIT: Line of credit application type
-    application_patch:
-      properties:
-        application_details:
-          description: Details about the applicant. The exact schema is to be determined with your bank.
-          example:
-            annual_salary: 50000
-            fico_score: 700
-          type: object
-        status:
-          $ref: '#/components/schemas/application_status'
-      title: Credit application details
-      type: object
     customer_id:
       example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
       format: uuid
       type: string
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    application:
-      properties:
-        application_details:
-          description: Details about the applicant. The exact schema is to be determined with your bank.
-          example:
-            annual_salary: 50000
-            fico_score: 700
-          type: object
-        customer_id:
-          description: Customer ID for the application
-          format: uuid
-          type: string
-        status:
-          $ref: '#/components/schemas/application_status'
-          default: APPLICATION_SUBMITTED
-        type:
-          $ref: '#/components/schemas/application_type1'
-      required:
-      - customer_id
-      - application_details
-      - type
-      title: Credit application details
-      type: object
   parameters:
-    application_status:
-      description: 'Status of the credit application
-
-        '
+    customer_id_query_array:
+      description: A list of customer unique identifiers, with a comma separating any values.
+      explode: false
       in: query
-      name: status
+      name: customer_id
       required: false
       schema:
-        $ref: '#/components/schemas/application_status'
+        items:
+          $ref: '#/components/schemas/customer_id'
+        type: array
+      style: form
       x-external: true
     application_id_path:
       description: Unique identifier for the application.
@@ -325,55 +327,53 @@ components:
         example: df122e6f-2ba8-48a5-9508-4350bba5f27e
         type: string
       x-external: true
-    customer_id_query_array:
-      description: A list of customer unique identifiers, with a comma separating any values.
-      explode: false
+    application_status:
+      description: 'Status of the credit application
+
+        '
       in: query
-      name: customer_id
+      name: status
       required: false
       schema:
-        items:
-          $ref: '#/components/schemas/customer_id'
-        type: array
-      style: form
+        $ref: '#/components/schemas/application_status'
       x-external: true
   responses:
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Unauthorized
-    already_exists:
+    bad_request:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Resource already exists error
+      description: BadRequest
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

@@ -397,167 +397,23 @@ paths:
       x-external: true
 components:
   schemas:
-    error:
+    vendor_xml:
       properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    add_accounts_request:
-      properties:
-        account_identifiers:
-          $ref: '#/components/schemas/add_accounts_request_account_identifiers'
-        account_owner_names:
-          description: The names of the account owners.
-          items:
-            example: Miss Clark Maggio
-            minLength: 1
-            type: string
-          minItems: 1
-          type: array
-        business_id:
-          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
-
-            '
-          example: fc8d475c-0d6d-4139-8010-93c57ce5eed1
-          format: uuid
-          type: string
-        customer_id:
-          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
-
-            '
-          example: 91a0ced5-2403-4a98-9b9f-c4577834eac1
-          format: uuid
-          type: string
-        customer_type:
-          $ref: '#/components/schemas/ext_account_customer_type'
-        metadata:
-          description: User-supplied metadata
-          type: object
-        nickname:
-          description: A user-meaningful name for the account
-          example: Money Market Account
-          minLength: 1
-          type: string
-        routing_identifiers:
-          $ref: '#/components/schemas/add_accounts_request_routing_identifiers'
-        type:
-          description: The type of the account
+        content_type:
+          description: Describes the content-type encoding received from the vendor
           enum:
-          - CHECKING
-          - SAVINGS
+          - text/xml
           type: string
-        vendor_account_id:
-          description: The ID of the vendor account, will be empty for MANUAL vendor
-          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
-          minLength: 1
-          type: string
-        verification:
-          $ref: '#/components/schemas/account_verification'
-      required:
-      - type
-      - customer_type
-      - account_owner_names
-      - routing_identifiers
-      - account_identifiers
-      type: object
-    add_vendor_accounts_request:
-      properties:
-        business_id:
-          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
-
-            '
-          example: 144405a0-1cac-455e-89c9-fd06b97fdbe3
-          format: uuid
-          type: string
-        customer_id:
-          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
-
-            '
-          example: 6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e
-          format: uuid
-          type: string
-        customer_type:
-          $ref: '#/components/schemas/ext_account_customer_type'
         vendor:
-          $ref: '#/components/schemas/external_account_vendor_values'
-        vendor_access_token:
-          description: 'The token provided to link external accounts. For Plaid, this is their `access_token`.
-
-            '
-          example: access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6
-          minLength: 1
+          example: IDOLOGY
           type: string
-        vendor_account_ids:
-          description: 'The list of vendor account IDs that the customer chose to link. For Plaid, these are `account_id`s.
-
-            '
-          items:
-            description: The Plaid account_id.
-            example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
-            minLength: 1
-            type: string
-          minItems: 1
-          type: array
-        vendor_customer_id:
-          description: 'The identifier provided by the vendor for the customer associated with this external account.
-
-            '
-          example: 380
+        xml:
+          description: Data representaion in XML
           type: string
-        verify_owner:
-          default: false
-          description: 'If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.
-
-            '
-          type: boolean
       required:
-      - customer_type
       - vendor
-      type: object
-    add_vendor_accounts_error_reason:
-      description: A machine-readable code describing the reason for the failure.
-      enum:
-      - FAILED_VERIFICATION
-      - UNSUPPORTED_ACCOUNT_TYPE
-      - DUPLICATE_ACCOUNT
-      - ACCOUNT_NOT_FOUND
-      - PROVIDER_ERROR
-      type: string
-    delete_response:
-      description: Deleted object information
-      properties:
-        id:
-          description: Object ID
-          format: uuid
-          type: string
-        resource:
-          description: The resource name
-          type: string
-      title: Deleted Object
-      type: object
-    external_account_vendor_values:
-      description: 'The vendor selected for the operation.
-
-        '
-      enum:
-      - PLAID
-      - FINICITY
-      type: string
+      - content_type
+      - xml
     patch_accounts_request_account_identifiers:
       properties:
         number:
@@ -568,40 +424,6 @@ components:
           minLength: 1
           type: string
       title: Identifiers for the account
-      type: object
-    external_account_balance:
-      properties:
-        available:
-          description: The available balance of the account
-          example: Number in cents. E.g. 1000 represents $10.00
-          format: int64
-          minimum: 0
-          type:
-          - integer
-          - 'null'
-        currency:
-          description: ISO 4217 alphabetic currency code
-          example: FJD
-          type: string
-        current:
-          description: The current balance of the account
-          example: Number in cents. E.g. 1000 represents $10.00
-          format: int64
-          minimum: 0
-          type:
-          - integer
-          - 'null'
-        limit:
-          description: The limit on the balance amount
-          example: Number in cents. E.g. 1000 represents $10.00
-          format: int64
-          minimum: 0
-          type:
-          - integer
-          - 'null'
-      required:
-      - currency
-      title: External Account Balance
       type: object
     external_account_vendor_data:
       properties:
@@ -614,99 +436,6 @@ components:
           description: The ID of the institution external account belongs
           type: string
       type: object
-    add_accounts_request_routing_identifiers:
-      properties:
-        ach_routing_number:
-          description: 'The routing number used for US ACH payments.
-
-            '
-          example: '756392185'
-          minLength: 1
-          type: string
-        bank_countries:
-          description: The countries that this bank operates the account in
-          items:
-            enum:
-            - US
-            type: string
-          minItems: 1
-          type: array
-        bank_name:
-          description: The name of the bank managing the account
-          example: Chase
-          minLength: 1
-          type: string
-        wire_routing_number:
-          description: 'The routing number used for US wire payments.
-
-            '
-          example: '915075033'
-          minLength: 1
-          type: string
-      required:
-      - bank_name
-      - bank_countries
-      - ach_routing_number
-      title: Identifiers for the bank
-      type: object
-    ext_account_customer_type:
-      description: 'The type of customer in the external financial institution. _Not_ necessarily the customer type on Synctera''s platform: a business customer might link to the owner''s personal account at an external financial institution.
-
-        '
-      enum:
-      - PERSONAL
-      - BUSINESS
-      type: string
-    patch_external_account:
-      properties:
-        account_identifiers:
-          $ref: '#/components/schemas/patch_accounts_request_account_identifiers'
-        account_owner_names:
-          description: The names of the account owners.
-          items:
-            example: Monica Keebler
-            type: string
-          type: array
-        nickname:
-          description: A user-meaningful name for the account
-          example: Money Market Account
-          minLength: 1
-          type: string
-        routing_identifiers:
-          $ref: '#/components/schemas/patch_accounts_request_routing_identifiers'
-        type:
-          description: The type of the account
-          enum:
-          - CHECKING
-          - SAVINGS
-          type: string
-        verification:
-          $ref: '#/components/schemas/account_verification'
-      type: object
-    vendor_json:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor
-          enum:
-          - application/json
-          type: string
-        json:
-          description: Data representation in JSON
-          type: object
-        vendor:
-          example: SOCURE
-          type: string
-      required:
-      - vendor
-      - content_type
-      - json
-    business_id2:
-      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
-
-        '
-      example: d4f6d078-ccf9-42c1-a001-df2c96783294
-      format: uuid
-      type: string
     account_routing:
       properties:
         ach_routing_number:
@@ -750,246 +479,49 @@ components:
       - bank_countries
       title: Routing information for the account
       type: object
-    base_account_verification:
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
+    error:
       properties:
-        creation_time:
-          description: The time at which verification was first completed.
-          example: '2022-01-01T00:00:00.000Z'
-          format: date-time
-          type: string
-        last_updated_time:
-          description: The time at which verification was last updated.
-          example: '2022-01-01T00:00:00.000Z'
-          format: date-time
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
           type: string
         status:
-          description: The status of verification
-          enum:
-          - VERIFIED
-          - UNVERIFIED
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
           type: string
-        vendor:
-          description: The vendor used for verifying the account
-          enum:
-          - PLAID
-          - MANUAL
-          - FINICITY
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
           type: string
-      required:
-      - status
-      - vendor
-      title: Information about account verification
+      title: Standard error response (RFC 7807 problem report)
       type: object
-    patch_accounts_request_routing_identifiers:
+    delete_response:
+      description: Deleted object information
       properties:
-        ach_routing_number:
-          description: 'The routing number used for US ACH payments. On write, Synctera will store the entire routing number; on read, we only return the last 4 characters.
-
-            '
-          example: '756392185'
-          minLength: 1
+        id:
+          description: Object ID
+          format: uuid
           type: string
-        bank_name:
-          description: The name of the bank managing the account
-          example: Chase
-          minLength: 1
+        resource:
+          description: The resource name
           type: string
-      title: Identifiers for the bank
+      title: Deleted Object
       type: object
-    external_accounts_list:
-      allOf:
-      - properties:
-          external_accounts:
-            description: Array of external accounts
-            items:
-              $ref: '#/components/schemas/external_account'
-            type: array
-        required:
-        - external_accounts
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    account_verification:
-      description: 'Information about the account verification process. If the account has not been verified, this will be null.
+    business_id2:
+      description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
 
         '
-      discriminator:
-        mapping:
-          FINICITY: '#/components/schemas/finicity_account_verification'
-          MANUAL: '#/components/schemas/manual_account_verification'
-          PLAID: '#/components/schemas/plaid_account_verification'
-        propertyName: vendor
-      oneOf:
-      - $ref: '#/components/schemas/plaid_account_verification'
-      - $ref: '#/components/schemas/manual_account_verification'
-      - $ref: '#/components/schemas/finicity_account_verification'
-      title: Information about the account verification process
-      type:
-      - object
-      - 'null'
-    external_account_transaction:
-      properties:
-        amount:
-          description: Transaction amount. Number in cents. E.g. 1000 represents $10.00
-          format: int64
-          type: integer
-        authorized_date:
-          description: Date that the transaction is authorized. ISO 8601 format ( YYYY-MM-DD ).
-          format: date
-          type:
-          - string
-          - 'null'
-        category:
-          description: Category of the transaction
-          items:
-            type: string
-          type: array
-        check_number:
-          description: Check number of the transaction. This field will be null if not a check transaction.
-          type: string
-        currency:
-          description: ISO 4217 alphabetic currency code
-          example: USD
-          type: string
-        date:
-          description: 'For pending transactions, this represents the date of the transaction occurred; for posted transactions, this represents the date of the transaction posted. ISO 8601 format ( YYYY-MM-DD ).
-
-            '
-          format: date
-          type: string
-        is_pending:
-          description: Indicates the transaction is pending or unsettled if true.
-          type: boolean
-        merchant_name:
-          description: Merchant name of the transaction
-          example: Fancy store
-          type: string
-        payment_channel:
-          description: channel used to make a payment
-          enum:
-          - IN_STORE
-          - ONLINE
-          - OTHER
-          type: string
-          x-enumDescriptions:
-          - IN_STORE: In store transaction.
-          - ONLINE: Online transaction.
-          - OTHER: Transactions that relate to banks, e.g. fees or deposits.
-        payment_method:
-          description: Transfer type of the transaction, e.g. ACH
-          type: string
-        transaction_id:
-          description: case-sensitive transaction ID
-          type: string
-      type: object
-    manual_account_verification:
-      allOf:
-      - $ref: '#/components/schemas/base_account_verification'
-      title: Information specific to Manual verification
-    external_account_access_token:
-      properties:
-        business_id:
-          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
-
-            '
-          example: 492c842f-7239-45cd-bc28-edf1a13c7de2
-          format: uuid
-          type: string
-        customer_id:
-          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
-
-            '
-          format: uuid
-          type: string
-        request_id:
-          description: A unique identifier for the request, which can be used for troubleshooting
-          readOnly: true
-          type: string
-        vendor_access_token:
-          description: The access token associated with the Item data is being requested for.
-          readOnly: true
-          type: string
-        vendor_customer_id:
-          description: An alias for `customer_id` (deprecated).
-          format: uuid
-          type: string
-          x-status: deprecated
-        vendor_institution_id:
-          description: 'The ID of the institution the access token is requested for
-
-            '
-          minLength: 1
-          type: string
-        vendor_public_token:
-          description: 'The user''s public token obtained from successful link login.
-
-            '
-          type: string
-      required:
-      - vendor_public_token
-      - vendor_institution_id
-      type: object
-    vendor_xml:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor
-          enum:
-          - text/xml
-          type: string
-        vendor:
-          example: IDOLOGY
-          type: string
-        xml:
-          description: Data representaion in XML
-          type: string
-      required:
-      - vendor
-      - content_type
-      - xml
-    finicity_account_verification:
-      allOf:
-      - $ref: '#/components/schemas/base_account_verification'
-      title: Information specific to Finicity verification
-    account_identifiers:
-      properties:
-        iban:
-          description: 'The IBAN of the account. Value may be masked, in which case only the last four digits are returned.
-
-            '
-          example: CY06470650023917R423TV710402
-          type: string
-        number:
-          description: 'The account number. Value may be masked, in which case only the last four digits are returned.
-
-            '
-          example: '78277121'
-          type: string
-      required:
-      - number
-      title: Identifiers for the account
-      type: object
-    external_accounts_transaction_list:
-      properties:
-        transactions:
-          description: Array of transactions of a given external account
-          items:
-            $ref: '#/components/schemas/external_account_transaction'
-          type: array
-      required:
-      - transactions
-      type: object
-    add_accounts_request_account_identifiers:
-      properties:
-        number:
-          description: 'The account number. On write, Synctera will store the entire account number; on read, we only return the last 4 characters.
-
-            '
-          example: '78277121'
-          minLength: 1
-          type: string
-      required:
-      - number
-      title: Identifiers for the account
-      type: object
+      example: d4f6d078-ccf9-42c1-a001-df2c96783294
+      format: uuid
+      type: string
     external_account_link_token:
       properties:
         business_id:
@@ -1090,6 +622,326 @@ components:
       - country_codes
       - type
       type: object
+    add_accounts_request:
+      properties:
+        account_identifiers:
+          $ref: '#/components/schemas/add_accounts_request_account_identifiers'
+        account_owner_names:
+          description: The names of the account owners.
+          items:
+            example: Miss Clark Maggio
+            minLength: 1
+            type: string
+          minItems: 1
+          type: array
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: fc8d475c-0d6d-4139-8010-93c57ce5eed1
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          example: 91a0ced5-2403-4a98-9b9f-c4577834eac1
+          format: uuid
+          type: string
+        customer_type:
+          $ref: '#/components/schemas/ext_account_customer_type'
+        metadata:
+          description: User-supplied metadata
+          type: object
+        nickname:
+          description: A user-meaningful name for the account
+          example: Money Market Account
+          minLength: 1
+          type: string
+        routing_identifiers:
+          $ref: '#/components/schemas/add_accounts_request_routing_identifiers'
+        type:
+          description: The type of the account
+          enum:
+          - CHECKING
+          - SAVINGS
+          type: string
+        vendor_account_id:
+          description: The ID of the vendor account, will be empty for MANUAL vendor
+          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+          minLength: 1
+          type: string
+        verification:
+          $ref: '#/components/schemas/account_verification'
+      required:
+      - type
+      - customer_type
+      - account_owner_names
+      - routing_identifiers
+      - account_identifiers
+      type: object
+    patch_external_account:
+      properties:
+        account_identifiers:
+          $ref: '#/components/schemas/patch_accounts_request_account_identifiers'
+        account_owner_names:
+          description: The names of the account owners.
+          items:
+            example: Monica Keebler
+            type: string
+          type: array
+        nickname:
+          description: A user-meaningful name for the account
+          example: Money Market Account
+          minLength: 1
+          type: string
+        routing_identifiers:
+          $ref: '#/components/schemas/patch_accounts_request_routing_identifiers'
+        type:
+          description: The type of the account
+          enum:
+          - CHECKING
+          - SAVINGS
+          type: string
+        verification:
+          $ref: '#/components/schemas/account_verification'
+      type: object
+    external_accounts_list:
+      allOf:
+      - properties:
+          external_accounts:
+            description: Array of external accounts
+            items:
+              $ref: '#/components/schemas/external_account'
+            type: array
+        required:
+        - external_accounts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    patch_accounts_request_routing_identifiers:
+      properties:
+        ach_routing_number:
+          description: 'The routing number used for US ACH payments. On write, Synctera will store the entire routing number; on read, we only return the last 4 characters.
+
+            '
+          example: '756392185'
+          minLength: 1
+          type: string
+        bank_name:
+          description: The name of the bank managing the account
+          example: Chase
+          minLength: 1
+          type: string
+      title: Identifiers for the bank
+      type: object
+    ext_account_customer_type:
+      description: 'The type of customer in the external financial institution. _Not_ necessarily the customer type on Synctera''s platform: a business customer might link to the owner''s personal account at an external financial institution.
+
+        '
+      enum:
+      - PERSONAL
+      - BUSINESS
+      type: string
+    add_vendor_account_failure:
+      properties:
+        reason:
+          $ref: '#/components/schemas/add_vendor_accounts_error_reason'
+        reason_description:
+          description: A human-readable message describing the reason for the failure.
+          type: string
+        vendor_account_id:
+          description: 'The vendor account ID for the account that failed. For Plaid, this is an `account_id`.
+
+            '
+          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+          type: string
+        vendor_error_message:
+          description: 'The display_message returned by the vendor. Only returned if reason is set to `PROVIDER_ERROR`. For Plaid, this is the `display_message`.
+
+            '
+          type: string
+        vendor_request_id:
+          description: 'A unique identifier for the request from the vendor, which can be used for troubleshooting. Only returned if reason is set to `PROVIDER_ERROR`.
+
+            '
+          type: string
+      required:
+      - vendor_account_id
+      - reason
+      - reason_description
+      type: object
+    manual_account_verification:
+      allOf:
+      - $ref: '#/components/schemas/base_account_verification'
+      title: Information specific to Manual verification
+    add_vendor_accounts_error_reason:
+      description: A machine-readable code describing the reason for the failure.
+      enum:
+      - FAILED_VERIFICATION
+      - UNSUPPORTED_ACCOUNT_TYPE
+      - DUPLICATE_ACCOUNT
+      - ACCOUNT_NOT_FOUND
+      - PROVIDER_ERROR
+      type: string
+    account_identifiers:
+      properties:
+        iban:
+          description: 'The IBAN of the account. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: CY06470650023917R423TV710402
+          type: string
+        number:
+          description: 'The account number. Value may be masked, in which case only the last four digits are returned.
+
+            '
+          example: '78277121'
+          type: string
+      required:
+      - number
+      title: Identifiers for the account
+      type: object
+    add_vendor_accounts_request:
+      properties:
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: 144405a0-1cac-455e-89c9-fd06b97fdbe3
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          example: 6bcc6fab-7bbd-4356-bdfc-3b9b93115a6e
+          format: uuid
+          type: string
+        customer_type:
+          $ref: '#/components/schemas/ext_account_customer_type'
+        vendor:
+          $ref: '#/components/schemas/external_account_vendor_values'
+        vendor_access_token:
+          description: 'The token provided to link external accounts. For Plaid, this is their `access_token`.
+
+            '
+          example: access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6
+          minLength: 1
+          type: string
+        vendor_account_ids:
+          description: 'The list of vendor account IDs that the customer chose to link. For Plaid, these are `account_id`s.
+
+            '
+          items:
+            description: The Plaid account_id.
+            example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+            minLength: 1
+            type: string
+          minItems: 1
+          type: array
+        vendor_customer_id:
+          description: 'The identifier provided by the vendor for the customer associated with this external account.
+
+            '
+          example: 380
+          type: string
+        verify_owner:
+          default: false
+          description: 'If true, Synctera will attempt to verify that the external account owner is the same as the customer by comparing external account data to customer data. At least 2 of the following fields must match: name, phone number, email, address. Verification is disabled by default.
+
+            '
+          type: boolean
+      required:
+      - customer_type
+      - vendor
+      type: object
+    external_account_balance:
+      properties:
+        available:
+          description: The available balance of the account
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          type:
+          - integer
+          - 'null'
+        currency:
+          description: ISO 4217 alphabetic currency code
+          example: FJD
+          type: string
+        current:
+          description: The current balance of the account
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          type:
+          - integer
+          - 'null'
+        limit:
+          description: The limit on the balance amount
+          example: Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          minimum: 0
+          type:
+          - integer
+          - 'null'
+      required:
+      - currency
+      title: External Account Balance
+      type: object
+    external_account_access_token:
+      properties:
+        business_id:
+          description: 'The identifier for the business customer associated with this external account. Exactly one of `business_id` or `customer_id` must be specified.
+
+            '
+          example: 492c842f-7239-45cd-bc28-edf1a13c7de2
+          format: uuid
+          type: string
+        customer_id:
+          description: 'The identifier for the personal customer associated with this external account. Exactly one of `customer_id` or `business_id` must be specified.
+
+            '
+          format: uuid
+          type: string
+        request_id:
+          description: A unique identifier for the request, which can be used for troubleshooting
+          readOnly: true
+          type: string
+        vendor_access_token:
+          description: The access token associated with the Item data is being requested for.
+          readOnly: true
+          type: string
+        vendor_customer_id:
+          description: An alias for `customer_id` (deprecated).
+          format: uuid
+          type: string
+          x-status: deprecated
+        vendor_institution_id:
+          description: 'The ID of the institution the access token is requested for
+
+            '
+          minLength: 1
+          type: string
+        vendor_public_token:
+          description: 'The user''s public token obtained from successful link login.
+
+            '
+          type: string
+      required:
+      - vendor_public_token
+      - vendor_institution_id
+      type: object
+    external_accounts_transaction_list:
+      properties:
+        transactions:
+          description: Array of transactions of a given external account
+          items:
+            $ref: '#/components/schemas/external_account_transaction'
+          type: array
+      required:
+      - transactions
+      type: object
     add_vendor_accounts_response:
       properties:
         added_accounts:
@@ -1111,17 +963,35 @@ components:
       - added_accounts
       - failed_accounts
       type: object
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
-    paginated_response:
+    base_account_verification:
       properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
+        creation_time:
+          description: The time at which verification was first completed.
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
           type: string
-      title: Paginated List response
+        last_updated_time:
+          description: The time at which verification was last updated.
+          example: '2022-01-01T00:00:00.000Z'
+          format: date-time
+          type: string
+        status:
+          description: The status of verification
+          enum:
+          - VERIFIED
+          - UNVERIFIED
+          type: string
+        vendor:
+          description: The vendor used for verifying the account
+          enum:
+          - PLAID
+          - MANUAL
+          - FINICITY
+          type: string
+      required:
+      - status
+      - vendor
+      title: Information about account verification
       type: object
     external_account:
       properties:
@@ -1212,6 +1082,74 @@ components:
       - last_updated_time
       title: External account
       type: object
+    external_account_vendor_values:
+      description: 'The vendor selected for the operation.
+
+        '
+      enum:
+      - PLAID
+      - FINICITY
+      type: string
+    vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor
+          enum:
+          - application/json
+          type: string
+        json:
+          description: Data representation in JSON
+          type: object
+        vendor:
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    finicity_account_verification:
+      allOf:
+      - $ref: '#/components/schemas/base_account_verification'
+      title: Information specific to Finicity verification
+    account_verification:
+      description: 'Information about the account verification process. If the account has not been verified, this will be null.
+
+        '
+      discriminator:
+        mapping:
+          FINICITY: '#/components/schemas/finicity_account_verification'
+          MANUAL: '#/components/schemas/manual_account_verification'
+          PLAID: '#/components/schemas/plaid_account_verification'
+        propertyName: vendor
+      oneOf:
+      - $ref: '#/components/schemas/plaid_account_verification'
+      - $ref: '#/components/schemas/manual_account_verification'
+      - $ref: '#/components/schemas/finicity_account_verification'
+      title: Information about the account verification process
+      type:
+      - object
+      - 'null'
+    add_accounts_request_account_identifiers:
+      properties:
+        number:
+          description: 'The account number. On write, Synctera will store the entire account number; on read, we only return the last 4 characters.
+
+            '
+          example: '78277121'
+          minLength: 1
+          type: string
+      required:
+      - number
+      title: Identifiers for the account
+      type: object
     vendor_info:
       description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
 
@@ -1226,88 +1164,113 @@ components:
       - $ref: '#/components/schemas/vendor_xml'
       title: Vendor Info
       type: object
-    add_vendor_account_failure:
+    external_account_transaction:
       properties:
-        reason:
-          $ref: '#/components/schemas/add_vendor_accounts_error_reason'
-        reason_description:
-          description: A human-readable message describing the reason for the failure.
+        amount:
+          description: Transaction amount. Number in cents. E.g. 1000 represents $10.00
+          format: int64
+          type: integer
+        authorized_date:
+          description: Date that the transaction is authorized. ISO 8601 format ( YYYY-MM-DD ).
+          format: date
+          type:
+          - string
+          - 'null'
+        category:
+          description: Category of the transaction
+          items:
+            type: string
+          type: array
+        check_number:
+          description: Check number of the transaction. This field will be null if not a check transaction.
           type: string
-        vendor_account_id:
-          description: 'The vendor account ID for the account that failed. For Plaid, this is an `account_id`.
+        currency:
+          description: ISO 4217 alphabetic currency code
+          example: USD
+          type: string
+        date:
+          description: 'For pending transactions, this represents the date of the transaction occurred; for posted transactions, this represents the date of the transaction posted. ISO 8601 format ( YYYY-MM-DD ).
 
             '
-          example: blgvvBlXw3cq5GMPwqB6s6q4dLKB9WcVqGDGo
+          format: date
           type: string
-        vendor_error_message:
-          description: 'The display_message returned by the vendor. Only returned if reason is set to `PROVIDER_ERROR`. For Plaid, this is the `display_message`.
-
-            '
+        is_pending:
+          description: Indicates the transaction is pending or unsettled if true.
+          type: boolean
+        merchant_name:
+          description: Merchant name of the transaction
+          example: Fancy store
           type: string
-        vendor_request_id:
-          description: 'A unique identifier for the request from the vendor, which can be used for troubleshooting. Only returned if reason is set to `PROVIDER_ERROR`.
-
-            '
+        payment_channel:
+          description: channel used to make a payment
+          enum:
+          - IN_STORE
+          - ONLINE
+          - OTHER
           type: string
-      required:
-      - vendor_account_id
-      - reason
-      - reason_description
+          x-enumDescriptions:
+          - IN_STORE: In store transaction.
+          - ONLINE: Online transaction.
+          - OTHER: Transactions that relate to banks, e.g. fees or deposits.
+        payment_method:
+          description: Transfer type of the transaction, e.g. ACH
+          type: string
+        transaction_id:
+          description: case-sensitive transaction ID
+          type: string
       type: object
     plaid_account_verification:
       allOf:
       - $ref: '#/components/schemas/base_account_verification'
       title: Information specific to Plaid verification
-  responses:
-    delete_response:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/delete_response'
-      description: Resource has been deleted
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
+    add_accounts_request_routing_identifiers:
+      properties:
+        ach_routing_number:
+          description: 'The routing number used for US ACH payments.
+
+            '
+          example: '756392185'
+          minLength: 1
+          type: string
+        bank_countries:
+          description: The countries that this bank operates the account in
+          items:
+            enum:
+            - US
+            type: string
+          minItems: 1
+          type: array
+        bank_name:
+          description: The name of the bank managing the account
+          example: Chase
+          minLength: 1
+          type: string
+        wire_routing_number:
+          description: 'The routing number used for US wire payments.
+
+            '
+          example: '915075033'
+          minLength: 1
+          type: string
+      required:
+      - bank_name
+      - bank_countries
+      - ach_routing_number
+      title: Identifiers for the bank
+      type: object
   parameters:
+    customer_id_query_array:
+      description: A list of customer unique identifiers, with a comma separating any values.
+      explode: false
+      in: query
+      name: customer_id
+      required: false
+      schema:
+        items:
+          $ref: '#/components/schemas/customer_id'
+        type: array
+      style: form
+      x-external: true
     external_account_id:
       description: External Account ID
       in: path
@@ -1338,19 +1301,6 @@ components:
         type: array
       style: form
       x-external: true
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
     idempotency_key:
       description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
       in: header
@@ -1373,18 +1323,68 @@ components:
         minimum: 1
         type: integer
       x-external: true
-    customer_id_query_array:
-      description: A list of customer unique identifiers, with a comma separating any values.
-      explode: false
+    limit:
       in: query
-      name: customer_id
+      name: limit
       required: false
       schema:
-        items:
-          $ref: '#/components/schemas/customer_id'
-        type: array
-      style: form
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
       x-external: true
+  responses:
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    delete_response:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/delete_response'
+      description: Resource has been deleted
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

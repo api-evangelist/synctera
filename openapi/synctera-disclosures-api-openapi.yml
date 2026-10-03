@@ -182,6 +182,25 @@ paths:
       x-status: alpha
 components:
   schemas:
+    disclosure_type:
+      description: "Describes the regulatory requirement that triggered the disclosure.\nOne of the following:\n* `ACH_AUTHORIZATION` –\n    The ACH Authorization & Agreement Disclosure serves as a method of disclosing\n    and obtaining consent from a consumer to conduct ACH and pre-authorized\n    electronic transactions to and from their account. Record of obtaining this\n    consent should be retained, in accordance with Reg E, for no less than 2 years\n    from the date the disclosure was made to the consumer.\n* `CARDHOLDER_AGREEMENT` –\n    The Cardholder Agreement is a legal document that details the terms of a card\n    agreement between either a consumer or a business, and the financial\n    institution that issues the card. The Agreement governs the use of the\n    account.\n* `E_SIGN` –\n    US law with rules around electronic agreements/documents/disclosures:\n    used to obtain consent from consumers to receive electronic communications\n    (agreements, disclosures, statements, etc) about their accounts.\n* `KYC_DATA_COLLECTION` –\n    Document advising the customer that you will collect their personal information\n    (name, date of birth, tax ID, etc.)\n    and will be validating their information against external data/documentation.\n* `PRIVACY_NOTICE` –\n    Document that tells customers what is done with their non-public information,\n    who it is shared with, how is is secured,\n    and how they can opt out of it being shared beyond Synctera.\n* `REG_CC` –\n    US regulation that implements the Expedited Funds Availability Act:\n    describes standards for when a financial institution\n    makes funds available in a deposit account.\n* `REG_DD` –\n    US regulation that implements the Truth in Savings Act,\n    to inform customers about the terms and rules for a deposit account.\n* `REG_E` –\n    US regulation that implements the Electronic Funds Transfer Act:\n    covers liability for electronic transactions,\n    disputes for fraudulent or unrecognized electronic transactions,\n    and consent for electronic debits from a consumer's account.\n* `TERMS_AND_CONDITIONS` –\n    A detailed agreement between you and the consumer for the\n    structure, terms, fees, charges, rates of the product or service,\n    and the rules for the relationship between you and the consumer.\n"
+      enum:
+      - ACH_AUTHORIZATION
+      - CARDHOLDER_AGREEMENT
+      - E_SIGN
+      - KYC_DATA_COLLECTION
+      - PRIVACY_NOTICE
+      - REG_CC
+      - REG_DD
+      - REG_E
+      - TERMS_AND_CONDITIONS
+      type: string
+    id:
+      description: The unique identifier for this resource.
+      example: b0888080-7759-40ae-b82b-5864ced6ad36
+      format: uuid
+      readOnly: true
+      type: string
     error:
       properties:
         detail:
@@ -202,51 +221,52 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    metadata:
-      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
-
-        '
+    base_disclosure:
+      properties:
+        business_id:
+          $ref: '#/components/schemas/business_id1'
+        creation_time:
+          description: The date and time the resource was created.
+          example: '2021-06-14T11:23:41Z'
+          format: date-time
+          readOnly: true
+          type: string
+        disclosure_date:
+          description: Date and time the disclosure was made.
+          example: '2021-06-14T11:21:17Z'
+          format: date-time
+          type: string
+        event_type:
+          description: "Describes how the disclosure was shown and what the user did as a result.\nOne of the following:\n* `DISPLAYED` —\n    The document was made visible to the user,\n    but they did not interact with it.\n* `VIEWED` —\n    The document was made visible to the user,\n    and they interacted enough to see the whole document (e.g. scrolled to the bottom).\n* `ACKNOWLEDGED` —\n    The document was made visible to the user,\n    and they took positive action to confirm that they have read and accepted the document.\n"
+          enum:
+          - DISPLAYED
+          - VIEWED
+          - ACKNOWLEDGED
+          example: ACKNOWLEDGED
+          type: string
+        id:
+          $ref: '#/components/schemas/id'
+        last_updated_time:
+          description: The date and time the resource was last updated.
+          example: '2022-01-18T17:54:12Z'
+          format: date-time
+          readOnly: true
+          type: string
+        metadata:
+          $ref: '#/components/schemas/metadata'
+        person_id:
+          $ref: '#/components/schemas/person_id'
+        type:
+          $ref: '#/components/schemas/disclosure_type'
+        version:
+          $ref: '#/components/schemas/version'
       type: object
-    disclosure_type:
-      description: "Describes the regulatory requirement that triggered the disclosure.\nOne of the following:\n* `ACH_AUTHORIZATION` –\n    The ACH Authorization & Agreement Disclosure serves as a method of disclosing\n    and obtaining consent from a consumer to conduct ACH and pre-authorized\n    electronic transactions to and from their account. Record of obtaining this\n    consent should be retained, in accordance with Reg E, for no less than 2 years\n    from the date the disclosure was made to the consumer.\n* `CARDHOLDER_AGREEMENT` –\n    The Cardholder Agreement is a legal document that details the terms of a card\n    agreement between either a consumer or a business, and the financial\n    institution that issues the card. The Agreement governs the use of the\n    account.\n* `E_SIGN` –\n    US law with rules around electronic agreements/documents/disclosures:\n    used to obtain consent from consumers to receive electronic communications\n    (agreements, disclosures, statements, etc) about their accounts.\n* `KYC_DATA_COLLECTION` –\n    Document advising the customer that you will collect their personal information\n    (name, date of birth, tax ID, etc.)\n    and will be validating their information against external data/documentation.\n* `PRIVACY_NOTICE` –\n    Document that tells customers what is done with their non-public information,\n    who it is shared with, how is is secured,\n    and how they can opt out of it being shared beyond Synctera.\n* `REG_CC` –\n    US regulation that implements the Expedited Funds Availability Act:\n    describes standards for when a financial institution\n    makes funds available in a deposit account.\n* `REG_DD` –\n    US regulation that implements the Truth in Savings Act,\n    to inform customers about the terms and rules for a deposit account.\n* `REG_E` –\n    US regulation that implements the Electronic Funds Transfer Act:\n    covers liability for electronic transactions,\n    disputes for fraudulent or unrecognized electronic transactions,\n    and consent for electronic debits from a consumer's account.\n* `TERMS_AND_CONDITIONS` –\n    A detailed agreement between you and the consumer for the\n    structure, terms, fees, charges, rates of the product or service,\n    and the rules for the relationship between you and the consumer.\n"
-      enum:
-      - ACH_AUTHORIZATION
-      - CARDHOLDER_AGREEMENT
-      - E_SIGN
-      - KYC_DATA_COLLECTION
-      - PRIVACY_NOTICE
-      - REG_CC
-      - REG_DD
-      - REG_E
-      - TERMS_AND_CONDITIONS
-      type: string
-    disclosure:
-      allOf:
-      - required:
-        - type
-        - version
-        - event_type
-        - disclosure_date
-      - $ref: '#/components/schemas/base_disclosure'
-      description: Represents a disclosure.
-      type: object
-    version:
-      description: Version of the disclosure document.
-      example: '1.0'
-      pattern: ^[0-9]+\.[0-9]+$
-      type: string
     person_id:
       description: 'Unique ID for the person. Exactly one of `person_id` or `business_id` must be set.
 
         '
       example: 2c0bf949-9f59-4a04-82d4-9a86e0ccec2c
       format: uuid
-      type: string
-    id:
-      description: The unique identifier for this resource.
-      example: b0888080-7759-40ae-b82b-5864ced6ad36
-      format: uuid
-      readOnly: true
       type: string
     disclosure_list:
       allOf:
@@ -260,6 +280,29 @@ components:
         - disclosures
         type: object
       - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
+      type: object
+    disclosure:
+      allOf:
+      - required:
+        - type
+        - version
+        - event_type
+        - disclosure_date
+      - $ref: '#/components/schemas/base_disclosure'
+      description: Represents a disclosure.
+      type: object
     disclosure1:
       description: Represents a disclosure
       properties:
@@ -315,58 +358,11 @@ components:
       - event_type
       title: Disclosure
       type: object
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
+    version:
+      description: Version of the disclosure document.
+      example: '1.0'
+      pattern: ^[0-9]+\.[0-9]+$
       type: string
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    base_disclosure:
-      properties:
-        business_id:
-          $ref: '#/components/schemas/business_id1'
-        creation_time:
-          description: The date and time the resource was created.
-          example: '2021-06-14T11:23:41Z'
-          format: date-time
-          readOnly: true
-          type: string
-        disclosure_date:
-          description: Date and time the disclosure was made.
-          example: '2021-06-14T11:21:17Z'
-          format: date-time
-          type: string
-        event_type:
-          description: "Describes how the disclosure was shown and what the user did as a result.\nOne of the following:\n* `DISPLAYED` —\n    The document was made visible to the user,\n    but they did not interact with it.\n* `VIEWED` —\n    The document was made visible to the user,\n    and they interacted enough to see the whole document (e.g. scrolled to the bottom).\n* `ACKNOWLEDGED` —\n    The document was made visible to the user,\n    and they took positive action to confirm that they have read and accepted the document.\n"
-          enum:
-          - DISPLAYED
-          - VIEWED
-          - ACKNOWLEDGED
-          example: ACKNOWLEDGED
-          type: string
-        id:
-          $ref: '#/components/schemas/id'
-        last_updated_time:
-          description: The date and time the resource was last updated.
-          example: '2022-01-18T17:54:12Z'
-          format: date-time
-          readOnly: true
-          type: string
-        metadata:
-          $ref: '#/components/schemas/metadata'
-        person_id:
-          $ref: '#/components/schemas/person_id'
-        type:
-          $ref: '#/components/schemas/disclosure_type'
-        version:
-          $ref: '#/components/schemas/version'
-      type: object
     business_id1:
       description: 'Unique ID for the business. Exactly one of `business_id` or `person_id` must be set.
 
@@ -384,6 +380,10 @@ components:
           type: array
       title: List of Customer Disclosures
       type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
+      type: string
   parameters:
     disclosure_id:
       description: The unique identifier for the disclosure.
@@ -403,27 +403,21 @@ components:
         example: h50ffqz9q5
         type: string
       x-external: true
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+    person_id_query:
+      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
 
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
+        '
+      explode: false
+      in: query
+      name: person_id
       required: false
       schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
+        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+        items:
+          format: uuid
+          type: string
+        type: array
+      style: form
       x-external: true
     business_id_query:
       description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
@@ -441,21 +435,34 @@ components:
         type: array
       style: form
       x-external: true
-    person_id_query:
-      description: 'Unique identifier for the person. Multiple IDs can be provided as a comma-separated list.
-
-        '
-      explode: false
-      in: query
-      name: person_id
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
       required: false
       schema:
-        example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
-        items:
-          format: uuid
-          type: string
-        type: array
-      style: form
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
       x-external: true
     id:
       description: Unique resource identifier
@@ -471,44 +478,37 @@ components:
         type: array
       style: form
       x-external: true
-    customer_id_path:
-      description: The customer's unique identifier
-      in: path
-      name: customer_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/customer_id'
   responses:
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

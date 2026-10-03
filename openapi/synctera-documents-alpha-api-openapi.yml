@@ -175,70 +175,6 @@ paths:
       x-status: alpha
 components:
   schemas:
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    document_creation:
-      properties:
-        description:
-          type: string
-        encryption:
-          $ref: '#/components/schemas/encryption'
-        file:
-          format: binary
-          type: string
-        metadata:
-          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
-
-            '
-          type: object
-        name:
-          type: string
-        related_resource_id:
-          description: Related resource ID
-          format: uuid
-          type: string
-        related_resource_type:
-          $ref: '#/components/schemas/related_resource_type'
-      required:
-      - file
-      type: object
-    patch_document:
-      properties:
-        description:
-          type: string
-        name:
-          type: string
-      type: object
-    document_list:
-      allOf:
-      - properties:
-          documents:
-            description: Array of documents.
-            items:
-              $ref: '#/components/schemas/document'
-            type: array
-        required:
-        - documents
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     paginated_response:
       properties:
         next_page_token:
@@ -253,6 +189,19 @@ components:
       - REQUIRED
       - NOT_REQUIRED
       type: string
+    related_resource_type:
+      description: Related resource type
+      enum:
+      - CUSTOMER
+      - BUSINESS
+      type: string
+    patch_document:
+      properties:
+        description:
+          type: string
+        name:
+          type: string
+      type: object
     document:
       properties:
         creation_time:
@@ -297,19 +246,116 @@ components:
         related_resource_type:
           $ref: '#/components/schemas/related_resource_type'
       type: object
-    related_resource_type:
-      description: Related resource type
-      enum:
-      - CUSTOMER
-      - BUSINESS
-      type: string
+    document_creation:
+      properties:
+        description:
+          type: string
+        encryption:
+          $ref: '#/components/schemas/encryption'
+        file:
+          format: binary
+          type: string
+        metadata:
+          description: 'Optional field to store additional informaton about the resource.  Intended to be used by the integrator to store non-sensitive data.
+
+            '
+          type: object
+        name:
+          type: string
+        related_resource_id:
+          description: Related resource ID
+          format: uuid
+          type: string
+        related_resource_type:
+          $ref: '#/components/schemas/related_resource_type'
+      required:
+      - file
+      type: object
+    document_list:
+      allOf:
+      - properties:
+          documents:
+            description: Array of documents.
+            items:
+              $ref: '#/components/schemas/document'
+            type: array
+        required:
+        - documents
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+  parameters:
+    document_id:
+      description: The unique identifier of a document.
+      in: path
+      name: document_id
+      required: true
+      schema:
+        example: dd8cd509-ce52-4990-8f84-316558e68e9a
+        format: uuid
+        type: string
+    limit:
+      in: query
+      name: limit
+      required: false
+      schema:
+        default: 100
+        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
+
+          '
+        example: 100
+        minimum: 1
+        type: integer
+      x-external: true
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
+      x-external: true
   responses:
-    forbidden:
+    already_exists:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Forbidden error
+      description: Resource already exists error
     internal_server_error:
       content:
         application/problem+json:
@@ -328,64 +374,18 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: BadRequest
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
-  parameters:
-    limit:
-      in: query
-      name: limit
-      required: false
-      schema:
-        default: 100
-        description: 'Maximum number of objects to return per page. If the limit is greater than 100, then it will be set to 100.
-
-          '
-        example: 100
-        minimum: 1
-        type: integer
-      x-external: true
-    id:
-      description: Unique resource identifier
-      explode: false
-      in: query
-      name: id
-      required: false
-      schema:
-        items:
-          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
-          format: uuid
-          type: string
-        type: array
-      style: form
-      x-external: true
-    document_id:
-      description: The unique identifier of a document.
-      in: path
-      name: document_id
-      required: true
-      schema:
-        example: dd8cd509-ce52-4990-8f84-316558e68e9a
-        format: uuid
-        type: string
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

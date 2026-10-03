@@ -119,77 +119,6 @@ paths:
       x-external: true
 components:
   schemas:
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    internal_account_patch:
-      properties:
-        description:
-          description: A user provided description for the current account
-          type: string
-      type: object
-    account_id_query_schema:
-      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
-      items:
-        format: uuid
-        type: string
-      type: array
-    balance_type:
-      description: 'For `SAVING` and `CHECKING` accounts:
-
-        * `ACCOUNT_BALANCE`: the amount of money in the account. Equal to the sum of credits minus debits for all posted transactions.
-
-        * `AVAILABLE_BALANCE`: the account balance minus any pending debits.
-
-
-        For `LINE_OF_CREDIT` accounts:
-
-        * `ACCOUNT_BALANCE`: the amount of credit currently in use. Equal to the sum of debits minus credits for all posted transactions.
-
-        * `AVAILABLE_BALANCE`: the amount of credit available. Equal to the credit limit minus `account_balance` minus any pending debits.
-
-        '
-      enum:
-      - ACCOUNT_BALANCE
-      - AVAILABLE_BALANCE
-      type: string
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    internal_accounts_list:
-      allOf:
-      - properties:
-          internal_accounts:
-            description: Array of internal accounts
-            items:
-              $ref: '#/components/schemas/internal_account'
-            type: array
-        required:
-        - internal_accounts
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     balance:
       properties:
         balance:
@@ -266,7 +195,90 @@ components:
       - status
       - currency
       type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    account_id_query_schema:
+      example: 64438afd-fa20-4010-a573-2bbdca77cdb6,84ef251c-ab8f-47a5-bbfd-a16648f95157
+      items:
+        format: uuid
+        type: string
+      type: array
+    balance_type:
+      description: 'For `SAVING` and `CHECKING` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of money in the account. Equal to the sum of credits minus debits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the account balance minus any pending debits.
+
+
+        For `LINE_OF_CREDIT` accounts:
+
+        * `ACCOUNT_BALANCE`: the amount of credit currently in use. Equal to the sum of debits minus credits for all posted transactions.
+
+        * `AVAILABLE_BALANCE`: the amount of credit available. Equal to the credit limit minus `account_balance` minus any pending debits.
+
+        '
+      enum:
+      - ACCOUNT_BALANCE
+      - AVAILABLE_BALANCE
+      type: string
+    internal_accounts_list:
+      allOf:
+      - properties:
+          internal_accounts:
+            description: Array of internal accounts
+            items:
+              $ref: '#/components/schemas/internal_account'
+            type: array
+        required:
+        - internal_accounts
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    internal_account_patch:
+      properties:
+        description:
+          description: A user provided description for the current account
+          type: string
+      type: object
   parameters:
+    internal_account_id_query:
+      description: 'Internal account ID(s). Multiple IDs can be provided as a comma-separated list.
+
+        '
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        $ref: '#/components/schemas/account_id_query_schema'
+      style: form
+      x-external: true
     page_token:
       in: query
       name: page_token
@@ -274,6 +286,24 @@ components:
       schema:
         description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
         example: h50ffqz9q5
+        type: string
+      x-external: true
+    internal_account_id_path:
+      description: Unique identifier for the internal account.
+      in: path
+      name: internal_account_id
+      required: true
+      schema:
+        example: 1eec6d0a-94b3-422d-bfc5-938ebff87fb0
+        format: uuid
+        type: string
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
         type: string
       x-external: true
     limit:
@@ -289,79 +319,49 @@ components:
         minimum: 1
         type: integer
       x-external: true
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
-      required: false
-      schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
-      x-external: true
-    internal_account_id_query:
-      description: 'Internal account ID(s). Multiple IDs can be provided as a comma-separated list.
-
-        '
-      explode: false
-      in: query
-      name: id
-      required: false
-      schema:
-        $ref: '#/components/schemas/account_id_query_schema'
-      style: form
-      x-external: true
-    internal_account_id_path:
-      description: Unique identifier for the internal account.
-      in: path
-      name: internal_account_id
-      required: true
-      schema:
-        example: 1eec6d0a-94b3-422d-bfc5-938ebff87fb0
-        format: uuid
-        type: string
   responses:
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
     internal_server_error:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Internal server error
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
     account_closed:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Account has been closed
-    already_exists:
+    unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
-      description: Resource already exists error
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
     not_found:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

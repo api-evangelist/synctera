@@ -152,18 +152,18 @@ paths:
       x-status: alpha
 components:
   schemas:
-    patch_business:
-      allOf:
-      - $ref: '#/components/schemas/base'
-      description: Represents a business customer.
+    metadata:
+      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
+
+        '
       type: object
-    business:
-      allOf:
-      - required:
-        - status
-        - is_customer
-      - $ref: '#/components/schemas/base'
-      description: Represents a business customer.
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
       type: object
     address:
       properties:
@@ -196,6 +196,10 @@ components:
       - address_line_1
       - country_code
       type: object
+    is_customer:
+      description: True for personal and business customers with a direct relationship with the fintech or bank.
+      example: true
+      type: boolean
     error:
       properties:
         detail:
@@ -215,6 +219,57 @@ components:
           example: https://dev.synctera.com/errors/bad-request-body
           type: string
       title: Standard error response (RFC 7807 problem report)
+      type: object
+    business_list:
+      allOf:
+      - properties:
+          businesses:
+            description: Array of businesses.
+            items:
+              $ref: '#/components/schemas/business'
+            type: array
+        required:
+        - businesses
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    verification_status:
+      description: 'The result of a KYC/KYB verification. One of the following:
+
+        * `UNVERIFIED` – verification has not been completed for this customer.
+
+        * `PENDING` – verification is in progress for this customer.
+
+        * `PROVISIONAL` – partially verified or verified with restrictions.
+
+        * `ACCEPTED` – the customer has been verified.
+
+        * `REVIEW` – verification has run and issues have been identified and require review.
+
+        * `REJECTED` – the customer was rejected and should not be allowed to take certain actions e.g., open an account.
+
+        '
+      enum:
+      - UNVERIFIED
+      - PENDING
+      - PROVISIONAL
+      - ACCEPTED
+      - REVIEW
+      - REJECTED
+      example: ACCEPTED
+      readOnly: true
+      type: string
+    patch_business:
+      allOf:
+      - $ref: '#/components/schemas/base'
+      description: Represents a business customer.
+      type: object
+    business:
+      allOf:
+      - required:
+        - status
+        - is_customer
+      - $ref: '#/components/schemas/base'
+      description: Represents a business customer.
       type: object
     base:
       properties:
@@ -339,61 +394,6 @@ components:
           example: https://example.com
           type: string
       type: object
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    is_customer:
-      description: True for personal and business customers with a direct relationship with the fintech or bank.
-      example: true
-      type: boolean
-    metadata:
-      description: 'Optional field to store additional information about the resource. Intended to be used by the integrator to store non-sensitive data.
-
-        '
-      type: object
-    verification_status:
-      description: 'The result of a KYC/KYB verification. One of the following:
-
-        * `UNVERIFIED` – verification has not been completed for this customer.
-
-        * `PENDING` – verification is in progress for this customer.
-
-        * `PROVISIONAL` – partially verified or verified with restrictions.
-
-        * `ACCEPTED` – the customer has been verified.
-
-        * `REVIEW` – verification has run and issues have been identified and require review.
-
-        * `REJECTED` – the customer was rejected and should not be allowed to take certain actions e.g., open an account.
-
-        '
-      enum:
-      - UNVERIFIED
-      - PENDING
-      - PROVISIONAL
-      - ACCEPTED
-      - REVIEW
-      - REJECTED
-      example: ACCEPTED
-      readOnly: true
-      type: string
-    business_list:
-      allOf:
-      - properties:
-          businesses:
-            description: Array of businesses.
-            items:
-              $ref: '#/components/schemas/business'
-            type: array
-        required:
-        - businesses
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
   parameters:
     entity_name:
       in: query
@@ -404,6 +404,14 @@ components:
         example: Apex Corporation
         type: string
       x-external: true
+    is_customer:
+      description: If true, show only customers. If false, show non-customer parties.
+      in: query
+      name: is_customer
+      required: false
+      schema:
+        type: boolean
+      x-external: true
     phone_number:
       in: query
       name: phone_number
@@ -412,41 +420,6 @@ components:
         description: Only return resources where the phone_number field matches the specified string. Phone numbers use the E.164 format e.g. +19178675309. Any * characters in the string are wildcards, and match any characters.
         example: '+12065550100'
         type: string
-      x-external: true
-    business_id_path:
-      description: Business's unique identifier.
-      in: path
-      name: business_id
-      required: true
-      schema:
-        example: 21b74a02-b7c7-49f4-a497-98ba5cbedb27
-        format: uuid
-        type: string
-    page_token:
-      in: query
-      name: page_token
-      required: false
-      schema:
-        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
-        example: h50ffqz9q5
-        type: string
-      x-external: true
-    business_sort_by_query:
-      description: 'Specifies the sort order for the returned businesses.
-
-        '
-      explode: false
-      in: query
-      name: sort_by
-      required: false
-      schema:
-        items:
-          enum:
-          - entity_name:asc
-          - entity_name:desc
-          type: string
-        type: array
-      style: form
       x-external: true
     status1:
       in: query
@@ -489,23 +462,6 @@ components:
         - CONVERTED
         type: string
       x-external: true
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
-      required: false
-      schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
-      x-external: true
-    is_customer:
-      description: If true, show only customers. If false, show non-customer parties.
-      in: query
-      name: is_customer
-      required: false
-      schema:
-        type: boolean
-      x-external: true
     id_query:
       description: 'Unique identifier for the business. Multiple IDs can be provided as a comma-separated list.
 
@@ -522,6 +478,50 @@ components:
         type: array
       style: form
       x-external: true
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    business_sort_by_query:
+      description: 'Specifies the sort order for the returned businesses.
+
+        '
+      explode: false
+      in: query
+      name: sort_by
+      required: false
+      schema:
+        items:
+          enum:
+          - entity_name:asc
+          - entity_name:desc
+          type: string
+        type: array
+      style: form
+      x-external: true
+    business_id_path:
+      description: Business's unique identifier.
+      in: path
+      name: business_id
+      required: true
+      schema:
+        example: 21b74a02-b7c7-49f4-a497-98ba5cbedb27
+        format: uuid
+        type: string
+    page_token:
+      in: query
+      name: page_token
+      required: false
+      schema:
+        description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
+        example: h50ffqz9q5
+        type: string
+      x-external: true
     limit:
       in: query
       name: limit
@@ -536,42 +536,42 @@ components:
         type: integer
       x-external: true
   responses:
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
     forbidden:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Forbidden error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
     already_exists:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource already exists error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

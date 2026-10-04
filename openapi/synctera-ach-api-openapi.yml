@@ -142,89 +142,44 @@ paths:
       - ACH
       x-external: true
 components:
+  responses:
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
   schemas:
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    outgoing_ach_patch:
-      description: Update sent ach transaction
-      properties:
-        funds_availability_time:
-          example: 2022-03-18TT17:54:12Z
-          format: date-time
-          type: string
-        status:
-          enum:
-          - CANCELED
-          type: string
-      type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    hold_data:
-      properties:
-        amount:
-          type: integer
-        availability_time:
-          example: 2022-03-18TT17:54:12Z
-          format: date-time
-          type: string
-      required:
-      - amount
-      - availability_time
-      type: object
-    outgoing_ach_list:
-      allOf:
-      - properties:
-          transactions:
-            description: Array of sent ACH transactions.
-            items:
-              $ref: '#/components/schemas/outgoing_ach'
-            type: array
-        required:
-        - transactions
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    risk_data:
-      properties:
-        client_ip:
-          description: Client IP
-          type: string
-      type: object
-    ach_request_hold_data:
-      properties:
-        amount:
-          type: integer
-        duration:
-          example: 2
-          minimum: 0
-          type: integer
-      required:
-      - amount
-      - duration
-      type: object
     outgoing_ach:
       description: Represents a sent ACH transaction.
       properties:
@@ -303,6 +258,70 @@ components:
       - trace_no
       - status
       - memo
+      type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    hold_data:
+      properties:
+        amount:
+          type: integer
+        availability_time:
+          example: 2022-03-18TT17:54:12Z
+          format: date-time
+          type: string
+      required:
+      - amount
+      - availability_time
+      type: object
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    outgoing_ach_patch:
+      description: Update sent ach transaction
+      properties:
+        funds_availability_time:
+          example: 2022-03-18TT17:54:12Z
+          format: date-time
+          type: string
+        status:
+          enum:
+          - CANCELED
+          type: string
+      type: object
+    ach_request_hold_data:
+      properties:
+        amount:
+          type: integer
+        duration:
+          example: 2
+          minimum: 0
+          type: integer
+      required:
+      - amount
+      - duration
       type: object
     outgoing_ach_request:
       description: Send an ACH
@@ -383,43 +402,24 @@ components:
       - originating_account_id
       title: Send ACH requests
       type: object
-  responses:
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
+    outgoing_ach_list:
+      allOf:
+      - properties:
+          transactions:
+            description: Array of sent ACH transactions.
+            items:
+              $ref: '#/components/schemas/outgoing_ach'
+            type: array
+        required:
+        - transactions
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    risk_data:
+      properties:
+        client_ip:
+          description: Client IP
+          type: string
+      type: object
   parameters:
     transaction_id:
       description: Transaction ID in the ledger

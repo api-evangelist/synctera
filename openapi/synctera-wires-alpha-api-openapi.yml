@@ -146,15 +146,67 @@ paths:
       x-external: true
       x-status: alpha
 components:
+  responses:
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
+    unprocessable_entity:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unprocessable entity request response
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
   schemas:
-    paginated_response:
+    update_transfer:
       properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
+        status:
+          description: Field value must be set to CANCELED
+          enum:
+          - CANCELED
+          example: CANCELED
           type: string
-      title: Paginated List response
+      title: Change Status
       type: object
+    wire_list:
+      allOf:
+      - properties:
+          wires:
+            description: Array of wires
+            items:
+              $ref: '#/components/schemas/wire'
+            type: array
+        required:
+        - wires
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+      title: Wire List
     wire_request:
       properties:
         amount:
@@ -221,29 +273,6 @@ components:
           type: string
       title: Standard error response (RFC 7807 problem report)
       type: object
-    update_transfer:
-      properties:
-        status:
-          description: Field value must be set to CANCELED
-          enum:
-          - CANCELED
-          example: CANCELED
-          type: string
-      title: Change Status
-      type: object
-    wire_list:
-      allOf:
-      - properties:
-          wires:
-            description: Array of wires
-            items:
-              $ref: '#/components/schemas/wire'
-            type: array
-        required:
-        - wires
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-      title: Wire List
     wire:
       properties:
         amount:
@@ -324,13 +353,21 @@ components:
       - last_updated_time
       title: Wire
       type: object
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
   parameters:
-    receiving_account_id:
+    customer_id:
       in: query
-      name: receiving_account_id
+      name: customer_id
       required: false
       schema:
-        example: 2c0b200c-7b43-4110-83f4-79370103ded8
+        example: 3b601be1-1c91-4136-bca8-6754cc78f713
         format: uuid
         type: string
       x-external: true
@@ -347,21 +384,21 @@ components:
         example: PENDING
         type: string
       x-external: true
+    wire_id:
+      description: The unique identifier of a wire
+      in: path
+      name: wire_id
+      required: true
+      schema:
+        example: e7c5e3cb-0294-4243-b418-47025997de7f
+        format: uuid
+        type: string
     originating_account_id:
       in: query
       name: originating_account_id
       required: false
       schema:
         example: 1a43dcf4-97b8-4522-850d-4de9061cf1b4
-        format: uuid
-        type: string
-      x-external: true
-    customer_id:
-      in: query
-      name: customer_id
-      required: false
-      schema:
-        example: 3b601be1-1c91-4136-bca8-6754cc78f713
         format: uuid
         type: string
       x-external: true
@@ -372,6 +409,15 @@ components:
       schema:
         description: Optional pagination token to be provided to retrieve subsequent pages, returned from previous get
         example: h50ffqz9q5
+        type: string
+      x-external: true
+    receiving_account_id:
+      in: query
+      name: receiving_account_id
+      required: false
+      schema:
+        example: 2c0b200c-7b43-4110-83f4-79370103ded8
+        format: uuid
         type: string
       x-external: true
     limit:
@@ -387,52 +433,6 @@ components:
         minimum: 1
         type: integer
       x-external: true
-    wire_id:
-      description: The unique identifier of a wire
-      in: path
-      name: wire_id
-      required: true
-      schema:
-        example: e7c5e3cb-0294-4243-b418-47025997de7f
-        format: uuid
-        type: string
-  responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    unprocessable_entity:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unprocessable entity request response
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
   securitySchemes:
     bearerAuth:
       bearerFormat: api_key

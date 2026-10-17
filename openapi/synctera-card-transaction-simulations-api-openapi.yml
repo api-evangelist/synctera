@@ -316,260 +316,6 @@ paths:
       x-external: true
 components:
   schemas:
-    original_credit_request_model:
-      properties:
-        amount:
-          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
-          type: integer
-        card_acceptor:
-          $ref: '#/components/schemas/card_acceptor_model'
-        card_id:
-          format: uuid
-          type: string
-        mid:
-          maxLength: 50
-          minLength: 1
-          type: string
-        screening_score:
-          type: string
-        sender_data:
-          $ref: '#/components/schemas/original_credit_sender_data'
-        transactionPurpose:
-          type: string
-        type:
-          enum:
-          - account_to_account
-          - person_to_person
-          - prepaid
-          - wallet_transfer
-          - money_transfer_by_bank
-          - business_to_business
-          - disbursement
-          - government_disbursement
-          - gambling_payout
-          - loyalty
-          - merchant_disbursement
-          - online_gambling_payout
-          - pension_disbursement
-          - prepaid_loads
-          - card_bill_payment
-          - bill_payment
-          - cash_claim
-          - cash_in
-          - cash_out
-          - mobile_air_time_payment
-          - money_transfer_by_merchant
-          - face_to_face_merchant_payment
-          - government_payment
-          - payments_goods_services
-          type: string
-      required:
-      - amount
-      - card_id
-      - mid
-      - type
-      type: object
-    billing_address:
-      properties:
-        address:
-          type: string
-        compressed_zip:
-          type: string
-        first_name:
-          type: string
-        last_name:
-          type: string
-        zip:
-          type: string
-      type: object
-    original_credit_sender_data:
-      properties:
-        funding_source:
-          enum:
-          - credit
-          - debit
-          - prepaid
-          - deposit_account
-          - cash
-          - mobile_money_payment
-          - non_visa_credit
-          type: string
-        sender_account_number:
-          type: string
-        sender_account_type:
-          enum:
-          - other
-          - rtn_bank_account
-          - iban
-          - card_account
-          - email
-          - phone_number
-          - bank_account_number_and_identification_code
-          - wallet_id
-          - social_network_id
-          type: string
-        sender_address:
-          type: string
-        sender_city:
-          type: string
-        sender_country:
-          type: string
-        sender_name:
-          type: string
-        sender_reference_number:
-          type: string
-        sender_state:
-          type: string
-        transaction_purpose:
-          enum:
-          - family_support
-          - labor_transfers
-          - travel
-          - education
-          - medical_treatment
-          - emergency_need
-          - savings
-          - gifts
-          - other
-          - salary
-          - lending
-          - crypto_currency
-          type: string
-        unique_transaction_reference_number:
-          maxLength: 17
-          minLength: 1
-          type: string
-      required:
-      - funding_source
-      type: object
-    card_acceptor_model:
-      example:
-        address: address
-        city: city
-        country: country
-        ecommerce_security_level_indicator: ecommerce_security_level_indicator
-        mcc: mcc
-        name: name
-        partial_approval_capable: false
-        state: state
-        zip: zip
-      properties:
-        address:
-          maxLength: 255
-          minLength: 0
-          type: string
-        city:
-          maxLength: 40
-          minLength: 0
-          type: string
-        country:
-          type: string
-        ecommerce_security_level_indicator:
-          type: string
-        mcc:
-          maxLength: 5
-          minLength: 0
-          type: string
-        name:
-          maxLength: 50
-          minLength: 0
-          type: string
-        partial_approval_capable:
-          default: false
-          type: boolean
-        state:
-          type: string
-        zip:
-          maxLength: 10
-          minLength: 0
-          type: string
-      type: object
-    simulation_response_model:
-      type: object
-    network_fee_model:
-      example:
-        amount: 123
-        credit_debit: C
-        type: ISSUER_FEE
-      properties:
-        amount:
-          description: The amount of the fee in the smallest whole denomination of the applicable currency (eg. For USD use cents)
-          type: integer
-        credit_debit:
-          description: C = credit; D = debit
-          enum:
-          - C
-          - D
-          type: string
-        type:
-          enum:
-          - ISSUER_FEE
-          - SWITCH_FEE
-          - PINDEBIT_ASSOC_FEE
-          - ACQUIRER_FEE
-          - INTERCHANGE_FEE
-          - CUR_CONV_CARDHOLDER_FEE
-          - CUR_CONV_ISSUER_FEE
-          - CROSS_BORDER_ISSUER_FEE
-          type: string
-      required:
-      - type
-      - amount
-      type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    reversal_model:
-      example:
-        amount: 80
-        find_original_window_days: 6
-        is_advice: false
-        network_fees:
-        - amount: 123
-          credit_debit: C
-          type: ISSUER_FEE
-        - amount: 123
-          credit_debit: C
-          type: ISSUER_FEE
-        original_transaction_id: original_transaction_id
-      properties:
-        amount:
-          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
-          type: integer
-        find_original_window_days:
-          format: int32
-          type: integer
-        is_advice:
-          default: false
-          type: boolean
-        network_fees:
-          items:
-            $ref: '#/components/schemas/network_fee_model'
-          type: array
-        original_transaction_id:
-          format: uuid
-          type: string
-      required:
-      - amount
-      - original_transaction_id
-      type: object
     card_options:
       properties:
         billing_address:
@@ -585,6 +331,35 @@ components:
           maxLength: 4
           minLength: 4
           type: string
+      type: object
+    withdrawal_request_model:
+      properties:
+        account_type:
+          enum:
+          - checking
+          - savings
+          - credit
+          type: string
+        amount:
+          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
+          type: integer
+        card_acceptor:
+          $ref: '#/components/schemas/card_acceptor_model'
+        card_id:
+          format: uuid
+          type: string
+        mid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        pin:
+          maxLength: 15
+          minLength: 1
+          type: string
+      required:
+      - amount
+      - card_id
+      - mid
       type: object
     clearing_model:
       example:
@@ -668,14 +443,8 @@ components:
       - card_id
       - mid
       type: object
-    withdrawal_request_model:
+    original_credit_request_model:
       properties:
-        account_type:
-          enum:
-          - checking
-          - savings
-          - credit
-          type: string
         amount:
           description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
           type: integer
@@ -688,14 +457,135 @@ components:
           maxLength: 50
           minLength: 1
           type: string
-        pin:
-          maxLength: 15
-          minLength: 1
+        screening_score:
+          type: string
+        sender_data:
+          $ref: '#/components/schemas/original_credit_sender_data'
+        transactionPurpose:
+          type: string
+        type:
+          enum:
+          - account_to_account
+          - person_to_person
+          - prepaid
+          - wallet_transfer
+          - money_transfer_by_bank
+          - business_to_business
+          - disbursement
+          - government_disbursement
+          - gambling_payout
+          - loyalty
+          - merchant_disbursement
+          - online_gambling_payout
+          - pension_disbursement
+          - prepaid_loads
+          - card_bill_payment
+          - bill_payment
+          - cash_claim
+          - cash_in
+          - cash_out
+          - mobile_air_time_payment
+          - money_transfer_by_merchant
+          - face_to_face_merchant_payment
+          - government_payment
+          - payments_goods_services
           type: string
       required:
       - amount
       - card_id
       - mid
+      - type
+      type: object
+    billing_address:
+      properties:
+        address:
+          type: string
+        compressed_zip:
+          type: string
+        first_name:
+          type: string
+        last_name:
+          type: string
+        zip:
+          type: string
+      type: object
+    transaction_options:
+      properties:
+        additional_data:
+          type: string
+        card_expiration_date_yymm:
+          type: string
+        database_transaction_timeout:
+          format: int32
+          type: integer
+        encryption_key_id:
+          type: string
+        is_async:
+          default: false
+          type: boolean
+        pre_auth_time_limit:
+          type: string
+        send_expiration_date:
+          default: false
+          type: boolean
+        send_track_data:
+          default: false
+          type: boolean
+        transaction_id:
+          type: string
+        transaction_timeout_threshold_seconds:
+          format: int64
+          type: integer
+      type: object
+    financial_request_model:
+      properties:
+        amount:
+          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
+          type: integer
+        card_acceptor:
+          $ref: '#/components/schemas/card_acceptor_model'
+        card_id:
+          format: uuid
+          type: string
+        cash_back_amount:
+          description: Cash back amount in the smallest whole denomination of the applicable currency (eg. For USD use cents)
+          type: integer
+        is_pre_auth:
+          default: false
+          type: boolean
+        mid:
+          maxLength: 50
+          minLength: 1
+          type: string
+        pin:
+          maxLength: 15
+          minLength: 1
+          type: string
+        transaction_options:
+          $ref: '#/components/schemas/transaction_options'
+      required:
+      - amount
+      - card_acceptor
+      - card_id
+      - mid
+      type: object
+    authorization_advice_model:
+      properties:
+        amount:
+          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
+          type: integer
+        network_fees:
+          items:
+            $ref: '#/components/schemas/network_fee_model'
+          type: array
+        original_transaction_id:
+          format: uuid
+          type: string
+        transaction_options:
+          $ref: '#/components/schemas/transaction_options'
+      required:
+      - amount
+      - original_transaction_id
       type: object
     auth_request_model:
       properties:
@@ -733,39 +623,121 @@ components:
       - card_id
       - mid
       type: object
-    transaction_options:
+    error:
       properties:
-        additional_data:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
           type: string
-        card_expiration_date_yymm:
-          type: string
-        database_transaction_timeout:
-          format: int32
+        status:
+          description: the HTTP status code for this response
+          example: 400
           type: integer
-        encryption_key_id:
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
           type: string
-        is_async:
-          default: false
-          type: boolean
-        pre_auth_time_limit:
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
           type: string
-        send_expiration_date:
-          default: false
-          type: boolean
-        send_track_data:
-          default: false
-          type: boolean
-        transaction_id:
-          type: string
-        transaction_timeout_threshold_seconds:
-          format: int64
-          type: integer
+      title: Standard error response (RFC 7807 problem report)
       type: object
-    authorization_advice_model:
+    card_acceptor_model:
+      example:
+        address: address
+        city: city
+        country: country
+        ecommerce_security_level_indicator: ecommerce_security_level_indicator
+        mcc: mcc
+        name: name
+        partial_approval_capable: false
+        state: state
+        zip: zip
+      properties:
+        address:
+          maxLength: 255
+          minLength: 0
+          type: string
+        city:
+          maxLength: 40
+          minLength: 0
+          type: string
+        country:
+          type: string
+        ecommerce_security_level_indicator:
+          type: string
+        mcc:
+          maxLength: 5
+          minLength: 0
+          type: string
+        name:
+          maxLength: 50
+          minLength: 0
+          type: string
+        partial_approval_capable:
+          default: false
+          type: boolean
+        state:
+          type: string
+        zip:
+          maxLength: 10
+          minLength: 0
+          type: string
+      type: object
+    network_fee_model:
+      example:
+        amount: 123
+        credit_debit: C
+        type: ISSUER_FEE
+      properties:
+        amount:
+          description: The amount of the fee in the smallest whole denomination of the applicable currency (eg. For USD use cents)
+          type: integer
+        credit_debit:
+          description: C = credit; D = debit
+          enum:
+          - C
+          - D
+          type: string
+        type:
+          enum:
+          - ISSUER_FEE
+          - SWITCH_FEE
+          - PINDEBIT_ASSOC_FEE
+          - ACQUIRER_FEE
+          - INTERCHANGE_FEE
+          - CUR_CONV_CARDHOLDER_FEE
+          - CUR_CONV_ISSUER_FEE
+          - CROSS_BORDER_ISSUER_FEE
+          type: string
+      required:
+      - type
+      - amount
+      type: object
+    reversal_model:
+      example:
+        amount: 80
+        find_original_window_days: 6
+        is_advice: false
+        network_fees:
+        - amount: 123
+          credit_debit: C
+          type: ISSUER_FEE
+        - amount: 123
+          credit_debit: C
+          type: ISSUER_FEE
+        original_transaction_id: original_transaction_id
       properties:
         amount:
           description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
           type: integer
+        find_original_window_days:
+          format: int32
+          type: integer
+        is_advice:
+          default: false
+          type: boolean
         network_fees:
           items:
             $ref: '#/components/schemas/network_fee_model'
@@ -773,57 +745,85 @@ components:
         original_transaction_id:
           format: uuid
           type: string
-        transaction_options:
-          $ref: '#/components/schemas/transaction_options'
       required:
       - amount
       - original_transaction_id
       type: object
-    financial_request_model:
+    simulation_response_model:
+      type: object
+    original_credit_sender_data:
       properties:
-        amount:
-          description: The amount of the transaction in the smallest whole denomination of the applicable currency (eg. For USD use cents)
-          type: integer
-        card_acceptor:
-          $ref: '#/components/schemas/card_acceptor_model'
-        card_id:
-          format: uuid
+        funding_source:
+          enum:
+          - credit
+          - debit
+          - prepaid
+          - deposit_account
+          - cash
+          - mobile_money_payment
+          - non_visa_credit
           type: string
-        cash_back_amount:
-          description: Cash back amount in the smallest whole denomination of the applicable currency (eg. For USD use cents)
-          type: integer
-        is_pre_auth:
-          default: false
-          type: boolean
-        mid:
-          maxLength: 50
+        sender_account_number:
+          type: string
+        sender_account_type:
+          enum:
+          - other
+          - rtn_bank_account
+          - iban
+          - card_account
+          - email
+          - phone_number
+          - bank_account_number_and_identification_code
+          - wallet_id
+          - social_network_id
+          type: string
+        sender_address:
+          type: string
+        sender_city:
+          type: string
+        sender_country:
+          type: string
+        sender_name:
+          type: string
+        sender_reference_number:
+          type: string
+        sender_state:
+          type: string
+        transaction_purpose:
+          enum:
+          - family_support
+          - labor_transfers
+          - travel
+          - education
+          - medical_treatment
+          - emergency_need
+          - savings
+          - gifts
+          - other
+          - salary
+          - lending
+          - crypto_currency
+          type: string
+        unique_transaction_reference_number:
+          maxLength: 17
           minLength: 1
           type: string
-        pin:
-          maxLength: 15
-          minLength: 1
-          type: string
-        transaction_options:
-          $ref: '#/components/schemas/transaction_options'
       required:
-      - amount
-      - card_acceptor
-      - card_id
-      - mid
+      - funding_source
       type: object
   responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     unauthorized:
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/error'
       description: Unauthorized
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
     internal_server_error:
       content:
         application/problem+json:

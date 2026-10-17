@@ -188,96 +188,6 @@ paths:
       x-status: deprecated
 components:
   schemas:
-    paginated_response:
-      properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
-          type: string
-      title: Paginated List response
-      type: object
-    customer_verification_result_list:
-      allOf:
-      - properties:
-          verifications:
-            description: Array of verification results.
-            items:
-              $ref: '#/components/schemas/customer_verification_result'
-            type: array
-        required:
-        - verifications
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-    provider_type:
-      description: Name of the organization that provided this data.
-      enum:
-      - IDOLOGY
-      - SOCURE
-      example: SOCURE
-      type: string
-    customer_id:
-      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
-      format: uuid
-      type: string
-    verification_vendor_json:
-      properties:
-        content_type:
-          description: Describes the content-type encoding received from the vendor.
-          enum:
-          - application/json
-          type: string
-        details:
-          description: Array of vendor specific information.
-          items:
-            $ref: '#/components/schemas/verification_vendor_info_detail'
-          readOnly: true
-          type: array
-        json:
-          description: Data representation in JSON.
-          type: object
-        vendor:
-          description: Name of the vendor used.
-          example: SOCURE
-          type: string
-      required:
-      - vendor
-      - content_type
-      - json
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
-          type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
-      type: object
-    customer_verify_response:
-      allOf:
-      - properties:
-          kyc_status:
-            $ref: '#/components/schemas/customer_kyc_status'
-          verifications:
-            description: Array of verification results.
-            items:
-              $ref: '#/components/schemas/customer_verification_result'
-            type: array
-        required:
-        - kyc_status
-        - verifications
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     customer_verification_result:
       description: Verification result
       properties:
@@ -347,6 +257,21 @@ components:
       - vendor
       - content_type
       - xml
+    customer_verify_response:
+      allOf:
+      - properties:
+          kyc_status:
+            $ref: '#/components/schemas/customer_kyc_status'
+          verifications:
+            description: Array of verification results.
+            items:
+              $ref: '#/components/schemas/customer_verification_result'
+            type: array
+        required:
+        - kyc_status
+        - verifications
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
     raw_response:
       deprecated: true
       properties:
@@ -358,19 +283,34 @@ components:
           type: string
       title: Raw response from providers.
       type: object
-    verification_vendor_info:
-      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
-
-        '
-      discriminator:
-        mapping:
-          application/json: '#/components/schemas/verification_vendor_json'
-          text/xml: '#/components/schemas/verification_vendor_xml'
-        propertyName: content_type
-      oneOf:
-      - $ref: '#/components/schemas/verification_vendor_json'
-      - $ref: '#/components/schemas/verification_vendor_xml'
-      type: object
+    customer_kyc_status:
+      description: Customer's KYC status
+      enum:
+      - UNVERIFIED
+      - REVIEW
+      - PROVIDER_FAILURE
+      - ACCEPTED
+      - REJECTED
+      - PROVISIONAL
+      type: string
+    verification_type:
+      description: The type of check run on the customer.
+      enum:
+      - fraud
+      - synthetic
+      - emailrisk
+      - phonerisk
+      - addressrisk
+      - kyc
+      - social
+      - watchliststandard
+      - watchlistpremier
+      - watchlistplus
+      - documentverification
+      - alertlist
+      - decision
+      example: kyc
+      type: string
     customer_verification:
       example:
         customer_consent: true
@@ -403,23 +343,86 @@ components:
       - customer_consent
       title: PersonVerification
       type: object
-    verification_type:
-      description: The type of check run on the customer.
-      enum:
-      - fraud
-      - synthetic
-      - emailrisk
-      - phonerisk
-      - addressrisk
-      - kyc
-      - social
-      - watchliststandard
-      - watchlistpremier
-      - watchlistplus
-      - documentverification
-      - alertlist
-      - decision
-      example: kyc
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    verification_vendor_info:
+      description: 'The information provided to Synctera from the vendor. Interpretation of this object is up to the client.
+
+        '
+      discriminator:
+        mapping:
+          application/json: '#/components/schemas/verification_vendor_json'
+          text/xml: '#/components/schemas/verification_vendor_xml'
+        propertyName: content_type
+      oneOf:
+      - $ref: '#/components/schemas/verification_vendor_json'
+      - $ref: '#/components/schemas/verification_vendor_xml'
+      type: object
+    customer_verification_result_list:
+      allOf:
+      - properties:
+          verifications:
+            description: Array of verification results.
+            items:
+              $ref: '#/components/schemas/customer_verification_result'
+            type: array
+        required:
+        - verifications
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    verification_vendor_json:
+      properties:
+        content_type:
+          description: Describes the content-type encoding received from the vendor.
+          enum:
+          - application/json
+          type: string
+        details:
+          description: Array of vendor specific information.
+          items:
+            $ref: '#/components/schemas/verification_vendor_info_detail'
+          readOnly: true
+          type: array
+        json:
+          description: Data representation in JSON.
+          type: object
+        vendor:
+          description: Name of the vendor used.
+          example: SOCURE
+          type: string
+      required:
+      - vendor
+      - content_type
+      - json
+    paginated_response:
+      properties:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
+          type: string
+      title: Paginated List response
+      type: object
+    customer_id:
+      example: 4605deb4-3f8d-4566-9bf1-0dc558b63258
+      format: uuid
       type: string
     verification_vendor_info_detail:
       properties:
@@ -432,23 +435,14 @@ components:
           example: Global Watchlist sources selected are correlated with the input identifiers
           type: string
       type: object
-    customer_kyc_status:
-      description: Customer's KYC status
+    provider_type:
+      description: Name of the organization that provided this data.
       enum:
-      - UNVERIFIED
-      - REVIEW
-      - PROVIDER_FAILURE
-      - ACCEPTED
-      - REJECTED
-      - PROVISIONAL
+      - IDOLOGY
+      - SOCURE
+      example: SOCURE
       type: string
   responses:
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
     unauthorized:
       content:
         application/problem+json:
@@ -461,6 +455,12 @@ components:
           schema:
             $ref: '#/components/schemas/error'
       description: Resource not found
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
     internal_server_error:
       content:
         application/problem+json:
@@ -483,22 +483,6 @@ components:
         default: false
         type: boolean
       x-external: true
-    customer_id_path:
-      description: The customer's unique identifier
-      in: path
-      name: customer_id
-      required: true
-      schema:
-        $ref: '#/components/schemas/customer_id'
-    idempotency_key:
-      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
-      in: header
-      name: Idempotency-Key
-      required: false
-      schema:
-        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
-        type: string
-      x-external: true
     verification_id:
       description: Unique identifier for the verification.
       in: path
@@ -508,6 +492,22 @@ components:
         example: 50653b5a-fba5-4e95-aef3-819414206d61
         format: uuid
         type: string
+    idempotency_key:
+      description: An idempotency key is an arbitrary unique value generated by client to detect subsequent retries of the same request. It is recommended that a UUID or a similar random identifier be used as an idempotency key
+      in: header
+      name: Idempotency-Key
+      required: false
+      schema:
+        example: df122e6f-2ba8-48a5-9508-4350bba5f27e
+        type: string
+      x-external: true
+    customer_id_path:
+      description: The customer's unique identifier
+      in: path
+      name: customer_id
+      required: true
+      schema:
+        $ref: '#/components/schemas/customer_id'
     page_token:
       in: query
       name: page_token

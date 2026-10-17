@@ -110,7 +110,72 @@ paths:
       x-external: true
       x-status: alpha
 components:
+  responses:
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   schemas:
+    reconciliation:
+      description: Reconciliation
+      properties:
+        file_name:
+          description: Filename of the data to be reconciled
+          example: vp1m0ynhxsm3nb
+          readOnly: true
+          type: string
+        id:
+          description: Reconciliation ID
+          example: 6b7f32f8-c469-41a5-86f0-c49fc172f019
+          format: uuid
+          readOnly: true
+          type: string
+        ingestion_status:
+          $ref: '#/components/schemas/ingestion_status'
+      required:
+      - id
+      - file_name
+      - ingestion_status
+      title: Reconciliation
+      type: object
+    reconciliation_list:
+      allOf:
+      - properties:
+          reconciliations:
+            description: Array of reconciliations
+            items:
+              $ref: '#/components/schemas/reconciliation'
+            type: array
+        required:
+        - reconciliations
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
     reconciliation_input:
       description: Input data for a reconciliation
       properties:
@@ -135,28 +200,6 @@ components:
           example: d61grelm5f
           type: string
       title: Paginated List response
-      type: object
-    reconciliation:
-      description: Reconciliation
-      properties:
-        file_name:
-          description: Filename of the data to be reconciled
-          example: vp1m0ynhxsm3nb
-          readOnly: true
-          type: string
-        id:
-          description: Reconciliation ID
-          example: 6b7f32f8-c469-41a5-86f0-c49fc172f019
-          format: uuid
-          readOnly: true
-          type: string
-        ingestion_status:
-          $ref: '#/components/schemas/ingestion_status'
-      required:
-      - id
-      - file_name
-      - ingestion_status
-      title: Reconciliation
       type: object
     error:
       properties:
@@ -186,59 +229,7 @@ components:
       - FAILED
       title: Reconciliation Ingestion Status Values
       type: string
-    reconciliation_list:
-      allOf:
-      - properties:
-          reconciliations:
-            description: Array of reconciliations
-            items:
-              $ref: '#/components/schemas/reconciliation'
-            type: array
-        required:
-        - reconciliations
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
-  responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   parameters:
-    reconciliation_id:
-      description: Reconciliation id
-      in: path
-      name: reconciliation_id
-      required: true
-      schema:
-        example: 6917767f-50b9-475e-91c0-ed7d1efc8e13
-        format: uuid
-        type: string
     page_token:
       in: query
       name: page_token
@@ -248,6 +239,15 @@ components:
         example: h50ffqz9q5
         type: string
       x-external: true
+    reconciliation_id:
+      description: Reconciliation id
+      in: path
+      name: reconciliation_id
+      required: true
+      schema:
+        example: 6917767f-50b9-475e-91c0-ed7d1efc8e13
+        format: uuid
+        type: string
     limit:
       in: query
       name: limit

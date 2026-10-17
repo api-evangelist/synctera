@@ -174,40 +174,50 @@ paths:
       x-external: true
       x-status: alpha
 components:
+  responses:
+    already_exists:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource already exists error
+    forbidden:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Forbidden error
+    internal_server_error:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Internal server error
+    unauthorized:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Unauthorized
+    bad_request:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: BadRequest
+    not_found:
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/error'
+      description: Resource not found
   schemas:
-    encryption:
-      default: NOT_REQUIRED
-      enum:
-      - REQUIRED
-      - NOT_REQUIRED
-      type: string
-    paginated_response:
+    patch_document:
       properties:
-        next_page_token:
-          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
-          example: d61grelm5f
+        description:
           type: string
-      title: Paginated List response
-      type: object
-    error:
-      properties:
-        detail:
-          description: a human-readable string explaining this particular error
-          example: 'missing required fields: first_name, dob'
+        name:
           type: string
-        status:
-          description: the HTTP status code for this response
-          example: 400
-          type: integer
-        title:
-          description: a human-readable string for this general category of error
-          example: Bad Request Body
-          type: string
-        type:
-          description: a URI that identifies this general category of error
-          example: https://dev.synctera.com/errors/bad-request-body
-          type: string
-      title: Standard error response (RFC 7807 problem report)
       type: object
     document_creation:
       properties:
@@ -234,25 +244,14 @@ components:
       required:
       - file
       type: object
-    patch_document:
+    paginated_response:
       properties:
-        description:
+        next_page_token:
+          description: If returned, use the next_page_token to query for the next page of results. Not returned if there are no more rows.
+          example: d61grelm5f
           type: string
-        name:
-          type: string
+      title: Paginated List response
       type: object
-    document_list:
-      allOf:
-      - properties:
-          documents:
-            description: Array of documents.
-            items:
-              $ref: '#/components/schemas/document'
-            type: array
-        required:
-        - documents
-        type: object
-      - $ref: '#/components/schemas/paginated_response'
     document:
       properties:
         creation_time:
@@ -297,64 +296,51 @@ components:
         related_resource_type:
           $ref: '#/components/schemas/related_resource_type'
       type: object
+    document_list:
+      allOf:
+      - properties:
+          documents:
+            description: Array of documents.
+            items:
+              $ref: '#/components/schemas/document'
+            type: array
+        required:
+        - documents
+        type: object
+      - $ref: '#/components/schemas/paginated_response'
+    error:
+      properties:
+        detail:
+          description: a human-readable string explaining this particular error
+          example: 'missing required fields: first_name, dob'
+          type: string
+        status:
+          description: the HTTP status code for this response
+          example: 400
+          type: integer
+        title:
+          description: a human-readable string for this general category of error
+          example: Bad Request Body
+          type: string
+        type:
+          description: a URI that identifies this general category of error
+          example: https://dev.synctera.com/errors/bad-request-body
+          type: string
+      title: Standard error response (RFC 7807 problem report)
+      type: object
+    encryption:
+      default: NOT_REQUIRED
+      enum:
+      - REQUIRED
+      - NOT_REQUIRED
+      type: string
     related_resource_type:
       description: Related resource type
       enum:
       - CUSTOMER
       - BUSINESS
       type: string
-  responses:
-    not_found:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource not found
-    bad_request:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: BadRequest
-    already_exists:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Resource already exists error
-    forbidden:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Forbidden error
-    internal_server_error:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Internal server error
-    unauthorized:
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/error'
-      description: Unauthorized
   parameters:
-    id:
-      description: Unique resource identifier
-      explode: false
-      in: query
-      name: id
-      required: false
-      schema:
-        items:
-          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
-          format: uuid
-          type: string
-        type: array
-      style: form
-      x-external: true
     document_id:
       description: The unique identifier of a document.
       in: path
@@ -385,6 +371,20 @@ components:
         example: 100
         minimum: 1
         type: integer
+      x-external: true
+    id:
+      description: Unique resource identifier
+      explode: false
+      in: query
+      name: id
+      required: false
+      schema:
+        items:
+          example: 81026fb3-d06c-4b37-80da-2b17b4749a3f
+          format: uuid
+          type: string
+        type: array
+      style: form
       x-external: true
   securitySchemes:
     bearerAuth:

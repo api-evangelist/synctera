@@ -1,0 +1,30 @@
+kind: regulatory-finding
+market: canada-rpaa-psp-registry
+detected_by: sweep-canada-rpaa-psp-registry.py
+first_seen: '2026-10-22'
+findings:
+- register: Bank of Canada RPAA registry of payment service providers
+  registered_name: Synctera Canada Inc.
+  brand: Synctera
+  register_status: revoked
+  register_id: 1881ae16-789b-ef11-8a69-000d3a84a24c
+  evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=1881ae16-789b-ef11-8a69-000d3a84a24c
+  matched_domain: synctera.com
+  matched_by: domain
+  reasons:
+  - published_date: March 4, 2026
+    authority:
+    - Retail Payment Activities Act (RPAA) 52(e) - The Bank of Canada (the Bank) may revoke a payment service provider’s (PSP)'s
+      registration when the PSP has ceased to perform retail payment activities.
+    reason: Synctera Canada Inc. informed the Bank that it has ceased operations as a PSP as of August 8, 2025. The Bank is
+      revoking Synctera Canada Inc.’s registration as a PSP. A Notice of intent to revoke was issued on January 29, 2026.
+      Synctera Canada Inc. did not request a review (under subsection 53(1) of the RPAA) of the Bank’s Notice of Intent to
+      Revoke its registration status. The Notice of Revocation was issued on March 2, 2026. Synctera Canada Inc. a informé
+      la Banque qu’elle a cessé ses activités à titre de FSP le 8 août 2025. La Banque révoque donc l’enregistrement de Synctera
+      Canada Inc. à titre de FSP. Un avis d’intention de révoquer l’enregistrement a été émis le 29 janvier 2026. Synctera
+      Canada Inc. ne s’est pas prévalu de son droit, en vertu du paragraphe 53(1) de la LAAPD, de demander une révision de
+      l’avis d’intention de la Banque de révoquer son enregistrement. L’avis de révocation a été émis le 2 mars 2026.
+  negative_finding: true
+note: A refusal or revocation under the Retail Payment Activities Act is a negative regulated finding; it is recorded here
+  and is NOT an integration edge (it never counts toward participation).
+checked: '2026-10-22'
